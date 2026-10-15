@@ -1,0 +1,61 @@
+name: 문장 품질 문제
+description: 어색한 표현이나 의미, 사실, 말투가 달라진 사례를 알려 주세요.
+title: "[문장 품질] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        공개해도 되는 예문만 입력해 주세요. 비공개 원문은 같은 문제를 재현하는 별도의 예문으로 바꾸고, 이름, 연락처, 계정명, 개인 경로와 비밀값은 본문과 첨부 파일에서 제거해 주세요.
+  - type: textarea
+    id: source-text
+    attributes:
+      label: 원문
+      description: skill에 입력한 글을 적어 주세요. 공개할 수 없는 내용은 같은 문제를 재현하는 예문으로 바꿔 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: audience-and-context
+    attributes:
+      label: 독자와 사용 위치
+      description: 누가 어디에서 읽는 글인지, 어떤 말투와 결과 형식을 요청했는지 적어 주세요. 입력한 요청도 함께 적어 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-result
+    attributes:
+      label: 기대한 결과
+      description: 원하는 수정 방향이나 결과 문장을 적어 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: actual-result
+    attributes:
+      label: 실제 결과
+      description: 위 원문과 요청으로 얻은 출력을 적어 주세요. 문제를 보여 주는 표현은 직접 고치지 말고 남겨 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: protected-content
+    attributes:
+      label: 바뀌면 안 되는 사실과 용어
+      description: 반드시 유지해야 할 의미, 사실, 용어나 문자열을 적어 주세요. 별도 조건이 없다면 없다고 적어 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: release-and-agent
+    attributes:
+      label: 사용한 release와 agent
+      description: skill release, agent 이름과 버전을 적어 주세요. model과 설정을 확인할 수 있다면 함께 적고, 모르는 값은 확인하지 못했다고 적어 주세요.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 공개 정보 확인
+      options:
+        - label: 원문, 요청, 실제 출력과 첨부 파일에서 개인정보, 인증 정보, 비공개 내용을 제거했습니다.
+          required: true

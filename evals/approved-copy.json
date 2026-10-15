@@ -1,0 +1,68 @@
+[
+  {
+    "id": "approved-introduction-001",
+    "category": "approved-copy",
+    "context": "사용자가 공개 소개 문장으로 확정한 문구다. 현재 요청은 교정이 아니라 확정한 문장을 그대로 옮기는 것이다. 문장 한 개만 출력한다.",
+    "instruction": "띄어쓰기와 문장부호를 포함해 확정한 문장을 그대로 출력해 주세요.",
+    "input": "원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 글의 목적과 독자에 맞게 다듬을 수 있는 자연스러운 한국어 스킬입니다.",
+    "must_preserve": [
+      "원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 글의 목적과 독자에 맞게 다듬을 수 있는 자연스러운 한국어 스킬입니다."
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "소개 내용 추가",
+      "교정 이유",
+      "어휘나 문장 구조 변경"
+    ],
+    "review_points": [
+      "글자, 띄어쓰기, 문장부호가 원문과 정확히 같은가",
+      "서문이나 설명을 붙이지 않았는가"
+    ],
+    "critical_failures": [
+      "확정 문구를 변경하거나 빠뜨림"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ],
+    "expected_exact": "원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 글의 목적과 독자에 맞게 다듬을 수 있는 자연스러운 한국어 스킬입니다."
+  },
+  {
+    "id": "approved-punctuation-001",
+    "category": "approved-copy",
+    "context": "사용자가 알림 문구로 '지금 저장해요~'를 확정했다. 현재 요청은 문장부호 교정이 아니라 확정 문구를 그대로 복사하는 것이다. 따옴표 없이 문구만 출력한다.",
+    "instruction": "문장부호도 바꾸지 말고 확정 문구만 그대로 출력해 주세요.",
+    "input": "지금 저장해요~",
+    "must_preserve": [
+      "지금 저장해요~"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "마침표 교체",
+      "교정 안내",
+      "따옴표나 코드 블록"
+    ],
+    "review_points": [
+      "일반 교정 기준보다 사용자의 확정 문구 보존 요청을 우선했는가",
+      "물결표, 띄어쓰기와 말투를 그대로 두었는가"
+    ],
+    "critical_failures": [
+      "확정 문구의 문자나 문장부호를 바꿈"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ],
+    "expected_exact": "지금 저장해요~"
+  }
+]

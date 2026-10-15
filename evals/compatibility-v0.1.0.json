@@ -1,0 +1,743 @@
+{
+  "actual_prompt_sha256": {
+    "approved-introduction-001": {
+      "generator": "373935922CBEF9AFEBBC826DF392A0B86638E5EAA89B72E456EADD1D85006BC1",
+      "reviewer-a": "FFD4FFD3B0FEFA2FC4AFAF22B51032DCB7FF8176726AD7A14544E36E1A07E30F",
+      "reviewer-b": "FFD4FFD3B0FEFA2FC4AFAF22B51032DCB7FF8176726AD7A14544E36E1A07E30F"
+    },
+    "approved-punctuation-001": {
+      "generator": "A8501B146781EA83A92CF6FDD20C7C4B1529D8D3C17C30B102301FB21B0044E0",
+      "reviewer-a": "30BC64C3606C2F82BF5698A883BA8C195BB99FC38097337209986310CCDEA454",
+      "reviewer-b": "30BC64C3606C2F82BF5698A883BA8C195BB99FC38097337209986310CCDEA454"
+    },
+    "artifact-email-followup-001": {
+      "generator": "7536CE57F3AD02ED73A46B141DAD9F2F9C14EE1599DFCAC54F2E3E3BFC7F54E8",
+      "reviewer-a": "508C9049D0E6F21ABC5641DA32DEEDF5F915551759EEF1AD5A15DB5F82DF9B7D",
+      "reviewer-b": "508C9049D0E6F21ABC5641DA32DEEDF5F915551759EEF1AD5A15DB5F82DF9B7D"
+    },
+    "artifact-expected-benefit-001": {
+      "generator": "43DDAC25348135CEE11DED0CBA0C4E143A0A1C437BFFA5A738407C402E4B767F",
+      "reviewer-a": "98E05D8AE77202AB4F6B452E2886BEE5EC656FD44668DC54650A7F61347B2655",
+      "reviewer-b": "98E05D8AE77202AB4F6B452E2886BEE5EC656FD44668DC54650A7F61347B2655"
+    },
+    "artifact-learning-001": {
+      "generator": "E986FB90269088C013483BC5512D8252337B63C8E999C4957745CE11AC87C2D1",
+      "reviewer-a": "A0AC9D82ABA0CAFDD76BB998E0CE50D596F5D843A161B42F3B9356849DFF697F",
+      "reviewer-b": "A0AC9D82ABA0CAFDD76BB998E0CE50D596F5D843A161B42F3B9356849DFF697F"
+    },
+    "artifact-pr-summary-001": {
+      "generator": "9B417B53B765112813F4F0D7CEDF4955C880DA5ED380D52FB91EF1B9546B5AAB",
+      "reviewer-a": "675B60AAB1A970F68EE616800C30411576A6C125B109E4188D3358B46615DC39",
+      "reviewer-b": "675B60AAB1A970F68EE616800C30411576A6C125B109E4188D3358B46615DC39"
+    },
+    "artifact-proposal-need-001": {
+      "generator": "C1B519D48C76876911F40F41F42A03E90664C441FDF6F7D5256369C895D11776",
+      "reviewer-a": "B19504DAA4770E7C4DFAC97E94952FD4C4F4158062399A02327523E2ECD406F3",
+      "reviewer-b": "B19504DAA4770E7C4DFAC97E94952FD4C4F4158062399A02327523E2ECD406F3"
+    },
+    "artifact-ui-label-001": {
+      "generator": "EBF097ECA9134C0C42325E6F9772884995868A9D4BA8CF10FC4B031341D4047D",
+      "reviewer-a": "89CC9A15514F9E7E1EFFB0F2CE29868D77218BC806032EBEF75AD050AECC8ADF",
+      "reviewer-b": "89CC9A15514F9E7E1EFFB0F2CE29868D77218BC806032EBEF75AD050AECC8ADF"
+    },
+    "boundary-drafting-history-001": {
+      "generator": "51D2E292B3423A5EE56FE32C42A9C9CEC460F89868D451CA18EC01D114E5FB0A",
+      "reviewer-a": "9DEBC6F5E2F1583FF07939D3FD0121623DE3AD73668C8EDC2F82EF8B1EC541C4",
+      "reviewer-b": "9DEBC6F5E2F1583FF07939D3FD0121623DE3AD73668C8EDC2F82EF8B1EC541C4"
+    },
+    "boundary-private-measurement-001": {
+      "generator": "ECD0C9B74F3D8812DE5C10205C0FC416D546705572509FCE94DA1CC79E28E392",
+      "reviewer-a": "94E469110769D8AC2EFEFC0CBB98FFAFB7E8B87AA0F529FFEBC421C9C4588D64",
+      "reviewer-b": "94E469110769D8AC2EFEFC0CBB98FFAFB7E8B87AA0F529FFEBC421C9C4588D64"
+    },
+    "certainty-cause-001": {
+      "generator": "E6BD65CDD603920CFC735FE38899687F1DB1195885AD7F659F8E83E7306038A0",
+      "reviewer-a": "5FCC3ECA3D5E28117B9E93B61FAF426CD172C9135B1C5C7B2ED31F1BBAAD62E0",
+      "reviewer-b": "5FCC3ECA3D5E28117B9E93B61FAF426CD172C9135B1C5C7B2ED31F1BBAAD62E0"
+    },
+    "certainty-proposal-001": {
+      "generator": "1D5923AE26CFAAF22DE6E48D7E387A53424667A0FA2E8CE9B7A40E8FDBBA6993",
+      "reviewer-a": "A57C8E56EE4CE24F4C6492667DB3AC4548A56B53A5725FE9E38972793611E42E",
+      "reviewer-b": "A57C8E56EE4CE24F4C6492667DB3AC4548A56B53A5725FE9E38972793611E42E"
+    },
+    "delivery-final-only-001": {
+      "generator": "CE90E46DEAADAAF9B6C799BAB0B1C8D622B3C0BEBCED26B213B7B7C38B7DF756",
+      "reviewer-a": "C6F81B67FB83580E74E15CE523930A61A20AC356474199779E9E6003E6810153",
+      "reviewer-b": "C6F81B67FB83580E74E15CE523930A61A20AC356474199779E9E6003E6810153"
+    },
+    "delivery-markdown-001": {
+      "generator": "D34F75753B677C0D4EA42FCABBEB24EDC745ECC3AF5FDD9651D636B6D0AF5212",
+      "reviewer-a": "69F581520343A41B57ED15F6142FA38BB1BFB094924E2CE9CCA2D1F91DDF6AA0",
+      "reviewer-b": "69F581520343A41B57ED15F6142FA38BB1BFB094924E2CE9CCA2D1F91DDF6AA0"
+    },
+    "grammar-access-001": {
+      "generator": "314571DEDB494220B1B06C7707D6A90DA48C6F9F673DE7D2C1D277E56BDA6D57",
+      "reviewer-a": "155A318FE799F1AEB1E235DB9A88ECB0FF3F20F377475E7AB2393785A7431733",
+      "reviewer-b": "155A318FE799F1AEB1E235DB9A88ECB0FF3F20F377475E7AB2393785A7431733"
+    },
+    "grammar-actor-001": {
+      "generator": "84CEEA0C80FA1B0B2DB57E6017B3C9A16A5A039215A9E1C287CE78C86C80008A",
+      "reviewer-a": "A2EE6F61FEAEF46E7DE2404C71679E4C534E26CFC00BB78B9BA7C542CBF65A17",
+      "reviewer-b": "A2EE6F61FEAEF46E7DE2404C71679E4C534E26CFC00BB78B9BA7C542CBF65A17"
+    },
+    "grammar-coordination-001": {
+      "generator": "81B32911617C9C6C556FAD8FF20B914D4351361CC3834AD06FA9423703FCFE94",
+      "reviewer-a": "35A8BA3F4A9800F42051D2D1EDDC8A288219AD6FC565F568A97DD4A493DEBCB2",
+      "reviewer-b": "35A8BA3F4A9800F42051D2D1EDDC8A288219AD6FC565F568A97DD4A493DEBCB2"
+    },
+    "grammar-help-001": {
+      "generator": "3B35372414ACA497401146DFDF76BB3E95414134A0587B4A5E937703965AB610",
+      "reviewer-a": "11D8466049F74D44D4605163DB1322484AC39C24E622BB20FAA0BFD0530B61E2",
+      "reviewer-b": "11D8466049F74D44D4605163DB1322484AC39C24E622BB20FAA0BFD0530B61E2"
+    },
+    "literal-familiar-korean-001": {
+      "generator": "BB41EAF8E046EB53A937F4D14F3E8BBA96EA6A3EC85595B94525EEF55E2946AF",
+      "reviewer-a": "3105D01BF2E83FEDE1C4D2A5CC1C7A0A17D7F00DD1190E8DCAC02E0766370BD6",
+      "reviewer-b": "3105D01BF2E83FEDE1C4D2A5CC1C7A0A17D7F00DD1190E8DCAC02E0766370BD6"
+    },
+    "literal-identifiers-001": {
+      "generator": "AA9C12BE341F4BB9670887928BD09F9E810FD502CC7B7F7B755A59CC49ADEB3A",
+      "reviewer-a": "6CEA7AD58598BB387246A12FA89F04CD5F0F27C4B3F825FC1611187B01BE9916",
+      "reviewer-b": "6CEA7AD58598BB387246A12FA89F04CD5F0F27C4B3F825FC1611187B01BE9916"
+    },
+    "literal-path-command-001": {
+      "generator": "D9B9256EF8F94AC10CBEF57E8466963E461E2AE4589E45BFE488E360CD90696C",
+      "reviewer-a": "EFB5066EC4209CA9658A210E03B61B4E3F18DF856DB65B3A7AAAF8CADC3C3C8D",
+      "reviewer-b": "EFB5066EC4209CA9658A210E03B61B4E3F18DF856DB65B3A7AAAF8CADC3C3C8D"
+    },
+    "meaning-close-001": {
+      "generator": "DEA46C0C621A147AC75AE0A4CF2FDB79A9356B744051FC242745158590360736",
+      "reviewer-a": "5894AED806AFBF1B20FE032EAAA6BF2A9481906DD5D009A129757D8D3FCA5F3B",
+      "reviewer-b": "5894AED806AFBF1B20FE032EAAA6BF2A9481906DD5D009A129757D8D3FCA5F3B"
+    },
+    "meaning-denominator-001": {
+      "generator": "BE71E962E39405BA7F01DD9264689E2201C6094B3BEC3452B2988C5835963F0C",
+      "reviewer-a": "664D1A69DD28DDD1E34DFC8CFEF88BBC2E08AC6791950CF6A2FAD7F95A69264C",
+      "reviewer-b": "664D1A69DD28DDD1E34DFC8CFEF88BBC2E08AC6791950CF6A2FAD7F95A69264C"
+    },
+    "meaning-measurement-001": {
+      "generator": "ECCDD80A162E11B13AA0A2FD81F347B9AA5BF86B0DAC46C915D3B764DD7A077F",
+      "reviewer-a": "5F1735F7CCC72BD09B28077A35567A7A53735FFFABAE521F4E8FB9392456C61D",
+      "reviewer-b": "5F1735F7CCC72BD09B28077A35567A7A53735FFFABAE521F4E8FB9392456C61D"
+    },
+    "meaning-ownership-001": {
+      "generator": "DA859F74C4FACF5F1E2342ED9F20E90CE57F0A373019C42B35821D4AB88506DF",
+      "reviewer-a": "65933D587F02F7D669637952C640B32985A665D80456046066B0269C5A7C690C",
+      "reviewer-b": "65933D587F02F7D669637952C640B32985A665D80456046066B0269C5A7C690C"
+    },
+    "pragmatics-channel-001": {
+      "generator": "0156BF5FEDE20FAEF767191EE55E8F8538B45B07D18E4D38E76AEC48CCE6B9B8",
+      "reviewer-a": "95A288E306B8AD0D55B6D41E4A20AA3C3B87904CAE42F1A4BD73670017D7E822",
+      "reviewer-b": "95A288E306B8AD0D55B6D41E4A20AA3C3B87904CAE42F1A4BD73670017D7E822"
+    },
+    "pragmatics-intent-001": {
+      "generator": "92F959D855DB7021A12B57FEA4971195EE6B8AA30357E3254DFF8FBF2F13488F",
+      "reviewer-a": "65368B19C92E5518219F8C9F616056A47C312E7B325E8D2C90384B2EDFF1B729",
+      "reviewer-b": "65368B19C92E5518219F8C9F616056A47C312E7B325E8D2C90384B2EDFF1B729"
+    },
+    "pragmatics-place-001": {
+      "generator": "55F6F4E5232E1E15D429D772DC4C8187524659DD8A45CA39899B4297D7B66099",
+      "reviewer-a": "CBE4CBE9E845D2971510D1891E1154B538B8CFCC9FD65F1F808AE2DCEC76E00A",
+      "reviewer-b": "CBE4CBE9E845D2971510D1891E1154B538B8CFCC9FD65F1F808AE2DCEC76E00A"
+    },
+    "pragmatics-relationship-001": {
+      "generator": "C8E1C7A8B515A96DB8E1E7C147E3AA388B87C856627072AFE83A8C931FBE624E",
+      "reviewer-a": "15D20F05AAD04184014C5DC2580B6792DB324765E37275DF441853424910C578",
+      "reviewer-b": "15D20F05AAD04184014C5DC2580B6792DB324765E37275DF441853424910C578"
+    },
+    "pragmatics-speaker-001": {
+      "generator": "9CE23A3B4008F4A50ECA86E22A9F2CF8C9A0207547FCEA83302654E6B898C741",
+      "reviewer-a": "DEFB3DEADFD5004C9490A6BF12D9BD79A507E4FFF90A351071AA0E47A68BC7C3",
+      "reviewer-b": "DEFB3DEADFD5004C9490A6BF12D9BD79A507E4FFF90A351071AA0E47A68BC7C3"
+    },
+    "pragmatics-time-001": {
+      "generator": "C8BAB0DCD5C258F04002A1D93A1BC0A6F6D6A8C9C0AF3E36C3B21F65603BC3BB",
+      "reviewer-a": "5B733484407582AF762932AA3FD1391A6BE9AAF6599B86594DE59FCDA24ACEEC",
+      "reviewer-b": "5B733484407582AF762932AA3FD1391A6BE9AAF6599B86594DE59FCDA24ACEEC"
+    },
+    "pragmatics-unknown-001": {
+      "generator": "5D6E3D8605F9DFCA33E2C0AC1FA222A2CEA30225FD682F29D097D47B83501AE0",
+      "reviewer-a": "A4B063D2ECFB6506A0367CDA7F317EC2EAAEAEC19E4C578CD48F44AD669AB7C8",
+      "reviewer-b": "A4B063D2ECFB6506A0367CDA7F317EC2EAAEAEC19E4C578CD48F44AD669AB7C8"
+    },
+    "preference-no-middle-dot-001": {
+      "generator": "EFD95E241210955226757C1835F0793DDB7C30D752E9095C6CFB64AF49FB57C7",
+      "reviewer-a": "05FA3246FD79DEF117A1499567227740B15BDF5E98857F3F4B8F95E746673AB6",
+      "reviewer-b": "05FA3246FD79DEF117A1499567227740B15BDF5E98857F3F4B8F95E746673AB6"
+    },
+    "preference-protected-middle-dot-001": {
+      "generator": "BD7F027618A3E1E392C8E3ED814D22B28E1202C50EFA9CC76BB728E6338F6085",
+      "reviewer-a": "7DAE285FCA35489C7C708AAE49AADBC38360909F52AF2779C1E2D9865C1882E4",
+      "reviewer-b": "7DAE285FCA35489C7C708AAE49AADBC38360909F52AF2779C1E2D9865C1882E4"
+    },
+    "priority-later-edit-001": {
+      "generator": "88475187FAC6B0D6433B0CD4F9C368D1442C9F7CBDB029DE26AED206CFF85998",
+      "reviewer-a": "84E70C42F86514E1A30801D0639B77250BA3BD8C450B4C0A00D9383BD1855470",
+      "reviewer-b": "84E70C42F86514E1A30801D0639B77250BA3BD8C450B4C0A00D9383BD1855470"
+    },
+    "punctuation-em-dash-001": {
+      "generator": "13C3889D6959DBA63E948D05CAF0005EF9F7F54CB71CB0E98FC8AF493FF48A3D",
+      "reviewer-a": "FD6154303E75F98113BDB8324ED6CCAB58BD4111B7B8E1550B550FA41EC2467B",
+      "reviewer-b": "FD6154303E75F98113BDB8324ED6CCAB58BD4111B7B8E1550B550FA41EC2467B"
+    },
+    "punctuation-en-dash-001": {
+      "generator": "F86472BD453402A5CA247269B6638A0028F07EF94DC0183D758841F7D8BAA27D",
+      "reviewer-a": "19B2CC389514E8895A72E3479F8483FCE437C6B0BE43ABBE6192FF83307E14B8",
+      "reviewer-b": "19B2CC389514E8895A72E3479F8483FCE437C6B0BE43ABBE6192FF83307E14B8"
+    },
+    "punctuation-hyphen-001": {
+      "generator": "3B465F7F54A05BDEDE495B87E161B1D4227DD85A2AC4824AE09B1BAABD572581",
+      "reviewer-a": "B327406CF60155709145608F771F477F8163CAEC7D09673A793D6597A260416A",
+      "reviewer-b": "B327406CF60155709145608F771F477F8163CAEC7D09673A793D6597A260416A"
+    },
+    "punctuation-literal-001": {
+      "generator": "302D0EAAEBCF59934486868213E35998F90958ABDD7BA5955D8F255BC57696D3",
+      "reviewer-a": "4BDCCEB3B3A9C780E661D756A66D54DA7221E6675CEF928A38FB8CA504C800A3",
+      "reviewer-b": "4BDCCEB3B3A9C780E661D756A66D54DA7221E6675CEF928A38FB8CA504C800A3"
+    },
+    "punctuation-middle-dot-001": {
+      "generator": "A05F01627283A27805B529E5F2E35C456B56B8B85CCE2CCDB2D81F13244DF7A8",
+      "reviewer-a": "E4E3BA5497ED4EC5676113F441F8A7E5EB9099C957C6A104CE8A683F43C070F5",
+      "reviewer-b": "E4E3BA5497ED4EC5676113F441F8A7E5EB9099C957C6A104CE8A683F43C070F5"
+    },
+    "punctuation-subtitle-001": {
+      "generator": "7061220C24314FC44CAA9B81695CB426BB38B395FDCD065D6103E58FBF192223",
+      "reviewer-a": "43487D6753E8BBB9F95893B43AB7BF827D42E03BE70924DB853034C6A753D468",
+      "reviewer-b": "43487D6753E8BBB9F95893B43AB7BF827D42E03BE70924DB853034C6A753D468"
+    },
+    "punctuation-tilde-001": {
+      "generator": "58463CB89731C7A711D2292951BC8B8669EB1E129E470E60CE2EB0CA3B2B4F6B",
+      "reviewer-a": "5CAD8EB842323BE2B7A2A18EB89CE8F9CA774D9D80787447FF01390FFEA85692",
+      "reviewer-b": "5CAD8EB842323BE2B7A2A18EB89CE8F9CA774D9D80787447FF01390FFEA85692"
+    },
+    "reference-actor-change-001": {
+      "generator": "14B56B5E4DBEB423334AC2E6461AB2720B5A216D23FA74B76A6665AE1E606AB1",
+      "reviewer-a": "BE8E2ACF81136A1A938B6EB998E545F87ED7AAF10873F60D882FF34E188867B4",
+      "reviewer-b": "BE8E2ACF81136A1A938B6EB998E545F87ED7AAF10873F60D882FF34E188867B4"
+    },
+    "reference-author-001": {
+      "generator": "453EDF9EFDD04751C1AAA27244C430511B8EA7BC50F5E02729BB71F41B69D033",
+      "reviewer-a": "F2DB4E62F93030D5FA849452C0E9FA91C99F1FB83C11B312C9B4B331D779B699",
+      "reviewer-b": "F2DB4E62F93030D5FA849452C0E9FA91C99F1FB83C11B312C9B4B331D779B699"
+    },
+    "reference-target-001": {
+      "generator": "46522016006DECDFC29F5737E868A54482750670A45E126C38DE780A3D1D43A8",
+      "reviewer-a": "CF52DB471321B0D8BC855ED6F05572C83E868E290ACCEB4CFB46F5980E3D2F6C",
+      "reviewer-b": "CF52DB471321B0D8BC855ED6F05572C83E868E290ACCEB4CFB46F5980E3D2F6C"
+    },
+    "register-casual-001": {
+      "adjudicator": "50F97CE5034FDAE9337A2151BE459A1AB8F06EAFB1E215514F8828CACFC9CF22",
+      "generator": "2CB5A3848854A114ADC8C83564E277C93532A327A515D307133D70626DA3D4BF",
+      "reviewer-a": "9F9EAFADD2F1EA43D2805C9EC65914E3C10D7E67FA17711C2B4DF3A37DA8A3A4",
+      "reviewer-b": "9F9EAFADD2F1EA43D2805C9EC65914E3C10D7E67FA17711C2B4DF3A37DA8A3A4"
+    },
+    "register-honorific-001": {
+      "generator": "BC48000E6111BFAE7F11C9F59D60650460669FE92244ED44A7797872D32AA1E4",
+      "reviewer-a": "DEEF316886AF1D1E5CB916658CD6F71234E2C551B8762E8EECF5209F88EA5BF8",
+      "reviewer-b": "DEEF316886AF1D1E5CB916658CD6F71234E2C551B8762E8EECF5209F88EA5BF8"
+    },
+    "register-neutral-actions-001": {
+      "generator": "25E0712630F868E715A706E839BD155442C46CCAB7EA8FC62311F8A7C6DA6F41",
+      "reviewer-a": "7D183AF9BC211DB71282DAE67EA7BE6F841E01B2487DA2377A49BA549070F305",
+      "reviewer-b": "7D183AF9BC211DB71282DAE67EA7BE6F841E01B2487DA2377A49BA549070F305"
+    },
+    "register-remote-draft-001": {
+      "generator": "5760992782ABBB3EB59E9702F77387C8A2CD3FC10038DF15456B21AFC0FFD637",
+      "reviewer-a": "A4ABAB7E5A9E00D7C84BAD642B795C712F3245C37040FAA0633F1EF5C11F9BD4",
+      "reviewer-b": "A4ABAB7E5A9E00D7C84BAD642B795C712F3245C37040FAA0633F1EF5C11F9BD4"
+    },
+    "register-request-001": {
+      "generator": "D0C4F3748B2B405096FCE1BE3644B8BDB288533BB02302D3D000AC0BEFAD3D8C",
+      "reviewer-a": "AD12F8263ED842368288DAC551E158A72D63F9F04C9CDC3BEE6FF0D27D935B80",
+      "reviewer-b": "AD12F8263ED842368288DAC551E158A72D63F9F04C9CDC3BEE6FF0D27D935B80"
+    }
+  },
+  "metadata": {
+    "tested_at": "2026-10-15T10:41:20Z",
+    "tested_skill_digest": "8489CF13D1EE9FA936AA6C76B9D9B66CEEB87D26A0D2ACC1AA990361AE26B63E",
+    "version": "v0.1.0"
+  },
+  "original_protocol": "# 평가 방법\n\n평가는 정해진 문맥에서 의미와 사실을 보존하고, 독자에게 맞는 한국어를 작성하는지 확인합니다. 생성 결과는 서로 독립된 두 평가자가 판단하며, 판정이 다르면 세 번째 평가자가 추가로 평가합니다. Python 도구는 실행 기록과 집계의 일관성을 검사합니다. 한국어 품질을 자동으로 판정하는 도구는 아닙니다.\n\n## 평가 자료\n\n| 파일 | 평가 범위 | 사례 수 |\n| --- | --- | --- |\n| [core.json](core.json) | 의미, 문장 구조, 문맥과 결과 형식 | 24 |\n| [approved-copy.json](approved-copy.json) | 확정한 문구의 보존 | 2 |\n| [punctuation.json](punctuation.json) | 한국어 문장부호와 보호할 원문 | 7 |\n| [context.json](context.json) | 후속 지시, 정보 경계와 문맥별 작성 조건 | 10 |\n| [pragmatics.json](pragmatics.json) | 화자, 관계, 시점, 장소, 전달 방식과 발언 의도 | 7 |\n\n다섯 파일의 50개 사례를 모두 실행합니다. 기술 지식을 추측할 필요가 없도록 각 사례에 필요한 사실을 제공합니다.\n\n`core.json`의 분포는 다음과 같습니다.\n\n| 분류 (`category`) | 평가 범위 | 사례 수 |\n| --- | --- | --- |\n| `meaning` | 의미와 사실 보존 | 4 |\n| `grammar` | 조사와 서술어 호응 | 4 |\n| `reference` | 생략과 지시 대상 | 3 |\n| `register` | 말투와 높임 수준 | 3 |\n| `artifact` | 글의 종류에 맞는 표현 | 4 |\n| `literal` | 기술 원문의 정확한 보존 | 2 |\n| `certainty` | 사실, 추론, 제안의 구분 | 2 |\n| `delivery` | 바로 사용할 수 있는 결과 형식 | 2 |\n\n`register`는 공손한 대화, 편한 대화, 호칭과 요청 방식의 일치를 각각 검사합니다. 편한 대화를 이유 없이 존댓말로 바꾸는 것도 실패입니다.\n\n`approved-copy.json`의 `category` 값은 `approved-copy`입니다. 소개 문장을 보존하는지, 더 매끄럽게 고친다는 이유로 확정 문구를 바꾸지는 않는지 검사합니다. 두 사례 모두 `expected_exact`를 지정합니다.\n\n`punctuation.json`의 `category` 값은 `punctuation`입니다. 영어 엔 대시와 엠 대시를 고치는 사례 2개, 가운뎃점, 붙임표, 한국어 줄표, 물결표의 쓰임을 확인하는 사례 각 1개, 코드와 경로, URL을 보존하는 사례 1개로 구성합니다.\n\n`context.json`의 `category` 값은 `context`입니다. 다음 열 가지 조건을 각각 검사합니다.\n\n1. 최종 문서에 불필요한 제작 이력을 노출하지 않습니다.\n2. 나중에 명시한 수정 요청을 반영하고, 바꾸지 말라고 한 문구를 보존해 완성된 결과를 전달합니다.\n3. 대화 말투와 원격에 게시할 초안의 존댓말을 구분합니다.\n4. 짧은 대화에서도 실제 동작과 상태를 중립적인 동사로 설명합니다.\n5. 사용자가 가운뎃점을 쓰지 말라고 한 문맥에서 그 제한을 지킵니다.\n6. 문장부호 제한을 적용하면서 코드 원문은 정확히 보존합니다.\n7. 확인된 수치라도 공개를 승인하지 않았고 독자에게 필요하지 않으면 제외합니다.\n8. 제안서 전체에서 원래 어려움과 제안의 필요성이 실제 문장으로 연결되는지 확인합니다.\n9. 이용 행동과 정성적 기대효과를 구분하고 측정하지 않은 효과를 단정하지 않습니다.\n10. 익숙한 한글 이름, 정확한 기술 표기와 같은 대상의 고유명사를 구분해 사용합니다.\n\n개인의 표기나 말투 선호는 해당 사례에 명시된 조건입니다. 모든 한국어에 적용되는 문법 규칙으로 일반화하지 않습니다. 공식 가운뎃점 용법을 요청하는 기존 사례와, 그 기호를 쓰지 말라고 요청하는 사례는 서로 다른 문맥을 검사합니다. `context.json`에는 출력 전체의 정답 문장을 지정하지 않으며, 보존하도록 명시한 문구와 기술 원문만 정확히 비교합니다.\n\n`pragmatics.json`의 `category` 값은 `pragmatics`입니다. 같은 사실을 전달하더라도 누가 누구에게 언제 어디서 어떤 방식으로 말하는지, 무엇을 하려는 말인지에 맞게 표현하는지 검사합니다.\n\n| 사례 식별자 | 비교하거나 확인할 조건 |\n| --- | --- |\n| `pragmatics-speaker-001` | 본인 명의 보고와 다른 사람의 진행 상황을 전달하는 보고 |\n| `pragmatics-relationship-001` | 서로 반말을 쓰는 동료와 처음 연락하는 외부 담당자 |\n| `pragmatics-time-001` | 바로 발송할 공지와 다음 날 예약 발송할 공지 |\n| `pragmatics-place-001` | 같은 보관함을 보고 있는 대면 상황과 다른 건물에서 듣는 전화 상황 |\n| `pragmatics-channel-001` | 담당자에게 보내는 비공개 인계와 이용자에게 게시할 공개 공지 |\n| `pragmatics-intent-001` | 검토 요청과 작성 상태 보고 뒤 함께 검토하자는 제안 |\n| `pragmatics-unknown-001` | 미확인 정보를 만들지 않으면서 필요한 부분만 확인하는 대응 |\n\n앞의 여섯 사례는 각각 A와 B의 결과를 함께 작성합니다. 작업 사실과 상태는 유지하고 달라진 상황에 필요한 표현과 정보 범위를 평가합니다. 일곱 번째 사례는 알려지지 않은 수신자나 전달 방법을 추측하지 않고, 의미에 꼭 필요한 정보만 묻거나 사실을 더하지 않는 문장으로 작성하는지 확인합니다. 문맥 항목 전체를 질문하는 절차는 요구하지 않습니다.\n\n일곱 사례 모두 `expected_exact`를 지정하지 않습니다. 사실과 관계를 정확히 전달하는 여러 자연스러운 표현을 허용합니다. 두 공지에 같은 절대 날짜를 쓰는 것처럼 양쪽에 적합한 표현이 같을 수도 있으며, 문장 모양이 다르다는 사실만으로 성공을 판정하지 않습니다. 각 결과가 해당 상황에 맞는지, 요청한 두 결과를 모두 작성했는지 실제 문장을 읽고 확인합니다. 상황별로 공개하지 말라고 한 정보는 해당 결과의 보존 조건에서 제외합니다.\n\n## 사례 형식\n\n각 JSON 파일에는 사례별 객체를 담은 배열을 둡니다. `expected_exact`를 제외한 필드는 모두 필요합니다.\n\n| 필드 | 자료형 | 내용 |\n| --- | --- | --- |\n| `id` | 문자열 | 다섯 파일 전체에서 중복되지 않는 식별자 |\n| `category` | 문자열 | 해당 사례의 평가 범주 |\n| `context` | 문자열 | 독자, 글의 용도, 판단에 필요한 사실 |\n| `instruction` | 문자열 | 생성용 에이전트가 따라야 할 요청 |\n| `input` | 문자열 | 작성하거나 고칠 원문 |\n| `expected_exact` | 문자열 | 출력 전체가 일치해야 할 때만 지정하는 기준 문구 |\n| `must_preserve` | 문자열 배열 | 결과에서 반드시 전달할 의미와 사실 |\n| `must_include` | 문자열 배열 | 결과에 반드시 포함할 내용 |\n| `must_not_add` | 문자열 배열 | 근거 없는 상태 주장 등 추가하면 안 되는 내용 |\n| `review_points` | 문자열 배열 | 실제 출력에서 확인할 의미, 관계와 표현 조건 |\n| `critical_failures` | 문자열 배열 | 핵심 실패로 판단할 조건 |\n| `applicable_rubric` | 문자열 배열 | 해당 사례에 적용할 평가 항목 |\n\n표에 없는 필드는 허용하지 않습니다. `id`는 소문자와 숫자를 단일 붙임표로 연결한 형식으로 작성합니다. `applicable_rubric`에는 평가 항목을 하나 이상 중복 없이 지정합니다. 사례의 평가 조건과 기준 출력은 생성용 에이전트에게 전달하지 않습니다.\n\n사례를 작성할 때는 결과에 담아야 할 내용과 잘못된 주장을 막기 위한 배경 조건을 구분합니다. `must_preserve`와 `must_include`에는 독자가 실제로 읽어야 할 내용을 적습니다. 아직 하지 않은 작업, 받지 않은 답장, 확인하지 않은 배포 결과처럼 거짓 상태 주장을 막는 조건은 `must_not_add`에 적고, `review_points`에서 해당 글의 목적에 맞게 확인합니다. 배경 사실이 제공됐다는 이유만으로 그 사실을 설명하는 별도 문장까지 요구하지 않습니다.\n\n실행 절차에는 수행할 작업과 대상, 순서가 있어야 하고, 제안문에는 무엇을 제안하는지 드러나야 합니다. 이때 미착수나 미구현 상태를 따로 설명할 필요는 없지만, 이미 수행하거나 완료했다는 주장을 추가하면 실패입니다. 기대효과도 실제 이점을 설명하면서 제안과 전망의 범위를 지켜야 합니다. 거짓 주장이 없다는 이유만으로 필요한 의미가 빠진 결과를 통과시키지 않습니다.\n\n상태 자체가 요청한 내용이면 출력에 남겨야 합니다. `register-neutral-actions-001`의 현재 상태와 다음 행동, `register-remote-draft-001`의 테스트 미실행 상태는 필수입니다. `certainty-cause-001`의 원인 불확실성, 제안의 필요성과 기대효과를 연결하는 실제 문장도 생략할 수 없습니다. 이 구분은 보호할 원문의 정확한 표기나 통과 기준을 완화하지 않습니다.\n\n`meaning-close-001`과 `register-honorific-001`은 자유롭게 문장을 교정하는 사례이므로 `expected_exact`를 지정하지 않습니다. 교정 예문과 표현이 달라도 의미와 사실, 문법, 높임 등 해당 사례의 평가 항목을 모두 충족하면 통과합니다. 표현이 다르다는 이유만으로 보호할 원문을 훼손했다고 판정하지 않습니다. 확정 문구의 완전 일치와 코드, 경로 등 보호할 원문의 정확한 보존은 별도로 검사합니다.\n\n## 평가 항목\n\n| 평가 항목 식별자 | 판정 기준 |\n| --- | --- |\n| `meaning_preservation` | 의미와 사실 보존 |\n| `no_unsupported_addition` | 근거 없는 내용 추가 방지 |\n| `audience_fit` | 독자와 용도에 맞는 표현 |\n| `natural_korean` | 자연스러운 한국어 문장 구조 |\n| `register_consistency` | 말투와 높임 수준의 일관성 |\n| `literal_preservation` | 보호할 원문의 정확한 보존 |\n| `output_format` | 요청한 결과 형식 준수 |\n\n평가자는 사례에 지정된 항목마다 `pass` 또는 `fail`을 판정합니다. 항목 평균으로 실패를 상쇄하지 않습니다.\n\n제목, 본문, 표 등 문서 전체가 제공된 사례는 모든 영역을 문맥 속에서 읽습니다. 필요한 의미를 실제 출력의 문장이나 연결된 대목에서 확인하며, 키워드가 있다는 이유만으로 통과시키거나 평가자의 설명으로 빠진 의미를 보충하지 않습니다. 원문에 비공개 정보가 포함됐더라도 명시적으로 제외하도록 요청한 정보는 보존할 원문으로 취급하지 않습니다.\n\n## 실행 설정\n\n모든 역할에 같은 설정을 적용합니다.\n\n| 항목 | 값 |\n| --- | --- |\n| `agent` | `codex` |\n| `runtime_surface` | `codex-desktop` |\n| `model` | `gpt-5.6-sol` |\n| `reasoning_effort` | `high` |\n| `sampling` | `runtime_default` |\n| GitHub CLI | `2.97.0` |\n\n| 역할 | 실행 조건 |\n| --- | --- |\n| 생성용 에이전트 (`generator`) | 사례마다 1회 |\n| 평가자 A (`reviewer-a`) | 사례마다 1회 |\n| 평가자 B (`reviewer-b`) | 평가자 A와 독립된 대화에서 사례마다 1회 |\n| 추가 평가자 (`adjudicator`) | 두 평가자의 항목별 판정이나 핵심 실패 판정이 다를 때만 1회 |\n\n각 사례, 역할, 시도는 모두 이전 기록이 없는 새 대화에서 실행합니다. 생성용 에이전트에게는 설치된 스킬과 `context`, `instruction`, `input`만 제공합니다. 평가자에게는 스킬이나 생성용 에이전트의 작업 기록을 주지 않습니다. 평가자 A와 B는 서로의 판정도 받지 않습니다.\n\n`temperature` 등 직접 지정할 수 없는 샘플링 값을 추측하지 않습니다. 지정한 모델이나 추론 수준을 사용할 수 없으면 평가를 중단합니다. 다른 설정으로 평가하려면 결과 버전도 새로 정합니다. `runtime_version`은 실제 실행 환경에서 확인한 Codex Desktop 버전으로 기록합니다.\n\n## 평가 준비\n\n저장소 루트에서 실행합니다. 모든 텍스트는 BOM 없는 UTF-8로 읽고 쓰며, Python 명령에는 처음부터 `-X utf8`을 지정합니다.\n\n```powershell\npython -X utf8 scripts/validate_repo.py --print-digest\npython -X utf8 scripts/run_evals.py prepare --version v0.1.0 --work-dir .eval-work\n```\n\n`prepare`는 각 사례의 생성용 프롬프트, 평가자 A와 B용 프롬프트, `.eval-work/run.json`을 만듭니다. 모델을 실행하지는 않습니다. `run.json`에는 다음 값을 기록합니다.\n\n| 필드 | 내용 |\n| --- | --- |\n| `version` | 평가 결과 버전 |\n| `tested_at` | 평가 묶음을 시작한 UTC 시각을 ISO 8601 형식으로 기록합니다. |\n| `tested_skill_digest` | 평가 대상 파일로 계산한 SHA256 |\n\n작업 폴더가 이미 있으면 `prepare`는 실행을 거부하며, 기존 `run.json`을 덮어쓰지 않습니다. 새로 평가할 때는 이전 기록을 보존하고 아직 없는 별도의 작업 폴더를 지정합니다. 평가를 시작한 뒤 대상 파일이 바뀌면 기존 출력과 새 파일의 결과를 섞지 않습니다.\n\n생성용 프롬프트는 `.eval-work/prompts/generator/{id}.txt`에, 평가용 프롬프트는 `.eval-work/prompts/reviewer-a/{id}.txt`와 `.eval-work/prompts/reviewer-b/{id}.txt`에 저장합니다. 평가용 프롬프트에는 사례의 평가 조건을 넣고 실제 출력 자리에는 `{output}`만 남깁니다.\n\n실제 평가 요청은 `scripts/run_evals.py`의 `render_reviewer_prompt(case, output)`으로 생성합니다. `output`에는 생성 결과의 원문을 그대로 전달합니다. 준비한 프롬프트 파일은 수정하지 않습니다. `aggregate`가 준비 당시의 프롬프트와 일치하는지 검사하기 때문입니다. `{output}`이 남은 프롬프트를 그대로 평가자에게 전달하지 않습니다.\n\n### 생성용 프롬프트\n\n```text\n$natural-korean-writing을 사용하세요.\n\n문맥:\n{context}\n\n요청:\n{instruction}\n\n원문:\n{input}\n\n요청한 결과만 출력하세요.\n```\n\n### 평가용 프롬프트\n\n```text\n다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: {id}\n문맥: {context}\n요청: {instruction}\n원문: {input}\n보존 조건: {must_preserve}\n필수 포함 조건: {must_include}\n추가 금지 조건: {must_not_add}\n검토 기준: {review_points}\n핵심 실패 조건: {critical_failures}\n완전 일치 기준: {expected_exact_if_present}\n적용할 rubric: {applicable_rubric}\n\n실제 출력:\n{output}\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"{id}\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}\n```\n\n평가 결과 JSON에는 `id`, `rubric`, `critical_failure`, `reason`만 둡니다. `id`는 평가한 사례와 같아야 합니다. `rubric`에는 `applicable_rubric`의 항목을 빠짐없이 한 번씩 넣어야 하며, 값은 `pass` 또는 `fail`만 허용합니다. `critical_failure`는 불리언 값이고, `reason`에는 판정 근거를 적습니다. 알 수 없는 필드나 빠진 항목, 중복된 키, 다른 사례의 식별자가 있으면 집계하지 않습니다.\n\n## 실행과 원문 저장\n\n1. 생성용 에이전트를 새 대화에서 실행하고 실제 출력을 수정 없이 저장합니다.\n2. `render_reviewer_prompt(case, output)`으로 실제 요청을 만들어 평가자 A와 B를 각각 새 대화에서 실행합니다.\n3. 두 평가자의 항목별 판정이나 `critical_failure`가 다르면 추가 평가자를 새 대화에서 실행합니다. 같은 사례와 실제 출력, 두 평가자의 JSON을 전달합니다. 추가 평가자는 평가용 프롬프트와 같은 JSON 형식으로 독립 판정합니다. `reason`의 문구만 다른 경우에는 추가 평가자를 실행하지 않습니다.\n4. 모든 실행의 설정과 시도 기록을 저장한 뒤 집계합니다.\n\n| 파일 | 내용 |\n| --- | --- |\n| `.eval-work/generator/{id}.txt` | 생성용 에이전트의 실제 출력 |\n| `.eval-work/reviewer-a/{id}.json` | 평가자 A의 JSON 원문 |\n| `.eval-work/reviewer-b/{id}.json` | 평가자 B의 JSON 원문 |\n| `.eval-work/adjudicator/{id}.json` | 판정이 다를 때 실행한 추가 평가자의 JSON 원문 |\n| `.eval-work/execution.jsonl` | 사례와 역할별 실행 기록 |\n\n`.eval-work/`는 Git 추적에서 제외합니다. 준비한 프롬프트와 중간 판정 파일, 임시 실행 기록은 커밋하지 않습니다.\n\n### 파일로 요청 전달\n\n완성된 요청을 직접 전달하는 대신 파일로 전달할 수 있습니다. 요청 내용과 역할별 실행 조건은 같습니다.\n\n1. 생성용 파일에는 설치된 `SKILL.md`의 경로 안내와 `render_generator_prompt`가 만든 본문을 함께 저장합니다. 평가용 파일에는 `render_reviewer_prompt`가 만든 본문을, 추가 평가용 파일에는 `render_adjudicator_prompt`가 만든 본문을 저장합니다. 모두 BOM 없는 UTF-8을 사용합니다. 평가용 요청에는 실제 생성 결과를 넣고, 추가 평가용 요청에는 두 판정도 넣습니다. 준비 단계에서 `{output}`을 남긴 평가용 파일은 그대로 전달하지 않습니다.\n2. 전달 전에는 파일 바이트를 해당 역할의 완성된 요청 전체와 비교하고 SHA256을 기록합니다. 생성용 파일의 비교와 해시에는 설치 경로 안내도 포함합니다. 파일 경로, 해시, 전달 지시와 실행 UUID를 비공개 작업 기록으로 연결합니다. 결과를 수집할 때도 파일이 바뀌지 않았는지 확인합니다.\n3. 새 에이전트에게는 지정한 파일 전체를 UTF-8로 읽고 그대로 수행하라는 짧은 지시만 전달합니다. 요청을 다시 복사하거나 요약하지 않으며, 추가 판정 기준을 붙이지 않습니다. 생성용 에이전트는 설치된 스킬과 자기 요청만 읽습니다. 평가자는 자기 요청만 읽으며, 평가자 A와 B는 서로의 판정을 받지 않습니다. 추가 평가자에게만 두 판정을 제공합니다.\n4. 모델, 추론 수준, 독립된 대화와 실행 횟수는 그대로 유지합니다. 공개 결과의 `prompt_sha256`은 `render_generator_prompt`가 만든 본문의 원문 바이트만으로 계산합니다. 설치 경로 안내와 파일을 읽으라는 지시문은 이 해시에 포함하지 않습니다.\n\n실제 요청이 해당 역할의 완성된 요청과 다르거나 일부가 누락됐으면 요청, 파일, 오류와 생긴 출력을 보존하고 정상 평가로 집계하지 않습니다. 요청 전달 오류를 연결 오류로 바꾸어 같은 평가 안에서 다시 실행하지 않습니다. 전달 방식을 수정한 뒤 전체 사례와 역할의 요청 생성, 바이트 일치와 정보 분리를 검증하고, 별도 폴더에서 전체 평가를 새로 시작합니다. 이미 출력이 생성된 실행의 품질이나 형식 문제도 재시도 사유가 아닙니다. 출력 없는 실행 환경 오류는 아래 재시도 조건만 적용합니다.\n\n### 실행 기록\n\n`execution.jsonl`은 사례와 역할의 조합마다 JSON 객체 한 줄을 기록합니다. 각 객체에는 `id`, `role`, `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`가 필요합니다. `role`은 `generator`, `reviewer-a`, `reviewer-b`, `adjudicator` 중 하나입니다.\n\n`attempt_log`의 각 항목은 다음 필드를 가집니다.\n\n| 필드 | 내용 |\n| --- | --- |\n| `attempt` | 첫 시도는 `1`, 허용된 재시도는 `2` |\n| `context_id` | 에이전트를 만들기 직전에 생성해 요청과 응답 파일에 연결한 UUID |\n| `runtime_surface` | `codex-desktop` |\n| `runtime_version` | 해당 시도의 실제 Codex Desktop 버전 |\n| `status` | `completed` 또는 `transport_error` |\n| `retry_reason` | 완료된 시도는 `null`, 실패한 시도는 확인한 오류 종류 |\n\n에이전트를 만들기 직전에 `scripts/run_evals.py`의 `new_context_id()`로 UUID를 생성합니다. 서로 다른 사례, 역할, 시도는 같은 `context_id`를 사용할 수 없습니다. Codex 내부 작업이나 대화의 ID를 공개 결과의 식별자로 쓰지 않습니다. 설정값은 에이전트 생성 요청에서, 실행 정보는 실제 실행 환경의 결과에서 가져옵니다.\n\n### 재시도 조건\n\n에이전트가 생성된 뒤 출력 없이 연결 오류나 실행 환경의 오류가 발생했을 때만 같은 설정의 새 대화에서 한 번 재시도할 수 있습니다. 첫 시도는 `transport_error`, 두 번째 시도는 `completed`로 기록합니다. 두 번째 시도도 실패하면 평가를 중단합니다. 세 번째 모델 실행은 허용하지 않습니다.\n\n에이전트 생성 도구가 생성 전에 요청을 거절했다고 명시한 경우에는 모델 실행이 시작되지 않았으므로 `attempt_log`에 넣지 않습니다. 최초 요청과 UUID, 오류 원문, 관찰 시각, 실행 환경의 버전, 에이전트가 생성되지 않았고 출력도 없다는 근거를 `.eval-work/dispatch-errors/`에 보존합니다. 생성 여부가 불분명한 시간 초과나 연결 끊김에는 이 예외를 적용하지 않습니다.\n\n생성 제한이 발생하면 추가 평가 요청을 멈춥니다. 세션이나 실행 상태가 바뀌고 별도 최소 진단으로 에이전트 생성 성공을 확인한 뒤에만 새 UUID로 요청합니다. 이전 요청과 오류 기록은 유지하며, 진단은 평가 결과에 포함하지 않습니다. 기록에 예정된 완료 상태가 있더라도 실제 응답을 받기 전에는 실행 결과로 수집하지 않습니다.\n\n출력이 생성됐다면 품질이 낮거나 JSON 형식이 잘못됐다는 이유로 다시 실행하지 않습니다. 여러 출력 중 더 좋은 결과를 고르거나, 평가자의 판정을 직접 수정하지 않습니다. 필요한 추가 평가 결과가 없거나 형식이 틀리면 해당 사례를 통과시킬 수 없으며 릴리스도 만들지 않습니다.\n\n## 판정과 릴리스 조건\n\n평가자 A와 B가 일치하면 그 판정을 사용합니다. 추가 평가가 필요했던 사례는 세 판정에서 항목별 다수결을 구합니다. `critical_failure`는 세 판정 중 둘 이상이 `true`일 때 최종 `true`입니다.\n\n`case_pass`는 최종 평가의 모든 항목이 `pass`이고 최종 `critical_failure`가 `false`일 때만 `true`입니다. `expected_exact`는 이 계산과 별도로 출력 전체를 비교합니다. 공백이나 문장부호를 제거하거나 유니코드를 정규화한 뒤 비교하지 않습니다. `expected_exact`가 있는 사례는 하나라도 불일치하면 항목별 판정과 관계없이 릴리스 조건을 충족하지 못합니다.\n\n릴리스는 다음 조건을 모두 충족해야 합니다.\n\n1. 의미와 사실, 보호할 원문, 확정 문구, 높임 수준 관련 핵심 실패가 없습니다.\n2. `core.json`의 24개 사례 중 22개 이상 통과합니다.\n3. `approved-copy.json`의 2개 사례를 모두 통과합니다.\n4. `punctuation.json`의 7개 사례를 모두 통과합니다.\n5. `context.json`의 10개 사례를 모두 통과합니다.\n6. `pragmatics.json`의 7개 사례를 모두 통과합니다.\n7. `expected_exact`가 지정된 모든 출력이 기준 문구와 완전히 일치합니다.\n\n확정한 소개 문장의 보존, 공손한 대화의 높임 수준, 영어 `close`의 기계적인 직역 방지는 필수 회귀 사례입니다. 셋 중 하나라도 실패하면 릴리스를 만들지 않습니다.\n\n## 결과 생성과 검증\n\n```powershell\npython -X utf8 scripts/run_evals.py aggregate --version v0.1.0 --work-dir .eval-work\npython -X utf8 scripts/run_evals.py check --version v0.1.0 --work-dir .eval-work\npython -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0\n```\n\n`aggregate`는 사례 식별자, 파일 수, JSON 형식, 평가 항목 식별자, 실행 설정, UUID 중복, 재시도 조건을 검사한 뒤 [runs/v0.1.0.jsonl](runs/v0.1.0.jsonl)과 [results-v0.1.0.md](results-v0.1.0.md)를 생성합니다.\n\n같은 버전의 기존 결과와 바이트가 다르면 덮어쓰기를 거부합니다. 아직 공개하지 않은 버전을 다시 평가할 때는 이전 `.eval-work/`와 결과 파일 두 개를 저장소 밖의 작업 기록으로 보존한 뒤 새 결과를 생성합니다. 실패한 결과를 누락하거나 더 좋은 결과만 선택하지 않습니다. 이미 공개한 태그의 결과는 바꾸지 않고 새 버전으로 평가합니다.\n\n`check`는 임시 입력에서 결과를 다시 계산해 추적할 두 파일과 바이트 단위로 비교합니다. `verify-tracked`는 임시 파일 없이 추적된 JSONL의 형식, 프롬프트의 SHA256, 실행 기록, 다수결 판정과 결과 요약을 다시 검사합니다.\n\n두 명령은 실패한 평가 결과도 기록과 집계가 올바르면 통과할 수 있습니다. 실행 기록 검증의 성공을 릴리스 조건의 충족으로 해석하지 않습니다. 릴리스 조건은 `scripts/validate_repo.py`의 `--phase final`에서 검사하며, `--gh-path`에는 GitHub CLI 2.97.0 실행 파일의 절대 경로를 지정합니다.\n\n실패한 사례를 빼고 집계하지 않습니다. 스킬 실행에 사용되는 파일이나 평가 문서, 사례 파일을 수정하면 평가 대상의 해시가 바뀌므로 이전 결과와 새 결과를 합치지 않습니다. 이전 입력과 결과를 별도로 보존하고 50개 사례 전체를 같은 설정으로 새로 실행합니다. 추가 사례만 실행한 결과를 전체 평가 결과로 보고하지 않습니다.\n\n### 추적할 JSONL\n\n각 줄에는 다음 필드를 기록합니다.\n\n| 필드 | 내용 |\n| --- | --- |\n| `id` | 사례 식별자 |\n| `prompt_sha256` | 생성용 프롬프트의 BOM 없는 UTF-8 원문 바이트로 계산한 SHA256 |\n| `output` | 수정하지 않은 생성 결과 |\n| `generator` | 생성용 에이전트의 역할과 실행 정보 |\n| `reviewers` | 평가자 A와 B의 실행 정보, 항목별 판정, 핵심 실패 여부, 근거 |\n| `adjudicator` | 추가 판정이 없으면 `null`, 실행했다면 실행 정보와 판정 |\n| `final_rubric` | 두 평가자의 일치 판정 또는 세 판정의 항목별 다수결 |\n| `case_pass` | 최종 항목별 판정과 핵심 실패 여부로 계산한 통과 여부 |\n| `critical_failure` | 최종 핵심 실패 여부 |\n| `tested_at` | `run.json`에 기록한 평가 시작 시각 |\n| `tested_skill_digest` | `run.json`에 기록한 평가 대상 SHA256 |\n\n각 역할의 실행 기록에는 `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`를 보존합니다. 평가자와 추가 평가자에는 원래 판정의 `rubric`, `critical_failure`, `reason`도 보존합니다. 실행하지 않은 추가 평가자의 기록을 만들지 않습니다.\n\n### 결과 요약\n\n결과 문서에는 실제 평가 날짜와 대상 해시, 역할별 설정, 실행 횟수와 재시도 횟수, Codex Desktop과 GitHub CLI 버전을 적습니다. 사례 수, 통과 수와 실패 수, 평가자 간 불일치 수, 추가 평가 횟수, 핵심 실패 수를 집계하고 한계와 재현 명령을 함께 기록합니다. 실행 전에는 날짜, 실행 환경의 버전, 통과 결과를 미리 채우지 않습니다.\n\n## 평가 대상 해시\n\n다음 파일만 `tested_skill_digest`에 포함합니다.\n\n1. `skills/natural-korean-writing` 아래의 모든 파일\n2. `evals/README.md`\n3. `evals/core.json`\n4. `evals/approved-copy.json`\n5. `evals/punctuation.json`\n6. `evals/context.json`\n7. `evals/pragmatics.json`\n\n저장소 루트 기준 상대 경로의 구분자를 `/`로 통일하고 UTF-8 바이트 순서로 정렬합니다. 파일마다 다음 순서로 바이트를 SHA256에 넣습니다.\n\n```text\n상대 경로의 UTF-8 bytes\nnull byte 1개\n파일 크기의 ASCII 십진수 bytes\nnull byte 1개\n파일 원문 bytes\nnull byte 1개\n```\n\n파일 크기는 바이트 수입니다. 원문의 줄바꿈이나 유니코드를 정규화하지 않습니다. `evals/runs/`와 결과 요약 문서는 해시 계산에서 제외하며, 최종 커밋 SHA도 추적할 평가 결과 안에 넣지 않습니다. 평가 중 대상 파일이나 이 문서를 바꾸면 같은 평가 묶음으로 집계할 수 없습니다.\n\n## 검증 범위와 한계\n\n평가 자료 일부는 [교정 예시](../examples/before-after.md)와 겹칩니다. 이미 알려진 문제의 재발을 확인하는 제한된 회귀 평가이며, 처음 보는 한국어 전반의 품질을 측정하는 독립적인 성능 평가가 아닙니다.\n\n두 평가자와 추가 평가자가 같은 모델을 사용하므로 판단의 편향을 공유할 수 있습니다. 문장 품질 판정에는 주관성이 남습니다. 한 번의 실행 결과를 다른 모델이나 모든 한국어 문서의 품질로 일반화하지 않습니다.\n\n도구 테스트는 Python 표준 라이브러리로 실행합니다.\n\n```powershell\npython -X utf8 -m unittest discover -s tests -v\n```\n\n테스트는 평가자 간 일치와 불일치, 다수결, 누락된 출력, 잘못된 JSON과 평가 항목, 재시도 제한, UUID 중복, 실행 환경과 모델 불일치, 프롬프트의 SHA256과 결과 요약의 불일치를 검사합니다. 임시 시험 자료로 검사한 도구 동작과 실제 모델 평가 결과를 구분합니다.\n",
+  "provenance": {
+    "archive_sha256": "D285737AC897F4FE9FB6D6F49E313903A96384BE8840E2C993320F72B8DBF61E",
+    "comparison": "Frozen request files and manually recorded dispatch arguments, not automatic live-call attestation.",
+    "input_snapshot_sha256": "A1EEFE43E33D3412FA51F4D719775466FAC8207520ACD8DFD6B001B9E387D82D",
+    "original_harness_sha256": "31755AFEF76CAD7E69FCE5749A31ABA20BD856A36C4CDFD44B57B38D5B0889E2",
+    "original_validator_sha256": "4F12A56FBE7CF7D5E087B31CC61C91C05CC40811B586EF9543E1659D67DAF35F"
+  },
+  "records_sha256": "37F4843FAF9071A1E2840DFBFF6C2129ECB875277FE1E87F424CA948C45E5512",
+  "schema": 1,
+  "semantic_contract": {
+    "code": {
+      "CASE_COUNTS": "285A6723776B8B72D4C8612886EB5465739077601BDC916ADE2F16BB6C33BE3C",
+      "CASE_FIELDS": "41CF670B20B7395357AE06F112F2F1AD0D2328B732AE9B882346BABEB91EA938",
+      "CONTEXT_CASE_IDS": "939911120283764DC0A8D2420F5AB2F7E128AEFB656BCDDE7D590D4BF040EA23",
+      "CORE_CATEGORIES": "F8641DD4DD666C84EB06E62336ADFCDAB45068B04D08F595196BE8B45DEDFF70",
+      "Counter": "F0F8EFC58DA939CB5FF4E4496324F7833DF197BBF0CFF9BB8F65DF2F530254F9",
+      "GENERATOR_TEMPLATE": "7138A78A02CDFB37F4B68C777655A19A9193D685935B26559D3E93E9FE442B0C",
+      "INTRODUCTION": "C541FFF3F20A787991471A28D6BF004857DFAB6BC32DA97E2204C5766524DAD7",
+      "JUDGMENT_FIELDS": "BC25FC275FBAE3AE8EAFA2A237D2D3A65676A05F93BEC83A507A701D8173AA0A",
+      "PRAGMATICS_CASE_IDS": "54280AD2193118064F8B1EAEF7256428206CF66D060D7D5248F76D1C11A05266",
+      "Path": "59051B17634CDCB5A576CEB58FDC0A4E5652ED3B60D66667E92DDEFD931ABECA",
+      "REQUIRED_CASES": "D8A95A197F05C6F64E86A14E8216A5134650105F964D9C80CFF0862CFBBE09E0",
+      "REVIEWER_TEMPLATE": "46A3E815965ABF6BC851A8B91806DC57090CEF737680616572D194B0DC968A51",
+      "ROLES": "234F48DED938E91EE5A2BD48F60D7C609988A2C70BB7E65E127BCB5826C004C9",
+      "RUBRIC": "16A201412D5B5BEEE7A1BAF20C20F57C2D7A2F3D3FFB83ADB92480A6AE90F56D",
+      "SETTINGS": "EEF54D4A495BA15B99E103FF72AD89016CD80D10E27C6AB34B5192AA65796523",
+      "_disagree": "795EBA57ECFEC2B5F8E29A42F37041C9BE9EC6B7A0AD20A93CFEDEED36ABA429",
+      "_invalid_constant": "C34AFDB26EE5A1699809533A5D23517C94F30736630F3CBE6660C7C5ADA5388C",
+      "_json": "2E2986797F7CC122954D00C50BFF43437BCD266BC11CD9CB608AF851517D5C07",
+      "_keys": "149C3FB9DD5B632F860D96451D2735883F6C2C98348883AE1F6D42F87B05D51A",
+      "_loads": "737412126DA424332F5AE2106B6319E23654B95CE804235CE15F9865AC7714AA",
+      "_make_record": "AEF28055859525310983A0D17BB328352A641E1EDA594EAE3957A75622831DB0",
+      "_object": "24618FF53FA51DB456600ACCB73558C5A6A769CFBEAFE1FC7071B7A289D91482",
+      "_read_json": "7C6999373F8903D3EFC342895EC3E8B5A164CD95B695612F3C1BA3A2E4F85C37",
+      "_read_text": "39EFC6774559727339756D5128291E6212212CEA2C03B560770A911FE7D453DF",
+      "_require": "1E62C0A9B1A226FCCA4EAA3736D002AB0B6D2BAB6C4D8444C234D75EFC046143",
+      "_sha": "6CAA359D12414B94691747B669AD978BEA9D69C46F9CD30F66A7FD9A894F06AD",
+      "_text": "A097A0E6677FA9503BA9F0D52682651D342D08884F6B1B167D80087A63B2B95F",
+      "_validate_judgment": "4C32EBFF11D0F0BF27E09372D6EAEEF0FDE3C7C25F7F383A685B6BBAAE463021",
+      "_validate_rubric": "AE180786527DB73B49807DFEA6EFDCB7DD1EDD3B81B9D239B90563ECF6073441",
+      "hashlib": "092CB77AE0770F1627B29BF41B2732722FBCC3A0E1D77A79674801800A2721D1",
+      "json": "211EE42757705C7E350E70E36B762987A737F5E9C268F2A343E2DBFCB8FBEA75",
+      "load_cases": "674D9FD39ED5C9219011725DADFE89AFDD2D505EDDBA9D0C2AE859986853C351",
+      "re": "6B81B4CA19C88EC507AAD63F1F49291209368A9490113655A68E994C91D092C1",
+      "render_adjudicator_prompt": "1EED757CF314C099E5E434FC9C52240805FEB5A6DAC77123A5A3D444F4367424",
+      "render_generator_prompt": "D848461160F44C296ACAAF45BA2262CC9CF13369986EA130F5B93FDAA70E3415",
+      "render_reviewer_prompt": "4FCC6AE44FBBB9AC6CC22FC6201E82710C41857B1B08BE906A78A2881EB54119",
+      "validate_repo.Path": "59051B17634CDCB5A576CEB58FDC0A4E5652ED3B60D66667E92DDEFD931ABECA",
+      "validate_repo.Report": "AD0DB71740C13A7C7B8361F694516189AEA2208C4F367CF905E3C0796D320E45",
+      "validate_repo.check_release": "B6DBD953E2F283E19B59B9672AA87300F53C732A3A0E6EB153CFA7880DC41934",
+      "validate_repo.json": "211EE42757705C7E350E70E36B762987A737F5E9C268F2A343E2DBFCB8FBEA75",
+      "validate_repo.read_text": "1D5AE4477FAB975E519336FD0830CB7E0CB8820565B7897C0237662905425301",
+      "validate_repo.run_evals": "48EF24B5BBDD43EED82F1406962BF1FD76586C285D1D308212747C62CD49B572"
+    },
+    "fork_turns": "none",
+    "prompts": {
+      "approved-introduction-001": [
+        "373935922CBEF9AFEBBC826DF392A0B86638E5EAA89B72E456EADD1D85006BC1",
+        "B858892198FAA5114F725A9A54CE682D6444A315CFA549BE24F95A2CD694EC7F",
+        "4387D1BE12A8A31D604DE16B659209F3A59A240B4F5F682144307CF2D5363898"
+      ],
+      "approved-punctuation-001": [
+        "A8501B146781EA83A92CF6FDD20C7C4B1529D8D3C17C30B102301FB21B0044E0",
+        "0C78F0D37CD50C589784C73FEA0C061D36950010906637798457BE03FB398C54",
+        "8297299488DB26BBE3311C79163BB1FFA3B4397340A250BB4B3D99EAFBAFF08F"
+      ],
+      "artifact-email-followup-001": [
+        "7536CE57F3AD02ED73A46B141DAD9F2F9C14EE1599DFCAC54F2E3E3BFC7F54E8",
+        "99324E0CDD7143153A27C47012D02CC4E83434DFB94237C1ECD38D7B05714224",
+        "D5191170851B71F8785607C475520D4DBAA78CACE89E45D33262C1CD71D90B63"
+      ],
+      "artifact-expected-benefit-001": [
+        "43DDAC25348135CEE11DED0CBA0C4E143A0A1C437BFFA5A738407C402E4B767F",
+        "8903EF9B441773AA694333C393E83F4F9ABC681E363FB324D55A2068394E1A5A",
+        "F0866413D28B549A7D26570A1BABD212878E9941492AF3399DD10DEF617FCFEB"
+      ],
+      "artifact-learning-001": [
+        "E986FB90269088C013483BC5512D8252337B63C8E999C4957745CE11AC87C2D1",
+        "23D9CC22A9C7EB677A39C2F398AC75C8C0769007180880948606BDD5CD0B2DF7",
+        "A9AD870271797FE41E3DEC962DD2EB98928A7C314D8B41A67AA7580257DF5073"
+      ],
+      "artifact-pr-summary-001": [
+        "9B417B53B765112813F4F0D7CEDF4955C880DA5ED380D52FB91EF1B9546B5AAB",
+        "55DFB3F699E45E17D8D1FBC5B4AD8449B8115FFA53B4850A8D673075A7D9DFE8",
+        "EA8B3453908AAB33C1472E8A4482D90D4348E01623994F9BF4CF4D8CC5600E1D"
+      ],
+      "artifact-proposal-need-001": [
+        "C1B519D48C76876911F40F41F42A03E90664C441FDF6F7D5256369C895D11776",
+        "40645D92F33B7C76988AEB10CED84B45D25879035C9AEEC95846E4AD96438D4B",
+        "FDD842E5D8E044F778BE92A084828DBCE6E24534750A26B52BAA079525588EE2"
+      ],
+      "artifact-ui-label-001": [
+        "EBF097ECA9134C0C42325E6F9772884995868A9D4BA8CF10FC4B031341D4047D",
+        "3A1D2D9754507F0A0B03297E4ECACBE1F4D211BECBF99998FBD44F8C7357DE1E",
+        "720489E9940CBFFE3C9C2691F16A11F6F4945902E45BBBF09721BEB1E33C11DF"
+      ],
+      "boundary-drafting-history-001": [
+        "51D2E292B3423A5EE56FE32C42A9C9CEC460F89868D451CA18EC01D114E5FB0A",
+        "D4021B9417419C7111DB0812F50DC0FD482E7CFCA1164EB7D11F1E6B0AC086E0",
+        "28B31CCF1BF6BDDC58FA6B2B276FF672458CE2E2F1B0B19816A6CFAB66157B77"
+      ],
+      "boundary-private-measurement-001": [
+        "ECD0C9B74F3D8812DE5C10205C0FC416D546705572509FCE94DA1CC79E28E392",
+        "7ACCB4977057CCF5E96E043C1AE81B6430E7DA4DC04B6F621C388E8C0348A249",
+        "6BB1D93D567AA1512FE8A0D4B2C7F5E88220282F50C970175A65C8FB85D91557"
+      ],
+      "certainty-cause-001": [
+        "E6BD65CDD603920CFC735FE38899687F1DB1195885AD7F659F8E83E7306038A0",
+        "EC6F6D71967DEDA7A5AF693BE5EC75D793F75708A9ED9B7C05CEA9EF80DDFD99",
+        "3334B361FF40C90289BE89E69CF693536C06FB9DA69ABCEABD2538E38BCD4A09"
+      ],
+      "certainty-proposal-001": [
+        "1D5923AE26CFAAF22DE6E48D7E387A53424667A0FA2E8CE9B7A40E8FDBBA6993",
+        "FEDAC8538C66FB7D20A6F1B243583501C37962001DE144F8CFC7C6F15DB599A9",
+        "527555421DF3E59EE73FE60EB09FCDEA931483540635D3ECFBB3C79B7AAF0230"
+      ],
+      "delivery-final-only-001": [
+        "CE90E46DEAADAAF9B6C799BAB0B1C8D622B3C0BEBCED26B213B7B7C38B7DF756",
+        "D07F18F1DEBD080C5A7F07496FE77D97E54BB03F0B8D2B7D0F27204BCD4BA71F",
+        "623340099D6809DB9E4EDA2C9A57B8242839E41C9DFCABA4C37787F9BA9D9146"
+      ],
+      "delivery-markdown-001": [
+        "D34F75753B677C0D4EA42FCABBEB24EDC745ECC3AF5FDD9651D636B6D0AF5212",
+        "7C90E5F2F94CE15B6D6125A9BC09B8058C72E3880EE847DCE7167016B4708FA1",
+        "03A83F8C4D92B462CD58160104850F3AB55BBA5CB7072FFFEC07D49BD5F847C5"
+      ],
+      "grammar-access-001": [
+        "314571DEDB494220B1B06C7707D6A90DA48C6F9F673DE7D2C1D277E56BDA6D57",
+        "08F77582CB9250CB73B1C077B3247FE1E8E4E0A930AB160674A5B30230EC8AF9",
+        "659CE05C55D212969A5E31B5F663C522085AD73A8BD19602F87C425B4861D96F"
+      ],
+      "grammar-actor-001": [
+        "84CEEA0C80FA1B0B2DB57E6017B3C9A16A5A039215A9E1C287CE78C86C80008A",
+        "8B11CCA5424F4106BEB60B5EBA390408E9E5D6AAD13C56F2AE2E7B8DE4908A34",
+        "95B74878286E69D56FB8721C8B43DC588704D8324478E4843A178D3DEB6E99B6"
+      ],
+      "grammar-coordination-001": [
+        "81B32911617C9C6C556FAD8FF20B914D4351361CC3834AD06FA9423703FCFE94",
+        "E529137E433F657618FAEC6D7A203BC708843CBA1B9198721112BA7F5190B7C5",
+        "E8B794B7A6E8E7A2CE876DD472A6422B21D9C6A95C7712D1DF3315BA5A9214A4"
+      ],
+      "grammar-help-001": [
+        "3B35372414ACA497401146DFDF76BB3E95414134A0587B4A5E937703965AB610",
+        "E906E12C715419415F2446F5341166CFDE75D0316B98D120582DC667678AF447",
+        "23B6DA7D22547A89B8CE5C0AB4BA7C7F6CD5168C7ABC22ABB1E1454E3933ECF9"
+      ],
+      "literal-familiar-korean-001": [
+        "BB41EAF8E046EB53A937F4D14F3E8BBA96EA6A3EC85595B94525EEF55E2946AF",
+        "DCC1E37669BAF6847BF0B202C37D873ED9B929573C28B7E0BF68D59339B03F3D",
+        "C3412D27BC2900EDA7821A570B64E31F8525698D069EE1FFA4774400DCAF4517"
+      ],
+      "literal-identifiers-001": [
+        "AA9C12BE341F4BB9670887928BD09F9E810FD502CC7B7F7B755A59CC49ADEB3A",
+        "613EE8857BE107E4BF94471A17907AB7C38F17A97A8488F4A517FE23B949661E",
+        "8E857C91C8439A3F399D7E192BAA1A6280B88BA067852F1E2C8B66373FABC189"
+      ],
+      "literal-path-command-001": [
+        "D9B9256EF8F94AC10CBEF57E8466963E461E2AE4589E45BFE488E360CD90696C",
+        "CCC7A2D47E5D775E31EA02B2B3083459BED54E2248CE2DC20A2DCEA8BACC1DFF",
+        "F2BCE593F4CE8BCF66B034D4C9254AE0AA15836DD5434ECF3C7513D568644B80"
+      ],
+      "meaning-close-001": [
+        "DEA46C0C621A147AC75AE0A4CF2FDB79A9356B744051FC242745158590360736",
+        "85940CE240E49D5A898DD18C9DC005B14A7250300B44F084715DA7749A0C3D75",
+        "5BB62C257F1C77223AB0B87730738946BDF4D940BD4FFA0BF5E709C39855CA65"
+      ],
+      "meaning-denominator-001": [
+        "BE71E962E39405BA7F01DD9264689E2201C6094B3BEC3452B2988C5835963F0C",
+        "CD575A4591F92C0B4A30040B7AA3C8605826EC272C0D9D07AE3F78AEAF77C25F",
+        "577E36D53CC20E338AD9B336E533545B9E94AC9FEF7A951E9C7BE86BAA3DF0F9"
+      ],
+      "meaning-measurement-001": [
+        "ECCDD80A162E11B13AA0A2FD81F347B9AA5BF86B0DAC46C915D3B764DD7A077F",
+        "871BA7195F28CD015DE32590D6261D29D264961C5EA1C36DC25B0E303C64AC41",
+        "DB2035932957A7E92E4918193CBAFE7DCF7BBA5403BC0CC75FF99F88F594061D"
+      ],
+      "meaning-ownership-001": [
+        "DA859F74C4FACF5F1E2342ED9F20E90CE57F0A373019C42B35821D4AB88506DF",
+        "89F736546E3399734725421404EECAA3B2ACC8A818763BBF62EB10ACD53CF584",
+        "9FA3262DC3ACFF3A9D20E772999DF6FB4A4C6FAE4DC1CC7A6A905E713A46F2FE"
+      ],
+      "pragmatics-channel-001": [
+        "0156BF5FEDE20FAEF767191EE55E8F8538B45B07D18E4D38E76AEC48CCE6B9B8",
+        "4795565F482B96AC9677E114055D79EB3F33E33B091303F16714C42B3AD61A8D",
+        "E543C6981E4F1B7809C6847668EE07053FEFBD2EBCBF6FCBF8AAB096A131A05E"
+      ],
+      "pragmatics-intent-001": [
+        "92F959D855DB7021A12B57FEA4971195EE6B8AA30357E3254DFF8FBF2F13488F",
+        "F7991D2E4CE94A6E3ED447B488975F589FF34A78632A7921CB2A182BE9307DF5",
+        "CA4E179D07990E4FD72EB9C39428417BAB0D74F1DC6179CFCF5ABC62F3CB705C"
+      ],
+      "pragmatics-place-001": [
+        "55F6F4E5232E1E15D429D772DC4C8187524659DD8A45CA39899B4297D7B66099",
+        "E30D905C1493B9C89840538D15059D74A527C30342C6892FBD024910398D3E92",
+        "F579C76B8FCF4014ACA730EB7031BDECE4AA808CCF35C466A019854E6DF992C8"
+      ],
+      "pragmatics-relationship-001": [
+        "C8E1C7A8B515A96DB8E1E7C147E3AA388B87C856627072AFE83A8C931FBE624E",
+        "07F8F4329B904EA5C27AD58E33561A41FB7AEA0E5FD1F1A9C5B05C6E3C54D463",
+        "E9AF96D22AD3C9CA287FB803C1CED6648F970FA65C6F5FCEB06575EE763D4AA4"
+      ],
+      "pragmatics-speaker-001": [
+        "9CE23A3B4008F4A50ECA86E22A9F2CF8C9A0207547FCEA83302654E6B898C741",
+        "9941869A6533AB12F4E7263559F93A66EA9CFC57A63204466650FB33126BF167",
+        "6DF1367B4B839BCF341760986FAAD87CEB42F953590C171F85A7DF6D1E119BFF"
+      ],
+      "pragmatics-time-001": [
+        "C8BAB0DCD5C258F04002A1D93A1BC0A6F6D6A8C9C0AF3E36C3B21F65603BC3BB",
+        "1E3E84EB3148CCD7789CFF12FF2E91CB34312957EC0AE9EBF68CBA87766C27F5",
+        "DBA98535911A9F0F1DE549CFC75EDFB735D71A9B91B7EEC5EF5DE1A935347A51"
+      ],
+      "pragmatics-unknown-001": [
+        "5D6E3D8605F9DFCA33E2C0AC1FA222A2CEA30225FD682F29D097D47B83501AE0",
+        "BF973EDBE7C801CEC2F3C1EB75208675330D648441C60929215BBAB8853D2BD1",
+        "D1FA83D4DD5A4B5B221A93DD518AC70D6041DC97AEE044505A0FBA2E21627E9D"
+      ],
+      "preference-no-middle-dot-001": [
+        "EFD95E241210955226757C1835F0793DDB7C30D752E9095C6CFB64AF49FB57C7",
+        "2A609F27B11C3A20593ADBCD39E3A60947F6BEC9DCE3135C712CEEEDB86E58FA",
+        "B873CAF68D6E2CF499993943F628E389CBE22608A6C3A532F17593F90E0D66CA"
+      ],
+      "preference-protected-middle-dot-001": [
+        "BD7F027618A3E1E392C8E3ED814D22B28E1202C50EFA9CC76BB728E6338F6085",
+        "99F49E15E98F3302F31DF24365B14636930A1DBD8BFC1195A0FCC607A1BD1CB9",
+        "ED61746C3BE1B9544C25D66824331E152582637AB70A8E91B5925E26A676586E"
+      ],
+      "priority-later-edit-001": [
+        "88475187FAC6B0D6433B0CD4F9C368D1442C9F7CBDB029DE26AED206CFF85998",
+        "73753AB0E9871552EE512C25455C58F82275046E2D9D97ECEAAE9B424C2FDDF7",
+        "F5DBDCB51BFA6F823CF779D5D5BE8C6E23FAA0C080F3D8948608B074AC410E95"
+      ],
+      "punctuation-em-dash-001": [
+        "13C3889D6959DBA63E948D05CAF0005EF9F7F54CB71CB0E98FC8AF493FF48A3D",
+        "B90A50106D425FDC0AD783EB50E8B254D77F3951A128E33D232F0B43798A15E9",
+        "D80E22183874CA1A8ACA83432C3561257BCADFFB870D0888A5D74CC15833A69B"
+      ],
+      "punctuation-en-dash-001": [
+        "F86472BD453402A5CA247269B6638A0028F07EF94DC0183D758841F7D8BAA27D",
+        "5B1BB325502AFAA7B08720D3290302633AE7C478C85D355BAAC07CB49E48D043",
+        "021833DC8F20CF20ECF53B44C7C618ED61875C576307A456D623EE4C105F3D49"
+      ],
+      "punctuation-hyphen-001": [
+        "3B465F7F54A05BDEDE495B87E161B1D4227DD85A2AC4824AE09B1BAABD572581",
+        "188C13B03718AF16F355B7FC6D256C4F0D9A5E8F8D9159BBC99B084A9DF6B677",
+        "783F3ADAD891DEA93A16B6F9D0C2304632C1EC5307822CDEC68E2B87624CB166"
+      ],
+      "punctuation-literal-001": [
+        "302D0EAAEBCF59934486868213E35998F90958ABDD7BA5955D8F255BC57696D3",
+        "C1CF872242B86CC0C185A2EBF6F1CD89A2C4E0D134A1D5E1F7798B3386C038FB",
+        "80B04CC77B9BF38BCDF3DB7972C3126F7151D0B07F7F69B851652BD2F741B6F8"
+      ],
+      "punctuation-middle-dot-001": [
+        "A05F01627283A27805B529E5F2E35C456B56B8B85CCE2CCDB2D81F13244DF7A8",
+        "71A9BDDBE002DA07E0BE5D1BFC58084C1D41DE2AE3D2AE97F7116BDA5834983A",
+        "1F1A37DE3451012A7FC6BFAE55E021BBBBC6BB048D485A3D82DF4954DF797534"
+      ],
+      "punctuation-subtitle-001": [
+        "7061220C24314FC44CAA9B81695CB426BB38B395FDCD065D6103E58FBF192223",
+        "E0392A250B047E09BB922C0FC629F355B4D4BF6C3B3FF4A4AB142BDDB072EBF5",
+        "5191CC355A9A07FCA3CF2070C9BC0BBA977DB76DCFB3BE1A64FC29C22E0496D6"
+      ],
+      "punctuation-tilde-001": [
+        "58463CB89731C7A711D2292951BC8B8669EB1E129E470E60CE2EB0CA3B2B4F6B",
+        "7C9DF05950DC2ED912764460F81A788DF2CFFD776A2D9EBFEE09476C3ED28083",
+        "992681459FDF3A3DE674960D8B93809CCBC832F7D5FD3359FDF39C83E4F069F2"
+      ],
+      "reference-actor-change-001": [
+        "14B56B5E4DBEB423334AC2E6461AB2720B5A216D23FA74B76A6665AE1E606AB1",
+        "D2DBF1966878EAF6A24B75E6A1F4C94D1AF9775709C856F2886CD2E79B6584A2",
+        "7BED449EFE974057B11004423A425EB48143300F1B1BD5C4A54CD0DC49887769"
+      ],
+      "reference-author-001": [
+        "453EDF9EFDD04751C1AAA27244C430511B8EA7BC50F5E02729BB71F41B69D033",
+        "CBB3842F30B01CF11E4864CBE577B590050150A771EB72EDDD7839A489E1FF6D",
+        "A2A3D1667FB9C498EC1B34EB32DE21CC0E14E9EECCD0264CF9E5990551E1EEB3"
+      ],
+      "reference-target-001": [
+        "46522016006DECDFC29F5737E868A54482750670A45E126C38DE780A3D1D43A8",
+        "6140470C372B5771D4881CACEEB7987F64E1D88178BBE760B8BC4A482DA37784",
+        "EB749228645E93509E2E03BAE0BCA33337E7B472F35A52455F20C6A2C783FC7C"
+      ],
+      "register-casual-001": [
+        "2CB5A3848854A114ADC8C83564E277C93532A327A515D307133D70626DA3D4BF",
+        "52F5A2320FBE00D0EACECD7396077D640930D03D2D48A08363216B60C8136905",
+        "7EA3E39F2DE4713268CB861064D7C90C17E47501D14C5C75C2D038E224ED2712"
+      ],
+      "register-honorific-001": [
+        "BC48000E6111BFAE7F11C9F59D60650460669FE92244ED44A7797872D32AA1E4",
+        "1586EDED41452B2C8EA50BA96D1DEC4578D084FD9EAAAC38BFDDD9D496592725",
+        "A3BADBFF33812D5F9C05F1D54C3D42392BBFA647E94B410AF7FF493F8001C4D6"
+      ],
+      "register-neutral-actions-001": [
+        "25E0712630F868E715A706E839BD155442C46CCAB7EA8FC62311F8A7C6DA6F41",
+        "E6E40CBCD07B654C0482583D593A87EE71B0152837E2B60974024AAE083D585B",
+        "33598B02D750C7C31D8099E5498B084E36AD52853135D71D99473DD15B7E20E9"
+      ],
+      "register-remote-draft-001": [
+        "5760992782ABBB3EB59E9702F77387C8A2CD3FC10038DF15456B21AFC0FFD637",
+        "9567AE6240EA6CAF9C3C2F1E5A2472501546560F435082D81F9576B9B1CE10DE",
+        "906403C331098AFEDC4F88E3AF9D968F16F6E410B7CB551EC5DB2A78F2B671DD"
+      ],
+      "register-request-001": [
+        "D0C4F3748B2B405096FCE1BE3644B8BDB288533BB02302D3D000AC0BEFAD3D8C",
+        "DA3861270E23809CB4017FB7D4690DB54F7E70F06CDBE8EB5F4195C868A22920",
+        "7ECD80658A00407002624DABEE16E40EC9893CB5C3284902B8411DB2A2CAA438"
+      ]
+    },
+    "protocol": {
+      "documented_prompts": {
+        "생성용 프롬프트": "$natural-korean-writing을 사용하세요.\n\n문맥:\n{context}\n\n요청:\n{instruction}\n\n원문:\n{input}\n\n요청한 결과만 출력하세요.",
+        "평가용 프롬프트": "다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: {id}\n문맥: {context}\n요청: {instruction}\n원문: {input}\n보존 조건: {must_preserve}\n필수 포함 조건: {must_include}\n추가 금지 조건: {must_not_add}\n검토 기준: {review_points}\n핵심 실패 조건: {critical_failures}\n완전 일치 기준: {expected_exact_if_present}\n적용할 rubric: {applicable_rubric}\n\n실제 출력:\n{output}\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"{id}\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}"
+      },
+      "normative": {
+        "사례 형식": "\n각 JSON 파일에는 사례별 객체를 담은 배열을 둡니다. `expected_exact`를 제외한 필드는 모두 필요합니다.\n\n| 필드 | 자료형 | 내용 |\n| --- | --- | --- |\n| `id` | 문자열 | 다섯 파일 전체에서 중복되지 않는 식별자 |\n| `category` | 문자열 | 해당 사례의 평가 범주 |\n| `context` | 문자열 | 독자, 글의 용도, 판단에 필요한 사실 |\n| `instruction` | 문자열 | 생성용 에이전트가 따라야 할 요청 |\n| `input` | 문자열 | 작성하거나 고칠 원문 |\n| `expected_exact` | 문자열 | 출력 전체가 일치해야 할 때만 지정하는 기준 문구 |\n| `must_preserve` | 문자열 배열 | 결과에서 반드시 전달할 의미와 사실 |\n| `must_include` | 문자열 배열 | 결과에 반드시 포함할 내용 |\n| `must_not_add` | 문자열 배열 | 근거 없는 상태 주장 등 추가하면 안 되는 내용 |\n| `review_points` | 문자열 배열 | 실제 출력에서 확인할 의미, 관계와 표현 조건 |\n| `critical_failures` | 문자열 배열 | 핵심 실패로 판단할 조건 |\n| `applicable_rubric` | 문자열 배열 | 해당 사례에 적용할 평가 항목 |\n\n표에 없는 필드는 허용하지 않습니다. `id`는 소문자와 숫자를 단일 붙임표로 연결한 형식으로 작성합니다. `applicable_rubric`에는 평가 항목을 하나 이상 중복 없이 지정합니다. 사례의 평가 조건과 기준 출력은 생성용 에이전트에게 전달하지 않습니다.\n\n사례를 작성할 때는 결과에 담아야 할 내용과 잘못된 주장을 막기 위한 배경 조건을 구분합니다. `must_preserve`와 `must_include`에는 독자가 실제로 읽어야 할 내용을 적습니다. 아직 하지 않은 작업, 받지 않은 답장, 확인하지 않은 배포 결과처럼 거짓 상태 주장을 막는 조건은 `must_not_add`에 적고, `review_points`에서 해당 글의 목적에 맞게 확인합니다. 배경 사실이 제공됐다는 이유만으로 그 사실을 설명하는 별도 문장까지 요구하지 않습니다.\n\n실행 절차에는 수행할 작업과 대상, 순서가 있어야 하고, 제안문에는 무엇을 제안하는지 드러나야 합니다. 이때 미착수나 미구현 상태를 따로 설명할 필요는 없지만, 이미 수행하거나 완료했다는 주장을 추가하면 실패입니다. 기대효과도 실제 이점을 설명하면서 제안과 전망의 범위를 지켜야 합니다. 거짓 주장이 없다는 이유만으로 필요한 의미가 빠진 결과를 통과시키지 않습니다.\n\n상태 자체가 요청한 내용이면 출력에 남겨야 합니다. `register-neutral-actions-001`의 현재 상태와 다음 행동, `register-remote-draft-001`의 테스트 미실행 상태는 필수입니다. `certainty-cause-001`의 원인 불확실성, 제안의 필요성과 기대효과를 연결하는 실제 문장도 생략할 수 없습니다. 이 구분은 보호할 원문의 정확한 표기나 통과 기준을 완화하지 않습니다.\n\n`meaning-close-001`과 `register-honorific-001`은 자유롭게 문장을 교정하는 사례이므로 `expected_exact`를 지정하지 않습니다. 교정 예문과 표현이 달라도 의미와 사실, 문법, 높임 등 해당 사례의 평가 항목을 모두 충족하면 통과합니다. 표현이 다르다는 이유만으로 보호할 원문을 훼손했다고 판정하지 않습니다. 확정 문구의 완전 일치와 코드, 경로 등 보호할 원문의 정확한 보존은 별도로 검사합니다.\n\n",
+        "실행 설정": "\n모든 역할에 같은 설정을 적용합니다.\n\n| 항목 | 값 |\n| --- | --- |\n| `agent` | `codex` |\n| `runtime_surface` | `codex-desktop` |\n| `model` | `gpt-5.6-sol` |\n| `reasoning_effort` | `high` |\n| `sampling` | `runtime_default` |\n| GitHub CLI | `2.97.0` |\n\n| 역할 | 실행 조건 |\n| --- | --- |\n| 생성용 에이전트 (`generator`) | 사례마다 1회 |\n| 평가자 A (`reviewer-a`) | 사례마다 1회 |\n| 평가자 B (`reviewer-b`) | 평가자 A와 독립된 대화에서 사례마다 1회 |\n| 추가 평가자 (`adjudicator`) | 두 평가자의 항목별 판정이나 핵심 실패 판정이 다를 때만 1회 |\n\n각 사례, 역할, 시도는 모두 이전 기록이 없는 새 대화에서 실행합니다. 생성용 에이전트에게는 설치된 스킬과 `context`, `instruction`, `input`만 제공합니다. 평가자에게는 스킬이나 생성용 에이전트의 작업 기록을 주지 않습니다. 평가자 A와 B는 서로의 판정도 받지 않습니다.\n\n`temperature` 등 직접 지정할 수 없는 샘플링 값을 추측하지 않습니다. 지정한 모델이나 추론 수준을 사용할 수 없으면 평가를 중단합니다. 다른 설정으로 평가하려면 결과 버전도 새로 정합니다. `runtime_version`은 실제 실행 환경에서 확인한 Codex Desktop 버전으로 기록합니다.\n\n",
+        "판정과 릴리스 조건": "\n평가자 A와 B가 일치하면 그 판정을 사용합니다. 추가 평가가 필요했던 사례는 세 판정에서 항목별 다수결을 구합니다. `critical_failure`는 세 판정 중 둘 이상이 `true`일 때 최종 `true`입니다.\n\n`case_pass`는 최종 평가의 모든 항목이 `pass`이고 최종 `critical_failure`가 `false`일 때만 `true`입니다. `expected_exact`는 이 계산과 별도로 출력 전체를 비교합니다. 공백이나 문장부호를 제거하거나 유니코드를 정규화한 뒤 비교하지 않습니다. `expected_exact`가 있는 사례는 하나라도 불일치하면 항목별 판정과 관계없이 릴리스 조건을 충족하지 못합니다.\n\n릴리스는 다음 조건을 모두 충족해야 합니다.\n\n1. 의미와 사실, 보호할 원문, 확정 문구, 높임 수준 관련 핵심 실패가 없습니다.\n2. `core.json`의 24개 사례 중 22개 이상 통과합니다.\n3. `approved-copy.json`의 2개 사례를 모두 통과합니다.\n4. `punctuation.json`의 7개 사례를 모두 통과합니다.\n5. `context.json`의 10개 사례를 모두 통과합니다.\n6. `pragmatics.json`의 7개 사례를 모두 통과합니다.\n7. `expected_exact`가 지정된 모든 출력이 기준 문구와 완전히 일치합니다.\n\n확정한 소개 문장의 보존, 공손한 대화의 높임 수준, 영어 `close`의 기계적인 직역 방지는 필수 회귀 사례입니다. 셋 중 하나라도 실패하면 릴리스를 만들지 않습니다.\n\n",
+        "평가 자료": "\n| 파일 | 평가 범위 | 사례 수 |\n| --- | --- | --- |\n| [core.json](core.json) | 의미, 문장 구조, 문맥과 결과 형식 | 24 |\n| [approved-copy.json](approved-copy.json) | 확정한 문구의 보존 | 2 |\n| [punctuation.json](punctuation.json) | 한국어 문장부호와 보호할 원문 | 7 |\n| [context.json](context.json) | 후속 지시, 정보 경계와 문맥별 작성 조건 | 10 |\n| [pragmatics.json](pragmatics.json) | 화자, 관계, 시점, 장소, 전달 방식과 발언 의도 | 7 |\n\n다섯 파일의 50개 사례를 모두 실행합니다. 기술 지식을 추측할 필요가 없도록 각 사례에 필요한 사실을 제공합니다.\n\n`core.json`의 분포는 다음과 같습니다.\n\n| 분류 (`category`) | 평가 범위 | 사례 수 |\n| --- | --- | --- |\n| `meaning` | 의미와 사실 보존 | 4 |\n| `grammar` | 조사와 서술어 호응 | 4 |\n| `reference` | 생략과 지시 대상 | 3 |\n| `register` | 말투와 높임 수준 | 3 |\n| `artifact` | 글의 종류에 맞는 표현 | 4 |\n| `literal` | 기술 원문의 정확한 보존 | 2 |\n| `certainty` | 사실, 추론, 제안의 구분 | 2 |\n| `delivery` | 바로 사용할 수 있는 결과 형식 | 2 |\n\n`register`는 공손한 대화, 편한 대화, 호칭과 요청 방식의 일치를 각각 검사합니다. 편한 대화를 이유 없이 존댓말로 바꾸는 것도 실패입니다.\n\n`approved-copy.json`의 `category` 값은 `approved-copy`입니다. 소개 문장을 보존하는지, 더 매끄럽게 고친다는 이유로 확정 문구를 바꾸지는 않는지 검사합니다. 두 사례 모두 `expected_exact`를 지정합니다.\n\n`punctuation.json`의 `category` 값은 `punctuation`입니다. 영어 엔 대시와 엠 대시를 고치는 사례 2개, 가운뎃점, 붙임표, 한국어 줄표, 물결표의 쓰임을 확인하는 사례 각 1개, 코드와 경로, URL을 보존하는 사례 1개로 구성합니다.\n\n`context.json`의 `category` 값은 `context`입니다. 다음 열 가지 조건을 각각 검사합니다.\n\n1. 최종 문서에 불필요한 제작 이력을 노출하지 않습니다.\n2. 나중에 명시한 수정 요청을 반영하고, 바꾸지 말라고 한 문구를 보존해 완성된 결과를 전달합니다.\n3. 대화 말투와 원격에 게시할 초안의 존댓말을 구분합니다.\n4. 짧은 대화에서도 실제 동작과 상태를 중립적인 동사로 설명합니다.\n5. 사용자가 가운뎃점을 쓰지 말라고 한 문맥에서 그 제한을 지킵니다.\n6. 문장부호 제한을 적용하면서 코드 원문은 정확히 보존합니다.\n7. 확인된 수치라도 공개를 승인하지 않았고 독자에게 필요하지 않으면 제외합니다.\n8. 제안서 전체에서 원래 어려움과 제안의 필요성이 실제 문장으로 연결되는지 확인합니다.\n9. 이용 행동과 정성적 기대효과를 구분하고 측정하지 않은 효과를 단정하지 않습니다.\n10. 익숙한 한글 이름, 정확한 기술 표기와 같은 대상의 고유명사를 구분해 사용합니다.\n\n개인의 표기나 말투 선호는 해당 사례에 명시된 조건입니다. 모든 한국어에 적용되는 문법 규칙으로 일반화하지 않습니다. 공식 가운뎃점 용법을 요청하는 기존 사례와, 그 기호를 쓰지 말라고 요청하는 사례는 서로 다른 문맥을 검사합니다. `context.json`에는 출력 전체의 정답 문장을 지정하지 않으며, 보존하도록 명시한 문구와 기술 원문만 정확히 비교합니다.\n\n`pragmatics.json`의 `category` 값은 `pragmatics`입니다. 같은 사실을 전달하더라도 누가 누구에게 언제 어디서 어떤 방식으로 말하는지, 무엇을 하려는 말인지에 맞게 표현하는지 검사합니다.\n\n| 사례 식별자 | 비교하거나 확인할 조건 |\n| --- | --- |\n| `pragmatics-speaker-001` | 본인 명의 보고와 다른 사람의 진행 상황을 전달하는 보고 |\n| `pragmatics-relationship-001` | 서로 반말을 쓰는 동료와 처음 연락하는 외부 담당자 |\n| `pragmatics-time-001` | 바로 발송할 공지와 다음 날 예약 발송할 공지 |\n| `pragmatics-place-001` | 같은 보관함을 보고 있는 대면 상황과 다른 건물에서 듣는 전화 상황 |\n| `pragmatics-channel-001` | 담당자에게 보내는 비공개 인계와 이용자에게 게시할 공개 공지 |\n| `pragmatics-intent-001` | 검토 요청과 작성 상태 보고 뒤 함께 검토하자는 제안 |\n| `pragmatics-unknown-001` | 미확인 정보를 만들지 않으면서 필요한 부분만 확인하는 대응 |\n\n앞의 여섯 사례는 각각 A와 B의 결과를 함께 작성합니다. 작업 사실과 상태는 유지하고 달라진 상황에 필요한 표현과 정보 범위를 평가합니다. 일곱 번째 사례는 알려지지 않은 수신자나 전달 방법을 추측하지 않고, 의미에 꼭 필요한 정보만 묻거나 사실을 더하지 않는 문장으로 작성하는지 확인합니다. 문맥 항목 전체를 질문하는 절차는 요구하지 않습니다.\n\n일곱 사례 모두 `expected_exact`를 지정하지 않습니다. 사실과 관계를 정확히 전달하는 여러 자연스러운 표현을 허용합니다. 두 공지에 같은 절대 날짜를 쓰는 것처럼 양쪽에 적합한 표현이 같을 수도 있으며, 문장 모양이 다르다는 사실만으로 성공을 판정하지 않습니다. 각 결과가 해당 상황에 맞는지, 요청한 두 결과를 모두 작성했는지 실제 문장을 읽고 확인합니다. 상황별로 공개하지 말라고 한 정보는 해당 결과의 보존 조건에서 제외합니다.\n\n",
+        "평가 항목": "\n| 평가 항목 식별자 | 판정 기준 |\n| --- | --- |\n| `meaning_preservation` | 의미와 사실 보존 |\n| `no_unsupported_addition` | 근거 없는 내용 추가 방지 |\n| `audience_fit` | 독자와 용도에 맞는 표현 |\n| `natural_korean` | 자연스러운 한국어 문장 구조 |\n| `register_consistency` | 말투와 높임 수준의 일관성 |\n| `literal_preservation` | 보호할 원문의 정확한 보존 |\n| `output_format` | 요청한 결과 형식 준수 |\n\n평가자는 사례에 지정된 항목마다 `pass` 또는 `fail`을 판정합니다. 항목 평균으로 실패를 상쇄하지 않습니다.\n\n제목, 본문, 표 등 문서 전체가 제공된 사례는 모든 영역을 문맥 속에서 읽습니다. 필요한 의미를 실제 출력의 문장이나 연결된 대목에서 확인하며, 키워드가 있다는 이유만으로 통과시키거나 평가자의 설명으로 빠진 의미를 보충하지 않습니다. 원문에 비공개 정보가 포함됐더라도 명시적으로 제외하도록 요청한 정보는 보존할 원문으로 취급하지 않습니다.\n\n"
+      },
+      "preamble": "# 평가 방법\n\n평가는 정해진 문맥에서 의미와 사실을 보존하고, 독자에게 맞는 한국어를 작성하는지 확인합니다. 생성 결과는 서로 독립된 두 평가자가 판단하며, 판정이 다르면 세 번째 평가자가 추가로 평가합니다. Python 도구는 실행 기록과 집계의 일관성을 검사합니다. 한국어 품질을 자동으로 판정하는 도구는 아닙니다.\n\n"
+    },
+    "schema": 1,
+    "settings": {
+      "agent": "codex",
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "high",
+      "sampling": "runtime_default"
+    }
+  },
+  "transport_sha256": {
+    "005ace07-8a55-4022-9335-0548ad021e85": "BA44FA6798D28FEF0DE07BA3BC3EDF193492C67F715BFFCEB0E0C931F7CB7C64",
+    "01bd9dc5-256d-46c4-943a-680f5f1dbe74": "50F97CE5034FDAE9337A2151BE459A1AB8F06EAFB1E215514F8828CACFC9CF22",
+    "04dc0fd6-0161-417b-9bd3-30c65bed682b": "4BDCCEB3B3A9C780E661D756A66D54DA7221E6675CEF928A38FB8CA504C800A3",
+    "05fbff40-fb89-4a21-a9b5-b464f4ac748e": "CBE4CBE9E845D2971510D1891E1154B538B8CFCC9FD65F1F808AE2DCEC76E00A",
+    "06d47c91-c5b1-4a49-b4c6-d4b3910cb101": "722FF4FC8746006BE1C63A90E70779B9299B7AD81A714B71A1E4071BDA245245",
+    "06e3907b-5633-4417-a73b-e73c4c1d720f": "3105D01BF2E83FEDE1C4D2A5CC1C7A0A17D7F00DD1190E8DCAC02E0766370BD6",
+    "09337cbb-66df-4367-9e4e-35ad9073e8a4": "A4B063D2ECFB6506A0367CDA7F317EC2EAAEAEC19E4C578CD48F44AD669AB7C8",
+    "0b0ad434-bac9-4ead-a34b-fc54ecf155cd": "A57C8E56EE4CE24F4C6492667DB3AC4548A56B53A5725FE9E38972793611E42E",
+    "17e275c1-8c62-4e4f-a89b-d6c354cfe640": "A0AC9D82ABA0CAFDD76BB998E0CE50D596F5D843A161B42F3B9356849DFF697F",
+    "19752974-98e6-4208-8d91-8ba7531cbca5": "91CB6E1C2D0F4DAA0644E00312FB856F7BF876AF82F53693D1600027492DE637",
+    "1a9d393b-f904-4359-bfbd-1a2512f4a951": "155A318FE799F1AEB1E235DB9A88ECB0FF3F20F377475E7AB2393785A7431733",
+    "1afcc7f8-390f-4fbf-a5eb-cf6071836174": "F2DB4E62F93030D5FA849452C0E9FA91C99F1FB83C11B312C9B4B331D779B699",
+    "1e2571c1-8f2b-46a7-a605-8c0afb8422f0": "CF52DB471321B0D8BC855ED6F05572C83E868E290ACCEB4CFB46F5980E3D2F6C",
+    "1eb9a2e8-4b1a-47bc-bf70-55ecfc5b9eba": "6CEA7AD58598BB387246A12FA89F04CD5F0F27C4B3F825FC1611187B01BE9916",
+    "218bed1f-818f-40b4-b2d5-998fa6db79d2": "69F581520343A41B57ED15F6142FA38BB1BFB094924E2CE9CCA2D1F91DDF6AA0",
+    "22f95aee-8806-4415-8907-f45cce232375": "CCA82398D9099CE587222813E2C2E666426F1CEE22A7C2E1295A7E96BE271B9E",
+    "234a6a2b-3ece-4e3a-88d2-867735658c0d": "A3734B87623E7F9A16239BBF3A845F51C5012F1EC6E1335AF2A3953AC7A5AFAE",
+    "27c155a2-34e3-4c10-a3da-3789eebd992b": "FEA52EB7D8697C8C961DE3C67794C2C697B92DB2D7E108E259E0A99AD53B3967",
+    "28fbcaa1-f4c6-4ff6-90af-b5695644c6f9": "37D0AD2243CD9DA5E235E4B8C1CC5E9572897A1BCF059CE5571B3183E907BF40",
+    "2eff4b44-4003-4986-a84b-ddfa8bc6dc9c": "B19504DAA4770E7C4DFAC97E94952FD4C4F4158062399A02327523E2ECD406F3",
+    "30a7858f-abe4-497d-8a2b-a83335aa5b69": "05FA3246FD79DEF117A1499567227740B15BDF5E98857F3F4B8F95E746673AB6",
+    "324e65d1-3c60-4d3b-9709-b29a13763db7": "98E05D8AE77202AB4F6B452E2886BEE5EC656FD44668DC54650A7F61347B2655",
+    "328a47b7-a626-4b5e-82d9-7092593c5d87": "69F581520343A41B57ED15F6142FA38BB1BFB094924E2CE9CCA2D1F91DDF6AA0",
+    "34ef0b8b-bec3-4edb-a946-4bc8aa5acd8b": "5F1735F7CCC72BD09B28077A35567A7A53735FFFABAE521F4E8FB9392456C61D",
+    "37640734-7949-49a5-9773-9f02c99c1b7c": "9DEBC6F5E2F1583FF07939D3FD0121623DE3AD73668C8EDC2F82EF8B1EC541C4",
+    "384698de-2c69-4661-b3ed-58a70df1b630": "98E05D8AE77202AB4F6B452E2886BEE5EC656FD44668DC54650A7F61347B2655",
+    "39727368-e6e5-457e-bae1-7aa4aca40197": "D953CF8B5B02F091D7A97DE04651DEF8790D15FB2BF6BDC6706E25A55C5BBD6F",
+    "3b68758d-4060-4724-a89d-f629ea725759": "19B2CC389514E8895A72E3479F8483FCE437C6B0BE43ABBE6192FF83307E14B8",
+    "3c5f7c28-4a94-4ba4-aa3f-0f87a367ebb9": "BE8E2ACF81136A1A938B6EB998E545F87ED7AAF10873F60D882FF34E188867B4",
+    "401cb8b3-19af-45a2-ac5d-47574da3fe86": "35A8BA3F4A9800F42051D2D1EDDC8A288219AD6FC565F568A97DD4A493DEBCB2",
+    "41307b7a-00a5-414f-a1fa-93dbf470dbc6": "94E469110769D8AC2EFEFC0CBB98FFAFB7E8B87AA0F529FFEBC421C9C4588D64",
+    "42579b8a-cc9b-4135-bbf7-f586f8276aa7": "A4B063D2ECFB6506A0367CDA7F317EC2EAAEAEC19E4C578CD48F44AD669AB7C8",
+    "425b6446-1687-40cd-9be6-d6ae07dc795d": "65368B19C92E5518219F8C9F616056A47C312E7B325E8D2C90384B2EDFF1B729",
+    "45ad68d4-6506-4d68-a92e-85df1b93370b": "5FCC3ECA3D5E28117B9E93B61FAF426CD172C9135B1C5C7B2ED31F1BBAAD62E0",
+    "4632b0d7-ad7d-48c2-8051-d3623e85d1f9": "DEFB3DEADFD5004C9490A6BF12D9BD79A507E4FFF90A351071AA0E47A68BC7C3",
+    "48537919-95d0-425b-bee2-b4131af164a6": "B19504DAA4770E7C4DFAC97E94952FD4C4F4158062399A02327523E2ECD406F3",
+    "491bc801-9a93-4902-83da-f63805dce669": "5F1735F7CCC72BD09B28077A35567A7A53735FFFABAE521F4E8FB9392456C61D",
+    "4b352035-136a-475b-8a9c-aa089a617734": "CA8EBB96E1883718657014DC98DBE6F354F8ED4AD9A06AA5D912F88217F5DC96",
+    "4c41cd0c-b026-49e9-8ca8-4b08d7ddcbd6": "6CEA7AD58598BB387246A12FA89F04CD5F0F27C4B3F825FC1611187B01BE9916",
+    "4e6027bb-8d83-4afd-b843-b0da9f4c7220": "A4ABAB7E5A9E00D7C84BAD642B795C712F3245C37040FAA0633F1EF5C11F9BD4",
+    "4f852a7a-3764-4ab0-9b90-8a557373ce5f": "15D20F05AAD04184014C5DC2580B6792DB324765E37275DF441853424910C578",
+    "503cd0ba-ebb7-4e17-a394-c16613031e6d": "84E70C42F86514E1A30801D0639B77250BA3BD8C450B4C0A00D9383BD1855470",
+    "50a30169-cfad-4ce5-b5e0-2dbc63180de4": "5B733484407582AF762932AA3FD1391A6BE9AAF6599B86594DE59FCDA24ACEEC",
+    "5119c6f8-216a-42da-868f-f02c3db95950": "9F9EAFADD2F1EA43D2805C9EC65914E3C10D7E67FA17711C2B4DF3A37DA8A3A4",
+    "519e1c88-c968-4f8e-9964-0f717d92fb56": "EFB5066EC4209CA9658A210E03B61B4E3F18DF856DB65B3A7AAAF8CADC3C3C8D",
+    "529728bf-ce02-4f70-83e8-a48fc0fd8e66": "9F9EAFADD2F1EA43D2805C9EC65914E3C10D7E67FA17711C2B4DF3A37DA8A3A4",
+    "53992eec-af01-41bc-b216-156e17fba2d1": "FD6154303E75F98113BDB8324ED6CCAB58BD4111B7B8E1550B550FA41EC2467B",
+    "552e10c6-8255-4ea2-8c65-1e6ba6669281": "E7124CA46566690AEFB6C33907C2BF27543A63385193D106A4D5F6D74DE50CF8",
+    "58297fba-b4b3-4f5b-b885-dcacd1c6808f": "FFD4FFD3B0FEFA2FC4AFAF22B51032DCB7FF8176726AD7A14544E36E1A07E30F",
+    "5a23bac6-4381-45fb-b885-a8bbb4758574": "30BC64C3606C2F82BF5698A883BA8C195BB99FC38097337209986310CCDEA454",
+    "5badd1e7-587e-4c4a-a5e8-41780f37ecad": "95A288E306B8AD0D55B6D41E4A20AA3C3B87904CAE42F1A4BD73670017D7E822",
+    "5c7ffd9e-6d44-4f7a-ba4c-9e5d61cf0476": "4BDCCEB3B3A9C780E661D756A66D54DA7221E6675CEF928A38FB8CA504C800A3",
+    "5ca5f943-4989-4a0e-8164-7d0bccd030b4": "5B733484407582AF762932AA3FD1391A6BE9AAF6599B86594DE59FCDA24ACEEC",
+    "5e034ad8-4ca0-4d90-8bbe-75654f003dd9": "EFB5066EC4209CA9658A210E03B61B4E3F18DF856DB65B3A7AAAF8CADC3C3C8D",
+    "5e43df88-fbd8-4487-95dc-3bb2ce3d9884": "35A8BA3F4A9800F42051D2D1EDDC8A288219AD6FC565F568A97DD4A493DEBCB2",
+    "5f0462ae-f7e6-44d9-ba73-a26adaa8ff9e": "DEEF316886AF1D1E5CB916658CD6F71234E2C551B8762E8EECF5209F88EA5BF8",
+    "62868d73-23be-454c-b37b-5a30c2a00230": "0BF947CDAB92F96935CEFE551A3B2B7817A9A00677B940763FE49576BB51EA22",
+    "662fe156-c1e6-4d70-885a-86af5e5b24cc": "15D20F05AAD04184014C5DC2580B6792DB324765E37275DF441853424910C578",
+    "67d1bbb2-3c3c-4faf-a3b7-5c6a0259a1a8": "DEFB3DEADFD5004C9490A6BF12D9BD79A507E4FFF90A351071AA0E47A68BC7C3",
+    "6889ba3f-8077-4562-b492-9510025d5af2": "30BC64C3606C2F82BF5698A883BA8C195BB99FC38097337209986310CCDEA454",
+    "6a9fb84a-2b48-432b-8073-2ee458deec5a": "508C9049D0E6F21ABC5641DA32DEEDF5F915551759EEF1AD5A15DB5F82DF9B7D",
+    "6ab4d5d8-eb22-4af2-87a4-36bb0a8aface": "B327406CF60155709145608F771F477F8163CAEC7D09673A793D6597A260416A",
+    "6b3e79bf-d3b5-4742-8223-d225a3da1be7": "A0AC9D82ABA0CAFDD76BB998E0CE50D596F5D843A161B42F3B9356849DFF697F",
+    "6b7af327-a48b-4c10-a007-16d78848ec76": "985496D2BB57360FAFB76ADFA892D720DADE027CB11BCF6D6162A5C170E64815",
+    "6bd6bf58-f841-4175-b083-7bbb1c48351a": "5894AED806AFBF1B20FE032EAAA6BF2A9481906DD5D009A129757D8D3FCA5F3B",
+    "6be54776-3ed9-4142-b20c-935a21d6c506": "4DC49335D3CAE2DD15CECC2899C7E656D1285EF80A7B233BF46019282784AA82",
+    "6fe365f8-a1ff-485d-a585-17ca0764a582": "94E469110769D8AC2EFEFC0CBB98FFAFB7E8B87AA0F529FFEBC421C9C4588D64",
+    "7123aed0-511f-4ef4-8884-bda845bd33b2": "1F05A96666061BA4B8A80A22CE46DA0655388BE399BCD7E551B8184148A454A8",
+    "71cb8ef7-01a7-4aa0-9d02-a932908ed8c1": "5CAD8EB842323BE2B7A2A18EB89CE8F9CA774D9D80787447FF01390FFEA85692",
+    "778701f7-f691-4bd4-9b5e-a442bb4465b1": "54B54A3DBB1CE0A8013B76768FD63D2F42222510AFC579337BD11AF411CBB4D9",
+    "7b25dcc1-51ba-438b-bac8-231296da83d8": "0F25E1C9243020C4569EE2ECFE3C13BC434E98EE5298A78E2AC5F362B620B66D",
+    "7d70877d-c368-4f8b-a9d2-3f9660640e75": "89CC9A15514F9E7E1EFFB0F2CE29868D77218BC806032EBEF75AD050AECC8ADF",
+    "7e8f9861-5aba-4a3a-a2de-954d8d7c2347": "7D183AF9BC211DB71282DAE67EA7BE6F841E01B2487DA2377A49BA549070F305",
+    "7e9dd43b-9687-4979-b9d1-7f73650c1156": "4ACDD5E18A0E9F040B006A1CE4FAC2077F408F9F52AB9FD10CA1A5F128908E12",
+    "7f7461fe-cd61-49a2-8ccd-33a4c829db7b": "8F3501EBD13B4E375E991300AF26C59579D90743048C01C5BCABE27E9303630E",
+    "816f1583-34db-42d5-bbd5-15b80f1b752a": "7D183AF9BC211DB71282DAE67EA7BE6F841E01B2487DA2377A49BA549070F305",
+    "81fc7929-57c9-4d1e-b5d6-9d91dea3bb6b": "7DAE285FCA35489C7C708AAE49AADBC38360909F52AF2779C1E2D9865C1882E4",
+    "83369efd-44a0-4b18-9be4-d14917e513e0": "B327406CF60155709145608F771F477F8163CAEC7D09673A793D6597A260416A",
+    "84881364-a719-440a-94c5-1fe62647518b": "C6F81B67FB83580E74E15CE523930A61A20AC356474199779E9E6003E6810153",
+    "853e423a-162c-4f52-b402-55ebc8636c50": "BE8E2ACF81136A1A938B6EB998E545F87ED7AAF10873F60D882FF34E188867B4",
+    "86054592-6080-4561-af53-a879fd2ce22a": "7CA053B63B5D00C9EE2DC789C8B6E96C6055637C0F51A43E131A6ABB98842802",
+    "87ade737-6acf-464d-9d1d-667cdadc8792": "9DEBC6F5E2F1583FF07939D3FD0121623DE3AD73668C8EDC2F82EF8B1EC541C4",
+    "88725bd1-4dd2-450f-9fa0-472ca2849ac1": "36F761D1CFCCDC8EC98310E879BDDC3CB8FED39DF3404226BB229CC5A7DD5CFD",
+    "89aab1f6-e7e8-4cb8-badf-aedda998026a": "11D8466049F74D44D4605163DB1322484AC39C24E622BB20FAA0BFD0530B61E2",
+    "89dcb895-7b3e-4c95-83a5-0b8ada5c87dc": "2FE9E8026BE61F9A5297D443D72ABF3DCBD5B50A5955F63C0E375B6FD7871A97",
+    "8d83352e-6e16-4079-afcb-fed5807ba122": "F2DB4E62F93030D5FA849452C0E9FA91C99F1FB83C11B312C9B4B331D779B699",
+    "8e41db8e-76e3-4667-9770-d8bbce8a801e": "155A318FE799F1AEB1E235DB9A88ECB0FF3F20F377475E7AB2393785A7431733",
+    "9065a3c1-6f6f-418c-979a-cb9d4d39aa64": "578323960170FB68718C74207CC219568C1FF9821CC987F664097F04FD330F2F",
+    "9096d4f8-7979-49a4-86d1-75423a6d22da": "9A361CAB65C76DAC3D27AF3DE7734A459EE960205849D8B0CD99833DE3336D85",
+    "932f77ea-44fd-4e80-9edc-f9490a458727": "AD12F8263ED842368288DAC551E158A72D63F9F04C9CDC3BEE6FF0D27D935B80",
+    "9642c5e6-ad40-475c-9f12-de86858ccc21": "E4E3BA5497ED4EC5676113F441F8A7E5EB9099C957C6A104CE8A683F43C070F5",
+    "98631afb-dbc3-4741-b7c7-8089a6b25a82": "AF504150F727395699F1B8BA316279E284D5222F4340CA69A9E9EDE95F727029",
+    "9b074ecb-5826-411e-ab9e-698ca0189ed2": "0CCF1E2B8C31A2DFC03DA900A0BC546B0E8534D30D473BFFB69D0520FB1980A5",
+    "9ccf6bab-6eeb-44ee-80b1-156bdf785c67": "675B60AAB1A970F68EE616800C30411576A6C125B109E4188D3358B46615DC39",
+    "9f538177-d487-42ee-b4d2-e6045e4b9730": "43487D6753E8BBB9F95893B43AB7BF827D42E03BE70924DB853034C6A753D468",
+    "9faff7ef-2724-4c6a-8a9e-556b093d4079": "C7943D707CFBE90925DC416F8187AAB47F83A89EBDF1A0E365E5A51A760CBA57",
+    "a505e642-7f4b-4281-ac9f-4ea6332b6964": "CF52DB471321B0D8BC855ED6F05572C83E868E290ACCEB4CFB46F5980E3D2F6C",
+    "a5a2a2aa-8639-4c8e-8eae-ae845f327136": "075AA67B534758C2E31D7E24855C68EA06A1F8D1A959410FFDFD102B2DB30F19",
+    "a5c7abc2-b372-47e3-a453-7072976bd968": "4471F6062EEB02193D47169C5D8053A9DC13EA258F938684D58F85C7362B5CED",
+    "a7857abc-eb96-4b70-a2d7-7dc2bcdf82d0": "7DAE285FCA35489C7C708AAE49AADBC38360909F52AF2779C1E2D9865C1882E4",
+    "a853c243-5eb7-4352-80d2-1cebae025528": "225A25BA79A833A4FAE9938794BB2EEC0898C7D2F6150E879E7CD691A6EC9403",
+    "a94ab99b-d67f-470c-b162-76bfeafd05ba": "DC415F0A10A5A4069E1D624D5BC2162071BBBAD05B981CBCF769D802ED058E3D",
+    "aaae444f-a867-4ee0-9715-04edb3d17476": "7F6BEA5423EDD7457B1AD1F9D82E576FB591D0C8B7F495FA44269B0F6507E78F",
+    "abbcb239-6121-4f1f-9751-ee3cea55710c": "748D88585F0AC1B869E5296CAD421FCF3C74C103C10366FA7060991F25E1F8CA",
+    "ad2b4452-5d8a-4ce7-b70e-cdc61f988ac8": "664D1A69DD28DDD1E34DFC8CFEF88BBC2E08AC6791950CF6A2FAD7F95A69264C",
+    "ad491f2e-9e05-4241-8ba3-fc4ea62f323d": "43487D6753E8BBB9F95893B43AB7BF827D42E03BE70924DB853034C6A753D468",
+    "b06affe3-db5b-42ee-ba46-d8e18e0f267c": "05FA3246FD79DEF117A1499567227740B15BDF5E98857F3F4B8F95E746673AB6",
+    "b3c40ae9-a2cd-4e2e-8c5a-04cd42d93ff4": "19B2CC389514E8895A72E3479F8483FCE437C6B0BE43ABBE6192FF83307E14B8",
+    "b53163a7-0697-4ef4-bbcc-50f3a7c3d2d8": "C6F81B67FB83580E74E15CE523930A61A20AC356474199779E9E6003E6810153",
+    "b53b3f41-2b4c-4508-9bfd-e3b0185d80c4": "266E05A9580BD5F91A6C40CAC4F5D8FAF1F5DDA9CC7A10C64AFAF0FEB0568CBB",
+    "b5d61862-6732-44ad-aeef-4c02c8cd57be": "A2EE6F61FEAEF46E7DE2404C71679E4C534E26CFC00BB78B9BA7C542CBF65A17",
+    "b74c1c4a-38cd-4e02-be96-30e479af837b": "DEEF316886AF1D1E5CB916658CD6F71234E2C551B8762E8EECF5209F88EA5BF8",
+    "b9acc553-86aa-4a5c-94d0-77d5e493e67d": "BD3013299074B2ED0BCEC97A12369D2416BAAE3D4BFA4C9CECDD6F5CC0BEFBD9",
+    "babb5883-f20f-4d0f-b427-ddd2f697eb0d": "3105D01BF2E83FEDE1C4D2A5CC1C7A0A17D7F00DD1190E8DCAC02E0766370BD6",
+    "bf49bc9b-f400-49cc-8416-b227dce880a3": "B5F31680F4965BC3637860E8E9DCF703420A6269EADD85DB5BB4BA33764E8DD9",
+    "bf737d15-7bdb-457f-b625-892d578d1836": "11D8466049F74D44D4605163DB1322484AC39C24E622BB20FAA0BFD0530B61E2",
+    "c0501c0e-d0b1-4588-82fa-f00e158127c0": "5C39BCD3DE13EEABFB5E2362823960D4CE9967B6B678E566685BC16183D37743",
+    "c05be366-f0c8-462b-a668-98b42fc83ec1": "CBE4CBE9E845D2971510D1891E1154B538B8CFCC9FD65F1F808AE2DCEC76E00A",
+    "c259985f-bd63-44f3-a41a-83c7d051d3d6": "65933D587F02F7D669637952C640B32985A665D80456046066B0269C5A7C690C",
+    "c2ad9b70-d7b7-40b1-ad5b-e5247b274b10": "FD6154303E75F98113BDB8324ED6CCAB58BD4111B7B8E1550B550FA41EC2467B",
+    "c41c198d-1e00-4f55-aebd-c992f84d711e": "D3D4B44AB133991AD9C869D529A5F2A5EE0BE8DE4DAF9C6AAD411118DABC593B",
+    "c815060a-3524-4806-92c3-89c3fceedc16": "5E97EE10EA7C5E079A4E0E2F0187D8BAAEF050FF80BEFDBDEE2725D014A6BC5A",
+    "c95d489c-daba-4975-800f-abf2fd972264": "471CFFC111B2F0AAC748FD8054E5805637258BAB892A9F5E5909AAF83E1D8EA9",
+    "cac07247-0d58-4526-be80-aa97bbe2e6ef": "1537346E91E1CEB4EB29010E3D63D94FB67C2D682CA2E17EF04EE9637145AB73",
+    "cac157ae-d822-4e76-85c6-861ce011294e": "FFD4FFD3B0FEFA2FC4AFAF22B51032DCB7FF8176726AD7A14544E36E1A07E30F",
+    "ce314b92-a136-43a6-9936-6eacff1877e6": "5C1A23DA0BA355F87C6EE368D2356E0DE477349E9D51A842AADB78873AAFD92B",
+    "cf5c0b7b-b8a0-4511-9b31-e3e098f38c6c": "AD12F8263ED842368288DAC551E158A72D63F9F04C9CDC3BEE6FF0D27D935B80",
+    "cfbacd5c-536a-417d-a55e-292af36cac74": "65933D587F02F7D669637952C640B32985A665D80456046066B0269C5A7C690C",
+    "d2815d04-a8ba-4f1a-9336-aad3b744021c": "CA8AC867F46AE4A53565502C506C84BCD85699B9F908DFDB8CD331C8131E799B",
+    "d3da1b2e-c7e6-40e2-8d62-257cd1d64225": "65368B19C92E5518219F8C9F616056A47C312E7B325E8D2C90384B2EDFF1B729",
+    "d48e740e-ff3f-454e-a924-306e1b8a3dda": "A4ABAB7E5A9E00D7C84BAD642B795C712F3245C37040FAA0633F1EF5C11F9BD4",
+    "d72def9e-0fd0-480d-965a-cd222b645d23": "95A288E306B8AD0D55B6D41E4A20AA3C3B87904CAE42F1A4BD73670017D7E822",
+    "d79a5ac6-3e2e-48a7-b8dc-e84936a39016": "89CC9A15514F9E7E1EFFB0F2CE29868D77218BC806032EBEF75AD050AECC8ADF",
+    "d84d27b3-8de2-4de6-b023-ef3c8fc0b062": "5CAD8EB842323BE2B7A2A18EB89CE8F9CA774D9D80787447FF01390FFEA85692",
+    "de3d92f2-b80c-4562-b5f4-e3b23a332bba": "84E70C42F86514E1A30801D0639B77250BA3BD8C450B4C0A00D9383BD1855470",
+    "e3cc27be-0fb1-4a2c-92f7-98433bd297d5": "0BB93AD1CED2799DA52E7370E3F9DF900B7A91EFD38F46CC7BE1AF720E19757D",
+    "ea645b85-04c8-43d4-a0b8-5adde6dad997": "E1BFC67445B68D61113D91F976FB5728904084CBB5C41D972C6C79CCAF85113B",
+    "ea67a4c5-a742-4a5a-bfef-b9e89ed92469": "CB0CE45DA89AC859F19914C2B38EDA5ECA4B2D217925AAA220D6703BF52752D3",
+    "ebc11f45-82fa-4efb-8fc3-4d2c770bec38": "29368CF701A4A46803F24B0E2371056B7998D2E18DC21B3170C29ADE8AEE1EB4",
+    "ec9fa5d5-404e-4f3b-b656-18ba0ce8f457": "508C9049D0E6F21ABC5641DA32DEEDF5F915551759EEF1AD5A15DB5F82DF9B7D",
+    "eca8d722-b955-4db3-a754-22031df44945": "5071F69FAA37769E464B737BDD2C10DF893DB615E5FDF7DDA3EC81D0179BB740",
+    "efd7ce53-f09f-4d9d-861d-42d139e7d257": "A2EE6F61FEAEF46E7DE2404C71679E4C534E26CFC00BB78B9BA7C542CBF65A17",
+    "f0760525-e242-450c-a488-c79e21a4e685": "E4E3BA5497ED4EC5676113F441F8A7E5EB9099C957C6A104CE8A683F43C070F5",
+    "f12bdaa2-657e-45e2-a133-e46e87f34928": "5894AED806AFBF1B20FE032EAAA6BF2A9481906DD5D009A129757D8D3FCA5F3B",
+    "f4842b6f-13b5-4989-87b2-9eba2ef65812": "3EFA03F04E4A110AC75741349C9F7218A03A4358E4CD8F27F1C09156876CD280",
+    "f56dcd64-0e28-4e2c-b35e-79c7ae6c4732": "675B60AAB1A970F68EE616800C30411576A6C125B109E4188D3358B46615DC39",
+    "f5f6920e-10ea-41e9-9d27-94e4b7a872c0": "7A64A94081FC768F143C00F3C948710A45E2AAB0D5759ADE1E1C2E91F98A7155",
+    "f8eb979d-0bbe-4aa4-863c-cbb0cc76fbfd": "A57C8E56EE4CE24F4C6492667DB3AC4548A56B53A5725FE9E38972793611E42E",
+    "fbd096e0-4ca9-414f-955a-a8d655cc3c84": "C9C4AD1A68790C5387487BFF27D80F03C5458E001BF7E3C99C28A3FE75F58673",
+    "fdf0a45c-7246-4bf4-b377-df9f6e4a60a0": "664D1A69DD28DDD1E34DFC8CFEF88BBC2E08AC6791950CF6A2FAD7F95A69264C",
+    "fec136c4-1e9b-42b4-9b98-525880cf1292": "5FCC3ECA3D5E28117B9E93B61FAF426CD172C9135B1C5C7B2ED31F1BBAAD62E0"
+  }
+}

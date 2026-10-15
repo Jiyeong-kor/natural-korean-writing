@@ -1,0 +1,68 @@
+name: 설치 문제
+description: skill 설치 중 발생한 오류를 알려 주세요.
+title: "[설치] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        이슈는 공개됩니다. 명령과 오류에서 토큰, 비밀번호, 계정명, 개인 경로, 비공개 주소를 제거해 주세요. 제거한 부분은 `[가림]`으로 표시하고, 명령의 옵션과 오류 코드는 남겨 주세요. 첨부 파일에도 같은 기준을 적용해 주세요.
+  - type: input
+    id: operating-system
+    attributes:
+      label: 운영체제
+      description: 운영체제 이름과 버전을 적어 주세요.
+      placeholder: "예: Windows 11, macOS 15, Ubuntu 24.04"
+    validations:
+      required: true
+  - type: textarea
+    id: github-cli-version
+    attributes:
+      label: GitHub CLI 버전
+      description: gh --version의 출력을 적어 주세요. 명령을 실행할 수 없다면 그 상태를 적어 주세요.
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: skill-help
+    attributes:
+      label: gh skill --help 실행 결과
+      options:
+        - 도움말이 정상적으로 표시됩니다.
+        - 명령을 찾지 못하거나 오류가 발생합니다.
+        - 실행하지 못했습니다.
+    validations:
+      required: true
+  - type: textarea
+    id: install-command
+    attributes:
+      label: 실행한 설치 명령
+      description: 입력한 명령을 옵션까지 그대로 적되, 비밀값과 개인정보는 제거해 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: error-output
+    attributes:
+      label: 오류 전체 내용
+      description: 비밀값과 개인정보를 제거한 오류 전체를 적어 주세요. 오류가 출력되지 않았다면 실제로 나타난 현상을 설명해 주세요.
+      render: text
+    validations:
+      required: true
+  - type: dropdown
+    id: install-scope
+    attributes:
+      label: 설치 범위
+      description: 설치하려던 범위를 선택해 주세요.
+      options:
+        - 현재 프로젝트
+        - 사용자 계정 전체
+        - 확인하지 못했습니다.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 공개 정보 확인
+      options:
+        - label: 본문과 첨부 파일에서 개인정보, 인증 정보, 비공개 내용을 제거했습니다.
+          required: true

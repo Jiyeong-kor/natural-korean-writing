@@ -1,0 +1,130 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    env:
+      GIT_CONFIG_COUNT: '1'
+      GIT_CONFIG_KEY_0: core.autocrlf
+      GIT_CONFIG_VALUE_0: 'false'
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          show-progress: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+          architecture: x64
+
+      - name: Verify and install GitHub CLI on Ubuntu
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          set -euo pipefail
+          task_dir=$(mktemp -d "$RUNNER_TEMP/natural-korean-writing-gh-XXXXXX")
+          archive=gh_2.97.0_linux_amd64.tar.gz
+          release_url=https://github.com/cli/cli/releases/download/v2.97.0
+          cd "$task_dir"
+          curl --fail --location --silent --show-error --retry 2 --connect-timeout 10 --max-time 120 \
+            "$release_url/$archive" --output "$archive"
+          curl --fail --location --silent --show-error --retry 2 --connect-timeout 10 --max-time 120 \
+            "$release_url/gh_2.97.0_checksums.txt" --output checksums.txt
+          expected=$(awk -v name="$archive" '$2 == name { print $1 }' checksums.txt)
+          if [[ ! "$expected" =~ ^[[:xdigit:]]{64}$ ]]; then
+            printf 'Expected one valid archive checksum.\n' >&2
+            exit 1
+          fi
+          printf '%s  %s\n' "$expected" "$archive" | sha256sum --check -
+          tar -xzf "$archive"
+          task_gh="$task_dir/gh_2.97.0_linux_amd64/bin/gh"
+          test -x "$task_gh"
+          version_output=$("$task_gh" --version)
+          printf '%s\n' "$version_output"
+          [[ "$version_output" =~ ^gh\ version\ 2\.97\.0[[:space:]] ]]
+          "$task_gh" skill --help
+          printf 'TASK_GH_PATH=%s\n' "$task_gh" >> "$GITHUB_ENV"
+
+      - name: Verify and install GitHub CLI on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $taskDir = Join-Path $env:RUNNER_TEMP ('natural-korean-writing-gh-' + [guid]::NewGuid().ToString('N'))
+          New-Item -ItemType Directory -Path $taskDir | Out-Null
+          $archiveName = 'gh_2.97.0_windows_amd64.zip'
+          $archivePath = Join-Path $taskDir $archiveName
+          $checksumPath = Join-Path $taskDir 'checksums.txt'
+          $releaseUrl = 'https://github.com/cli/cli/releases/download/v2.97.0'
+          Invoke-WebRequest -Uri "$releaseUrl/$archiveName" -OutFile $archivePath -TimeoutSec 120
+          Invoke-WebRequest -Uri "$releaseUrl/gh_2.97.0_checksums.txt" -OutFile $checksumPath -TimeoutSec 120
+          $checksumLines = @(Get-Content -LiteralPath $checksumPath -Encoding utf8 | Where-Object { $_ -match '^[0-9a-fA-F]{64}\s+\*?gh_2\.97\.0_windows_amd64\.zip$' })
+          if ($checksumLines.Count -ne 1) { throw 'Expected one valid archive checksum.' }
+          $expected = ($checksumLines[0] -split '\s+')[0]
+          $actual = (Get-FileHash -LiteralPath $archivePath -Algorithm SHA256).Hash
+          if ($actual -ne $expected) { throw 'GitHub CLI archive checksum does not match.' }
+          Write-Output "$archiveName SHA256 verified"
+          $packagePath = Join-Path $taskDir 'package'
+          Expand-Archive -LiteralPath $archivePath -DestinationPath $packagePath
+          $taskGh = (Resolve-Path -LiteralPath (Join-Path $packagePath 'bin/gh.exe')).Path
+          $versionOutput = @(& $taskGh --version)
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub CLI version check failed.' }
+          $versionOutput | Write-Output
+          if ($versionOutput[0] -notmatch '^gh version 2\.97\.0(?:\s|$)') { throw 'GitHub CLI 2.97.0 is required.' }
+          & $taskGh skill --help
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub CLI skill command is unavailable.' }
+          Add-Content -LiteralPath $env:GITHUB_ENV -Value "TASK_GH_PATH=$taskGh" -Encoding utf8NoBOM
+
+      - name: Test repository validator
+        run: python -B -X utf8 -W error -m unittest tests/test_validate_repo.py
+
+      - name: Test evaluation harness
+        run: python -B -X utf8 -W error -m unittest tests/test_run_evals.py
+
+      - name: Verify recorded evaluations
+        run: python -B -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
+
+      - name: Validate release requirements on Ubuntu
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --phase final --gh-path "$TASK_GH_PATH"
+
+      - name: Validate release requirements on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --phase final --gh-path "$env:TASK_GH_PATH"
+
+      - name: Validate skill package on Ubuntu
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: '"$TASK_GH_PATH" skill publish --dry-run'
+
+      - name: Validate skill package on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: '& $env:TASK_GH_PATH skill publish --dry-run'

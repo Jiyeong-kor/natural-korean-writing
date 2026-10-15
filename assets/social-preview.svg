@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-labelledby="social-preview-title social-preview-desc">
+  <title id="social-preview-title">natural-korean-writing</title>
+  <desc id="social-preview-desc">원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 글의 목적과 독자에 맞게 다듬을 수 있는 자연스러운 한국어 스킬입니다.</desc>
+  <style>
+    text { font-family: Pretendard, sans-serif; fill: #2d3142; }
+    .title { font-size: 64px; font-weight: 700; letter-spacing: -1px; }
+    .introduction { font-size: 40px; font-weight: 400; }
+    .label { font-size: 32px; font-weight: 700; fill: #4f5d75; }
+  </style>
+  <rect width="1280" height="640" fill="#f5f5f5"/>
+  <rect x="80" y="72" width="80" height="8" fill="#eb6c36" aria-hidden="true"/>
+  <text class="title" x="80" y="176">natural-korean-writing</text>
+  <text class="introduction"><tspan x="80" y="284">원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 </tspan><tspan x="80" y="340">글의 목적과 독자에 맞게 다듬을 수 있는 </tspan><tspan x="80" y="396">자연스러운 한국어 스킬입니다.</tspan></text>
+  <path d="M80 468H1200" stroke="#bfc0c0" stroke-width="1" aria-hidden="true"/>
+  <text class="label" x="80" y="548">의미 보존</text>
+  <text class="label" x="440" y="548">문맥 반영</text>
+  <text class="label" x="800" y="548">자연스러운 표현</text>
+</svg>

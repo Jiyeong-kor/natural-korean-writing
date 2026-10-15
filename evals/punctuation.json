@@ -1,0 +1,239 @@
+[
+  {
+    "id": "punctuation-en-dash-001",
+    "category": "punctuation",
+    "context": "한국어 행사 안내다. 운영 기간은 9월 1일부터 9월 3일까지다. 기간과 문체를 유지한 안내 문장만 출력한다.",
+    "instruction": "기간을 나타내는 기호를 한국어 문장부호 규정에 맞게 고쳐 주세요.",
+    "input": "행사는 9월 1일–9월 3일에 운영합니다.",
+    "must_preserve": [
+      "운영 기간 9월 1일부터 9월 3일까지"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "U+2013 en dash를 한국어 범위 표현으로 바꿨는가",
+      "물결표 또는 붙임표를 쓰면 양옆에 붙였는가",
+      "범위의 양 끝 날짜가 같은가"
+    ],
+    "critical_failures": [
+      "기간의 시작이나 끝을 바꿈",
+      "en dash를 한국어 문장부호로 남김"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-em-dash-001",
+    "category": "punctuation",
+    "context": "한국어 고객 안내다. 저장하지 않은 내용은 페이지를 나가면 사라진다. 원인과 주의할 행동이 드러나는 안내만 출력한다.",
+    "instruction": "영어식 대시 연결을 자연스러운 한국어 문장으로 고쳐 주세요.",
+    "input": "페이지를 나가기 전에 저장하세요—저장하지 않은 내용은 사라집니다.",
+    "must_preserve": [
+      "페이지를 나가기 전에 저장해야 함",
+      "저장하지 않은 내용은 페이지를 나가면 사라짐"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "U+2014 em dash 대신 자연스러운 문장 연결을 사용했는가",
+      "저장한 내용까지 사라진다는 뜻으로 바꾸지 않았는가"
+    ],
+    "critical_failures": [
+      "저장 여부에 따른 결과를 바꿈",
+      "em dash를 한국어 문장부호로 남김"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-middle-dot-001",
+    "category": "punctuation",
+    "context": "대회 안내다. 금메달, 은메달, 동메달을 수여한다. 세 항목의 공통 성분인 메달을 한 번만 쓰고 국립국어원 규정의 가운뎃점을 사용하는 문장 하나를 요청했다.",
+    "instruction": "공통 성분을 묶는 가운뎃점을 사용해 간결하게 고쳐 주세요.",
+    "input": "금메달, 은메달, 동메달을 수여합니다.",
+    "must_preserve": [
+      "금메달, 은메달, 동메달 세 종류를 수여함"
+    ],
+    "must_include": [
+      "금·은·동메달"
+    ],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "금·은·동메달처럼 공통 성분을 묶는 용법인가",
+      "가운뎃점 양옆을 붙였는가",
+      "가운뎃점을 무조건 삭제하지 않았는가"
+    ],
+    "critical_failures": [
+      "메달 종류를 바꾸거나 빠뜨림",
+      "명시적으로 요청한 공식 가운뎃점 용법을 일괄 금지함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-hyphen-001",
+    "category": "punctuation",
+    "context": "접수 후 검토하고 승인하는 세 단계의 안내다. 순서를 나타내는 붙임표를 쓰고, 단계명 사이에는 공백을 넣지 않는 문장 하나를 요청했다.",
+    "instruction": "세 단계의 순서를 붙임표로 연결해 고쳐 주세요.",
+    "input": "접수, 검토, 승인 순서로 처리합니다.",
+    "must_preserve": [
+      "접수 후 검토하고 승인하는 순서",
+      "세 단계 모두"
+    ],
+    "must_include": [
+      "접수-검토-승인"
+    ],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "접수-검토-승인처럼 순서를 연결하는 붙임표를 사용했는가",
+      "설명 삽입용 영어 대시로 사용하지 않았는가"
+    ],
+    "critical_failures": [
+      "단계 순서를 바꾸거나 단계를 빠뜨림",
+      "명시적으로 요청한 공식 붙임표 용법을 금지함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-subtitle-001",
+    "category": "punctuation",
+    "context": "책 표지의 제목과 부제다. 제목은 '기록의 기술', 부제는 '작은 습관에서 시작하기'다. 이 두 문구는 바꾸지 않고 한국어 줄표 U+2015로 구분한다. 한 줄의 제목과 부제만 출력한다.",
+    "instruction": "제목과 부제를 한국어 줄표로 구분해 주세요.",
+    "input": "기록의 기술: 작은 습관에서 시작하기",
+    "must_preserve": [
+      "기록의 기술",
+      "작은 습관에서 시작하기"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "제목과 부제 사이에 U+2015 줄표를 사용했는가",
+      "U+2013이나 U+2014를 대신 쓰지 않았는가",
+      "부제 뒤 줄표 생략과 줄표 양옆 띄어쓰기의 규정상 허용 범위를 인정했는가"
+    ],
+    "critical_failures": [
+      "제목 또는 부제 문구를 바꿈",
+      "다른 Unicode 대시로 한국어 줄표를 대신함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-tilde-001",
+    "category": "punctuation",
+    "context": "한국어 안내문의 범위 표기다. 기간은 9월 1일부터 9월 3일까지, 거리는 2km부터 4km까지, 읽을 범위는 10쪽부터 15쪽까지다. 세 범위를 모두 물결표로 나타낸 한 문장만 출력한다.",
+    "instruction": "각 범위를 물결표로 표시하고 양옆 띄어쓰기를 고쳐 주세요.",
+    "input": "기간은 9월 1일 ~ 9월 3일, 거리는 2km ~ 4km, 읽을 범위는 10 ~ 15쪽입니다.",
+    "must_preserve": [
+      "9월 1일부터 9월 3일까지",
+      "2km부터 4km까지",
+      "10쪽부터 15쪽까지"
+    ],
+    "must_include": [
+      "9월 1일~9월 3일",
+      "2km~4km"
+    ],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "세 범위에 물결표를 사용했는가",
+      "물결표를 양옆 글자에 붙였는가",
+      "범위의 끝값이나 단위를 바꾸지 않았는가"
+    ],
+    "critical_failures": [
+      "기간, 거리 또는 쪽수의 범위를 바꿈",
+      "범위 물결표를 장식용으로 취급해 일괄 삭제함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "punctuation-literal-001",
+    "category": "punctuation",
+    "context": "개발자용 지침이다. `./range-1~3.md`는 파일명이고 `\"A—B\"`는 API의 정확한 문자열 값이다. https://cli.github.com/manual/gh_skill_install 는 참고 주소다. 이 세 literal은 바꾸지 않는다. 주변 한국어의 문장부호만 고쳐 지침을 출력한다.",
+    "instruction": "파일명, 문자열 값, URL은 보존하고 한국어의 영어식 대시 연결만 고쳐 주세요.",
+    "input": "`./range-1~3.md`를 열어 `\"A—B\"`를 확인하세요—설명은 https://cli.github.com/manual/gh_skill_install 에 있습니다.",
+    "must_preserve": [
+      "./range-1~3.md",
+      "\"A—B\"",
+      "https://cli.github.com/manual/gh_skill_install",
+      "파일을 열어 문자열 값을 확인하고 주소에서 설명을 보는 지침"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "제공되지 않은 사실, 수치, 원인 또는 약속"
+    ],
+    "review_points": [
+      "문자열 안의 em dash와 한국어 연결에 쓰인 em dash를 구분했는가",
+      "경로의 붙임표와 물결표를 변경하지 않았는가",
+      "주변 한국어만 자연스럽게 고쳤는가"
+    ],
+    "critical_failures": [
+      "기술 literal의 기호나 문자를 바꿈",
+      "한국어 연결용 em dash를 남김"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  }
+]
