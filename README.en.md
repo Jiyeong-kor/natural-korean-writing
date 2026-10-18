@@ -36,6 +36,10 @@ The [context and audience companion](skills/natural-korean-writing/references/co
 
 ## Installation
 
+Install the skill in Claude, Claude Code, or Codex. Each method includes the same `SKILL.md` and `references/` folder, including the context and audience companion.
+
+### Claude Code and Codex
+
 Requires [GitHub CLI 2.90.0 or later](https://github.com/cli/cli/releases/tag/v2.90.0). Command syntax is based on GitHub CLI 2.97.0. `gh skill` is in public preview, so its commands and behavior may change.
 
 Check your version and command availability:
@@ -51,39 +55,66 @@ Read the instructions with [preview](https://cli.github.com/manual/gh_skill_prev
 gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing
 ```
 
-### User scope
+#### Claude Code
 
-Install for Codex across your projects:
+Install at user scope to use the skill across your projects:
+
+```powershell
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope user
+```
+
+For the current project only, run inside its Git repository:
+
+```powershell
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope project
+```
+
+#### Codex
+
+Install at user scope to use the skill across your projects:
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope user
 ```
 
-### Project scope
-
-Run inside the Git repository where you want to use the skill:
+For the current project only, run inside its Git repository:
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope project
 ```
 
-### Advanced: pin a version
+#### Advanced: pin a version
 
-Specify a release tag to keep using the same version. The tag must exist in the repository:
+Specify a release tag to keep using the same version. This example uses Claude Code; replace the agent flag with `--agent codex` for Codex. The tag must exist in the repository:
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent codex --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent claude-code --scope user
 ```
 
 Without a version, the CLI selects the latest release or, if none exists, the default branch HEAD. See the [installation manual](https://cli.github.com/manual/gh_skill_install) for scope and version behavior.
 
+### Claude web and desktop app
+
+Enable code execution in Claude. For organization accounts, an administrator must allow skill uploads and use. See [Claude's skill guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) for the settings.
+
+1. Download this repository through `Code > Download ZIP` and extract it.
+2. Copy the repository's root `LICENSE` into `skills/natural-korean-writing`, then ZIP that entire folder. The ZIP must contain a top-level `natural-korean-writing/` folder with `SKILL.md`, `references/`, and `LICENSE` inside. Do not upload the whole repository ZIP or package only `SKILL.md`.
+3. In Claude, open `Customize > Skills`, then select `+ > + Create skill > Upload a skill`.
+4. Upload the prepared ZIP and enable `natural-korean-writing` in the list.
+
+See [Claude's custom skill guide](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills) for the folder structure.
+
 ## Usage
 
-After installing, paste this complete request into Codex. It uses the fictional save-error message from the [before-and-after examples](examples/before-after.md#8-ui-안내-저장-실패와-재시도).
+After installing, invoke the skill for your tool and include the request below.
+
+1. Claude Code: prefix the request with `/natural-korean-writing`. See [Claude Code's skill guide](https://code.claude.com/docs/en/skills) for invocation details.
+2. Codex: prefix the request with `$natural-korean-writing`.
+3. Claude web and desktop app: enable the skill, then prefix the request with `natural-korean-writing 스킬을 사용해 주세요.` (Use the natural-korean-writing skill.)
+
+The request uses the fictional save-error message from the [before-and-after examples](examples/before-after.md#8-ui-안내-저장-실패와-재시도).
 
 ```text
-$natural-korean-writing
-
 아래 안내문을 원래 의미는 유지하면서 자연스러운 한국어로 고쳐 주세요. 수정한 안내문만 보여 주세요.
 
 문맥: 인터넷 연결이 끊겨 저장에 실패했습니다. 연결을 확인한 뒤 다시 시도할 수 있습니다. 저장하지 못한 내용이 남아 있는지는 확인되지 않았습니다.
@@ -99,7 +130,7 @@ Then replace the source and context with your own text. Remove personal and conf
 
 Identify whose voice the text uses, its recipient, where it will appear, and the tone to preserve. Add delivery timing or prior conversation when it affects the wording; there is no need to repeat context already established. Identify confirmed wording and measurements that must not change. For a new draft, provide the facts to include and the purpose of the text.
 
-If an installed skill does not appear, restart Codex. See [OpenAI's skill guide](https://learn.chatgpt.com/docs/build-skills) for discovery behavior.
+If an installed skill does not appear in Codex, restart Codex. See [OpenAI's skill guide](https://learn.chatgpt.com/docs/build-skills) for discovery behavior.
 
 ## Use cases
 
@@ -108,6 +139,8 @@ Conversation, technical explanations, GitHub PRs, issues and reviews, UI labels 
 ## Evaluation and validation
 
 On October 15, 2026, 49 of 50 regression cases passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results.
+
+These results cover evaluation in Codex. For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. Actual Claude output and ZIP upload in the web or desktop app have not been tested.
 
 The evaluation set contains 24 core cases, 2 confirmed-copy cases, 7 punctuation cases, 10 context and instruction-following cases, and 7 situation-dependent writing cases. Its rubric covers meaning, unsupported additions, audience fit, natural Korean, consistent politeness, literal preservation, and output format.
 

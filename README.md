@@ -34,6 +34,10 @@
 
 ## 설치
 
+Claude, Claude Code, Codex에 설치할 수 있습니다. 모든 설치 방법에 같은 `SKILL.md`와 `references/` 폴더가 포함되며, 문맥과 독자에 관한 보조 지침도 함께 사용합니다.
+
+### Claude Code와 Codex
+
 [GitHub CLI 2.90.0 이상](https://github.com/cli/cli/releases/tag/v2.90.0)이 필요합니다. 명령 안내는 GitHub CLI 2.97.0을 기준으로 합니다. `gh skill`은 공개 시험 단계인 public preview 기능이므로 명령과 동작이 바뀔 수 있습니다.
 
 설치한 버전과 `gh skill` 지원 여부를 확인합니다.
@@ -49,39 +53,66 @@ gh skill --help
 gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing
 ```
 
-### 모든 프로젝트에서 사용
+#### Claude Code
 
-Codex의 사용자 범위에 설치합니다.
+모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
+
+```powershell
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope user
+```
+
+현재 프로젝트에서만 사용하려면 사용할 Git 저장소 안에서 실행합니다.
+
+```powershell
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope project
+```
+
+#### Codex
+
+모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope user
 ```
 
-### 현재 프로젝트에서만 사용
-
-사용할 Git 저장소 안에서 실행합니다.
+현재 프로젝트에서만 사용하려면 사용할 Git 저장소 안에서 실행합니다.
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope project
 ```
 
-### 고급 사용법: 버전 고정
+#### 고급 사용법: 버전 고정
 
-같은 버전을 계속 사용하려면 릴리스 태그를 지정합니다. 해당 태그가 저장소에 공개되어 있어야 합니다.
+같은 버전을 계속 사용하려면 릴리스 태그를 지정합니다. 다음은 Claude Code의 예시이며, Codex에서는 `--agent codex`로 바꿉니다. 해당 태그가 저장소에 공개되어 있어야 합니다.
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent codex --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent claude-code --scope user
 ```
 
 버전을 생략하면 최신 릴리스를, 릴리스가 없으면 기본 브랜치의 최신 내용을 설치합니다. 설치 범위와 버전 선택은 [공식 설치 안내](https://cli.github.com/manual/gh_skill_install)에 설명되어 있습니다.
 
+### Claude 웹과 데스크톱 앱
+
+Claude의 코드 실행 기능이 켜져 있어야 합니다. 조직 계정에서는 관리자가 스킬 업로드와 사용을 허용해야 합니다. 설정 위치는 [Claude의 스킬 사용 안내](https://support.claude.com/en/articles/12512180-use-skills-in-claude)를 참고하세요.
+
+1. 이 저장소의 `Code > Download ZIP`에서 파일을 내려받고 압축을 풉니다.
+2. 저장소 최상위의 `LICENSE` 파일을 `skills/natural-korean-writing` 폴더 안에 복사한 뒤, 이 폴더 전체를 ZIP으로 압축합니다. ZIP의 최상위에는 `natural-korean-writing/` 폴더가 있고, 그 안에 `SKILL.md`, `references/`, `LICENSE`가 있어야 합니다. 저장소 전체를 그대로 업로드하거나 `SKILL.md`만 압축하지 않습니다.
+3. Claude에서 `Customize > Skills`를 열고 `+ > + Create skill > Upload a skill`을 선택합니다.
+4. 준비한 ZIP을 업로드하고 목록에서 `natural-korean-writing`을 활성화합니다.
+
+폴더 구성은 [Claude의 사용자 스킬 작성 안내](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)에 설명되어 있습니다.
+
 ## 사용법
 
-설치 후 Codex에 다음 내용을 그대로 입력해 보세요. [교정 예시](examples/before-after.md#8-ui-안내-저장-실패와-재시도)에 있는 가상의 저장 실패 안내문입니다.
+설치 후 사용하는 도구에 맞춰 스킬을 지정하고, 아래 요청문을 함께 입력해 보세요.
+
+1. Claude Code: `/natural-korean-writing` 뒤에 요청문을 붙입니다. 호출 방식은 [Claude Code의 스킬 안내](https://code.claude.com/docs/en/skills)를 참고하세요.
+2. Codex: `$natural-korean-writing` 뒤에 요청문을 붙입니다.
+3. Claude 웹과 데스크톱 앱: 스킬을 활성화한 뒤, 요청문 앞에 `natural-korean-writing 스킬을 사용해 주세요.`를 붙입니다.
+
+[교정 예시](examples/before-after.md#8-ui-안내-저장-실패와-재시도)에 있는 가상의 저장 실패 안내문을 사용합니다.
 
 ```text
-$natural-korean-writing
-
 아래 안내문을 원래 의미는 유지하면서 자연스러운 한국어로 고쳐 주세요. 수정한 안내문만 보여 주세요.
 
 문맥: 인터넷 연결이 끊겨 저장에 실패했습니다. 연결을 확인한 뒤 다시 시도할 수 있습니다. 저장하지 못한 내용이 남아 있는지는 확인되지 않았습니다.
@@ -97,7 +128,7 @@ $natural-korean-writing
 
 누구의 말로 누구에게 전달할지, 어디에 사용할 문장인지, 어떤 말투를 유지할지 알려 주세요. 전달 시점이나 앞선 대화가 표현에 영향을 준다면 함께 알려 주세요. 대화에서 이미 확인한 내용은 반복하지 않아도 됩니다. 확정한 문구나 바꾸면 안 되는 수치가 있다면 명시합니다. 초안을 새로 작성할 때는 글에 담을 사실과 목적을 알려 주세요.
 
-설치한 스킬이 나타나지 않으면 Codex를 다시 실행합니다. 자세한 인식 방식은 [OpenAI의 스킬 안내](https://learn.chatgpt.com/docs/build-skills)에 설명되어 있습니다.
+Codex에서 설치한 스킬이 나타나지 않으면 Codex를 다시 실행합니다. 자세한 인식 방식은 [OpenAI의 스킬 안내](https://learn.chatgpt.com/docs/build-skills)에 설명되어 있습니다.
 
 ## 대표 사용처
 
@@ -111,6 +142,8 @@ $natural-korean-writing
 ## 평가와 검증
 
 2026년 10월 15일, Codex Desktop에서 `gpt-5.6-sol` 모델과 `high` 설정으로 회귀 사례 50개를 평가했습니다. 49개를 통과했고 1개는 실패로 집계했습니다. 핵심 실패는 없었으며, 두 평가자의 판정이 달랐던 1개 사례에는 추가 평가를 진행했습니다. [평가 결과](evals/results-v0.1.0.md)에서 실행 환경, 평가 대상 해시와 결과를 확인할 수 있습니다.
+
+이 결과는 Codex에서 수행한 평가입니다. Claude Code는 GitHub CLI 2.97.0으로 `v0.1.0`을 프로젝트 범위에 설치하고 필수 참조 파일이 포함되는 것까지 확인했습니다. Claude의 실제 출력과 웹/데스크톱 앱의 ZIP 업로드는 검증하지 않았습니다.
 
 평가 자료는 범용 사례 24개, 확정 문구 보존 사례 2개, 문장부호 사례 7개, 문맥과 요청 반영 사례 10개, 상황에 따른 표현 사례 7개로 구성됩니다. 각 사례에는 의미 보존, 근거 없는 내용의 추가 여부, 문맥 적합성, 한국어 문장 구조, 높임 수준, 코드와 식별자 보존, 결과 형식을 판정하는 기준이 있습니다.
 
