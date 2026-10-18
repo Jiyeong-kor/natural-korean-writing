@@ -79,11 +79,23 @@ Without a version, the CLI selects the latest release or, if none exists, the de
 
 ## Usage
 
-In Codex, submit this request followed by the Korean text:
+After installing, paste this complete request into Codex. It uses the fictional save-error message from the [before-and-after examples](examples/before-after.md#8-ui-안내-저장-실패와-재시도).
 
 ```text
-$natural-korean-writing을 사용해 다음 문장을 원래 의미는 유지하면서 독자와 목적에 맞는 자연스러운 한국어로 고쳐 주세요.
+$natural-korean-writing
+
+아래 안내문을 원래 의미는 유지하면서 자연스러운 한국어로 고쳐 주세요. 수정한 안내문만 보여 주세요.
+
+문맥: 인터넷 연결이 끊겨 저장에 실패했습니다. 연결을 확인한 뒤 다시 시도할 수 있습니다. 저장하지 못한 내용이 남아 있는지는 확인되지 않았습니다.
+독자와 사용처: 앱에서 문서를 저장하던 사용자에게 보여 줄 오류 안내입니다.
+말투: 짧고 정중한 존댓말을 사용합니다.
+보존할 내용: 저장 실패 원인과 재시도 방법을 유지합니다. 작성한 내용이 보존됐거나 다시 시도하면 반드시 저장된다고 쓰지 않습니다.
+
+원문:
+인터넷 연결이 끊어진 관계로 저장 작업을 수행할 수 없습니다. 연결 상태에 대한 확인 후 저장 작업을 다시 진행해 주시기 바랍니다.
 ```
+
+Then replace the source and context with your own text. Remove personal and confidential information before sharing a real example in a public issue.
 
 Identify whose voice the text uses, its recipient, where it will appear, and the tone to preserve. Add delivery timing or prior conversation when it affects the wording; there is no need to repeat context already established. Identify confirmed wording and measurements that must not change. For a new draft, provide the facts to include and the purpose of the text.
 

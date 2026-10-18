@@ -243,3 +243,5 @@
 보존한 내용: 제안한 문장이 더 자연스럽다는 비교와 존댓말을 유지했습니다. 근거가 없는 칭찬이나 평가 이유를 덧붙이지 않았습니다.
 
 문장 구조를 더 살펴보려면 [한국어 문장 작성 원칙](../skills/natural-korean-writing/references/korean-language-principles.md)을 참고하세요. 글의 종류에 따른 기준은 [문서별 작성 기준](../skills/natural-korean-writing/references/artifact-style-profiles.md)에 정리되어 있습니다.
+
+자신의 문장에도 적용하려면 [설치 방법](../README.md#설치)과 [복사해서 실행할 수 있는 사용 예시](../README.md#사용법)를 확인해 주세요.
