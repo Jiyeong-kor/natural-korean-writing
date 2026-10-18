@@ -140,7 +140,9 @@ Conversation, technical explanations, GitHub PRs, issues and reviews, UI labels 
 
 On October 15, 2026, 49 of 50 regression cases passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results.
 
-These results cover evaluation in Codex. For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. Actual Claude output and ZIP upload in the web or desktop app have not been tested.
+These evaluation results are from Codex. In Claude on the web, ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
+
+For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 
 The evaluation set contains 24 core cases, 2 confirmed-copy cases, 7 punctuation cases, 10 context and instruction-following cases, and 7 situation-dependent writing cases. Its rubric covers meaning, unsupported additions, audience fit, natural Korean, consistent politeness, literal preservation, and output format.
 
