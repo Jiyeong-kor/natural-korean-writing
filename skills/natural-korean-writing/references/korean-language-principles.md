@@ -40,6 +40,10 @@ Begin with established context and introduce new information where the reader ca
 
 ## 5. Nominalization and abstract subjects
 
+When the action itself expresses the point, avoid wrapping it in an unnecessary internal judgment such as `~라고 판단했습니다`, `~라고 보았습니다`, or `완료로 판단했습니다`. State what the person did, stopped doing, or decided when that is what matters to the reader. For example, if the intended meaning is that a developer does not finish after checking only the changed function, `수정한 기능만 확인하고 일을 마치지 않습니다.` is more direct than `수정한 기능만 확인한 뒤 일이 끝났다고 판단하지 않습니다.`
+
+Keep a judgment verb when the judgment itself is the action or decision that the reader needs to know, such as deciding whether a result meets an acceptance criterion or classifying an item. Do not remove it mechanically.
+
 Review noun stacks, long modifiers, repeated demonstratives, and abstract nouns when they hide who does what. Rewrite the relationship with a verb when that makes the same meaning easier to follow.
 
 1. `변경 사항에 대한 검토를 진행했습니다.` can become `변경 사항을 검토했습니다.` without changing the action.
