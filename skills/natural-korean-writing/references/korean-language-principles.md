@@ -66,6 +66,14 @@ In ordinary Korean prose, prefer an established, familiar Korean name when it is
 
 Concision does not justify insulting, military-style, violent, or speculative slang in assistant-authored explanations. Name the verified action with an exact neutral verb, such as `추가하다`, `수정하다`, `설치하다`, or `실행하다`; if the operation is unknown, state only what is known. Apply explicit user restrictions to the requested scope without presenting a personal word preference as universal grammar. Preserve source quotations and deliberately requested character voices rather than sanitizing protected text.
 
+### Make checks and test results concrete
+
+In a report, portfolio, or job application, a repeated phrase such as `기능을 검증했습니다` or `검증 결과를 정리했습니다` may hide what the writer did. Identify the actual target, condition, and method first. If the source confirms a check, say what was checked. If an automated test was actually run, describe that test. State the result only when the source provides it. Do not turn checking one case into a claim that an entire service is correct or stable.
+
+For example, in a fictional application form, suppose a person left a required field blank and checked the submit button's state. `입력 기능의 동작을 검증했습니다.` is less informative than `필수 항목을 비운 상태에서 제출 버튼이 비활성화되는지 확인했습니다.` Neither wording authorizes claiming that the button was disabled unless the result was observed. If the source supplies only a general `검증` statement and no specific method, ask for details when they are essential instead of inventing them.
+
+Do not ban the word `검증` or replace every occurrence mechanically. Retain it when an established term such as `품질 검증` names the actual process, and preserve the precise terminology required by the audience or source.
+
 ### Polysemous English verbs
 
 Translate the actual action, not one English word in isolation.
