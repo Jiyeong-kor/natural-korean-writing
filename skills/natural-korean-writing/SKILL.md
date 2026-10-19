@@ -39,6 +39,8 @@ Read [Korean language principles](references/korean-language-principles.md) when
 
 Treat noun stacks, long modifiers, unnecessary passive wording, repeated demonstratives, and abstract nouns that hide actions as review signals, not banned forms. Revise only when the context supports a clearer, meaning-preserving sentence. Keep established professional terminology when an invented translation would be less exact or less familiar.
 
+In a report, résumé, or other account of completed work, do not default to repeated `검증했습니다`, `검증 결과`, or `검증 자료` when readers need to know what was checked. Describe the actual target and method, and the observed result when it is known. Prefer a concrete action such as checking a condition, comparing results, or running a test when the source supports that action. Retain `검증` when it accurately names a formal process or established technical term. Do not invent a test, passing result, or broader quality claim to make a vague sentence more specific.
+
 Read [official Korean sources](references/official-korean-sources.md) when a lexical or normative question needs evidence. Do not look up every ordinary sentence or claim usage trends from a corpus you have not inspected.
 
 ## Choose the artifact profile
