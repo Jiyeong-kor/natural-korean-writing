@@ -38,6 +38,16 @@ Separate information the reader needs from the writer's working material. A veri
 
 These are audience decisions, not bans on individual words. Comparisons, change histories, rationale, and private reflection belong when the requested artifact needs them. Keep planning frameworks such as 육하원칙 in the writing process unless the reader explicitly needs that structure. Do not explain in the finished text that irrelevant context was removed.
 
+## Explain the problem before proposing a priority
+
+When a question asks what most urgently needs improvement from a citizen's or user's perspective, a feature list or an attractive solution is not an answer by itself. Establish who is trying to do what, the specific obstacle or interpretation risk, its consequence for that person's task, and why addressing it takes priority. Put this reasoning in the submitted passage rather than only in a review note. Use a coherent paragraph, not a mandatory list of labels.
+
+Separate the source-supported current behavior, an observed user difficulty, a possible consequence, and a proposed remedy. Existing functionality or a deliberate analysis limit is not automatically a defect. Do not turn a plausible misunderstanding into a measured user problem or call it the largest problem without comparative evidence. A writer can recommend a priority using an explicit criterion, such as whether people can interpret results correctly before adding more functions, without inventing incident counts or survey results.
+
+Check what the service already does before proposing additions. If guidance or a function exists, do not claim it is absent; identify the proposed change to its wording, placement, scope, or use and explain how that change addresses the stated problem. When actual visibility or comprehension has not been observed, make checking it part of the plan rather than declaring that users cannot find or understand it. If the task requires an observed defect and no evidence establishes one, obtain that evidence or state the limit instead of manufacturing a problem to justify a preferred design.
+
+Before delivery, ask whether the reader can identify the problem, its effect on the user's task, the reason for the chosen priority, the supporting facts, the proposed change, and how its effect will be assessed. Keep uncertainty where evidence is limited, and match the assessment to the claimed improvement. Do not substitute a generic promise of convenience or a plan to provide a feature for the missing explanation of why it is needed.
+
 ## Handle missing context proportionately
 
 Use what the source already establishes; do not ask the user to fill every category. When a missing relationship or referent would change the meaning, responsibility, disclosure, or commitment, ask a focused question. When it does not, use wording that avoids the unsupported assumption and still answers the request. Do not ask for a person's title merely to add an unnecessary salutation, or invent a speaker to make a sentence feel complete.
