@@ -78,6 +78,14 @@ For example, in a fictional application form, suppose a person left a required f
 
 Do not ban the word `검증` or replace every occurrence mechanically. Retain it when an established term such as `품질 검증` names the actual process, and preserve the precise terminology required by the audience or source.
 
+### Describe capabilities without defaulting to 제공하다
+
+In a service description, proposal, or application, identify what the reader needs to know: what a person can do, what appears on a screen, what a program returns, or which resource an organization supplies. Do not use `제공하다` as the default ending for every capability or translate `provide`, `offer`, and `serve` into the same verb regardless of context. State the actual action, subject, and object supported by the source.
+
+Fictional example: a library website lets readers search its book collection. `이 누리집은 도서 검색 기능을 제공합니다.` can become `이용자는 이 누리집에서 도서관에 있는 책을 검색할 수 있습니다.` If the source says a program groups records and draws a chart, describe that grouping and display rather than merely saying it provides results. Preserve whether the sentence describes an available capability, a proposal, or an action actually performed. Availability alone does not establish successful use.
+
+Do not mechanically replace every occurrence with `지원하다`, `돕다`, or `할 수 있다`; those can also obscure the action or change its meaning. Keep `제공하다` when supplying something is the intended fact, or when exact wording such as `개인정보 제3자 제공` is protected. Honor a user's restriction within the editable prose without presenting it as a universal grammar ban. Do not infer that a Korean sentence was translated from a particular English word merely because it sounds stiff.
+
 ### Polysemous English verbs
 
 Translate the actual action, not one English word in isolation.
@@ -95,6 +103,6 @@ Avoid spatial wording such as `출발하다` when it obscures a calculation basi
 
 ## 9. Facts, inferences, and proposals
 
-Match certainty and tense to the evidence. `중복된 문장이 있습니다.` asserts a finding; `중복된 문장이 있을 수 있습니다.` states a possibility; `중복된 문장은 삭제하는 편이 좋겠습니다.` proposes a change. These are not interchangeable ways to vary the tone.
+Match certainty and tense to the evidence. `중복된 문장이 있습니다.` asserts a finding; `중복된 문장은 삭제하는 편이 좋겠습니다.` proposes a change; `중복된 문장이 있을 수 있습니다.` states a possibility. These are not interchangeable ways to vary the tone.
 
 Keep the source's uncertainty when the cause is unconfirmed. State confirmed behavior directly, and do not turn a proposal, expected effect, or planned action into an observed result. When a suspected technical error cannot be resolved from the supplied facts within the requested scope, do not silently rewrite the claim as though it had been verified.
