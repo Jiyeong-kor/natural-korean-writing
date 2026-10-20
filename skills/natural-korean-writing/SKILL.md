@@ -1,6 +1,6 @@
 ---
 name: natural-korean-writing
-description: Write, rewrite, and review Korean text so it fits the reader, purpose, relationship, and artifact. Use for conversations, technical explanations, GitHub text, UI copy, email, documents, portfolios, resumes, and learning material when Korean sounds translated, stiff, repetitive, ambiguous, or contextually inappropriate. Preserve meaning, facts, tone, terminology, and commitments.
+description: Write, rewrite, and review Korean that preserves meaning and fits its speaker, reader, situation, and purpose. Use for Korean conversations and reader-facing copy, including translated, stiff, repetitive, ambiguous, or contextually inappropriate wording. Before answering, read the full SKILL.md and its required references/context-audience-boundary.md; the description alone is not the writing guidance.
 license: MIT
 ---
 
@@ -10,7 +10,9 @@ Write Korean that belongs in its reading context. Improve expression without cha
 
 ## Establish the reading context
 
-Before drafting, rewriting, or reviewing any Korean, read and apply the bundled [context and audience companion](references/context-audience-boundary.md). It is mandatory, not an optional profile or a separately installed skill. Establish whose words these are, to whom, when, where, through which channel, and for what purpose; check shared knowledge and disclosure boundaries. On a follow-up, apply the established context and reassess whatever changed.
+Before drafting, rewriting, or reviewing any Korean, read this entire SKILL.md, then the entire bundled [context and audience companion](references/context-audience-boundary.md). It is mandatory, not an optional profile or a separately installed skill. A skill name, description, discovered link, or truncated excerpt does not complete this reading. Continue to the end of either file if a tool truncates it. Reuse a complete, unchanged reading already available in the current conversation; read again in a fresh conversation, after losing that context, or after the files change. If a required file is unavailable, state that limitation instead of claiming to have applied it.
+
+Apply the two instructions before choosing words: establish whose words these are, to whom, when, where, through which channel, and for what purpose; check shared knowledge and disclosure boundaries. On a follow-up, apply the established context and reassess whatever changed. Reading the files is not sufficient: check the finished response against the supplied situation.
 
 For instructions about the same target and scope, apply the user's latest explicit correction rather than an older plan, example, or skill default. Keep instructions for conversation, publication copy, and protected text distinct. A general style change does not authorize changing previously confirmed wording; that requires explicit permission for the affected wording.
 
@@ -53,7 +55,9 @@ Before finalizing any visible Korean, read and apply [Korean punctuation rules](
 
 ## Deliver the requested result
 
-Lead with usable copy. Omit generic introductions, self-evaluation, unsolicited alternatives, and follow-up offers when the user asks for final wording. When asked to review, explain the actual issue and a concrete correction without claiming facts not in the source.
+First distinguish text to use from commentary about that text. A request to write what someone will actually say, send, or post asks for usable copy, even without the words "final" or "only." Instructions about what to explain to the recipient govern that copy; they do not ask the assistant to explain its drafting choices to the writer.
+
+For usable copy, return one settled version for each requested situation, with only necessary identifying labels. Correct an error before delivery; replace the wrong draft rather than retaining it alongside a correction. Omit generic introductions, self-evaluation, unsolicited alternatives, follow-up offers, and explanations of how the wording was chosen. When the requested deliverable is a review or an explanation, give that reasoning or teaching content without claiming facts not in the source.
 
 When asked for final copy after successive edits, provide the complete affected field with all accepted changes. Preserve confirmed wording and read the assembled paragraph for duplication and broken connections; do not leave the user to combine fragments.
 
@@ -61,12 +65,12 @@ Preserve the requested platform format. For structural examples, read [rewrite e
 
 ## Final pass
 
-Read headings and adjacent sentences together, then check:
+Read the entire response, including headings, introductions, notes, and closing remarks, then check:
 
 1. Compare the actual output with the supplied context and requested corrections, not only the editable draft. Meaning, facts, ownership, certainty, commitments, confirmed copy, and protected literals remain intact.
 2. Particles, predicates, required complements, and changes of actor are clear. Trace each linked clause to its actor, and check that a known action has not become vague wording such as `작업` or `처리` merely to shorten the text.
 3. The speaker, relationship, timing, setting, and intended act fit the supplied situation. Terminology and explanation fit the reader and artifact; apply the mandatory context companion to the actual wording.
-4. Each sentence adds information the reader needs; private drafting context has not leaked.
+4. Each sentence belongs to the requested deliverable. A correct draft followed by unrequested working notes is not final copy; remove drafting history, date-calculation steps, and explanations of disclosure decisions unless the requested artifact needs them.
 5. The mandatory punctuation reference and requested output format are satisfied.
 6. The actual sentences answer the artifact's central question. Grammatical sentences and the presence of topic words do not establish a missing relationship, need, or benefit; do not supply that meaning only in the review explanation.
 

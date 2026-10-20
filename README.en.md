@@ -138,9 +138,11 @@ Conversation, technical explanations, GitHub PRs, issues and reviews, UI labels 
 
 ## Evaluation and validation
 
-On October 15, 2026, 49 of 50 regression cases passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results.
+On October 15, 2026, 49 of 50 regression cases for `v0.1.0` passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results. These are not full-suite results for subsequent instruction changes on `main`.
 
-These evaluation results are from Codex. In Claude on the web, ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
+These evaluation results are from Codex. In Claude on the web, `v0.1.0` ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
+
+The revised instructions on `main` were checked in Claude on the web with cases covering speaker, delivery time, location, disclosure scope, communicative intent, and learning explanations. File-read records for the skill and required companion were observed, and the actual outputs were reviewed. This validation is limited to those cases; it is not a rerun of the full Codex evaluation.
 
 For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 

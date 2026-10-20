@@ -1,12 +1,14 @@
-"""Synthetic evidence stays inside TemporaryDirectory; no model is invoked."""
+"""Check synthetic evidence and immutable release records; no model is invoked."""
 
 import copy
 import hashlib
 import json
-from pathlib import Path
+import os
+import subprocess
 import sys
 import tempfile
 import unittest
+from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -380,7 +382,22 @@ class EvalHarnessTests(unittest.TestCase):
             harness.verify_tracked(self.root)
 
     def test_public_legacy_evidence_and_original_failed_result(self):
-        root = Path(__file__).resolve().parents[1]
+        repository = Path(__file__).resolve().parents[1]
+        release_path = os.environ.get("NKW_RELEASE_ROOT")
+        self.assertTrue(release_path, "Set NKW_RELEASE_ROOT to a separate v0.1.0 checkout")
+        root = Path(release_path).resolve()
+        self.assertNotEqual(root, repository, "Historical verification needs a separate checkout")
+        revisions = subprocess.run(
+            ["git", "rev-parse", "HEAD", "refs/tags/v0.1.0^{commit}"], cwd=root,
+            check=True, capture_output=True, text=True, encoding="utf-8", errors="strict", timeout=15,
+        ).stdout.splitlines()
+        original_commit = "3b602310bec0a42f0648e00b675eed317240e772"
+        self.assertEqual(revisions, [original_commit, original_commit])
+        for relative in (harness.LEGACY_EVIDENCE, "evals/runs/v0.1.0.jsonl", "evals/results-v0.1.0.md"):
+            self.assertTrue(
+                (repository / relative).read_bytes() == (root / relative).read_bytes(),
+                f"Archived evaluation file changed: {relative}",
+            )
         evidence = harness._read_json(root / harness.LEGACY_EVIDENCE)
         harness._metadata(root, evidence["metadata"], harness.VERSION)
         records = harness._read_jsonl(root / "evals/runs/v0.1.0.jsonl")
@@ -392,9 +409,11 @@ class EvalHarnessTests(unittest.TestCase):
         changed[0]["output"] += "changed"
         with self.assertRaisesRegex(ValueError, "original legacy output or judgment changed"):
             harness._verify_legacy_records(root, evidence["metadata"], harness.load_cases(root), changed)
-        with patch.object(harness, "LEGACY_EVIDENCE_SHA256", "0" * 64):
-            with self.assertRaisesRegex(ValueError, "legacy compatibility evidence changed"):
-                harness._metadata(root, evidence["metadata"], harness.VERSION)
+        with (
+            patch.object(harness, "LEGACY_EVIDENCE_SHA256", "0" * 64),
+            self.assertRaisesRegex(ValueError, "legacy compatibility evidence changed"),
+        ):
+            harness._metadata(root, evidence["metadata"], harness.VERSION)
 
     def test_retry_limit_order_and_status_are_strict(self):
         base = copy.deepcopy(self.envelopes[0]["attempt_log"][0])
@@ -759,6 +778,7 @@ class EvalHarnessTests(unittest.TestCase):
         before = harness.compute_digest(self.root)
         for relative in (
             "evals/context.json", "evals/pragmatics.json",
+            "skills/natural-korean-writing/SKILL.md",
             "skills/natural-korean-writing/references/context-audience-boundary.md",
         ):
             with self.subTest(path=relative):

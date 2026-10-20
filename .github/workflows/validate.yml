@@ -21,10 +21,19 @@ jobs:
       GIT_CONFIG_COUNT: '1'
       GIT_CONFIG_KEY_0: core.autocrlf
       GIT_CONFIG_VALUE_0: 'false'
+      NKW_RELEASE_ROOT: ${{ github.workspace }}/.release-baseline
     steps:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          persist-credentials: false
+          show-progress: false
+
+      - name: Check out original v0.1.0 evidence
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: v0.1.0
+          path: .release-baseline
           persist-credentials: false
           show-progress: false
 
@@ -98,22 +107,39 @@ jobs:
       - name: Test evaluation harness
         run: python -B -X utf8 -W error -m unittest tests/test_run_evals.py
 
-      - name: Verify recorded evaluations
-        run: python -B -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
+      - name: Validate current candidate structure
+        run: python -B -X utf8 scripts/validate_repo.py --phase build
 
-      - name: Validate release requirements on Ubuntu
+      - name: Verify original v0.1.0 evaluation records
+        run: python -B -X utf8 scripts/run_evals.py --root .release-baseline verify-tracked --version v0.1.0
+
+      - name: Validate current candidate before evaluation on Ubuntu
         if: runner.os == 'Linux'
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -B -X utf8 scripts/validate_repo.py --phase final --gh-path "$TASK_GH_PATH"
+        run: python -B -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$TASK_GH_PATH"
 
-      - name: Validate release requirements on Windows
+      - name: Validate current candidate before evaluation on Windows
         if: runner.os == 'Windows'
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -B -X utf8 scripts/validate_repo.py --phase final --gh-path "$env:TASK_GH_PATH"
+        run: python -B -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$env:TASK_GH_PATH"
+
+      - name: Validate original v0.1.0 release criteria on Ubuntu
+        if: runner.os == 'Linux'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$TASK_GH_PATH"
+
+      - name: Validate original v0.1.0 release criteria on Windows
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$env:TASK_GH_PATH"
 
       - name: Validate skill package on Ubuntu
         if: runner.os == 'Linux'
