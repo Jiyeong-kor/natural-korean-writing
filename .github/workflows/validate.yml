@@ -96,20 +96,36 @@ jobs:
         run: python -B -X utf8 -W error -m unittest tests/test_validate_repo.py
 
       - name: Test evaluation harness
+        if: github.event_name == 'push' || github.event.pull_request.draft == false
         run: python -B -X utf8 -W error -m unittest tests/test_run_evals.py
 
       - name: Verify recorded evaluations
+        if: github.event_name == 'push' || github.event.pull_request.draft == false
         run: python -B -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
 
+      - name: Validate pre-evaluation requirements on Ubuntu
+        if: runner.os == 'Linux' && github.event_name == 'pull_request' && github.event.pull_request.draft == true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$TASK_GH_PATH"
+
+      - name: Validate pre-evaluation requirements on Windows
+        if: runner.os == 'Windows' && github.event_name == 'pull_request' && github.event.pull_request.draft == true
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -B -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$env:TASK_GH_PATH"
+
       - name: Validate release requirements on Ubuntu
-        if: runner.os == 'Linux'
+        if: runner.os == 'Linux' && (github.event_name == 'push' || github.event.pull_request.draft == false)
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -B -X utf8 scripts/validate_repo.py --phase final --gh-path "$TASK_GH_PATH"
 
       - name: Validate release requirements on Windows
-        if: runner.os == 'Windows'
+        if: runner.os == 'Windows' && (github.event_name == 'push' || github.event.pull_request.draft == false)
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
