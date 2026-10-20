@@ -4,6 +4,8 @@
 
 [한국어](README.md) | [English](README.en.md)
 
+[Claude Code 설치](#claude-code) | [Codex 설치](#codex) | [Claude 웹과 앱 설치](#claude-웹과-데스크톱-앱) | [바로 써 볼 요청문](#사용법)
+
 ## 교정 예시
 
 고치기 전
@@ -19,6 +21,17 @@
 ```
 
 뜻은 유지하면서 불필요한 명사화와 번역투를 줄였습니다.
+
+### 상황에 따른 표현
+
+같은 요청도 상대가 보고 듣는 상황에 맞게 작성합니다. 아래는 서류 봉투를 보관함에 넣어 달라는 가상의 요청입니다.
+
+| 상대의 상황 | 요청 문장 |
+| --- | --- |
+| 직원 옆에서 직원이 가리키는 보관함을 보고 있습니다. | 서류 봉투를 여기에 넣어 주세요. |
+| 다른 건물에서 전화를 받으며 보관함의 위치를 모릅니다. | 서류 봉투를 서울 본사 1층 로비 안내 데스크 옆의 파란 보관함에 넣어 주세요. |
+
+대면 상황에서는 함께 보는 대상을 짧게 가리키고, 전화에서는 보관함을 찾는 데 필요한 위치를 설명합니다. 요청하는 행동은 바꾸지 않습니다.
 
 ## 작성 기준
 
@@ -36,6 +49,8 @@
 
 Claude, Claude Code, Codex에 설치할 수 있습니다. 모든 설치 방법에 같은 `SKILL.md`와 `references/` 폴더가 포함되며, 문맥과 독자에 관한 보조 지침도 함께 사용합니다.
 
+아래 명령의 `@main`은 현재 기본 브랜치의 지침을 설치합니다. Claude 웹에서 확인한 수정본을 포함하며, 공개 릴리스 `v0.1.0`과는 다릅니다. 두 버전의 [검증 범위](#평가와-검증)를 확인해 주세요.
+
 ### Claude Code와 Codex
 
 [GitHub CLI 2.90.0 이상](https://github.com/cli/cli/releases/tag/v2.90.0)이 필요합니다. 명령 안내는 GitHub CLI 2.97.0을 기준으로 합니다. `gh skill`은 공개 시험 단계인 public preview 기능이므로 명령과 동작이 바뀔 수 있습니다.
@@ -50,40 +65,40 @@ gh skill --help
 설치 전에 [미리보기 명령](https://cli.github.com/manual/gh_skill_preview)으로 지침을 읽을 수 있습니다.
 
 ```powershell
-gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing
+gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing@main
 ```
 
 #### Claude Code
 
-모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
+[GitHub CLI를 준비](#claude-code와-codex)한 뒤 실행합니다. 모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent claude-code --scope user
 ```
 
 현재 프로젝트에서만 사용하려면 사용할 Git 저장소 안에서 실행합니다.
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope project
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent claude-code --scope project
 ```
 
 #### Codex
 
-모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
+[GitHub CLI를 준비](#claude-code와-codex)한 뒤 실행합니다. 모든 프로젝트에서 사용하려면 사용자 범위에 설치합니다.
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope user
 ```
 
 현재 프로젝트에서만 사용하려면 사용할 Git 저장소 안에서 실행합니다.
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope project
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope project
 ```
 
 #### 고급 사용법: 버전 고정
 
-같은 버전을 계속 사용하려면 릴리스 태그를 지정합니다. 다음은 Claude Code의 예시이며, Codex에서는 `--agent codex`로 바꿉니다. 해당 태그가 저장소에 공개되어 있어야 합니다.
+같은 버전을 계속 사용하려면 릴리스 태그나 커밋 SHA를 지정합니다. `@main`은 실행 시점의 기본 브랜치를 가리키므로 이후 설치에서는 내용이 달라질 수 있습니다. 다음은 공개 릴리스 `v0.1.0`을 설치하는 Claude Code의 예시이며, Codex에서는 `--agent codex`로 바꿉니다. `v0.1.0`에는 이후 `main`에 반영한 지침 수정이 포함되지 않습니다.
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent claude-code --scope user
@@ -147,7 +162,7 @@ Codex에서 설치한 스킬이 나타나지 않으면 Codex를 다시 실행합
 
 현재 `main`의 수정된 지침은 Claude 웹에서 화자, 발송 시점, 장소, 공개 범위, 요청 의도와 학습 설명 사례로 확인했습니다. 스킬 본문과 필수 보조 지침을 읽은 기록을 확인하고 실제 출력을 검토했습니다. 이 검증은 해당 사례에 한정되며, Codex의 전체 평가를 다시 수행한 결과는 아닙니다.
 
-Claude Code는 GitHub CLI 2.97.0으로 `v0.1.0`을 프로젝트 범위에 설치하고 필수 참조 파일이 포함되는 것까지 확인했습니다. Claude Code의 실제 실행과 데스크톱 앱의 ZIP 업로드는 검증하지 않았습니다.
+Claude Code는 GitHub CLI 2.97.0으로 `v0.1.0`을 프로젝트 범위에 설치하고 필수 참조 파일이 포함되는 것까지 확인했습니다. `@main` 명령도 Claude Code와 Codex의 별도 프로젝트에서 실행해 스킬 본문과 필수 참조 파일이 보존되는 것을 확인했습니다. 설치 파일 검사는 모델의 출력 품질 평가가 아닙니다. Claude Code의 실제 실행과 데스크톱 앱의 ZIP 업로드는 검증하지 않았습니다.
 
 평가 자료는 범용 사례 24개, 확정 문구 보존 사례 2개, 문장부호 사례 7개, 문맥과 요청 반영 사례 10개, 상황에 따른 표현 사례 7개로 구성됩니다. 각 사례에는 의미 보존, 근거 없는 내용의 추가 여부, 문맥 적합성, 한국어 문장 구조, 높임 수준, 코드와 식별자 보존, 결과 형식을 판정하는 기준이 있습니다.
 
