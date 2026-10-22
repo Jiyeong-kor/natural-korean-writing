@@ -76,6 +76,8 @@ For a dated experience entry, distinguish the actual activity state from how a f
 
 
 
+Balance detail against the question and the judgment the reader must make. In an answer covering both strengths and limitations, an extended list of remedies can make the limitation appear to dominate the applicant's profile. Give the supported improvement action enough space to be understood without crowding out the relevant strength. Do not enforce a fixed word ratio, conceal a material limitation, or turn a proposed remedy into an established habit.
+
 Reread the complete answer for question coverage, factual boundaries, natural predicate-object combinations, and continuity between paragraphs. Search-based checks can find suspicious wording but cannot establish that the answer is persuasive or coherent.
 
 ## 7. Learning material

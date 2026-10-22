@@ -230,6 +230,9 @@ Why: Preserve the stated reason for happiness and the beneficiary. Applying a te
 
 Preserved: The cup, the friend's easier grip, and the maker's stated happiness about that benefit. The revision makes no claim about superior skill or professional achievement.
 
+Contrast check: Keep the stated happiness about helping the friend; do not erase it because `도움` can also occur in promotional copy. But do not append `앞으로도 배움을 가치로 바꾸며 모두에게 도움이 되는 작품을 만들겠습니다` merely to give the paragraph a grand ending. That adds an unsupported commitment and repeats the event as a value claim rather than explaining it. If the next paragraph describes learning another pottery technique, its relationship to this event must come from the source; do not invent a decision to study that technique as a bridge. A supplied reason, decision, and action can connect the narrative without an extra self-assessment. A requested, source-supported future intention is different from a stock pledge added by the writer.
+
+
 
 ## 20. Paragraph transition: connect a general practice to its example
 
@@ -275,3 +278,24 @@ After: `행사 안내문을 작성해 게시판에 붙였습니다.`
 Why: Decide whether the second sentence adds needed information before polishing its predicate. Here it merely renames the action as an experience, so deletion is better than a smoother repetition. If the action had not already been stated, a direct predicate such as `안내문을 작성해 게시했습니다` could express it. Do not delete a distinct source-supported lesson or result, and do not ban the noun `경험` in contexts where naming experience is useful.
 
 Preserved: The notice, writing, and posting. No growth, success, or new motivation is inferred from completing the action.
+
+
+## 23. Application reason: do not invent enthusiasm to explain fit
+
+Fictional context: An applicant says a museum cataloging role fits their experience organizing a small collection and using the required cataloging tool. They have not expressed admiration for the museum's philosophy or a long-standing wish to work in museums. The question asks why they applied.
+
+Before: `박물관의 철학에 깊이 공감하며 문화유산의 가치를 전하고 싶어 지원했습니다.`
+
+After: `소규모 소장품의 분류와 등록을 담당한 경험이 있고, 공고에 명시된 목록 작성 도구도 사용해 봤습니다. 이 경험을 살려 소장품 등록 업무를 맡을 수 있다고 판단해 지원했습니다.`
+
+Why: The source gives a judgment of fit, not admiration or a new aspiration. Explain the supplied fit and relevant experience without suggesting either is a universal motive for all applicants. If admiration is genuinely stated, it may remain; a user's restricted expression is not a universal banned phrase.
+
+Preserved: The stated application reason and the two relevant experiences. Do not claim professional mastery, institutional values, or a lifelong goal that the source does not establish.
+
+## 24. Strengths and limitations: allocate detail to the question
+
+Fictional context: An application asks for a strength, a limitation, and how the applicant addresses it. The source describes clear meeting summaries with an example, sometimes overlong background sections, and an established practice of putting decisions first. A draft spends most of its space listing unconfirmed future training, daily reminders, and multiple review routines.
+
+Revision approach: Keep the supported summary example, state the overlong-background limitation, and describe putting decisions first. Remove unconfirmed remedies rather than shortening the strength to make room for them. Do not claim the limitation has disappeared.
+
+Why: The reader needs to assess both the strength and the limitation. Counting an equal number of words or removing every uncomfortable fact would not establish appropriate balance. A longer limitation section may be necessary when the question or material facts demand it; evaluate the answer's actual purpose and claims rather than applying a fixed ratio.
