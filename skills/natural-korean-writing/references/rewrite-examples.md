@@ -299,3 +299,16 @@ Fictional context: An application asks for a strength, a limitation, and how the
 Revision approach: Keep the supported summary example, state the overlong-background limitation, and describe putting decisions first. Remove unconfirmed remedies rather than shortening the strength to make room for them. Do not claim the limitation has disappeared.
 
 Why: The reader needs to assess both the strength and the limitation. Counting an equal number of words or removing every uncomfortable fact would not establish appropriate balance. A longer limitation section may be necessary when the question or material facts demand it; evaluate the answer's actual purpose and claims rather than applying a fixed ratio.
+
+
+## 25. Preserve the intended claim while removing a hollow connection
+
+Fictional context: A volunteer says repeated successful editing of an association's bulletin gave them confidence that they could handle a longer exhibition guide, so they accepted that assignment. The question asks why they took it. The source does not claim formal training or an interest in unfamiliar challenges.
+
+Before: `게시물 편집 경험은 새로운 도전과 맞닿아 있습니다. 익숙하지 않은 일에도 관심을 갖고 전시 안내서 작업을 맡았습니다.`
+
+After: `회보를 여러 차례 편집하면서 더 긴 안내서도 잘 만들 수 있다는 자신감이 생겨 전시 안내서 작업을 맡았습니다.`
+
+Why: The relevant connection is demonstrated experience, confidence, and a resulting choice, not generic enthusiasm for a challenge. Softening this to `안내서 편집을 배워 보고 싶었습니다` would erase the intended confidence and invent a learning motive. The phrase `맞닿아 있습니다` is not universally forbidden; here it does not explain the relationship that the reader needs.
+
+Preserved: The source-confirmed editing experience, confidence, and reason for accepting the assignment. Confidence remains the speaker's belief, not a guarantee of success or an invented credential. If the user has already approved the final sentence, a subsequent general request for modest prose does not authorize changing it.

@@ -29,6 +29,8 @@ Distinguish labels from prose. Titles, buttons, tabs, and table labels can be sh
 
 Use supplied context and explicit corrections to resolve a vague or inaccurate draft; preserving meaning does not mean preserving the draft's ambiguity. Before rewriting a status report or responsibility description, identify the relevant actor, concrete action, target, and completed, ongoing, or planned state. Carry those distinctions into the requested result. Do not add unrelated background facts or require a separate status explanation when the reader does not need one.
 
+Before deleting or softening a sentence, identify what it contributes to the reader: a reason, a supported claim of ability, a choice, a qualification, or a necessary connection. Concision and modesty must not remove the author's central intended claim. Distinguish having studied something, expecting to perform it well, and deciding to attempt it; none proves the others. Interpret an educational or cultural reference from the supplied original and context rather than converting it into a different competence or motive. When a material interpretation remains unknown, preserve the distinction or ask instead of silently choosing a flattering or cautious story.
+
 ## Match the relationship
 
 Check endings, pronouns, possessive expressions, forms of address, and requests together. Preserve a clear source relationship. In a polite conversation, use consistently polite wording; in a casual conversation, do not introduce honorifics without a reason.
@@ -84,3 +86,8 @@ Read the entire response, including headings, introductions, notes, and closing 
 7. The actual sentences answer the artifact's central question. Grammatical sentences and the presence of topic words do not establish a missing relationship, need, or benefit; do not supply that meaning only in the review explanation.
 
 For a full audit, read every heading, paragraph, table cell, caption, and visible image label in context. Keep a private coverage record; keyword searches identify candidates, not completion. A local wording correction still requires checking the affected paragraph and related passages for meaning and duplication. When saving or posting is part of the authorized task, read the saved text again, including carried-over paragraphs. Report any inaccessible region instead of claiming an exhaustive review.
+
+
+### Independent review when requested
+
+Reading the writing rules is preparation, not evidence that the finished copy follows them. When an independent review is requested and an authorized separate reviewer is available, provide the actual question, source facts, latest user corrections, protected wording, and complete draft within the permitted disclosure scope. Ask the reviewer to judge the draft against those materials, including what each sentence contributes and whether the intended claim survived editing, rather than merely endorse the writer's explanation. Reconcile findings with the source; a reviewer may not override confirmed wording without authorization. Recheck the revised whole text after accepted fixes. If a separate reviewer is unavailable or has not returned findings, report that state and do not label self-review as independent review. This instruction does not itself authorize sharing private material with an external service or creating new tasks.
