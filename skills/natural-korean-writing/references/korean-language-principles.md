@@ -63,6 +63,10 @@ Check the kind of entity on each side of a comparison: a field of work, a person
 
 Do not turn a person's sequence of studies or jobs into a story of disillusionment and discovery without support. Distinguish a source-confirmed motive from a later interpretation. Check whether a causal clause implies an expectation that the original speaker never held. If the source supplies only successive experiences, state those experiences or omit an unnecessary transition rather than manufacture a reason for changing fields.
 
+### Preserve the reason for an emotion or choice
+
+When a source explains satisfaction, interest, or motivation, preserve what the person valued and who benefited. Using a learned skill, seeing someone benefit from it, enjoying the activity itself, and receiving recognition are different reasons, even when the same event could involve all four. Do not replace one with another merely to fit a competency story. Trace the emotion to the source-supported event or effect; retain that relationship in the actual sentence. If the reason is missing, do not invent altruism, enjoyment, or achievement. A later explicit correction of the reason overrides an earlier draft's interpretation, not the unrelated facts of the experience. A workflow action such as checking a result is not automatically the reason the person wanted to do the work. Preserve a supplied relationship between learning, applying it, and a useful outcome instead of compressing it into inspection or iteration. Keep `확인하다` when verification is the actual action; the problem is a changed motive, not the word itself.
+
 ## 6. Relationship, speech level, and speech act
 
 Follow the requested tone and the established relationship. Preserve a clear source register unless the user asks to change it. When the user speaks politely and requests no different style, keep the reply polite.

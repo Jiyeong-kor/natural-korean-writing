@@ -217,3 +217,15 @@ After: `점검표의 모든 항목을 검토해 목표를 달성했습니다.`
 Why: A goal is achieved; a review task is completed. The supplied all-item result supports achievement here, unlike the unmeasured broader goal in example 14.
 
 Preserved: The specific goal and verified completion of its scope. This example does not require replacing every occurrence of `마치다` with `달성하다`.
+
+## 19. Personal reflection: preserve what the speaker valued
+
+Fictional context: A person made a cup in a pottery class. A friend with a weak grip said the cup's large handle made it easier to hold. The maker says they felt happy because the cup helped their friend, not merely because they had used a technique learned in class. No wider social ambition is supplied.
+
+Before: `수업에서 배운 기법을 실제로 활용할 수 있어 기뻤습니다.`
+
+After: `제가 만든 컵을 친구가 편하게 잡을 수 있다는 사실이 기뻤습니다.`
+
+Why: Preserve the stated reason for happiness and the beneficiary. Applying a technique and helping someone can occur in the same event, but they are not interchangeable motives. Do not repair the sentence by adding an unsupported aspiration to help everyone.
+
+Preserved: The cup, the friend's easier grip, and the maker's stated happiness about that benefit. The revision makes no claim about superior skill or professional achievement.
