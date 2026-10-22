@@ -229,3 +229,36 @@ After: `제가 만든 컵을 친구가 편하게 잡을 수 있다는 사실이 
 Why: Preserve the stated reason for happiness and the beneficiary. Applying a technique and helping someone can occur in the same event, but they are not interchangeable motives. Do not repair the sentence by adding an unsupported aspiration to help everyone.
 
 Preserved: The cup, the friend's easier grip, and the maker's stated happiness about that benefit. The revision makes no claim about superior skill or professional achievement.
+
+
+## 20. Paragraph transition: connect a general practice to its example
+
+Fictional context: An editor describes checking whether public notices help a first-time visitor act. The next paragraph gives a confirmed example: a museum notice omitted which entrance to use, so the editor added the entrance name. No visitor outcome has been measured.
+
+Before:
+
+> 안내문을 처음 읽는 사람도 필요한 행동을 알 수 있도록 내용을 검토합니다.
+>
+> 박물관 안내문에는 입구 이름이 빠져 있었습니다. 입구 이름을 추가했습니다.
+
+After:
+
+> 안내문을 처음 읽는 사람도 필요한 행동을 알 수 있도록 내용을 검토합니다.
+>
+> 예를 들어 박물관 안내문을 검토할 때는 어느 입구로 가야 하는지 알 수 없어 입구 이름을 추가했습니다.
+
+Why: The next paragraph illustrates the stated practice. The bridge identifies that relationship and preserves the actual omission and edit. `그 결과 방문객의 문의가 줄었습니다` would invent an outcome; `그러나` would invent a contrast. No connector is required when the example relationship is already clear in another natural formulation.
+
+Preserved: The review purpose, the missing entrance name, and its addition. Judge whether the paragraphs connect without a new claim, not whether a particular conjunction appears.
+
+## 21. Experience answer: show a supported change rather than a trivial moral
+
+Fictional context: A newsletter editor found that a copied event date differed from the organizer's announcement. They corrected it and thereafter compared every event date with the original announcement before publication. No claim about prior ignorance of accuracy, audience benefit, or error-rate improvement is supplied.
+
+Before: `행사 날짜를 수정하며 정확한 정보를 전달하는 것이 중요하다는 점을 배웠습니다.`
+
+After: `옮겨 적은 행사 날짜가 주최 측 공지와 달라 바로잡았습니다. 이후에는 발행 전에 모든 행사 날짜를 원문 공지와 대조했습니다.`
+
+Why: The meaningful change is the source-confirmed review practice, not a newly discovered obligation to be accurate. The revision does not add an improvement metric or a lifelong habit. If the source only established the correction, the later practice would also be unsupported and must not be added. Genuine learning of an unfamiliar method remains appropriate when supplied.
+
+Preserved: The discrepancy, correction, and specifically stated later practice. Assess their relationship and the reader's expectations, not the presence or absence of `배웠습니다`.

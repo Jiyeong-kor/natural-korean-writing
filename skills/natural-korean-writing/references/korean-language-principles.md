@@ -46,6 +46,12 @@ Begin with established context and introduce new information where the reader ca
 5. Concision removes redundancy, not the relationships a reader needs. Retain or supply source-supported connective endings, conjunctions, and explanatory clauses when omission makes the reader reconstruct a reason, contrast, condition, or result. No rule requires either deleting all connectives or placing one at every sentence opening.
 6. Check paragraph progression before adding connectors. A paragraph needs a relevant focus and a reason for introducing its next example; a word such as `또한` cannot repair unrelated facts or missing reasoning. Prefer the structure that makes the supplied relationship readable without forcing a universal sentence length or rhythm.
 
+### Audit paragraph boundaries
+
+Read the preceding paragraph's last sentence and the next paragraph's first sentence together, then check both whole paragraphs. Identify the supported relationship: cause and result, time sequence, contrast, addition, or a general point followed by an example. If that relationship is unclear in the prose, use a natural connective ending, conjunction, or brief bridge that names the shared subject. Choose the wording after identifying the relationship, not before. Sometimes moving an example or removing an unrelated sentence works better than adding a connector.
+
+Do not require a conjunction at every paragraph opening. An already clear subject or example can supply continuity. Conversely, do not omit a needed connection merely to avoid words such as `그래서`, `그러나`, or `예를 들어`. A bridge must not invent causation, a new motive, or a result; consecutive experiences alone do not establish any of those. Review the actual transition for meaning, not the number of connector words.
+
 ## 5. Nominalization and abstract subjects
 
 Review noun stacks, long modifiers, repeated demonstratives, and abstract nouns when they hide who does what. Rewrite the relationship with a verb when that makes the same meaning easier to follow.
