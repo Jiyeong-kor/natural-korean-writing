@@ -262,3 +262,16 @@ After: `옮겨 적은 행사 날짜가 주최 측 공지와 달라 바로잡았�
 Why: The meaningful change is the source-confirmed review practice, not a newly discovered obligation to be accurate. The revision does not add an improvement metric or a lifelong habit. If the source only established the correction, the later practice would also be unsupported and must not be added. Genuine learning of an unfamiliar method remains appropriate when supplied.
 
 Preserved: The discrepancy, correction, and specifically stated later practice. Assess their relationship and the reader's expectations, not the presence or absence of `배웠습니다`.
+
+
+## 22. Redundant experience summary: decide whether the sentence belongs
+
+Fictional context: A club member writes: `행사 안내문을 작성해 게시판에 붙였습니다.` The next sentence says only that they went beyond planning and experienced writing and posting a notice. No separate lesson, change, or result is supplied, and the first sentence must remain.
+
+Before: `행사 안내문을 작성해 게시판에 붙였습니다. 계획에 머무르지 않고 안내문을 작성해 게시하는 작업까지 해 본 경험입니다.`
+
+After: `행사 안내문을 작성해 게시판에 붙였습니다.`
+
+Why: Decide whether the second sentence adds needed information before polishing its predicate. Here it merely renames the action as an experience, so deletion is better than a smoother repetition. If the action had not already been stated, a direct predicate such as `안내문을 작성해 게시했습니다` could express it. Do not delete a distinct source-supported lesson or result, and do not ban the noun `경험` in contexts where naming experience is useful.
+
+Preserved: The notice, writing, and posting. No growth, success, or new motivation is inferred from completing the action.
