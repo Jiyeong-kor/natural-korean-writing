@@ -43,6 +43,14 @@ Treat noun stacks, long modifiers, unnecessary passive wording, repeated demonst
 
 Read [official Korean sources](references/official-korean-sources.md) when a lexical or normative question needs evidence. Do not look up every ordinary sentence or claim usage trends from a corpus you have not inspected.
 
+## Check meaning before surface fluency
+
+Check whether each predicate can express the supplied action with its actual subject, object, and complements. Correct particles and complete sentence endings do not make an incompatible verb-object combination natural. Resolve the intended action from context instead of replacing a flagged word with a fixed synonym. Preserve valid literal and figurative uses; examples are not blacklists.
+
+For Korean originals, draft and review in Korean without requiring an invented English intermediate. For translations, use an actual source when available to check meaning, then reread the Korean alone as the intended reader. A plausible English back-translation does not prove that the Korean is natural, and a later comparison text is not the original source.
+
+When the user flags an awkward sentence, diagnose the failed meaning or reader relationship before polishing it. Check the affected paragraph, not only the quoted phrase. An abstract assessment is not a substitute for a concrete reason, a chronological sequence is not a cause, and a writer's form-filling explanation is not automatically part of the reader-facing answer. Use the relevant application guidance and fictional examples below; do not retain the same unsupported story with smoother wording.
+
 ## Choose the artifact profile
 
 Read the relevant section of [artifact style profiles](references/artifact-style-profiles.md) for conversations, technical explanations, GitHub text, UI copy, email, portfolios or resumes, learning material, and proposals or service introductions.
@@ -72,6 +80,7 @@ Read the entire response, including headings, introductions, notes, and closing 
 3. The speaker, relationship, timing, setting, and intended act fit the supplied situation. Terminology and explanation fit the reader and artifact; apply the mandatory context companion to the actual wording.
 4. Each sentence belongs to the requested deliverable. A correct draft followed by unrequested working notes is not final copy; remove drafting history, date-calculation steps, and explanations of disclosure decisions unless the requested artifact needs them.
 5. The mandatory punctuation reference and requested output format are satisfied.
-6. The actual sentences answer the artifact's central question. Grammatical sentences and the presence of topic words do not establish a missing relationship, need, or benefit; do not supply that meaning only in the review explanation.
+6. Reread the Korean as a standalone text in its intended register. Check predicate-object compatibility, collocations, clause relationships, and paragraph progression, not only spelling or banned-word searches. If a reader must mentally add a reason or transition, restore the source-supported relationship rather than merely inserting a decorative connective.
+7. The actual sentences answer the artifact's central question. Grammatical sentences and the presence of topic words do not establish a missing relationship, need, or benefit; do not supply that meaning only in the review explanation.
 
 For a full audit, read every heading, paragraph, table cell, caption, and visible image label in context. Keep a private coverage record; keyword searches identify candidates, not completion. A local wording correction still requires checking the affected paragraph and related passages for meaning and duplication. When saving or posting is part of the authorized task, read the saved text again, including carried-over paragraphs. Report any inaccessible region instead of claiming an exhaustive review.

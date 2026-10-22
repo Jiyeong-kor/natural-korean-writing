@@ -58,6 +58,24 @@ For Korean prose intended for other readers or remote publication, use natural `
 5. Common errors: claiming team work as individual work, inventing measurements, repeating `저는` in every sentence, and listing technologies without explaining their use.
 6. Output: reader-facing prose or concise resume entries. `담당 역할` can identify responsibilities; do not impose a fixed count-label order or an arbitrary number of accomplishments.
 
+### Application essays and narrative experience answers
+
+An application essay is reader-facing written explanation, not chat, a commit log, or a verification memo. Interpret the actual question before selecting evidence: a reason for choosing work is not merely evidence of qualification, and a request about overcoming constraints needs the constraint and completion process, not only a list of technical operations. Treat inferred question intent as interpretation unless the employer publishes its criteria.
+
+Use professional written Korean appropriate to the destination. Keep source-supported causal, contrastive, and temporal links, including connective endings when useful; do not equate formality with nominalized jargon or brevity with isolated short sentences. Organize each paragraph around the point the experience establishes. A technical name, test value, or implementation detail belongs only when its role in the applicant's decision or contribution is clear to the intended reader.
+
+Keep evidence checks separate from submitted prose. A test source's expected value is not a passed run or a user outcome. Do not fill a missing result with detailed expected values, invented metrics, or a long account of what the writer inspected. If evidence is insufficient, narrow the claim, select another supported example when authorized, or state the necessary clarification to the writer separately.
+
+Explain a career choice through the applicant's source-supported experiences and reasons, not generic declarations that a field fits a criterion. Broad phrases about creating something valuable or proving ability do not explain what the applicant did or why it mattered. Select a concrete supplied interest or experience; do not invent an emotional reaction, disparage a former field, or treat a student's lack of professional outcomes as an established reason for changing direction.
+
+Evidence of learning can come from another field when it supports the question. Describe what was learned, how it was applied, and the verified result. A prize does not by itself establish a short learning period, superior speed, or an identical ability in every field. Use those stronger claims only when the source supports them. Honor explicit word preferences within their stated scope, while retaining the underlying verification; a reader-facing answer can show the action and reason without naming the writer's evidence framework.
+
+For a dated experience entry, distinguish the actual activity state from how a form forced the writer to enter it. Keep an ongoing-activity statement when the reader needs it. Do not automatically put remarks about entry limitations, reference dates, or missing menu choices in a responsibilities field. Preserve any qualification needed to avoid a misleading end date in an appropriate note or field; omission of drafting commentary does not authorize a false date or completed-status claim.
+
+
+
+Reread the complete answer for question coverage, factual boundaries, natural predicate-object combinations, and continuity between paragraphs. Search-based checks can find suspicious wording but cannot establish that the answer is persuasive or coherent.
+
 ## 7. Learning material
 
 1. Reader: a learner with the knowledge established by the lesson's context.

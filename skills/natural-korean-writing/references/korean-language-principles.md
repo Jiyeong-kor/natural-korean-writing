@@ -10,6 +10,12 @@ Start with the predicate. Identify the actor or subject, the object, and any req
 2. If the predicate changes, check its required components again. A noun that was an object may need a different particle or may no longer belong in the sentence.
 3. Keep coordinated items parallel when they serve the same role. Do not force different roles into the same form merely to make a list look uniform.
 
+### Semantic compatibility
+
+A grammatical case marker does not establish that the predicate describes the intended action. Identify what the object represents: a task, goal, difficulty, result, document, or another entity. Choose a verb that expresses what actually happened to that object. For example, completing a task and achieving a goal are related but not interchangeable claims; finishing work does not by itself establish that its goal was achieved.
+
+Check the whole proposition, including tense, modality, negation, and any figurative sense. Do not create a prohibited-verb list or mechanically substitute one preferred collocation everywhere. When the intended action is unknown, preserve the uncertainty rather than inventing completion or success.
+
 ## 2. Omission and reference
 
 Omit a subject or object when the title, preceding sentence, or immediate context identifies it unambiguously. Repeating an established actor in every sentence can make Korean sound translated.
@@ -37,6 +43,8 @@ Begin with established context and introduce new information where the reader ca
 2. Keep the main action visible. Split long modifiers or overlapping conditions when the reader otherwise has to reconstruct the relationship.
 3. Keep multiple related judgments together when the sentence is clear. Sentence length or the number of clauses alone does not require a split.
 4. Do not turn a sequence into a cause, a contrast into a supplement, or a possibility into a result while smoothing the connection.
+5. Concision removes redundancy, not the relationships a reader needs. Retain or supply source-supported connective endings, conjunctions, and explanatory clauses when omission makes the reader reconstruct a reason, contrast, condition, or result. No rule requires either deleting all connectives or placing one at every sentence opening.
+6. Check paragraph progression before adding connectors. A paragraph needs a relevant focus and a reason for introducing its next example; a word such as `또한` cannot repair unrelated facts or missing reasoning. Prefer the structure that makes the supplied relationship readable without forcing a universal sentence length or rhythm.
 
 ## 5. Nominalization and abstract subjects
 
@@ -46,6 +54,14 @@ Review noun stacks, long modifiers, repeated demonstratives, and abstract nouns 
 2. Keep a nominal expression when the concept, category, or possession is the point. A genuine definition such as `교정은 글의 잘못된 부분을 바로잡는 일입니다.` does not need a different structure merely because it ends in `입니다`.
 3. Treat a possessive expression such as `검토자의 판단` as a question about meaning, not a forbidden form. State the decision and its criteria when those are what the reader needs; retain the possessive when whose judgment it was matters.
 4. A sentence beginning with `이 문서는` or another demonstrative can distinguish its subject. Remove it only when it repeats an already clear subject without adding a useful connection.
+
+### Abstract assessments and unsupported narratives
+
+A sentence can be grammatically complete yet fail to explain the point. Expressions such as `기준에 맞았습니다`, `역량을 증명했습니다`, and `판단 근거가 되었습니다` require an identifiable criterion, action, or relationship. When the reader needs the choice and its reason, describe the supplied action, observation, and choice directly. Do not replace one abstract noun with another or invent enjoyment, disappointment, certainty, or an ambition to make the sentence feel personal.
+
+Check the kind of entity on each side of a comparison: a field of work, a personal activity, a result, and a selection criterion are not interchangeable. A valid abstract summary may remain when the preceding text establishes its relationship and the summary serves the reader; no phrase is universally prohibited.
+
+Do not turn a person's sequence of studies or jobs into a story of disillusionment and discovery without support. Distinguish a source-confirmed motive from a later interpretation. Check whether a causal clause implies an expectation that the original speaker never held. If the source supplies only successive experiences, state those experiences or omit an unnecessary transition rather than manufacture a reason for changing fields.
 
 ## 6. Relationship, speech level, and speech act
 
@@ -86,3 +102,7 @@ Avoid spatial wording such as `출발하다` when it obscures a calculation basi
 Match certainty and tense to the evidence. `중복된 문장이 있습니다.` asserts a finding; `중복된 문장이 있을 수 있습니다.` states a possibility; `중복된 문장은 삭제하는 편이 좋겠습니다.` proposes a change. These are not interchangeable ways to vary the tone.
 
 Keep the source's uncertainty when the cause is unconfirmed. State confirmed behavior directly, and do not turn a proposal, expected effect, or planned action into an observed result. When a suspected technical error cannot be resolved from the supplied facts within the requested scope, do not silently rewrite the claim as though it had been verified.
+
+## 10. Standalone target-language rereading
+
+Review the completed Korean without relying on an English gloss or private explanation to supply its meaning. Ask whether the intended reader can identify the action, target, relationship, and conclusion from the actual sentences. For a translation, compare with the real source separately for preservation of meaning; for a Korean original, do not manufacture an English source or require translation before revision. Review signals identify places to examine, not automatic reasons to replace words.

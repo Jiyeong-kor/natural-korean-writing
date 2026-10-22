@@ -26,6 +26,14 @@ Separate information the reader needs from the writer's working material. A veri
 
 These are audience decisions, not bans on individual words. Comparisons, change histories, rationale, and private reflection belong when the requested artifact needs them. Keep planning frameworks such as 육하원칙 in the writing process unless the reader explicitly needs that structure. For a final-copy request, apply the boundary to the whole response, not just the proposed sentences: do not append situation analysis, discarded drafts, date corrections, or reasons for withholding information. An explicit request for explanation still needs an explanation; keep it separate from any ready-to-use copy.
 
+### Separate evidence gathering from reader-facing explanation
+
+Research and validation notes help the writer decide what can be claimed; they are not automatically useful to the final reader. Retain the evidence or necessary qualification that supports the reader's decision, but exclude tool-use narration, source-inspection history, and raw expected values when they do not explain the contribution or conclusion. Do not hide an uncertainty that would make the remaining claim misleading. When evidence is insufficient, narrow the claim or keep the clarification separate rather than disguising a partial result as success.
+
+### Form-entry explanations and actual activity
+
+A form-entry limitation is part of the writer's workflow. Decide whether the recipient needs it to understand a date or status before carrying it into the result. State the person's actual ongoing or completed activity directly when that resolves the issue; use an appropriate separate note if a required date would otherwise mislead. Do not hide a material qualification simply to make the prose smoother. Responsibilities, contributions, and applicant motivations should not become explanations of what the assistant selected, inspected, or could not enter.
+
 ## Handle missing context proportionately
 
 Use what the source already establishes; do not ask the user to fill every category. When a missing relationship or referent would change the meaning, responsibility, disclosure, or commitment, ask a focused question. When it does not, use wording that avoids the unsupported assumption and still answers the request. Do not ask for a person's title merely to add an unnecessary salutation, or invent a speaker to make a sentence feel complete.
