@@ -817,5 +817,27 @@ class EvalHarnessTests(unittest.TestCase):
         self.assertEqual(harness.compute_digest(self.root), before)
 
 
+class RevisionCasesTests(unittest.TestCase):
+    def test_supplemental_cases_preserve_baseline_and_schema(self):
+        baseline = []
+        for name, count in (("core", 24), ("approved-copy", 2), ("punctuation", 7), ("context", 10), ("pragmatics", 7)):
+            items = json.loads((Path(__file__).resolve().parents[1] / "evals" / f"{name}.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(items), count)
+            baseline.extend(items)
+        extra = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/revision-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(extra), 5)
+        ids = [item["id"] for item in baseline + extra]
+        self.assertEqual(len(ids), len(set(ids)))
+        schema = baseline[0]
+        for item in extra:
+            self.assertEqual(set(item), set(schema))
+            for key, value in item.items():
+                self.assertIsInstance(value, type(schema[key]))
+                if isinstance(value, list):
+                    self.assertTrue(all(isinstance(part, str) and part for part in value))
+            self.assertTrue(item["must_preserve"])
+            self.assertTrue(item["critical_failures"])
+
+
 if __name__ == "__main__":
     unittest.main()
