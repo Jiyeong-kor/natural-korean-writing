@@ -347,7 +347,7 @@ class EvalHarnessTests(unittest.TestCase):
             with self.subTest(dependency=old):
                 changed = release.replace(old, new, 1)
                 self.assertNotEqual(original, harness._semantic_code(source, changed))
-                with patch.object(harness, "_read_text", side_effect=lambda path: (
+                with patch.object(harness, "_read_text", side_effect=lambda path, changed=changed: (
                     changed if path == Path(harness.__file__).with_name("validate_repo.py") else read_text(path)
                 )):
                     with self.assertRaisesRegex(ValueError, "evaluation identity changed"):
@@ -393,27 +393,39 @@ class EvalHarnessTests(unittest.TestCase):
         ).stdout.splitlines()
         original_commit = "3b602310bec0a42f0648e00b675eed317240e772"
         self.assertEqual(revisions, [original_commit, original_commit])
+        subprocess.run(
+            ["git", "diff", "--exit-code", "HEAD", "--"], cwd=root,
+            check=True, capture_output=True, text=True, encoding="utf-8", errors="strict", timeout=15,
+        )
         for relative in (harness.LEGACY_EVIDENCE, "evals/runs/v0.1.0.jsonl", "evals/results-v0.1.0.md"):
             self.assertTrue(
                 (repository / relative).read_bytes() == (root / relative).read_bytes(),
                 f"Archived evaluation file changed: {relative}",
             )
-        evidence = harness._read_json(root / harness.LEGACY_EVIDENCE)
-        harness._metadata(root, evidence["metadata"], harness.VERSION)
+        import importlib.util
+
+        specification = importlib.util.spec_from_file_location("legacy_run_evals", root / "scripts/run_evals.py")
+        self.assertIsNotNone(specification)
+        legacy = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(legacy)
+        evidence = legacy._read_json(root / legacy.LEGACY_EVIDENCE)
+        legacy._metadata(root, evidence["metadata"], legacy.VERSION)
+        with self.assertRaisesRegex(ValueError, "legacy evaluation semantics changed"):
+            harness._metadata(root, evidence["metadata"], harness.VERSION)
         records = harness._read_jsonl(root / "evals/runs/v0.1.0.jsonl")
-        harness._verify_legacy_records(root, evidence["metadata"], harness.load_cases(root), records)
+        legacy._verify_legacy_records(root, evidence["metadata"], legacy.load_cases(root), records)
         self.assertEqual(len(records), 50)
         self.assertEqual(sum(record["case_pass"] for record in records), 49)
         self.assertFalse(next(record for record in records if record["id"] == "register-casual-001")["case_pass"])
         changed = copy.deepcopy(records)
         changed[0]["output"] += "changed"
         with self.assertRaisesRegex(ValueError, "original legacy output or judgment changed"):
-            harness._verify_legacy_records(root, evidence["metadata"], harness.load_cases(root), changed)
+            legacy._verify_legacy_records(root, evidence["metadata"], legacy.load_cases(root), changed)
         with (
-            patch.object(harness, "LEGACY_EVIDENCE_SHA256", "0" * 64),
+            patch.object(legacy, "LEGACY_EVIDENCE_SHA256", "0" * 64),
             self.assertRaisesRegex(ValueError, "legacy compatibility evidence changed"),
         ):
-            harness._metadata(root, evidence["metadata"], harness.VERSION)
+            legacy._metadata(root, evidence["metadata"], legacy.VERSION)
 
     def test_retry_limit_order_and_status_are_strict(self):
         base = copy.deepcopy(self.envelopes[0]["attempt_log"][0])
@@ -848,6 +860,9 @@ class RevisionCasesTests(unittest.TestCase):
             baseline.extend(items)
         extra = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/revision-review.json").read_text(encoding="utf-8"))
         self.assertEqual(len(extra), 5)
+        selection = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/evidence-selection.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(selection), 2)
+        extra.extend(selection)
         ids = [item["id"] for item in baseline + extra]
         self.assertEqual(len(ids), len(set(ids)))
         schema = baseline[0]

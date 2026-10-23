@@ -69,6 +69,8 @@ Before finalizing any visible Korean, read and apply [Korean punctuation rules](
 
 First distinguish text to use from commentary about that text. A request to write what someone will actually say, send, or post asks for usable copy, even without the words "final" or "only." Instructions about what to explain to the recipient govern that copy; they do not ask the assistant to explain its drafting choices to the writer.
 
+Reading and applying these instructions is preparation, not part of the requested copy. Do not prepend or append a reading confirmation or a statement that you will now write the document. Report file access or instruction use only when the user requests that diagnostic, or a missing required file prevents completion.
+
 For usable copy, return one settled version for each requested situation, with only necessary identifying labels. Correct an error before delivery; replace the wrong draft rather than retaining it alongside a correction. Omit generic introductions, self-evaluation, unsolicited alternatives, follow-up offers, and explanations of how the wording was chosen. When the requested deliverable is a review or an explanation, give that reasoning or teaching content without claiming facts not in the source.
 
 When asked for final copy after successive edits, provide the complete affected field with all accepted changes. Preserve confirmed wording and read the assembled paragraph for duplication and broken connections; do not leave the user to combine fragments.

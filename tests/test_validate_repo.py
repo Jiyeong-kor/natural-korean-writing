@@ -2,16 +2,16 @@
 
 from __future__ import annotations
 
-from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 import os
-from pathlib import Path
 import shutil
 import subprocess
 import sys
 import tempfile
 import unittest
+from contextlib import redirect_stderr, redirect_stdout
+from pathlib import Path
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
@@ -127,7 +127,7 @@ class RepositoryValidationTests(unittest.TestCase):
 
     def test_pragmatics_file_is_required_in_all_phases_and_manifest(self) -> None:
         self.assertIn("evals/pragmatics.json", validator.MANIFEST)
-        self.assertEqual(len(validator.MANIFEST), 37)
+        self.assertEqual(len(validator.MANIFEST), 40)
         self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 8)
         (self.root / "evals/pragmatics.json").unlink()
         self.assert_fails("case schema")
@@ -203,10 +203,44 @@ class RepositoryValidationTests(unittest.TestCase):
             self.assert_fails("recorded results", "final")
             verified.assert_called_once_with(self.root.resolve(), version="v0.1.0")
 
+    def test_new_release_selects_its_records_without_replacing_history(self) -> None:
+        cases = validator.run_evals.load_cases(self.root)
+        rows = [{"id": case["id"], "output": case.get("expected_exact", "결과"),
+                 "case_pass": True, "critical_failure": False} for case in cases]
+        self.write("evals/runs/v0.1.1.jsonl", "".join(json.dumps(row) + "\n" for row in rows))
+        self.write("evals/results-v0.1.1.md", "Evaluation fixture\n")
+        self.write("evals/runs/v0.1.1.inputs.json", "{}\n")
+        original = (self.root / "evals/runs/v0.1.0.jsonl").read_bytes()
+        with patch.object(validator, "command", side_effect=self.gh_command), \
+                patch.object(validator.run_evals, "verify_tracked") as verified:
+            report = validator.validate_repo(self.root, "final", self.gh_path, version="v0.1.1")
+        self.assertEqual([], report.errors)
+        verified.assert_called_once_with(self.root.resolve(), version="v0.1.1")
+        self.assertEqual(original, (self.root / "evals/runs/v0.1.0.jsonl").read_bytes())
+        rows[-1]["case_pass"] = False
+        self.write("evals/runs/v0.1.1.jsonl", "".join(json.dumps(row) + "\n" for row in rows))
+        report = validator.Report()
+        validator.check_release(self.root, cases, report, version="v0.1.1")
+        self.assertTrue(any("release pragmatics" in error for error in report.errors))
+
+    def test_new_release_missing_records_and_invalid_versions_fail(self) -> None:
+        with patch.object(validator, "command", side_effect=self.gh_command), \
+                patch.object(validator.run_evals, "verify_tracked", side_effect=ValueError("missing results")):
+            pre_eval = validator.validate_repo(self.root, "pre-eval", self.gh_path, version="v0.1.1")
+            final = validator.validate_repo(self.root, "final", self.gh_path, version="v0.1.1")
+        self.assertEqual([], pre_eval.errors)
+        for relative in validator.release_files("v0.1.1"):
+            self.assertTrue(any(relative in error for error in final.errors), final.errors)
+        self.assertTrue(any("recorded results" in error for error in final.errors))
+        for version in ("../v0.1.1", "main", "", "v0.1.1/extra"):
+            with self.subTest(version=version):
+                report = validator.validate_repo(self.root, version=version)
+                self.assertTrue(any("[version]" in error for error in report.errors))
+
     def test_exact_output_is_release_gate_even_when_reviewers_pass(self) -> None:
         cases = validator.run_evals.load_cases(self.root)
         rows = [{"id": case["id"], "output": case.get("expected_exact", "결과"), "case_pass": True, "critical_failure": False} for case in cases]
-        for changed in (row for case, row in zip(cases, rows) if case["category"] == "approved-copy"):
+        for changed in (row for case, row in zip(cases, rows, strict=True) if case["category"] == "approved-copy"):
             with self.subTest(case_id=changed["id"]):
                 original = changed["output"]
                 changed["output"] += " "
@@ -315,7 +349,7 @@ class RepositoryValidationTests(unittest.TestCase):
     def test_local_identity_rejects_invalid_account_response(self) -> None:
         for account in ("", "invalid/login\n"):
             with self.subTest(account=account):
-                def command(args: list[str], root: Path, **kwargs: object) -> str:
+                def command(args: list[str], root: Path, account: str = account, **kwargs: object) -> str:
                     if args[1:] == ["api", "user", "--jq", ".login"]:
                         return account
                     return self.gh_command(args, root, **kwargs)
@@ -369,7 +403,7 @@ class RepositoryValidationTests(unittest.TestCase):
                               "Jiyeong-kor/natural-korean-writing/extra")
         for identity in invalid_identities:
             with self.subTest(identity=identity):
-                def command(args: list[str], root: Path, **kwargs: object) -> str:
+                def command(args: list[str], root: Path, identity: str = identity, **kwargs: object) -> str:
                     if args[1:] == ["api", f"repos/{validator.PUBLIC_REPOSITORY}", "--jq", ".full_name"]:
                         return identity
                     return self.gh_command(args, root, **kwargs)
@@ -399,7 +433,7 @@ class RepositoryValidationTests(unittest.TestCase):
         for owner, error in (("wrong-account\n", "owner does not match"), ("", "valid account login"),
                              ("invalid/login\n", "valid account login")):
             with self.subTest(owner=owner):
-                def command(args: list[str], root: Path, **kwargs: object) -> str:
+                def command(args: list[str], root: Path, owner: str = owner, **kwargs: object) -> str:
                     if args[1:] == ["api", f"repos/{repository}", "--jq", ".owner.login"]:
                         return owner
                     return self.gh_command(args, root, **kwargs)
@@ -416,9 +450,9 @@ class RepositoryValidationTests(unittest.TestCase):
     def test_generic_user_paths_fail_without_personal_identifiers(self) -> None:
         for account in ("sample-user-a", "sample-user-b"):
             for user_path in (
-                "Users/{}/draft.md".format(account),
-                "C:/Users/{}/draft.md".format(account),
-                "D:\\Users\\{}\\draft.md".format(account),
+                "Users/" + account + "/draft.md",
+                "C:/Users/" + account + "/draft.md",
+                "D:\\Users\\" + account + "\\draft.md",
             ):
                 with self.subTest(user_path=user_path):
                     self.write("README.en.md", user_path + "\n")
@@ -446,6 +480,21 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual("A" * 64 + "\n", stdout.getvalue())
         self.assertEqual("", stderr.getvalue())
         validated.assert_not_called()
+
+    @unittest.skipUnless(shutil.which("git"), "Git is required for staged-manifest tests")
+    def test_staged_manifest_includes_selected_release(self) -> None:
+        for relative in validator.release_files("v0.1.1"):
+            self.write(relative, "release fixture\n")
+        REAL_COMMAND(["git", "init", "-b", "main"], self.root)
+        REAL_COMMAND(["git", "-c", "core.autocrlf=false", "add", "--",
+                      *validator.MANIFEST, *validator.release_files("v0.1.1")], self.root)
+        report = validator.Report()
+        validator.check_staged(self.root, report, version="v0.1.1")
+        self.assertEqual([], report.errors)
+        REAL_COMMAND(["git", "rm", "--cached", "--", "evals/runs/v0.1.1.inputs.json"], self.root)
+        report = validator.Report()
+        validator.check_staged(self.root, report, version="v0.1.1")
+        self.assertTrue(any("v0.1.1.inputs.json" in error for error in report.errors))
 
     @unittest.skipUnless(shutil.which("git"), "Git is required for staged-manifest tests")
     def test_staged_manifest_missing_and_ignored_file(self) -> None:

@@ -86,13 +86,19 @@ python -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$gh_path"
 
 새 릴리스를 만들지 않는 지침 수정은 현재 후보의 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 실행하고, 변경 영향을 받는 사례로 실제 출력을 확인합니다. 확인한 도구와 사례, 성공과 실패, 미검증 범위를 구분해 기록합니다. 이 결과를 전체 평가 통과로 보고하거나 기존 버전의 결과와 합치지 않습니다.
 
-CI는 현재 후보와 과거 릴리스를 따로 검사합니다. `v0.1.0`의 기록 검사와 `final`은 별도 원본 폴더에만 실행하며, 현재 후보가 릴리스 기준을 통과했다는 뜻은 아닙니다. 로컬에서 과거 기록을 검사할 때도 `--root`로 원본을 지정합니다.
+CI는 현재 후보와 과거 릴리스를 따로 검사합니다. `v0.1.0`의 기록 검사와 `final`은 별도 원본 폴더의 코드와 파일로 실행하며, 현재 후보가 릴리스 기준을 통과했다는 뜻은 아닙니다. 로컬에서도 해당 원본의 스크립트를 실행하고 `--root`로 원본 폴더를 지정합니다.
 
 ```text
-python -X utf8 scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
+python -X utf8 ../natural-korean-writing-v0.1.0/scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
 ```
 
-과거 릴리스의 `final`도 아래 명령에 `--root ../natural-korean-writing-v0.1.0`을 추가해 실행합니다. 현재 파일을 대상으로 실행하는 `final`은 계속 현재 파일과 평가 기록의 일치를 요구합니다.
+과거 릴리스의 `final`은 원본에 포함된 검증 도구로 실행합니다. 현재 후보의 `final`은 현재 코드와 해당 버전의 평가 기록이 일치해야 합니다.
+
+```text
+python -X utf8 ../natural-korean-writing-v0.1.0/scripts/validate_repo.py --root ../natural-korean-writing-v0.1.0 --phase final --gh-path /absolute/path/to/gh
+```
+
+`--gh-path` 값은 실제 GitHub CLI 실행 파일의 절대 경로로 바꿔 주세요.
 
 실제 출력을 모두 저장한 뒤 결과를 집계하고 검증합니다. 다음 명령은 `v0.1.0` 평가 묶음과 `.eval-work`를 사용한 예입니다. 작업 폴더와 평가 버전은 준비할 때 정한 값과 같아야 합니다.
 
@@ -109,14 +115,16 @@ python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
 PowerShell:
 
 ```powershell
-python -X utf8 scripts/validate_repo.py --phase final --gh-path "$ghPath"
+python -X utf8 scripts/validate_repo.py --phase final --version v0.1.0 --gh-path "$ghPath"
 ```
 
 Bash:
 
 ```bash
-python -X utf8 scripts/validate_repo.py --phase final --gh-path "$gh_path"
+python -X utf8 scripts/validate_repo.py --phase final --version v0.1.0 --gh-path "$gh_path"
 ```
+
+새 릴리스는 준비부터 집계와 `final`까지 같은 평가 버전을 지정합니다. 예를 들어 `v0.1.1`을 평가했다면 `final`에도 `--version v0.1.1`을 전달합니다. 해당 버전의 결과 요약, JSONL과 입력 기록이 없거나 현재 평가 내용과 일치하지 않으면 통과할 수 없습니다. 과거 버전의 기록은 그대로 유지합니다.
 
 배포 전에는 검증 도구와 단위 테스트, `gh skill publish --dry-run`을 모두 통과해야 합니다. 평가하지 않은 모델의 호환성이나 일반적인 한국어 품질 향상을 검증 결과로 주장하지 않습니다.
 

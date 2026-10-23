@@ -300,7 +300,7 @@ python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
 
 `check`는 임시 입력에서 결과를 다시 계산해 추적할 두 파일과 바이트 단위로 비교합니다. `verify-tracked`는 임시 파일 없이 추적된 JSONL의 형식, 프롬프트의 SHA256, 실행 기록, 다수결 판정과 결과 요약을 다시 검사합니다.
 
-두 명령은 실패한 평가 결과도 기록과 집계가 올바르면 통과할 수 있습니다. 실행 기록 검증의 성공을 릴리스 조건의 충족으로 해석하지 않습니다. 릴리스 조건은 `scripts/validate_repo.py`의 `--phase final`에서 검사하며, `--gh-path`에는 GitHub CLI 2.97.0 실행 파일의 절대 경로를 지정합니다.
+두 명령은 실패한 평가 결과도 기록과 집계가 올바르면 통과할 수 있습니다. 실행 기록 검증의 성공을 릴리스 조건의 충족으로 해석하지 않습니다. 릴리스 조건은 `scripts/validate_repo.py`의 `--phase final`에서 검사하며, `--version`에는 집계한 버전을, `--gh-path`에는 GitHub CLI 2.97.0 실행 파일의 절대 경로를 지정합니다. 새 버전은 결과 요약과 JSONL, 입력 기록이 모두 필요합니다. 이미 공개한 버전의 기록은 유지합니다.
 
 실패한 사례를 빼고 집계하지 않습니다. 동일한 평가 내용에서 얻은 최초의 유효한 완료 결과는 성공과 실패 모두 재사용합니다. 운영 문서나 전달 및 복구 절차만 수정했다면 도구 회귀 테스트와 기존 원문의 재집계로 검증하며 50개 모델 평가를 다시 실행하지 않습니다.
 
@@ -311,10 +311,10 @@ python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
 `v0.1.0`의 과거 기록은 별도로 체크아웃한 원본에서 검사합니다. [기여 안내](../CONTRIBUTING.md#로컬-검증)에 따라 원본 경로를 준비한 뒤 다음 명령을 실행합니다.
 
 ```text
-python -X utf8 scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
+python -X utf8 ../natural-korean-writing-v0.1.0/scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
 ```
 
-CI의 원본 대상 `final`은 과거 릴리스 기준을 검사할 뿐, 수정한 현재 후보의 품질을 판정하지 않습니다. 현재 후보에는 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 적용합니다. 공개 평가 기록 세 파일은 원본과 바이트 단위로 비교하며, 현재 파일을 과거 평가 해시와 비교하는 기존 검사는 완화하지 않습니다.
+CI의 원본 대상 `final`은 당시 코드로 과거 릴리스 기준을 검사할 뿐, 수정한 현재 후보의 품질을 판정하지 않습니다. 현재 후보에는 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 적용합니다. 공개 평가 기록 세 파일은 원본과 바이트 단위로 비교합니다. 평가 기준이 달라진 현재 코드에 과거 결과를 그대로 적용하면 계속 실패하며, 새 릴리스에는 현재 기준으로 얻은 별도 결과가 필요합니다.
 
 ### 추적할 JSONL
 
@@ -400,3 +400,5 @@ python -X utf8 -m unittest discover -s tests -v
 보충 수정 검수 사례:
 
 [supplemental/revision-review.json](supplemental/revision-review.json)은 질문 범위, 경험에서 계획으로 이어지는 설명, 최신 수정과 확정 문구 보존, 채팅 검수용 질문과 답변 및 글자 수, 학습 상태와 조언 계획 보존을 검사하는 가상 사례 5개입니다. 기존 다섯 묶음 50개는 변경하지 않습니다. 보충 사례는 기본 집계나 릴리스 통과율에 포함하지 않으며, 실제 출력을 별도로 검토할 때 생성자에게는 context, instruction, input만 전달합니다. 단위 테스트는 자료 형식과 기존 범위 보존만 확인하며 문장 품질을 판정하지 않습니다.
+
+[supplemental/evidence-selection.json](supplemental/evidence-selection.json)은 회사의 실제 업무와 질문에 맞는 경험 선택, 접근하지 못한 자료의 구분, 중복 설명 삭제와 필수 문맥 보존을 검사하는 가상 사례 2개입니다. 같은 보충 평가 절차를 적용하며 기본 50개와 별도로 기록합니다.
