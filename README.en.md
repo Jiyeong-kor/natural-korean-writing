@@ -4,6 +4,8 @@ An Agent Skill that preserves the original meaning while refining translation-li
 
 [한국어](README.md) | [English](README.en.md)
 
+[Claude Code setup](#claude-code) | [Codex setup](#codex) | [Claude web and app setup](#claude-web-and-desktop-app) | [Try a request](#usage)
+
 ## Before and after
 
 A Korean feature description:
@@ -22,6 +24,17 @@ After
 
 The meaning stays the same while unnecessary nominalization and translation-like phrasing are reduced.
 
+### Wording for the situation
+
+The same request needs different detail depending on what the recipient can see and hear. This fictional example asks a colleague to put a document envelope into a storage bin.
+
+| Recipient's situation | Request in Korean |
+| --- | --- |
+| Standing beside the speaker and looking at the bin being pointed to | 서류 봉투를 여기에 넣어 주세요. |
+| Taking a phone call from another building, without knowing where the bin is | 서류 봉투를 서울 본사 1층 로비 안내 데스크 옆의 파란 보관함에 넣어 주세요. |
+
+The in-person version refers briefly to a shared visual target. The phone version gives the location needed to find it. The requested action stays the same.
+
 ## Writing principles
 
 Use the skill to draft, revise, or review Korean.
@@ -38,6 +51,8 @@ The [context and audience companion](skills/natural-korean-writing/references/co
 
 Install the skill in Claude, Claude Code, or Codex. Each method includes the same `SKILL.md` and `references/` folder, including the context and audience companion.
 
+The commands below use `@main` to install the current default-branch instructions, including the revisions checked in Claude on the web. These differ from release `v0.1.0`; see the [validation scope for each version](#evaluation-and-validation).
+
 ### Claude Code and Codex
 
 Requires [GitHub CLI 2.90.0 or later](https://github.com/cli/cli/releases/tag/v2.90.0). Command syntax is based on GitHub CLI 2.97.0. `gh skill` is in public preview, so its commands and behavior may change.
@@ -52,40 +67,40 @@ gh skill --help
 Read the instructions with [preview](https://cli.github.com/manual/gh_skill_preview) before installing:
 
 ```powershell
-gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing
+gh skill preview Jiyeong-kor/natural-korean-writing natural-korean-writing@main
 ```
 
 #### Claude Code
 
-Install at user scope to use the skill across your projects:
+[Prepare GitHub CLI](#claude-code-and-codex) first. Install at user scope to use the skill across your projects:
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent claude-code --scope user
 ```
 
 For the current project only, run inside its Git repository:
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent claude-code --scope project
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent claude-code --scope project
 ```
 
 #### Codex
 
-Install at user scope to use the skill across your projects:
+[Prepare GitHub CLI](#claude-code-and-codex) first. Install at user scope to use the skill across your projects:
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope user
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope user
 ```
 
 For the current project only, run inside its Git repository:
 
 ```powershell
-gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing --agent codex --scope project
+gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope project
 ```
 
 #### Advanced: pin a version
 
-Specify a release tag to keep using the same version. This example uses Claude Code; replace the agent flag with `--agent codex` for Codex. The tag must exist in the repository:
+Specify a release tag or commit SHA to keep using the same version. `@main` follows the default branch at installation time, so later installations can receive different content. This example installs release `v0.1.0` for Claude Code; replace the agent flag with `--agent codex` for Codex. `v0.1.0` does not include later instruction changes on `main`:
 
 ```powershell
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.0 --agent claude-code --scope user
@@ -138,11 +153,13 @@ Conversation, technical explanations, GitHub PRs, issues and reviews, UI labels 
 
 ## Evaluation and validation
 
-On October 15, 2026, 49 of 50 regression cases passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results.
+On October 15, 2026, 49 of 50 regression cases for `v0.1.0` passed in Codex Desktop using `gpt-5.6-sol` with `high` reasoning effort. One case failed, with no critical failures. One reviewer disagreement required adjudication. The [evaluation results](evals/results-v0.1.0.md) include the runtime, evaluated source hash, and results. These are not full-suite results for subsequent instruction changes on `main`.
 
-These evaluation results are from Codex. In Claude on the web, ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
+These evaluation results are from Codex. In Claude on the web, `v0.1.0` ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
 
-For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
+The revised instructions on `main` were checked in Claude on the web with cases covering speaker, delivery time, location, disclosure scope, communicative intent, and learning explanations. File-read records for the skill and required companion were observed, and the actual outputs were reviewed. This validation is limited to those cases; it is not a rerun of the full Codex evaluation.
+
+For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. The `@main` commands were also run in separate Claude Code and Codex projects, confirming preservation of the skill text and required reference files. Installation-file checks do not evaluate model output quality. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 
 The evaluation set contains 24 core cases, 2 confirmed-copy cases, 7 punctuation cases, 10 context and instruction-following cases, and 7 situation-dependent writing cases. Its rubric covers meaning, unsupported additions, audience fit, natural Korean, consistent politeness, literal preservation, and output format.
 

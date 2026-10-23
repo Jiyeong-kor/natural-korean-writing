@@ -1,0 +1,35 @@
+[
+  {
+    "id": "artifact-application-action-001",
+    "category": "artifact",
+    "context": "개발자의 자기소개서 문장이다. 수정한 기능이 작동해도 기존 기능에 문제가 없는지까지 확인한 뒤 업무를 마치는 태도를 설명한다. 추가 점검 방법이나 결과는 제공되지 않았다. 고친 문장만 출력한다.",
+    "instruction": "내부 판단을 덧붙이지 말고 실제 업무 태도가 바로 드러나도록 고쳐 주세요.",
+    "input": "수정한 기능만 확인한 뒤 일이 끝났다고 판단하지 않습니다.",
+    "must_preserve": [
+      "수정한 기능만 확인하고 업무를 끝내지 않음"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "구체적인 테스트 방법이나 도구",
+      "기존 기능에 실제 문제가 없었다는 결과",
+      "성과 수치"
+    ],
+    "review_points": [
+      "판단한다는 표현을 반복하지 않고 실제 업무 태도를 직접 썼는가",
+      "제공되지 않은 점검 방법이나 결과를 만들지 않았는가"
+    ],
+    "critical_failures": [
+      "수정한 기능만 보고 업무를 끝낸다는 반대 의미로 바꿈",
+      "제공되지 않은 점검 방법이나 결과를 확정해서 추가함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  }
+]

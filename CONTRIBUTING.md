@@ -32,6 +32,26 @@ GitHub Issues에서 문장 품질, 설치 문제, 기능 제안 중 맞는 양�
 
 Python 3.12와 GitHub CLI 2.97.0을 준비해 주세요. 검증 도구와 단위 테스트는 Python 표준 라이브러리만 사용합니다. 아래 명령은 저장소 루트에서 실행합니다.
 
+과거 평가 기록을 검사할 `v0.1.0` 원본을 별도 폴더에 한 번 복제합니다. 이미 준비한 폴더가 있으면 재사용합니다.
+
+```text
+git -c core.autocrlf=false clone --branch v0.1.0 --single-branch --no-progress https://github.com/Jiyeong-kor/natural-korean-writing.git ../natural-korean-writing-v0.1.0
+```
+
+PowerShell에서는 다음과 같이 경로를 지정합니다.
+
+```powershell
+$env:NKW_RELEASE_ROOT = (Resolve-Path ../natural-korean-writing-v0.1.0).Path
+```
+
+Bash에서는 다음과 같이 지정합니다.
+
+```bash
+export NKW_RELEASE_ROOT="$(cd ../natural-korean-writing-v0.1.0 && pwd)"
+```
+
+단위 테스트는 이 폴더의 커밋과 태그가 원본 `3b602310bec0a42f0648e00b675eed317240e772`인지 확인하고, 현재 저장소의 공개 평가 기록을 원본과 비교합니다. 경로가 없거나 원본이 다르면 실패하며 검사를 건너뛰지 않습니다.
+
 ```text
 python -X utf8 scripts/validate_repo.py --phase build
 python -X utf8 -m unittest discover -s tests -v
@@ -63,6 +83,16 @@ python -X utf8 scripts/validate_repo.py --phase pre-eval --gh-path "$gh_path"
 먼저 [평가 방법](evals/README.md)에 따라 변경이 평가 내용에 영향을 주는지 확인해 주세요. 스킬 규칙, 사례, 실제 프롬프트, 판정 기준과 실행 설정이 같고 운영 문서나 오류 복구 절차만 달라졌다면 최초의 유효한 완료 결과를 재사용합니다. 통과한 결과뿐 아니라 실패한 결과도 유지하며 도구 테스트와 재집계로 검증합니다. 원래 해시, 평가 시각, 출력과 판정은 바꾸지 않습니다.
 
 평가 내용이 달라졌거나 영향 범위를 확인할 수 없다면 관련 결과를 재사용하지 않습니다. 현재의 전체 묶음을 새로 평가해야 할 때는 이전 입력과 결과를 보존한 뒤 별도 폴더에서 50개를 실행합니다. 지정한 모델과 설정을 사용하고, 각 역할은 이전 대화가 없는 상태에서 독립적으로 실행해야 합니다. 실행 환경이 없다면 PR에 실제 평가를 실행하지 못했다고 적어 주세요. 임의의 출력이나 실행 기록으로 결과를 채우지 않습니다.
+
+새 릴리스를 만들지 않는 지침 수정은 현재 후보의 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 실행하고, 변경 영향을 받는 사례로 실제 출력을 확인합니다. 확인한 도구와 사례, 성공과 실패, 미검증 범위를 구분해 기록합니다. 이 결과를 전체 평가 통과로 보고하거나 기존 버전의 결과와 합치지 않습니다.
+
+CI는 현재 후보와 과거 릴리스를 따로 검사합니다. `v0.1.0`의 기록 검사와 `final`은 별도 원본 폴더에만 실행하며, 현재 후보가 릴리스 기준을 통과했다는 뜻은 아닙니다. 로컬에서 과거 기록을 검사할 때도 `--root`로 원본을 지정합니다.
+
+```text
+python -X utf8 scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
+```
+
+과거 릴리스의 `final`도 아래 명령에 `--root ../natural-korean-writing-v0.1.0`을 추가해 실행합니다. 현재 파일을 대상으로 실행하는 `final`은 계속 현재 파일과 평가 기록의 일치를 요구합니다.
 
 실제 출력을 모두 저장한 뒤 결과를 집계하고 검증합니다. 다음 명령은 `v0.1.0` 평가 묶음과 `.eval-work`를 사용한 예입니다. 작업 폴더와 평가 버전은 준비할 때 정한 값과 같아야 합니다.
 
