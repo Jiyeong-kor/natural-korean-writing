@@ -133,6 +133,12 @@ Match certainty and tense to the evidence. `중복된 문장이 있습니다.` a
 
 Keep the source's uncertainty when the cause is unconfirmed. State confirmed behavior directly, and do not turn a proposal, expected effect, or planned action into an observed result. When a suspected technical error cannot be resolved from the supplied facts within the requested scope, do not silently rewrite the claim as though it had been verified.
 
+### Avoid ornamental summaries and imported emphasis
+
+A formula such as `맞닿아 있습니다` or `주목했습니다` can hide the actual relationship or reason. If the user rejects such wording for their copy, preserve that restriction across applicable revisions and explain the supported action or connection instead of choosing another stock compliment. Avoid suspense-led contrasts such as `문제는 그것만이 아니었습니다` when the reader needs a direct account of the additional problem. A phrase's resemblance to English is a review signal, not proof of its origin or a universal prohibition. Retain a meaningful contrast when the source and genre call for one.
+
+Do not label every reason as a personal motivation or every completed action as an experience of having done something. End with the actual action when a nominal summary adds no meaning. Remove an unnecessary summary rather than replacing its nouns with new abstractions, but preserve a conclusion needed to answer the question.
+
 ## 10. Standalone target-language rereading
 
 Review the completed Korean without relying on an English gloss or private explanation to supply its meaning. Ask whether the intended reader can identify the action, target, relationship, and conclusion from the actual sentences. For a translation, compare with the real source separately for preservation of meaning; for a Korean original, do not manufacture an English source or require translation before revision. Review signals identify places to examine, not automatic reasons to replace words.

@@ -392,6 +392,11 @@ python -X utf8 -m unittest discover -s tests -v
 
 보충 회귀 사례:
 
-[자기소개서의 구체적인 행동](supplemental/application-action.json)은 `artifact-application-action-001`을 별도로 보존합니다. 기존 `artifact-pr-summary-001`의 문서 오타 수정과 미실행 테스트 범위를 이 사례로 교체하지 않습니다. 기본 다섯 묶음의 50개 사례와 범주별 분포는 그대로입니다.
+[자기소개서의 구체적인 행동](supplemental/application-action.json)은 `artifact-application-action-001`을 별도로 보존합니다. `artifact-concrete-check-001`은 점검 조건과 방법을 구체적으로 쓰면서 미확인 결과를 만들지 않는지 확인합니다. 기존 `artifact-pr-summary-001`의 문서 오타 수정과 미실행 테스트 범위를 이 보충 사례로 교체하지 않습니다. 기본 다섯 묶음의 50개 사례와 범주별 분포는 그대로입니다.
 
 보충 사례는 기본 집계와 릴리스 통과율에 포함하지 않습니다. 단위 테스트는 파일 형식과 기존 사례의 보존을 검사할 뿐 문장 품질을 판정하지 않습니다. 실제 출력을 확인할 때는 본문의 생성 및 독립 검수 절차를 따르고, 결과를 기본 50개와 구분해서 보고합니다. 이 사례를 기본 묶음에 넣거나 평가 절차를 바꾸려면 먼저 별도로 합의합니다.
+
+
+보충 수정 검수 사례:
+
+[supplemental/revision-review.json](supplemental/revision-review.json)은 질문 범위, 경험에서 계획으로 이어지는 설명, 최신 수정과 확정 문구 보존, 채팅 검수용 질문과 답변 및 글자 수, 학습 상태와 조언 계획 보존을 검사하는 가상 사례 5개입니다. 기존 다섯 묶음 50개는 변경하지 않습니다. 보충 사례는 기본 집계나 릴리스 통과율에 포함하지 않으며, 실제 출력을 별도로 검토할 때 생성자에게는 context, instruction, input만 전달합니다. 단위 테스트는 자료 형식과 기존 범위 보존만 확인하며 문장 품질을 판정하지 않습니다.

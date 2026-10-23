@@ -825,7 +825,9 @@ class SupplementalRegressionTests(unittest.TestCase):
         self.assertEqual(original["input"], "문서 내 오타에 대한 수정 작업을 수행했습니다.")
         self.assertIn("테스트는 실행하지 않았다", original["context"])
         extra = json.loads((root / "evals/supplemental/application-action.json").read_text(encoding="utf-8"))
-        self.assertEqual(len(extra), 1)
+        self.assertEqual(len(extra), 2)
+        self.assertEqual(extra[1]["id"], "artifact-concrete-check-001")
+        self.assertEqual(set(extra[1]), set(original))
         case = extra[0]
         self.assertEqual(case["id"], "artifact-application-action-001")
         self.assertEqual(set(case), set(original))
@@ -835,6 +837,28 @@ class SupplementalRegressionTests(unittest.TestCase):
             self.assertIsInstance(value, type(original[key]))
             if isinstance(value, list):
                 self.assertTrue(all(isinstance(item, str) and item for item in value))
+
+
+class RevisionCasesTests(unittest.TestCase):
+    def test_supplemental_cases_preserve_baseline_and_schema(self):
+        baseline = []
+        for name, count in (("core", 24), ("approved-copy", 2), ("punctuation", 7), ("context", 10), ("pragmatics", 7)):
+            items = json.loads((Path(__file__).resolve().parents[1] / "evals" / f"{name}.json").read_text(encoding="utf-8"))
+            self.assertEqual(len(items), count)
+            baseline.extend(items)
+        extra = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/revision-review.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(extra), 5)
+        ids = [item["id"] for item in baseline + extra]
+        self.assertEqual(len(ids), len(set(ids)))
+        schema = baseline[0]
+        for item in extra:
+            self.assertEqual(set(item), set(schema))
+            for key, value in item.items():
+                self.assertIsInstance(value, type(schema[key]))
+                if isinstance(value, list):
+                    self.assertTrue(all(isinstance(part, str) and part for part in value))
+            self.assertTrue(item["must_preserve"])
+            self.assertTrue(item["critical_failures"])
 
 
 if __name__ == "__main__":
