@@ -1,0 +1,69 @@
+[
+  {
+    "id": "artifact-application-action-001",
+    "category": "artifact",
+    "context": "개발자의 자기소개서 문장이다. 수정한 기능이 작동해도 기존 기능에 문제가 없는지까지 확인한 뒤 업무를 마치는 태도를 설명한다. 추가 점검 방법이나 결과는 제공되지 않았다. 고친 문장만 출력한다.",
+    "instruction": "내부 판단을 덧붙이지 말고 실제 업무 태도가 바로 드러나도록 고쳐 주세요.",
+    "input": "수정한 기능만 확인한 뒤 일이 끝났다고 판단하지 않습니다.",
+    "must_preserve": [
+      "수정한 기능만 확인하고 업무를 끝내지 않음"
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "구체적인 테스트 방법이나 도구",
+      "기존 기능에 실제 문제가 없었다는 결과",
+      "성과 수치"
+    ],
+    "review_points": [
+      "판단한다는 표현을 반복하지 않고 실제 업무 태도를 직접 썼는가",
+      "제공되지 않은 점검 방법이나 결과를 만들지 않았는가"
+    ],
+    "critical_failures": [
+      "수정한 기능만 보고 업무를 끝낸다는 반대 의미로 바꿈",
+      "제공되지 않은 점검 방법이나 결과를 확정해서 추가함"
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "register_consistency",
+      "literal_preservation",
+      "output_format"
+    ]
+  },
+  {
+    "id": "artifact-concrete-check-001",
+    "category": "artifact",
+    "context": "가상의 가입 화면 점검 기록입니다. 작성자는 필수 입력란을 비운 상태에서 다음 버튼이 비활성화되는지 직접 살펴봤습니다. 관찰 결과와 자동화 테스트 실행 여부는 기록하지 않았습니다. 독자는 점검 대상과 방법을 알고 싶어 합니다.",
+    "instruction": "무엇을 어떤 조건에서 확인했는지 드러나도록 기록을 고쳐 주세요. 알려지지 않은 결과는 만들지 말고 고친 본문만 주세요.",
+    "input": "가입 기능의 동작을 검증했습니다.",
+    "must_preserve": [
+      "필수 입력란을 비운 상태에서 다음 버튼이 비활성화되는지 직접 살펴봤습니다."
+    ],
+    "must_include": [
+      "필수 입력란을 비운 조건",
+      "다음 버튼의 상태를 살펴본 방법"
+    ],
+    "must_not_add": [
+      "버튼이 실제로 비활성화됐다는 결과",
+      "자동화 테스트 통과",
+      "가입 화면 전체의 안정성 보장"
+    ],
+    "review_points": [
+      "검증했다는 추상적인 말만 반복하지 않고 점검 대상과 조건을 설명하는지 확인합니다.",
+      "관찰 행위와 그 결과를 구분하여 미확인 성공을 덧붙이지 않았는지 확인합니다."
+    ],
+    "critical_failures": [
+      "관찰 결과나 자동화 테스트 실행을 만들어 냅니다.",
+      "대상과 조건을 밝히지 않고 검증했다는 말만 남깁니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  }
+]

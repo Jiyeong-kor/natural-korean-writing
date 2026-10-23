@@ -54,6 +54,10 @@ Do not require a conjunction at every paragraph opening. An already clear subjec
 
 ## 5. Nominalization and abstract subjects
 
+When the action itself expresses the point, avoid wrapping it in an unnecessary internal judgment such as `~라고 판단했습니다`, `~라고 보았습니다`, or `완료로 판단했습니다`. State what the person did, stopped doing, or decided when that is what matters to the reader. For example, if the intended meaning is that a developer does not finish after checking only the changed function, `수정한 기능만 확인하고 일을 마치지 않습니다.` is more direct than `수정한 기능만 확인한 뒤 일이 끝났다고 판단하지 않습니다.`
+
+Keep a judgment verb when the judgment itself is the action or decision that the reader needs to know, such as deciding whether a result meets an acceptance criterion or classifying an item. Do not remove it mechanically.
+
 Review noun stacks, long modifiers, repeated demonstratives, and abstract nouns when they hide who does what. Rewrite the relationship with a verb when that makes the same meaning easier to follow.
 
 1. `변경 사항에 대한 검토를 진행했습니다.` can become `변경 사항을 검토했습니다.` without changing the action.
@@ -92,6 +96,22 @@ In ordinary Korean prose, prefer an established, familiar Korean name when it is
 
 Concision does not justify insulting, military-style, violent, or speculative slang in assistant-authored explanations. Name the verified action with an exact neutral verb, such as `추가하다`, `수정하다`, `설치하다`, or `실행하다`; if the operation is unknown, state only what is known. Apply explicit user restrictions to the requested scope without presenting a personal word preference as universal grammar. Preserve source quotations and deliberately requested character voices rather than sanitizing protected text.
 
+### Make checks and test results concrete
+
+In a report, portfolio, or job application, a repeated phrase such as `기능을 검증했습니다` or `검증 결과를 정리했습니다` may hide what the writer did. Identify the actual target, condition, and method first. If the source confirms a check, say what was checked. If an automated test was actually run, describe that test. State the result only when the source provides it. Do not turn checking one case into a claim that an entire service is correct or stable.
+
+For example, in a fictional application form, suppose a person left a required field blank and checked the submit button's state. `입력 기능의 동작을 검증했습니다.` is less informative than `필수 항목을 비운 상태에서 제출 버튼이 비활성화되는지 확인했습니다.` Neither wording authorizes claiming that the button was disabled unless the result was observed. If the source supplies only a general `검증` statement and no specific method, ask for details when they are essential instead of inventing them.
+
+Do not ban the word `검증` or replace every occurrence mechanically. Retain it when an established term such as `품질 검증` names the actual process, and preserve the precise terminology required by the audience or source.
+
+### Describe capabilities without defaulting to 제공하다
+
+In a service description, proposal, or application, identify what the reader needs to know: what a person can do, what appears on a screen, what a program returns, or which resource an organization supplies. Do not use `제공하다` as the default ending for every capability or translate `provide`, `offer`, and `serve` into the same verb regardless of context. State the actual action, subject, and object supported by the source.
+
+Fictional example: a library website lets readers search its book collection. `이 누리집은 도서 검색 기능을 제공합니다.` can become `이용자는 이 누리집에서 도서관에 있는 책을 검색할 수 있습니다.` If the source says a program groups records and draws a chart, describe that grouping and display rather than merely saying it provides results. Preserve whether the sentence describes an available capability, a proposal, or an action actually performed. Availability alone does not establish successful use.
+
+Do not mechanically replace every occurrence with `지원하다`, `돕다`, or `할 수 있다`; those can also obscure the action or change its meaning. Keep `제공하다` when supplying something is the intended fact, or when exact wording such as `개인정보 제3자 제공` is protected. Honor a user's restriction within the editable prose without presenting it as a universal grammar ban. Do not infer that a Korean sentence was translated from a particular English word merely because it sounds stiff.
+
 ### Polysemous English verbs
 
 Translate the actual action, not one English word in isolation.
@@ -109,7 +129,7 @@ Avoid spatial wording such as `출발하다` when it obscures a calculation basi
 
 ## 9. Facts, inferences, and proposals
 
-Match certainty and tense to the evidence. `중복된 문장이 있습니다.` asserts a finding; `중복된 문장이 있을 수 있습니다.` states a possibility; `중복된 문장은 삭제하는 편이 좋겠습니다.` proposes a change. These are not interchangeable ways to vary the tone.
+Match certainty and tense to the evidence. `중복된 문장이 있습니다.` asserts a finding; `중복된 문장은 삭제하는 편이 좋겠습니다.` proposes a change; `중복된 문장이 있을 수 있습니다.` states a possibility. These are not interchangeable ways to vary the tone.
 
 Keep the source's uncertainty when the cause is unconfirmed. State confirmed behavior directly, and do not turn a proposal, expected effect, or planned action into an observed result. When a suspected technical error cannot be resolved from the supplied facts within the requested scope, do not silently rewrite the claim as though it had been verified.
 

@@ -817,6 +817,28 @@ class EvalHarnessTests(unittest.TestCase):
         self.assertEqual(harness.compute_digest(self.root), before)
 
 
+class SupplementalRegressionTests(unittest.TestCase):
+    def test_application_action_does_not_replace_pr_summary(self):
+        root = Path(__file__).resolve().parents[1]
+        core = json.loads((root / "evals/core.json").read_text(encoding="utf-8"))
+        original = next(case for case in core if case["id"] == "artifact-pr-summary-001")
+        self.assertEqual(original["input"], "문서 내 오타에 대한 수정 작업을 수행했습니다.")
+        self.assertIn("테스트는 실행하지 않았다", original["context"])
+        extra = json.loads((root / "evals/supplemental/application-action.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(extra), 2)
+        self.assertEqual(extra[1]["id"], "artifact-concrete-check-001")
+        self.assertEqual(set(extra[1]), set(original))
+        case = extra[0]
+        self.assertEqual(case["id"], "artifact-application-action-001")
+        self.assertEqual(set(case), set(original))
+        self.assertNotIn(case["id"], {item["id"] for item in core})
+        self.assertEqual(case["input"], "수정한 기능만 확인한 뒤 일이 끝났다고 판단하지 않습니다.")
+        for key, value in case.items():
+            self.assertIsInstance(value, type(original[key]))
+            if isinstance(value, list):
+                self.assertTrue(all(isinstance(item, str) and item for item in value))
+
+
 class RevisionCasesTests(unittest.TestCase):
     def test_supplemental_cases_preserve_baseline_and_schema(self):
         baseline = []
