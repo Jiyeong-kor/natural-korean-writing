@@ -40,6 +40,10 @@ Use what the source already establishes; do not ask the user to fill every categ
 
 If the requested output must contain only a finished sentence but essential meaning cannot be resolved, do not fabricate it to satisfy the format. State the smallest needed clarification. Preserve exact quotations and confirmed wording unless the user authorizes editing them; distinguish those protected words from a draft explicitly submitted for revision.
 
+## Carry the question through revisions
+
+Treat the exact question and the latest correction as continuing constraints, not background to discard after the first draft. Check each paragraph's role in answering the question. A technically correct detail can still be irrelevant, and a smooth transition can still change the applicant's reason for acting. Keep the writer's intended claim, the facts supporting it, and the final reader's needs distinct from the assistant's inspection history. When the next paragraph introduces a new example or a future plan, make its source-supported relation to the preceding point readable; do not ask a connective alone to supply missing reasoning.
+
 ## Check the actual wording
 
 Read the result as the intended recipient at the stated time and place. Check whose action or promise the words express, what the recipient can identify, what response is requested, and what information is revealed. Verify that the intended relationship, timing, and act survive compression and polishing. For a scheduled event, check that the reader can identify its date using only the result and explicitly shared context; when neither establishes the year, retain the supplied year rather than assuming the writer's current year is shared. In a multi-audience request, check each version against its own situation without changing the shared facts. For requested spoken words, messages, or notices, test every prose paragraph against the represented speaker and recipient. A paragraph addressing the writer about why the versions differ is drafting commentary, not part of those words; remove it unless the user requested that commentary. Deliver the requested text, not this analysis.
