@@ -442,3 +442,5 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/scoped-korean-wording.json](supplemental/scoped-korean-wording.json)은 명시한 동사 금지의 활용형 및 의향 종결 패턴, 지정한 이름의 ASCII 작은따옴표 일관성, 국소 교체와 나머지 확정 문구의 보존을 검사하는 가상 사례 2개입니다. 특정 원고의 단어 선택을 한국어 전체의 오류나 금지로 일반화하지 않는지도 확인합니다. 기본 평가와 기존 보충 사례는 그대로 두고 위의 절차로 따로 생성하고 독립 판정합니다.
 
 [supplemental/ai-contribution-closing.json](supplemental/ai-contribution-closing.json)은 AI 활용 작업에서 개인의 문제 발견과 판단, AI의 기여 및 확인한 결과를 구분하고, 불필요한 학습 희망과 질문에 필요한 구체적인 학습계획을 나누는 가상 사례 2개입니다. 요청 나열에 머물지 않고 실제 행동과 확인된 결과를 설명하며 AI가 한 일을 개인의 수작업으로 바꾸지 않는지 확인합니다. 같은 독립 평가 절차로 별도 판정하며 기본 50개와 기존 사례 및 결과는 유지합니다. 단위 테스트는 자료 형식과 분리만 확인하며 실제 원고의 품질 판정을 대신하지 않습니다.
+
+[supplemental/name-quotation-scope.json](supplemental/name-quotation-scope.json)은 이름 따옴표의 적용 범위를 본문, 독립 제목과 항목, 검색 문자열 및 실제 인용의 역할에 따라 구분하는 가상 사례 2개입니다. 본문의 표시 요청을 모든 영역에 확대하거나 제목의 따옴표를 무조건 제거하지 않는지 확인합니다. 기존 자료는 변경하지 않고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
