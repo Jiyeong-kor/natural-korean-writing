@@ -818,6 +818,42 @@ class EvalHarnessTests(unittest.TestCase):
 
 
 class SupplementalRegressionTests(unittest.TestCase):
+    def test_application_workflow_schema_and_baseline_isolation(self):
+        root = Path(__file__).resolve().parents[1]
+        baseline = harness.load_cases(root)
+        self.assertEqual(len(baseline), 50)
+        baseline_ids = {case["id"] for case in baseline}
+        supplemental_ids = []
+        for path in sorted((root / "evals/supplemental").glob("*.json")):
+            cases = json.loads(path.read_text(encoding="utf-8"))
+            self.assertIsInstance(cases, list)
+            self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
+            if path.name == "application-workflow.json":
+                self.assertEqual(len(cases), 13)
+            for case in cases:
+                with self.subTest(file=path.name, case=case.get("id")):
+                    self.assertEqual(set(case) - {"expected_exact"}, harness.CASE_FIELDS)
+                    for field in ("id", "category", "context", "instruction", "input"):
+                        self.assertIsInstance(case[field], str)
+                        if field != "input":
+                            self.assertTrue(case[field])
+                    self.assertRegex(case["id"], r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+                    for field in ("must_preserve", "must_include", "must_not_add", "review_points",
+                                  "critical_failures", "applicable_rubric"):
+                        self.assertIsInstance(case[field], list)
+                        self.assertTrue(all(isinstance(item, str) and item for item in case[field]))
+                    if "expected_exact" in case:
+                        self.assertIsInstance(case["expected_exact"], str)
+                        self.assertTrue(case["expected_exact"])
+                    applicable = case["applicable_rubric"]
+                    self.assertTrue(applicable)
+                    self.assertEqual(len(applicable), len(set(applicable)))
+                    self.assertLessEqual(set(applicable), set(harness.RUBRIC))
+                    supplemental_ids.append(case["id"])
+        self.assertTrue((root / "evals/supplemental/application-workflow.json").is_file())
+        self.assertEqual(len(supplemental_ids), len(set(supplemental_ids)))
+        self.assertTrue(baseline_ids.isdisjoint(supplemental_ids))
+
     def test_application_action_does_not_replace_pr_summary(self):
         root = Path(__file__).resolve().parents[1]
         core = json.loads((root / "evals/core.json").read_text(encoding="utf-8"))
