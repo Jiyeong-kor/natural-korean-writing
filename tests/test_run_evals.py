@@ -818,7 +818,7 @@ class EvalHarnessTests(unittest.TestCase):
 
 
 class SupplementalRegressionTests(unittest.TestCase):
-    def test_application_workflow_schema_and_baseline_isolation(self):
+    def test_supplemental_schema_and_baseline_isolation(self):
         root = Path(__file__).resolve().parents[1]
         baseline = harness.load_cases(root)
         self.assertEqual(len(baseline), 50)
@@ -830,6 +830,8 @@ class SupplementalRegressionTests(unittest.TestCase):
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
             if path.name == "application-workflow.json":
                 self.assertEqual(len(cases), 13)
+            elif path.name == "application-tone-approval.json":
+                self.assertEqual(len(cases), 3)
             for case in cases:
                 with self.subTest(file=path.name, case=case.get("id")):
                     self.assertEqual(set(case) - {"expected_exact"}, harness.CASE_FIELDS)
@@ -851,6 +853,7 @@ class SupplementalRegressionTests(unittest.TestCase):
                     self.assertLessEqual(set(applicable), set(harness.RUBRIC))
                     supplemental_ids.append(case["id"])
         self.assertTrue((root / "evals/supplemental/application-workflow.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-tone-approval.json").is_file())
         self.assertEqual(len(supplemental_ids), len(set(supplemental_ids)))
         self.assertTrue(baseline_ids.isdisjoint(supplemental_ids))
 
