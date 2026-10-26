@@ -60,6 +60,8 @@ When the user flags an awkward sentence, diagnose the failed meaning or reader r
 
 Read the relevant section of [artifact style profiles](references/artifact-style-profiles.md) for conversations, technical explanations, GitHub text, UI copy, email, portfolios or resumes, learning material, and proposals or service introductions.
 
+When creating or checking Korean document or PDF layout, also apply the shared layout section in that reference, regardless of the document's content profile.
+
 For application essays or a set of application answers, also read the entire [application answer workflow](references/application-answer-workflow.md) before selecting experiences or revising answers. It carries the full question and guidance through evidence selection, review, and the exact final text. Its form and file operations apply only when those actions are authorized and the required tools are available.
 
 Apply spoken-lesson guidance only when writing that kind of material. Do not turn one script's preferred endings, number notation, or sequence into a universal rule for Korean.

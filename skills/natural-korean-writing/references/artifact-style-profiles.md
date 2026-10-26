@@ -4,6 +4,14 @@ Use the profile that fits the requested output. A conversation about a document 
 
 For Korean prose intended for other readers or remote publication, use natural `합니다/했습니다`-style honorifics from the local draft unless the user or destination explicitly requires another register. Include explanatory and checklist sentences in that check; short titles, labels, status values, code, and source quotations retain their appropriate form. Follow explicit user or repository wording restrictions within their scope rather than applying one author's personal preferences to everyone.
 
+## Korean document and PDF layout
+
+Treat wording and typesetting as separate tasks. Use a renderer with Korean/CJK line-breaking support and apply the user's stated preference for the actual document. When character-level wrapping is requested, allow automatic line breaks within Korean spacing units rather than retaining each whole unit with a keep-all setting that leaves large line-end gaps. This preference does not authorize imposing that style on a different user or overriding an explicit whole-unit layout request.
+
+Change the layout settings, not the approved sentences or paragraph boundaries. Do not insert arbitrary manual newlines or spaces into the manuscript to imitate wrapping. Check line-breaking prohibitions separately, including closing punctuation stranded at the start of a line and opening punctuation stranded at its end. Avoid unnecessary fragmentation of Latin identifiers and URLs; use appropriate supported break opportunities when a long literal cannot fit, without changing its characters. Do not compensate for poor wrapping by excessively stretching character or word spacing to force justified lines.
+
+Inspect the actual rendered pages with the document's final fonts, widths, and output format. Check Korean wrapping, punctuation at line boundaries, Latin literals, line-end gaps, and spacing across the affected pages. After saving or exporting, reopen the saved output and repeat the relevant visual checks; a source setting or a good editor preview does not establish the saved PDF's layout. Compare the saved text with the approved manuscript, distinguishing automatic visual wraps from content changes. Report which output and pages were actually checked and any inaccessible region; if only a plan or preview is available, keep the saved-file check pending rather than claiming completion.
+
 ## 1. Conversation
 
 1. Reader: the person in the current exchange, with the context already shared there.
@@ -57,6 +65,22 @@ For Korean prose intended for other readers or remote publication, use natural `
 4. Tone: concise professional prose with natural omissions where each action's actor remains clear. A portfolio's known author does not by itself mark a shift from a team's work to that person's contribution; retain the needed contrast through wording or structure before removing a first-person expression.
 5. Common errors: claiming team work as individual work, inventing measurements, repeating `저는` in every sentence, and listing technologies without explaining their use.
 6. Output: reader-facing prose or concise resume entries. `담당 역할` can identify responsibilities; do not impose a fixed count-label order or an arbitrary number of accomplishments.
+
+### Select resume information for the role
+
+Before selecting or shortening an entry, identify the destination, intended reader, actual role requirements, and the scope of the latest user instruction. Keep the applicant's relevant personal responsibility, problem, action, supported result, and core technology, together with required verified education, training, and qualifications. Use only the elements the source and destination need; this is an internal coverage check, not a mandatory visible template. Brevity is not a reason to collapse a substantial strength into an arbitrary single line or remove required academic history.
+
+Use short project-information labels for confirmed facts such as release state, team size, and progress when those labels convey the necessary meaning. A fictional project that has not been released can be marked `미출시` instead of a long negative explanation that it was not formally launched. Keep release state separate from development progress: unreleased does not mean unfinished, and ongoing does not establish a release. Do not repeat an already clear status as a disclaimer in the contribution paragraph. This compression must preserve the applicant's actual responsibility and any material risk, test condition, or limit needed to interpret the work; a short status label cannot replace those distinctions or justify inventing an unknown state.
+
+For each detail, decide whether the hiring reader needs it to assess the claim, whether a technical portfolio or supporting record needs it to inspect the evidence, or whether it belongs only in private working notes. Device model numbers, long test procedures, code branches, and implementation minutiae usually belong in the evidence when they do not affect that hiring decision. Retain a model identifier when the actual role or claim depends on it, such as testing compatibility across named devices. Do not apply a model-number ban to device-validation work or discard relevant core technology with incidental identifiers.
+
+When keeping a number, preserve what was measured, its statistic and unit, the comparison baseline, and the conditions needed to interpret its scope. A frame-time percentile is not total search-response time, an average, or a result on every device. Removing a model number does not authorize removing all measurement conditions: retain a meaningful supported description of the environment when it limits the claim, and keep the exact model and detailed procedure in the evidence as appropriate. A supporting record cannot repair a misleading standalone resume claim.
+
+If explaining a metric would burden the intended reader more than help the decision, the main entry may describe the supported problem, action, and improvement in plain language while the evidence retains the detailed numbers and conditions. Do not invent user-perceived improvement from a metric alone, replace a limited observation with a universal performance claim, or remove an important limitation merely to simplify. Where the source does not establish an outcome, keep the actual action and known result or identify the missing evidence separately.
+
+Keep disclosure instructions tied to their actual target and audience. Omitting academic history from a public portfolio does not authorize omitting a verified bachelor's degree from a separately requested private company resume. Check the latest instruction for that document and retain required education and credentials there. Conversely, a confirmed instruction covering both documents remains in force; do not publish excluded information by assuming a different scope. Preserve the degree's actual status and field without inventing completion, equivalence, or missing records.
+
+Before delivering the revised entry, compare the whole source and revision for lost responsibilities, strengths, required qualifications, metric meaning, and necessary conditions. Check each moved detail's destination and each omission's scope privately. Do not claim that evidence was attached, published, or inspected unless that action actually occurred; selecting information for a resume does not authorize changing its supporting files.
 
 ### Application essays and narrative experience answers
 

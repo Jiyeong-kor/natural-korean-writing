@@ -832,6 +832,12 @@ class SupplementalRegressionTests(unittest.TestCase):
                 self.assertEqual(len(cases), 13)
             elif path.name == "application-tone-approval.json":
                 self.assertEqual(len(cases), 3)
+            elif path.name == "resume-information-selection.json":
+                self.assertEqual(len(cases), 4)
+            elif path.name in {"korean-document-layout.json", "application-duty-evidence.json"}:
+                self.assertEqual(len(cases), 2)
+            elif path.name in {"resume-project-status.json", "application-contribution-tone.json"}:
+                self.assertEqual(len(cases), 1)
             for case in cases:
                 with self.subTest(file=path.name, case=case.get("id")):
                     self.assertEqual(set(case) - {"expected_exact"}, harness.CASE_FIELDS)
@@ -854,6 +860,11 @@ class SupplementalRegressionTests(unittest.TestCase):
                     supplemental_ids.append(case["id"])
         self.assertTrue((root / "evals/supplemental/application-workflow.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-tone-approval.json").is_file())
+        self.assertTrue((root / "evals/supplemental/resume-information-selection.json").is_file())
+        self.assertTrue((root / "evals/supplemental/korean-document-layout.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-duty-evidence.json").is_file())
+        self.assertTrue((root / "evals/supplemental/resume-project-status.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-contribution-tone.json").is_file())
         self.assertEqual(len(supplemental_ids), len(set(supplemental_ids)))
         self.assertTrue(baseline_ids.isdisjoint(supplemental_ids))
 
