@@ -347,7 +347,7 @@ class EvalHarnessTests(unittest.TestCase):
             with self.subTest(dependency=old):
                 changed = release.replace(old, new, 1)
                 self.assertNotEqual(original, harness._semantic_code(source, changed))
-                with patch.object(harness, "_read_text", side_effect=lambda path: (
+                with patch.object(harness, "_read_text", side_effect=lambda path, changed=changed: (
                     changed if path == Path(harness.__file__).with_name("validate_repo.py") else read_text(path)
                 )):
                     with self.assertRaisesRegex(ValueError, "evaluation identity changed"):
@@ -393,27 +393,39 @@ class EvalHarnessTests(unittest.TestCase):
         ).stdout.splitlines()
         original_commit = "3b602310bec0a42f0648e00b675eed317240e772"
         self.assertEqual(revisions, [original_commit, original_commit])
+        subprocess.run(
+            ["git", "diff", "--exit-code", "HEAD", "--"], cwd=root,
+            check=True, capture_output=True, text=True, encoding="utf-8", errors="strict", timeout=15,
+        )
         for relative in (harness.LEGACY_EVIDENCE, "evals/runs/v0.1.0.jsonl", "evals/results-v0.1.0.md"):
             self.assertTrue(
                 (repository / relative).read_bytes() == (root / relative).read_bytes(),
                 f"Archived evaluation file changed: {relative}",
             )
-        evidence = harness._read_json(root / harness.LEGACY_EVIDENCE)
-        harness._metadata(root, evidence["metadata"], harness.VERSION)
+        import importlib.util
+
+        specification = importlib.util.spec_from_file_location("legacy_run_evals", root / "scripts/run_evals.py")
+        self.assertIsNotNone(specification)
+        legacy = importlib.util.module_from_spec(specification)
+        specification.loader.exec_module(legacy)
+        evidence = legacy._read_json(root / legacy.LEGACY_EVIDENCE)
+        legacy._metadata(root, evidence["metadata"], legacy.VERSION)
+        with self.assertRaisesRegex(ValueError, "legacy evaluation semantics changed"):
+            harness._metadata(root, evidence["metadata"], harness.VERSION)
         records = harness._read_jsonl(root / "evals/runs/v0.1.0.jsonl")
-        harness._verify_legacy_records(root, evidence["metadata"], harness.load_cases(root), records)
+        legacy._verify_legacy_records(root, evidence["metadata"], legacy.load_cases(root), records)
         self.assertEqual(len(records), 50)
         self.assertEqual(sum(record["case_pass"] for record in records), 49)
         self.assertFalse(next(record for record in records if record["id"] == "register-casual-001")["case_pass"])
         changed = copy.deepcopy(records)
         changed[0]["output"] += "changed"
         with self.assertRaisesRegex(ValueError, "original legacy output or judgment changed"):
-            harness._verify_legacy_records(root, evidence["metadata"], harness.load_cases(root), changed)
+            legacy._verify_legacy_records(root, evidence["metadata"], legacy.load_cases(root), changed)
         with (
-            patch.object(harness, "LEGACY_EVIDENCE_SHA256", "0" * 64),
+            patch.object(legacy, "LEGACY_EVIDENCE_SHA256", "0" * 64),
             self.assertRaisesRegex(ValueError, "legacy compatibility evidence changed"),
         ):
-            harness._metadata(root, evidence["metadata"], harness.VERSION)
+            legacy._metadata(root, evidence["metadata"], legacy.VERSION)
 
     def test_retry_limit_order_and_status_are_strict(self):
         base = copy.deepcopy(self.envelopes[0]["attempt_log"][0])
@@ -817,6 +829,133 @@ class EvalHarnessTests(unittest.TestCase):
         self.assertEqual(harness.compute_digest(self.root), before)
 
 
+    def enable_final_contract(self):
+        metadata = harness._read_json(self.work / "run.json")
+        metadata["output_contract"] = "final-answer-v1"
+        metadata["evaluation_identity"] = harness.compute_evaluation_identity(self.root, "final-answer-v1")
+        write_json(self.work / "run.json", metadata)
+        for role in harness.ROLES:
+            (self.work / "responses" / role).mkdir(parents=True)
+            (self.work / "sources" / role).mkdir(parents=True)
+        for case in self.cases:
+            for role in ("generator", "reviewer-a", "reviewer-b"):
+                extension = ".txt" if role == "generator" else ".json"
+                output = harness._read_text(self.work / role / (case["id"] + extension))
+                source = synthetic_response(output)
+                source_path = self.work / "sources" / role / (case["id"] + ".json")
+                write_json(source_path, source)
+                evidence = harness.capture_response(source_path.read_bytes())
+                write_json(self.work / "responses" / role / (case["id"] + ".json"), evidence)
+
+    def test_final_channel_roundtrip_preserves_all_commentary(self):
+        self.enable_final_contract()
+        records = harness.aggregate(self.root)
+        self.assertEqual(records[0]["response_evidence"]["generator"]["messages"][0]["text"],
+                         "합성 진행 안내입니다.")
+        self.assertEqual(records[0]["output_contract"], "final-answer-v1")
+        self.assertNotIn("synthetic-commentary", harness._json(records[0]))
+        harness.check(self.root)
+        harness.verify_tracked(self.root)
+        summary = harness._read_text(self.root / "evals/results-v0.1.0.md")
+        self.assertIn("전체 응답에 안내가 없었다는 결과는 아닙니다", summary)
+
+    def test_final_channel_does_not_allow_unproven_or_changed_output(self):
+        self.enable_final_contract()
+        path = self.work / "generator" / (self.cases[0]["id"] + ".txt")
+        path.write_text("수정된 출력입니다.", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "differs from complete final"):
+            harness.aggregate(self.root)
+
+    def test_tracked_channel_evidence_is_rechecked_after_record_rehash(self):
+        self.enable_final_contract()
+        harness.aggregate(self.root)
+        rows = harness._read_jsonl(self.tracked_path())
+        evidence = rows[0]["response_evidence"]["generator"]
+        evidence["messages"][-1]["text"] += "\n삭제하면 안 되는 추가 설명입니다."
+        evidence["messages_sha256"] = harness._sha(harness._json(evidence["messages"]).encode("utf-8"))
+        rows[0]["dependency_sha256"] = harness._bound_record_dependencies(self.cases[0], rows[0])
+        self.tracked_path().write_text("".join(harness._json(row) + "\n" for row in rows), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "differs from complete final"):
+            harness.verify_tracked(self.root)
+
+    def test_response_turn_cannot_be_reused_for_independent_roles(self):
+        self.enable_final_contract()
+        first = self.work / "responses/reviewer-a" / (self.cases[0]["id"] + ".json")
+        second = self.work / "responses/reviewer-b" / (self.cases[0]["id"] + ".json")
+        second.write_bytes(first.read_bytes())
+        source_first = self.work / "sources/reviewer-a" / (self.cases[0]["id"] + ".json")
+        source_second = self.work / "sources/reviewer-b" / (self.cases[0]["id"] + ".json")
+        source_second.write_bytes(source_first.read_bytes())
+        with self.assertRaisesRegex(ValueError, "response turn reused"):
+            harness.aggregate(self.root)
+
+    def test_removed_commentary_is_rejected_against_preserved_source(self):
+        self.enable_final_contract()
+        path = self.work / "responses/generator" / (self.cases[0]["id"] + ".json")
+        evidence = harness._read_json(path)
+        evidence["messages"].pop(0)
+        evidence["messages_sha256"] = harness._sha(harness._json(evidence["messages"]).encode("utf-8"))
+        write_json(path, evidence)
+        with self.assertRaisesRegex(ValueError, "differs from preserved source"):
+            harness.aggregate(self.root)
+
+
+def synthetic_response(output):
+    """Fictional channel fixture, never model-evaluation evidence."""
+    return {"schemaVersion": 1, "turns": [{"id": harness.new_context_id(), "status": "completed", "error": None,
+                       "items": [
+                           {"type": "agentMessage", "id": "synthetic-commentary", "phase": "commentary",
+                            "text": "합성 진행 안내입니다."},
+                           {"type": "agentMessage", "id": "synthetic-final", "phase": "final_answer",
+                            "text": output},
+                       ]}]}
+
+
+class ResponseChannelTests(unittest.TestCase):
+    def test_capture_preserves_source_hash_and_final_bytes(self):
+        output = "```text\r\n추가 설명도 그대로 남깁니다.\r\n```\n "
+        source = harness._json(synthetic_response(output)).encode("utf-8")
+        evidence = harness.capture_response(source)
+        self.assertEqual(evidence["source_sha256"], harness._sha(source))
+        self.assertEqual(harness.response_output(evidence), output)
+        self.assertEqual(len(evidence["messages"]), 2)
+
+    def test_incomplete_unknown_or_ambiguous_channels_are_rejected(self):
+        mutations = (
+            lambda turn: turn.update(status="failed"),
+            lambda turn: turn.update(truncated=True),
+            lambda turn: turn["items"][0].update(truncated=True),
+            lambda turn: turn["items"][0].update(phase="untyped"),
+            lambda turn: turn["items"][0].update(type="unknownAssistantMessage"),
+            lambda turn: turn["items"][0].pop("phase"),
+            lambda turn: turn["items"][0].update(phase="final_answer"),
+            lambda turn: turn["items"][1].update(id="synthetic-commentary"),
+            lambda turn: turn["items"].reverse(),
+            lambda turn: turn["items"].pop(),
+        )
+        for index, mutation in enumerate(mutations):
+            with self.subTest(mutation=index):
+                source = synthetic_response("합성 최종 결과입니다.")
+                mutation(source["turns"][0])
+                with self.assertRaises(ValueError):
+                    harness.capture_response(harness._json(source).encode("utf-8"))
+
+    def test_commentary_tampering_is_not_hidden_by_same_final_answer(self):
+        evidence = harness.capture_response(harness._json(synthetic_response("결과입니다.")).encode("utf-8"))
+        evidence["messages"][0]["text"] = "바뀐 안내입니다."
+        with self.assertRaisesRegex(ValueError, "message bytes changed"):
+            harness.response_output(evidence)
+
+    def test_output_selector_is_an_evaluation_identity_dependency(self):
+        source = harness._read_text(Path(harness.__file__))
+        release = harness._read_text(Path(harness.__file__).with_name("validate_repo.py"))
+        actual = harness._semantic_code(source, release)
+        self.assertIn("response_output", actual)
+        self.assertIn("capture_response", actual)
+        changed = source.replace("len(finals) == 1", "len(finals) >= 1", 1)
+        self.assertNotEqual(actual, harness._semantic_code(changed, release))
+
+
 class SupplementalRegressionTests(unittest.TestCase):
     def test_supplemental_schema_and_baseline_isolation(self):
         root = Path(__file__).resolve().parents[1]
@@ -910,6 +1049,9 @@ class RevisionCasesTests(unittest.TestCase):
             baseline.extend(items)
         extra = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/revision-review.json").read_text(encoding="utf-8"))
         self.assertEqual(len(extra), 5)
+        selection = json.loads((Path(__file__).resolve().parents[1] / "evals/supplemental/evidence-selection.json").read_text(encoding="utf-8"))
+        self.assertEqual(len(selection), 2)
+        extra.extend(selection)
         ids = [item["id"] for item in baseline + extra]
         self.assertEqual(len(ids), len(set(ids)))
         schema = baseline[0]

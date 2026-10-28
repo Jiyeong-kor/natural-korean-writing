@@ -2,22 +2,23 @@
 
 import argparse
 import ast
-from collections import Counter
-from datetime import datetime, timezone
 import hashlib
 import json
 import os
-from pathlib import Path
 import re
 import stat
 import sys
 import uuid
-
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
 
 VERSION = "v0.1.0"
-OPERATIONS_VERSION = "2"
-IDENTITY_FIELDS = {"evaluation_identity", "operations_version"}
+OPERATIONS_VERSION = "3"
+OUTPUT_CONTRACTS = ("whole-response-v1", "final-answer-v1")
+IDENTITY_FIELDS = {"evaluation_identity", "operations_version", "output_contract"}
 DEPENDENCY_FIELDS = {"dependency_sha256"}
+RESPONSE_FIELDS = {"response_evidence"}
 LEGACY_EVIDENCE = "evals/compatibility-v0.1.0.json"
 LEGACY_EVIDENCE_SHA256 = "2420CAFA38D421FA1D81488C6186997DFC2199A25CFEF7E7B3373739B63BABE4"
 NORMATIVE_SECTIONS = (
@@ -313,12 +314,112 @@ def render_adjudicator_prompt(case, output, reviewer_a, reviewer_b):
     )
 
 
+def capture_response(source_bytes):
+    """Capture a complete supported read_thread export, without inventing channels."""
+    _require(type(source_bytes) is bytes, "response source must be original bytes")
+    source = _loads(source_bytes.decode("utf-8", errors="strict"))
+    _require(type(source) is dict and source.get("schemaVersion") == 1,
+             "unsupported response export schema")
+    turns = source.get("turns")
+    _require(type(turns) is list and len(turns) == 1, "capture exactly one complete turn")
+    turn = turns[0]
+    _require(type(turn) is dict, "invalid response turn")
+    _require(turn.get("status") == "completed" and turn.get("error") is None,
+             "response turn did not complete")
+    _require(not turn.get("truncated", False), "response turn is truncated")
+    items = turn.get("items")
+    _require(type(items) is list, "response turn has no item list")
+    messages = []
+    for index, item in enumerate(items):
+        _require(type(item) is dict and item.get("type") in {
+            "agentMessage", "userMessage", "commandExecution", "reasoning", "contextCompaction",
+        }, "unsupported response item type")
+        if item.get("type") != "agentMessage":
+            continue
+        _require(not item.get("truncated", False), "assistant message is truncated")
+        messages.append({"index": index, "id": item.get("id"),
+                         "phase": item.get("phase"), "text": item.get("text")})
+    evidence = {"contract": "final-answer-v1", "source_sha256": _sha(source_bytes),
+                "turn_id": turn.get("id"), "messages": messages,
+                "messages_sha256": _sha(_json(messages).encode("utf-8"))}
+    response_output(evidence)
+    return evidence
+
+
+def response_output(evidence):
+    """Select one typed final answer; preserve every commentary message unchanged."""
+    _keys(evidence, {"contract", "source_sha256", "turn_id", "messages", "messages_sha256"})
+    _require(evidence["contract"] == "final-answer-v1", "unknown response contract")
+    _text(evidence["turn_id"], "response turn ID")
+    for name in ("source_sha256", "messages_sha256"):
+        _require(type(evidence[name]) is str and re.fullmatch(r"[0-9A-F]{64}", evidence[name]),
+                 "invalid response source hash")
+    messages = evidence["messages"]
+    _require(type(messages) is list and messages, "missing assistant messages")
+    _require(_sha(_json(messages).encode("utf-8")) == evidence["messages_sha256"],
+             "response message bytes changed")
+    identifiers, previous, finals = set(), -1, []
+    for message in messages:
+        _keys(message, {"index", "id", "phase", "text"})
+        _require(type(message["index"]) is int and message["index"] > previous,
+                 "response message order changed")
+        previous = message["index"]
+        identifier = _text(message["id"], "response message ID")
+        _require(identifier not in identifiers, "duplicate response message ID")
+        identifiers.add(identifier)
+        _require(message["phase"] in {"commentary", "final_answer"}, "unknown response channel")
+        _text(message["text"], "response message text")
+        if message["phase"] == "final_answer":
+            finals.append(message)
+    _require(len(finals) == 1 and finals[0] is messages[-1],
+             "response must end with exactly one final answer")
+    return finals[0]["text"]
+
+
+def public_response_evidence(evidence):
+    """Keep internal IDs in private source exports; publish opaque SHA256 identifiers."""
+    response_output(evidence)
+    messages = [{**message, "id": _sha(message["id"].encode("utf-8"))}
+                for message in evidence["messages"]]
+    return {**evidence, "turn_id": _sha(evidence["turn_id"].encode("utf-8")),
+            "messages": messages, "messages_sha256": _sha(_json(messages).encode("utf-8"))}
+
+
+def _validate_record_responses(record, response_turns=None):
+    evidence = record.get("response_evidence")
+    if record.get("output_contract", "whole-response-v1") == "whole-response-v1":
+        _require(evidence is None, "unexpected channel evidence for whole-response contract")
+        return
+    roles = {"generator", "reviewer-a", "reviewer-b"}
+    if record["adjudicator"] is not None:
+        roles.add("adjudicator")
+    _keys(evidence, roles)
+    response_turns = set() if response_turns is None else response_turns
+    for role in sorted(roles):
+        response_output(evidence[role])
+        turn_id = evidence[role]["turn_id"]
+        identifiers = [turn_id, *(message["id"] for message in evidence[role]["messages"])]
+        _require(all(re.fullmatch(r"[0-9A-F]{64}", identifier) for identifier in identifiers),
+                 "public response identifiers must be hashes")
+        _require(turn_id not in response_turns, "response turn reused across cases or roles")
+        response_turns.add(turn_id)
+    _require(response_output(evidence["generator"]) == record["output"],
+             "generator output differs from complete final answer")
+    participants = dict(zip(("reviewer-a", "reviewer-b"), record["reviewers"], strict=True))
+    if record["adjudicator"] is not None:
+        participants["adjudicator"] = record["adjudicator"]
+    for role, participant in participants.items():
+        expected = {"id": record["id"], **{key: participant[key] for key in JUDGMENT_FIELDS}}
+        _require(_loads(response_output(evidence[role])) == expected,
+                 "judgment differs from complete final answer")
+
+
 def _protocol_semantics(text):
     """Only the explicitly classified operational sections may vary."""
     pieces = re.split(r"(?m)^## ([^\r\n]+)\r?\n", text)
     headings = tuple(pieces[1::2])
     _require(headings == PROTOCOL_SECTIONS, "unknown, missing, or reordered evaluation sections")
-    sections = dict(zip(headings, pieces[2::2]))
+    sections = dict(zip(headings, pieces[2::2], strict=True))
     templates = {}
     for heading in ("생성용 프롬프트", "평가용 프롬프트"):
         pattern = rf"(?m)^### {heading}\r?\n\r?\n```text\r?\n(.*?)\r?\n```"
@@ -337,7 +438,9 @@ def _semantic_code(source, release_source):
     """Hash executable evaluation rules and their local transitive dependencies."""
     selected = {}
     harness_roots = ["load_cases", "render_generator_prompt", "render_reviewer_prompt",
-                     "render_adjudicator_prompt", "_make_record", "SETTINGS", "ROLES"]
+                     "render_adjudicator_prompt", "_make_record", "SETTINGS", "ROLES",
+                     "OUTPUT_CONTRACTS", "capture_response", "public_response_evidence",
+                     "_validate_record_responses"]
     for text, pending, prefix in (
         (release_source, ["check_release", "Report"], "validate_repo."),
         (source, harness_roots, ""),
@@ -376,7 +479,9 @@ def _semantic_code(source, release_source):
     return selected
 
 
-def _semantic_contract(root, *, protocol_text=None, source=None, release_source=None):
+def _semantic_contract(root, *, protocol_text=None, source=None, release_source=None,
+                       output_contract="whole-response-v1"):
+    _require(output_contract in OUTPUT_CONTRACTS, "unknown output contract")
     cases = load_cases(root)
     scripts = Path(__file__).resolve().parent
     code = _semantic_code(source if source is not None else _read_text(scripts / "run_evals.py"),
@@ -394,15 +499,16 @@ def _semantic_contract(root, *, protocol_text=None, source=None, release_source=
         ]
     return {
         "schema": 1, "code": code, "settings": SETTINGS, "fork_turns": "none",
+        "output_contract": output_contract,
         "protocol": _protocol_semantics(protocol_text if protocol_text is not None
                                           else _read_text(root / "evals" / "README.md")),
         "prompts": prompts,
     }
 
 
-def compute_evaluation_identity(root):
+def compute_evaluation_identity(root, output_contract="whole-response-v1"):
     """Keep raw runtime/case bytes, quality rules, prompts, and settings in identity."""
-    contract = _semantic_contract(root)
+    contract = _semantic_contract(root, output_contract=output_contract)
     return compute_digest(root, protocol_bytes=_json(contract).encode("utf-8"))
 
 
@@ -440,7 +546,7 @@ def _verify_legacy_records(root, metadata, cases, records):
     evidence = _legacy_evidence(root, metadata)
     data = "".join(_json(record) + "\n" for record in records).encode("utf-8")
     _require(_sha(data) == evidence["records_sha256"], "original legacy output or judgment changed")
-    actual = {case["id"]: _record_dependencies(case, record) for case, record in zip(cases, records)}
+    actual = {case["id"]: _record_dependencies(case, record) for case, record in zip(cases, records, strict=True)}
     _require(actual == evidence["actual_prompt_sha256"], "legacy prompt dependencies changed")
 
 
@@ -459,7 +565,8 @@ def _write(path, text, exclusive=False):
         stream.write(text)
 
 
-def prepare(root: Path, version=VERSION, work_dir=Path(".eval-work")):
+def prepare(root: Path, version=VERSION, work_dir=Path(".eval-work"), *,
+            output_contract="whole-response-v1"):
     _version(version)
     cases = load_cases(root)
     source_digest = compute_digest(root)
@@ -469,8 +576,9 @@ def prepare(root: Path, version=VERSION, work_dir=Path(".eval-work")):
         "version": version,
         "tested_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "tested_skill_digest": source_digest,
-        "evaluation_identity": compute_evaluation_identity(root),
+        "evaluation_identity": compute_evaluation_identity(root, output_contract),
         "operations_version": OPERATIONS_VERSION,
+        "output_contract": output_contract,
         "source_protocol": _read_text(root / "evals" / "README.md"),
     }
     work.mkdir(parents=True, exist_ok=False)
@@ -478,6 +586,9 @@ def prepare(root: Path, version=VERSION, work_dir=Path(".eval-work")):
     _write(work / "execution.jsonl", "", exclusive=True)
     for role in ROLES:
         (work / role).mkdir()
+        if output_contract == "final-answer-v1":
+            (work / "responses" / role).mkdir(parents=True)
+            (work / "sources" / role).mkdir(parents=True)
     for case in cases:
         _write(work / "prompts" / "generator" / f"{case['id']}.txt",
                render_generator_prompt(case), exclusive=True)
@@ -508,8 +619,9 @@ def _metadata(root, metadata, version):
     _text(metadata["tested_skill_digest"], "tested_skill_digest")
     _require(re.fullmatch(r"[0-9A-F]{64}", metadata["tested_skill_digest"]), "invalid raw source digest")
     if "evaluation_identity" in metadata:
-        _require(type(metadata["operations_version"]) is str and metadata["operations_version"] in {"2"},
+        _require(type(metadata["operations_version"]) is str and metadata["operations_version"] == OPERATIONS_VERSION,
                  "unknown operations version")
+        _require(metadata["output_contract"] in OUTPUT_CONTRACTS, "unknown output contract")
         _text(metadata["source_protocol"], "source_protocol")
         _text(metadata["evaluation_identity"], "evaluation_identity")
         _require(compute_digest(root, protocol_bytes=metadata["source_protocol"].encode("utf-8"))
@@ -517,7 +629,7 @@ def _metadata(root, metadata, version):
         _require(_protocol_semantics(metadata["source_protocol"])
                  == _protocol_semantics(_read_text(root / "evals" / "README.md")),
                  "source snapshot evaluation semantics changed")
-        _require(metadata["evaluation_identity"] == compute_evaluation_identity(root),
+        _require(metadata["evaluation_identity"] == compute_evaluation_identity(root, metadata["output_contract"]),
                  "tested skill digest mismatch: evaluation identity changed")
     else:
         _legacy_evidence(root, metadata)
@@ -618,7 +730,7 @@ def _collect(root, version, work_dir):
         _exact_files(work / "prompts" / role, text_names)
         _exact_files(work / role, text_names if role == "generator" else json_names)
     envelopes = {}
-    contexts = set()
+    contexts, response_turns = set(), set()
     case_ids = {case["id"] for case in cases}
     for envelope in _read_jsonl(work / "execution.jsonl"):
         _keys(envelope, {"id", *ROLE_FIELDS})
@@ -658,10 +770,29 @@ def _collect(root, version, work_dir):
             adjudicator_names.append(f"{case_id}.json")
         record = _make_record(case, output, participants["generator"], reviewers, adjudicator, metadata)
         record.update({key: metadata[key] for key in IDENTITY_FIELDS if key in metadata})
+        if metadata.get("output_contract") == "final-answer-v1":
+            used_roles = ["generator", "reviewer-a", "reviewer-b"]
+            if adjudicator is not None:
+                used_roles.append("adjudicator")
+            record["response_evidence"] = {
+                role: _read_json(work / "responses" / role / f"{case_id}.json") for role in used_roles
+            }
+            for role in used_roles:
+                original = capture_response((work / "sources" / role / f"{case_id}.json").read_bytes())
+                _require(original == record["response_evidence"][role],
+                         "response evidence differs from preserved source")
+                record["response_evidence"][role] = public_response_evidence(original)
+        _validate_record_responses(record, response_turns)
         if "evaluation_identity" in metadata:
             record["dependency_sha256"] = _bound_record_dependencies(case, record)
         records.append(record)
     _exact_files(work / "adjudicator", adjudicator_names)
+    if metadata.get("output_contract") == "final-answer-v1":
+        for role in ("generator", "reviewer-a", "reviewer-b"):
+            _exact_files(work / "responses" / role, json_names)
+            _exact_files(work / "sources" / role, json_names)
+        _exact_files(work / "responses" / "adjudicator", adjudicator_names)
+        _exact_files(work / "sources" / "adjudicator", adjudicator_names)
     _require(set(envelopes) == required_envelopes, "missing or unused execution envelopes")
     if "evaluation_identity" not in metadata:
         _verify_legacy_records(root, metadata, cases, records)
@@ -694,11 +825,21 @@ def _summary(cases, records, metadata):
         cells = [role, *SETTINGS.values(), "codex-desktop" if attempts else "해당 없음",
                  versions, len(attempts), sum(len(item["attempt_log"]) - 1 for item in participants)]
         lines.append("| " + " | ".join(_markdown(cell) for cell in cells) + " |")
-    lines += ["", "## 결과", "", "| 평가 묶음 | 전체 | 통과 | 실패 |", "| --- | --- | --- | --- |"]
+    contract = metadata.get("output_contract", "whole-response-v1")
+    lines += ["", f"출력 계약: `{contract}`", ""]
+    if contract == "final-answer-v1":
+        commentary_count = sum(
+            message["phase"] == "commentary" for record in records
+            for evidence in record["response_evidence"].values() for message in evidence["messages"]
+        )
+        lines += ["실제 final_answer 전체를 평가했습니다. 진행 안내는 원문과 채널을 별도 보존했습니다.",
+                  f"보존한 진행 안내: {commentary_count}개 메시지. 전체 응답에 안내가 없었다는 결과는 아닙니다.",
+                  "수집할 때 비공개 원본과 전체 메시지를 대조했습니다. 공개 재검증은 저장된 근거와 최종 출력의 연결을 확인하며 원본 내보내기의 완전성을 다시 보증하지 않습니다.", ""]
+    lines += ["## 결과", "", "| 평가 묶음 | 전체 | 통과 | 실패 |", "| --- | --- | --- | --- |"]
     for filename in CASE_COUNTS:
         group = filename.removesuffix(".json")
         selected = [
-            record for case, record in zip(cases, records)
+            record for case, record in zip(cases, records, strict=True)
             if ("core" if case["category"] in CORE_CATEGORIES else case["category"]) == group
         ]
         passed = sum(record["case_pass"] for record in selected)
@@ -717,7 +858,7 @@ def _summary(cases, records, metadata):
         "집계 도구는 저장된 실행 정보와 판정의 일관성을 검사하며 실제 실행 여부를 외부 시스템과 대조하지 않습니다.",
         "사례 통과 여부는 다수결 판정입니다. 완전 일치 기준과 배포 조건은 최종 검증 도구에서 별도로 검사합니다.",
         "", "## 재현", "",
-        f"    python -X utf8 scripts/run_evals.py prepare --version {version} --work-dir .eval-work", "",
+        f"    python -X utf8 scripts/run_evals.py prepare --version {version} --work-dir .eval-work --output-contract {contract}", "",
         "이전 대화가 없는 새 실행에서 출력과 판정을 수집하고 실행 정보를 기록한 뒤 다음 명령을 실행합니다.", "",
         f"    python -X utf8 scripts/run_evals.py aggregate --version {version} --work-dir .eval-work",
         f"    python -X utf8 scripts/run_evals.py check --version {version} --work-dir .eval-work",
@@ -767,10 +908,10 @@ def verify_tracked(root: Path, version=VERSION):
     cases = load_cases(root)
     records = _read_jsonl(root / "evals" / "runs" / f"{version}.jsonl")
     _require(len(records) == len(cases), "tracked case count mismatch")
-    contexts, rebuilt = set(), []
+    contexts, response_turns, rebuilt = set(), set(), []
     metadata = None
-    for case, record in zip(cases, records):
-        _keys(record, RECORD_FIELDS, IDENTITY_FIELDS | DEPENDENCY_FIELDS)
+    for case, record in zip(cases, records, strict=True):
+        _keys(record, RECORD_FIELDS, IDENTITY_FIELDS | DEPENDENCY_FIELDS | RESPONSE_FIELDS)
         _require(record["id"] == case["id"], "tracked case ID or order mismatch")
         current = {"version": version, "tested_at": record["tested_at"],
                    "tested_skill_digest": record["tested_skill_digest"]}
@@ -786,7 +927,7 @@ def verify_tracked(root: Path, version=VERSION):
                  "final decisions must be boolean")
         _validate_rubric(record["final_rubric"], case)
 
-        def participant(value, role):
+        def participant(value, role, case=case):
             expected = ROLE_FIELDS | (JUDGMENT_FIELDS if role != "generator" else set())
             _keys(value, expected)
             result = _validate_envelope(
@@ -802,10 +943,13 @@ def verify_tracked(root: Path, version=VERSION):
         generator = participant(record["generator"], "generator")
         _require(type(record["reviewers"]) is list and len(record["reviewers"]) == 2, "invalid reviewers")
         reviewers = [participant(value, role) for value, role in
-                     zip(record["reviewers"], ("reviewer-a", "reviewer-b"))]
+                     zip(record["reviewers"], ("reviewer-a", "reviewer-b"), strict=True)]
         adjudicator = participant(record["adjudicator"], "adjudicator") if record["adjudicator"] is not None else None
         expected = _make_record(case, record["output"], generator, reviewers, adjudicator, metadata)
         expected.update({key: metadata[key] for key in IDENTITY_FIELDS if key in metadata})
+        if metadata.get("output_contract") == "final-answer-v1":
+            expected["response_evidence"] = record.get("response_evidence")
+        _validate_record_responses(expected, response_turns)
         if "evaluation_identity" in metadata:
             expected["dependency_sha256"] = _bound_record_dependencies(case, expected)
         _require(record == expected, f"recorded prompt hash or final judgment differs: {case['id']}")
@@ -824,9 +968,22 @@ def main(argv=None):
         child.add_argument("--version", default=VERSION)
         if command != "verify-tracked":
             child.add_argument("--work-dir", type=Path, default=Path(".eval-work"))
+        if command == "prepare":
+            child.add_argument("--output-contract", choices=OUTPUT_CONTRACTS, default="whole-response-v1")
+    capture = commands.add_parser("capture-response")
+    capture.add_argument("--source", type=Path, required=True)
+    capture.add_argument("--evidence", type=Path, required=True)
+    capture.add_argument("--output", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
-        if args.command == "verify-tracked":
+        if args.command == "capture-response":
+            evidence = capture_response(args.source.read_bytes())
+            _require(not args.evidence.exists() and not args.output.exists(), "capture destination exists")
+            _write(args.evidence, _json(evidence) + "\n", exclusive=True)
+            _write(args.output, response_output(evidence), exclusive=True)
+        elif args.command == "prepare":
+            prepare(args.root, args.version, args.work_dir, output_contract=args.output_contract)
+        elif args.command == "verify-tracked":
             verify_tracked(args.root, args.version)
         else:
             operation = {"prepare": prepare, "aggregate": aggregate, "check": check}[args.command]
