@@ -111,7 +111,7 @@ jobs:
         run: python -B -X utf8 scripts/validate_repo.py --phase build
 
       - name: Verify original v0.1.0 evaluation records
-        run: python -B -X utf8 scripts/run_evals.py --root .release-baseline verify-tracked --version v0.1.0
+        run: python -B -X utf8 .release-baseline/scripts/run_evals.py --root .release-baseline verify-tracked --version v0.1.0
 
       - name: Validate current candidate before evaluation on Ubuntu
         if: runner.os == 'Linux'
@@ -132,14 +132,14 @@ jobs:
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -B -X utf8 scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$TASK_GH_PATH"
+        run: python -B -X utf8 .release-baseline/scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$TASK_GH_PATH"
 
       - name: Validate original v0.1.0 release criteria on Windows
         if: runner.os == 'Windows'
         shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python -B -X utf8 scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$env:TASK_GH_PATH"
+        run: python -B -X utf8 .release-baseline/scripts/validate_repo.py --root .release-baseline --phase final --gh-path "$env:TASK_GH_PATH"
 
       - name: Validate skill package on Ubuntu
         if: runner.os == 'Linux'
