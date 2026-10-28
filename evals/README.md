@@ -111,15 +111,16 @@
 
 ## 실행 설정
 
-모든 역할에 같은 설정을 적용합니다.
+새 평가에서는 모든 역할에 다음 설정을 적용합니다. 기존 `gpt-5.6-sol/high` 결과는 당시 설정과 원문, 판정을 그대로 보존하며 새 결과와 합치지 않습니다.
 
 | 항목 | 값 |
 | --- | --- |
 | `agent` | `codex` |
 | `runtime_surface` | `codex-desktop` |
-| `model` | `gpt-5.6-sol` |
-| `reasoning_effort` | `high` |
+| `model` | `gpt-6-astra` |
+| `reasoning_effort` | `xhigh` |
 | `sampling` | `runtime_default` |
+| `service_tier` | `default` |
 | GitHub CLI | `2.97.0` |
 
 | 역할 | 실행 조건 |
@@ -132,6 +133,10 @@
 각 사례, 역할, 시도는 모두 이전 기록이 없는 새 대화에서 실행합니다. 생성용 에이전트에게는 설치된 스킬과 `context`, `instruction`, `input`만 제공합니다. 평가자에게는 스킬이나 생성용 에이전트의 작업 기록을 주지 않습니다. 평가자 A와 B는 서로의 판정도 받지 않습니다.
 
 `temperature` 등 직접 지정할 수 없는 샘플링 값을 추측하지 않습니다. 지정한 모델이나 추론 수준을 사용할 수 없으면 평가를 중단합니다. 다른 설정으로 평가하려면 결과 버전도 새로 정합니다. `runtime_version`은 실제 실행 환경에서 확인한 Codex Desktop 버전으로 기록합니다.
+
+Fast와 Ultrafast는 사용하지 않습니다. 실행 전에 해당 요청에 적용되는 서비스 등급이 `default`인지 확인하고, 각 역할의 실제 실행 근거와 함께 보존합니다. 기본 설정 파일이나 도구의 지원 등급 목록만으로 개별 실행의 값을 단정하지 않습니다. 요청에 적용되는 값을 확인할 수 없거나 변경할 수 없는 Fast 설정이 있으면 모델 호출 전에 중단합니다. 기록 검사는 `fast`, `priority`, `auto`와 누락된 값을 거부하지만, 기록에 적힌 `default`만으로 실제 서비스 등급을 확인한 것으로 취급하지 않습니다.
+
+새 Astra 평가는 `v0.1.2` 결과 버전과 별도 작업 폴더를 사용합니다. 이 번호는 평가 기록을 구분하며 태그나 릴리스를 생성하지 않습니다. `v0.1.0`의 공개 기록과 이전 `v0.1.1` 평가 기록은 수정하지 않습니다. 기존 명령의 기본 버전을 재사용하지 않고 준비, 집계와 검사에 `--version v0.1.2`를 명시합니다.
 
 ### 출력 채널과 평가 범위
 
@@ -147,8 +152,10 @@
 
 ```powershell
 python -X utf8 scripts/validate_repo.py --print-digest
-python -X utf8 scripts/run_evals.py prepare --version v0.1.0 --work-dir .eval-work
+python -X utf8 scripts/run_evals.py prepare --version v0.1.2 --work-dir .eval-work/astra-v0.1.2 --output-contract final-answer-v1
 ```
+
+이하 파일 경로의 `.eval-work`는 준비할 때 지정한 작업 폴더를 뜻합니다. 위 명령으로 준비했다면 모든 후속 경로에 `.eval-work/astra-v0.1.2`를 사용합니다.
 
 `prepare`는 각 사례의 생성용 프롬프트, 평가자 A와 B용 프롬프트, `.eval-work/run.json`을 만듭니다. 모델을 실행하지는 않습니다. `run.json`에는 다음 값을 기록합니다.
 
@@ -259,7 +266,7 @@ python -X utf8 scripts/run_evals.py capture-response --source .eval-work/sources
 
 ### 실행 기록
 
-`execution.jsonl`은 사례와 역할의 조합마다 JSON 객체 한 줄을 기록합니다. 각 객체에는 `id`, `role`, `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`가 필요합니다. `role`은 `generator`, `reviewer-a`, `reviewer-b`, `adjudicator` 중 하나입니다.
+`execution.jsonl`은 사례와 역할의 조합마다 JSON 객체 한 줄을 기록합니다. 각 객체에는 `id`, `role`, `agent`, `model`, `reasoning_effort`, `sampling`, `service_tier`, `attempt_log`가 필요합니다. `role`은 `generator`, `reviewer-a`, `reviewer-b`, `adjudicator` 중 하나입니다. `service_tier`는 새 실행에서 확인한 값만 기록하며 과거 기록에 소급해서 추가하지 않습니다.
 
 `attempt_log`의 각 항목은 다음 필드를 가집니다.
 
@@ -307,12 +314,12 @@ python -X utf8 scripts/run_evals.py capture-response --source .eval-work/sources
 ## 결과 생성과 검증
 
 ```powershell
-python -X utf8 scripts/run_evals.py aggregate --version v0.1.0 --work-dir .eval-work
-python -X utf8 scripts/run_evals.py check --version v0.1.0 --work-dir .eval-work
-python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
+python -X utf8 scripts/run_evals.py aggregate --version v0.1.2 --work-dir .eval-work/astra-v0.1.2
+python -X utf8 scripts/run_evals.py check --version v0.1.2 --work-dir .eval-work/astra-v0.1.2
+python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.2
 ```
 
-`aggregate`는 사례 식별자, 파일 수, JSON 형식, 평가 항목 식별자, 실행 설정, UUID 중복, 재시도 조건을 검사한 뒤 [runs/v0.1.0.jsonl](runs/v0.1.0.jsonl)과 [results-v0.1.0.md](results-v0.1.0.md)를 생성합니다.
+`aggregate`는 사례 식별자, 파일 수, JSON 형식, 평가 항목 식별자, 실행 설정, UUID 중복, 재시도 조건을 검사한 뒤 지정한 버전의 JSONL과 결과 요약을 생성합니다. 위 명령의 경로는 `evals/runs/v0.1.2.jsonl`과 `evals/results-v0.1.2.md`입니다. 실제 평가를 완료하기 전에는 결과 파일을 만들지 않습니다.
 
 같은 버전의 기존 결과와 바이트가 다르면 덮어쓰기를 거부합니다. 아직 공개하지 않은 버전을 다시 평가할 때는 이전 `.eval-work/`와 결과 파일 두 개를 저장소 밖의 작업 기록으로 보존한 뒤 새 결과를 생성합니다. 실패한 결과를 누락하거나 더 좋은 결과만 선택하지 않습니다. 이미 공개한 태그의 결과는 바꾸지 않고 새 버전으로 평가합니다.
 
@@ -355,7 +362,7 @@ CI의 원본 대상 `final`은 당시 코드로 과거 릴리스 기준을 검�
 | `operations_version` | 새 형식의 운영 절차 버전입니다. |
 | `dependency_sha256` | 새 형식에서 생성 결과와 평가 요청, 원래 판정의 연결을 확인하는 해시입니다. 이전 형식의 결과에는 추가하지 않습니다. |
 
-각 역할의 실행 기록에는 `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`를 보존합니다. 평가자와 추가 평가자에는 원래 판정의 `rubric`, `critical_failure`, `reason`도 보존합니다. 실행하지 않은 추가 평가자의 기록을 만들지 않습니다.
+각 역할의 실행 기록에는 `agent`, `model`, `reasoning_effort`, `sampling`, `service_tier`, `attempt_log`를 보존합니다. 평가자와 추가 평가자에는 원래 판정의 `rubric`, `critical_failure`, `reason`도 보존합니다. 실행하지 않은 추가 평가자의 기록을 만들지 않습니다.
 
 ### 결과 요약
 

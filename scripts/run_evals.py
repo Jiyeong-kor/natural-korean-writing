@@ -14,7 +14,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 VERSION = "v0.1.0"
-OPERATIONS_VERSION = "3"
+OPERATIONS_VERSION = "4"
 OUTPUT_CONTRACTS = ("whole-response-v1", "final-answer-v1")
 IDENTITY_FIELDS = {"evaluation_identity", "operations_version", "output_contract"}
 DEPENDENCY_FIELDS = {"dependency_sha256"}
@@ -46,8 +46,9 @@ CASE_FIELDS = {
 }
 ROLES = ("generator", "reviewer-a", "reviewer-b", "adjudicator")
 SETTINGS = {
-    "agent": "codex", "model": "gpt-5.6-sol",
-    "reasoning_effort": "high", "sampling": "runtime_default",
+    "agent": "codex", "model": "gpt-6-astra",
+    "reasoning_effort": "xhigh", "sampling": "runtime_default",
+    "service_tier": "default",
 }
 ROLE_FIELDS = {"role", *SETTINGS, "attempt_log"}
 JUDGMENT_FIELDS = {"rubric", "critical_failure", "reason"}
@@ -810,8 +811,8 @@ def _summary(cases, records, metadata):
         f"평가 시작: {metadata['tested_at']}", "",
         f"평가 대상 SHA256: {metadata['tested_skill_digest']}", "",
         "GitHub CLI: 2.97.0", "", "## 실행 환경", "",
-        "| 역할 | 에이전트 | 모델 | 추론 설정 | 샘플링 | 실행 환경 | 버전 | 실행 횟수 | 재시도 |",
-        "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+        "| 역할 | 에이전트 | 모델 | 추론 설정 | 샘플링 | 서비스 등급 | 실행 환경 | 버전 | 실행 횟수 | 재시도 |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for role in ROLES:
         participants = []

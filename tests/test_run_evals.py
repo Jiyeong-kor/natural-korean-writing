@@ -303,6 +303,9 @@ class EvalHarnessTests(unittest.TestCase):
         with patch.dict(harness.SETTINGS, {"reasoning_effort": "low"}):
             with self.assertRaises(ValueError):
                 harness._metadata(self.root, metadata, harness.VERSION)
+        with patch.dict(harness.SETTINGS, {"service_tier": "fast"}):
+            with self.assertRaises(ValueError):
+                harness._metadata(self.root, metadata, harness.VERSION)
         renderer = harness.render_adjudicator_prompt
         with patch.object(harness, "render_adjudicator_prompt",
                           side_effect=lambda *args: renderer(*args) + "Changed criterion."):
@@ -459,7 +462,12 @@ class EvalHarnessTests(unittest.TestCase):
         mutations = [
             lambda value: value.update(model="different-model"),
             lambda value: value.update(reasoning_effort="low"),
+            lambda value: value.update(model="gpt-5.6-sol", reasoning_effort="high"),
             lambda value: value.update(sampling="0.2"),
+            lambda value: value.update(service_tier="fast"),
+            lambda value: value.update(service_tier="priority"),
+            lambda value: value.update(service_tier="auto"),
+            lambda value: value.pop("service_tier"),
             lambda value: value.update(agent="different-agent"),
             lambda value: value.update(extra="not allowed"),
             lambda value: value["attempt_log"][0].update(runtime_surface="cli"),
@@ -474,6 +482,29 @@ class EvalHarnessTests(unittest.TestCase):
                 self.write_execution()
                 with self.assertRaises(ValueError):
                     harness.aggregate(self.root)
+
+    def test_approved_astra_settings_and_separate_result_version(self):
+        self.assertEqual(harness.SETTINGS, {
+            "agent": "codex", "model": "gpt-6-astra", "reasoning_effort": "xhigh",
+            "sampling": "runtime_default", "service_tier": "default",
+        })
+        self.assertEqual(harness.OPERATIONS_VERSION, "4")
+        original_metadata = (self.work / "run.json").read_bytes()
+        new_work = self.root / ".astra-eval"
+        metadata = harness.prepare(self.root, version="v0.1.2", work_dir=new_work,
+                                   output_contract="final-answer-v1")
+        self.assertEqual(metadata["version"], "v0.1.2")
+        self.assertEqual(metadata["output_contract"], "final-answer-v1")
+        self.assertEqual((self.work / "run.json").read_bytes(), original_metadata)
+        self.assertNotEqual(metadata["evaluation_identity"],
+                            harness._read_json(self.work / "run.json")["evaluation_identity"])
+        self.assertEqual((new_work / "execution.jsonl").read_bytes(), b"")
+
+    def test_summary_records_standard_service_tier(self):
+        harness.aggregate(self.root)
+        summary = harness._read_text(self.root / "evals" / f"results-{harness.VERSION}.md")
+        self.assertIn("| 서비스 등급 |", summary)
+        self.assertIn("| gpt-6-astra | xhigh | runtime_default | default |", summary)
 
     def test_extra_files_and_duplicate_envelopes_fail(self):
         extra = self.work / "generator" / "extra.txt"
