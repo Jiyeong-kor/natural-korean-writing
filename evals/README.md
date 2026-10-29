@@ -447,3 +447,6 @@ python -X utf8 -m unittest discover -s tests -v
 
 
 [supplemental/contextual-writing-decisions.json](supplemental/contextual-writing-decisions.json)은 본문과 기술명 입력란의 표기 범위, 경험에 근거한 지원동기와 서술어 호응, 행동에 맞는 성향 단어, 팀 전체 규모와 독자에게 필요한 활동 배경, 최종 코드 및 실제 테스트 근거, 문항별 승인 범위와 사실 근거에서 질문의 답으로 이어지는 결론, 요청한 격식 어휘의 적용 범위 및 지원 이유와 사례의 통일성을 검사하는 독립된 가상 사례 9개입니다. 실제 인물이나 비공개 프로젝트를 재현하지 않습니다. 기존 기본 50개와 보충 사례는 유지하고 같은 생성 및 독립 평가 절차로 별도 판정합니다. 단위 테스트의 형식 검사를 문장 품질 통과로 해석하지 않습니다.
+
+
+[supplemental/execution-learning-authority.json](supplemental/execution-learning-authority.json)은 실제 실행과 자료 열람의 구분, 첫 학습의 범위와 빠른 적용 및 도움이 된 근거, 신입의 역할에 맞는 포부와 실제 주도성 보존을 검사하는 가상 사례 3개입니다. 기존 평가와 결과를 유지하며 같은 절차로 별도 판정합니다. 특정 개인의 표현 선호를 보편적인 문법이나 조직문화 규칙으로 일반화하지 않습니다.
