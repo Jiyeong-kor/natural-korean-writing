@@ -444,3 +444,6 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/ai-contribution-closing.json](supplemental/ai-contribution-closing.json)은 AI 활용 작업에서 개인의 문제 발견과 판단, AI의 기여 및 확인한 결과를 구분하고, 불필요한 학습 희망과 질문에 필요한 구체적인 학습계획을 나누는 가상 사례 2개입니다. 요청 나열에 머물지 않고 실제 행동과 확인된 결과를 설명하며 AI가 한 일을 개인의 수작업으로 바꾸지 않는지 확인합니다. 같은 독립 평가 절차로 별도 판정하며 기본 50개와 기존 사례 및 결과는 유지합니다. 단위 테스트는 자료 형식과 분리만 확인하며 실제 원고의 품질 판정을 대신하지 않습니다.
 
 [supplemental/name-quotation-scope.json](supplemental/name-quotation-scope.json)은 이름 따옴표의 적용 범위를 본문, 독립 제목과 항목, 검색 문자열 및 실제 인용의 역할에 따라 구분하는 가상 사례 2개입니다. 본문의 표시 요청을 모든 영역에 확대하거나 제목의 따옴표를 무조건 제거하지 않는지 확인합니다. 기존 자료는 변경하지 않고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
+
+
+[supplemental/contextual-writing-decisions.json](supplemental/contextual-writing-decisions.json)은 본문과 기술명 입력란의 표기 범위, 경험에 근거한 지원동기와 서술어 호응, 행동에 맞는 성향 단어, 팀 전체 규모와 독자에게 필요한 활동 배경, 최종 코드 및 실제 테스트 근거, 문항별 승인 범위와 사실 근거에서 질문의 답으로 이어지는 결론을 검사하는 독립된 가상 사례 7개입니다. 실제 인물이나 비공개 프로젝트를 재현하지 않습니다. 기존 기본 50개와 보충 사례는 유지하고 같은 생성 및 독립 평가 절차로 별도 판정합니다. 단위 테스트의 형식 검사를 문장 품질 통과로 해석하지 않습니다.

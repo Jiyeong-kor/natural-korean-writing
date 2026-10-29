@@ -20,6 +20,8 @@ Keep conversation style separate from artifact style. Preserve the user's chosen
 
 Distinguish labels from prose. Titles, buttons, tabs, and table labels can be short phrases. Put explanations in value cells or surrounding prose rather than turning table labels into questions. Prose needs enough structure to make the action and target clear, not a mechanically repeated subject.
 
+Apply terminology preferences by textual role as well. A preference for familiar Korean technology names in narrative prose does not require transliterating official technology names in a separate skills list, product-name field, or fixed form choice. For example, a requested prose spelling `코틀린` can coexist with `Kotlin` in a technology-name field. Preserve official capitalization and protected identifiers; follow any explicit field-specific spelling instruction. Do not translate field labels or alter a fixed choice to force prose consistency, and do not add English duplicates everywhere when the reader does not need them.
+
 ## Protect meaning and exact text
 
 1. Preserve facts, scope, ownership, measurements, intent, tone, terminology, uncertainty, and commitments. Do not add a cause, failure, result, or benefit merely to make the sentence more specific.
