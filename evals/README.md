@@ -452,4 +452,4 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/execution-learning-authority.json](supplemental/execution-learning-authority.json)은 실제 실행과 자료 열람의 구분, 첫 학습의 범위와 빠른 적용 및 도움이 된 근거, 신입의 역할에 맞는 포부와 실제 주도성 보존을 검사하는 가상 사례 3개입니다. 기존 평가와 결과를 유지하며 같은 절차로 별도 판정합니다. 특정 개인의 표현 선호를 보편적인 문법이나 조직문화 규칙으로 일반화하지 않습니다.
 
 
-[supplemental/required-coverage-limitations.json](supplemental/required-coverage-limitations.json)은 최종 답변에서 필수 세부 질문의 누락을 찾고 보완하는지, 단점을 지우거나 완전히 극복했다고 만들지 않는지 검사하는 가상 사례 2개입니다. 기존 사례와 결과를 유지하고 같은 절차로 별도 판정합니다.
+[supplemental/required-coverage-limitations.json](supplemental/required-coverage-limitations.json)은 최종 답변에서 필수 세부 질문의 누락을 찾고 보완하는지, 단점을 지우거나 완전히 극복했다고 만들지 않는지, 원문에 근거해 추가 내용을 논리적으로 통합하는지, 학습한 기술과 구현에 사용한 기술을 구분하는지 검사하는 가상 사례 4개입니다. 기존 사례와 결과를 유지하고 같은 절차로 별도 판정합니다.

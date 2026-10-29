@@ -847,7 +847,7 @@ class SupplementalRegressionTests(unittest.TestCase):
             elif path.name == "execution-learning-authority.json":
                 self.assertEqual(len(cases), 3)
             elif path.name == "required-coverage-limitations.json":
-                self.assertEqual(len(cases), 2)
+                self.assertEqual(len(cases), 4)
             elif path.name in {"korean-document-layout.json", "application-duty-evidence.json"}:
                 self.assertEqual(len(cases), 2)
             elif path.name in {"resume-project-status.json", "application-contribution-tone.json"}:
