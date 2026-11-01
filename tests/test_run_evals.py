@@ -828,7 +828,9 @@ class SupplementalRegressionTests(unittest.TestCase):
             cases = json.loads(path.read_text(encoding="utf-8"))
             self.assertIsInstance(cases, list)
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
-            if path.name == "korean-final-language-pass.json":
+            if path.name in {"application-context-modifier-scope.json", "application-review-preservation.json"}:
+                self.assertEqual(len(cases), 4)
+            elif path.name == "korean-final-language-pass.json":
                 self.assertEqual(len(cases), 2)
             elif path.name in {"application-selection-review.json", "application-reader-causal-chain.json", "application-whole-answer-logic.json", "application-final-review-gate.json"}:
                 self.assertEqual(len(cases), 1)
@@ -878,6 +880,8 @@ class SupplementalRegressionTests(unittest.TestCase):
         self.assertTrue((root / "evals/supplemental/ai-contribution-closing.json").is_file())
         self.assertTrue((root / "evals/supplemental/name-quotation-scope.json").is_file())
         self.assertTrue((root / "evals/supplemental/korean-final-language-pass.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-context-modifier-scope.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-review-preservation.json").is_file())
         self.assertTrue((root / "evals/supplemental/korean-document-layout.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-duty-evidence.json").is_file())
         self.assertTrue((root / "evals/supplemental/resume-project-status.json").is_file())

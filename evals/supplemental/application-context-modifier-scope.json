@@ -1,0 +1,126 @@
+[
+  {
+    "id": "application-shared-context-001",
+    "category": "context",
+    "context": "기관, 과정, 인증은 모두 가상입니다. 지원서 열람 화면에서 교육란과 답변이 함께 표시되며 교육란에 나루문화실은 지역 주민을 위한 문화 실습 기관이라고 이미 설명되어 있습니다. 지원자는 그곳에서 책 보수를 배웠으며 별도로 기록관리 기초인증을 취득했습니다. 인증의 발급 기관, 시기, 공부 방법은 제공되지 않았습니다. 두 활동 모두 이번 답변에 필요합니다.",
+    "instruction": "독자가 이미 볼 수 있는 설명은 반복하지 말고 두 활동을 정확하게 전달하는 답변만 작성하세요.",
+    "input": "지역 주민을 위한 문화 실습 기관인 나루문화실에서 책 보수를 배우고 기록관리 기초인증을 취득했습니다.",
+    "must_preserve": [
+      "나루문화실에서 책 보수를 배웠습니다.",
+      "별도로 기록관리 기초인증을 취득했습니다."
+    ],
+    "must_include": [
+      "이미 공유된 기관 소개는 반복하지 않습니다.",
+      "기관 수식어가 인증 취득에도 걸리지 않도록 실제 문장을 수정합니다."
+    ],
+    "must_not_add": [
+      "확인되지 않은 사실, 발급 기관, 시점, 성과나 인과를 추가하지 않습니다."
+    ],
+    "review_points": [
+      "한 가지 어순을 정답으로 강제하지 않고 실제 문장과 근거를 대조합니다."
+    ],
+    "critical_failures": [
+      "인증을 나루문화실에서 취득한 것으로 읽히게 씁니다.",
+      "두 활동 중 하나를 삭제합니다.",
+      "현재 답변이 별도 칸이라는 이유만으로 이미 보이는 기관 소개를 반복합니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "application-shared-context-002",
+    "category": "context",
+    "context": "기관과 활동은 모두 가상입니다. 지원서 교육란에는 나루문화실이 지역 주민을 위한 문화 실습 기관이라고 설명되어 있지만 평가자에게는 다음 답변만 별도로 전달됩니다. 지원자는 나루문화실에서 책 보수를 배웠습니다.",
+    "instruction": "답변만 읽는 독자가 기관의 성격과 학습 활동을 이해하도록 짧게 고쳐 주세요. 완성 답변만 주세요.",
+    "input": "나루문화실에서 책 보수를 배웠습니다.",
+    "must_preserve": [
+      "나루문화실에서 책 보수를 배웠습니다."
+    ],
+    "must_include": [
+      "독자가 볼 수 없는 교육란에 의존하지 않고 짧은 기관 설명을 답변에 둡니다."
+    ],
+    "must_not_add": [
+      "확인되지 않은 사실, 발급 기관, 시점, 성과나 인과를 추가하지 않습니다."
+    ],
+    "review_points": [
+      "한 가지 어순을 정답으로 강제하지 않고 실제 문장과 근거를 대조합니다."
+    ],
+    "critical_failures": [
+      "다른 란에 설명이 있다는 이유로 아무 설명 없이 기관명만 씁니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "application-modifier-scope-001",
+    "category": "context",
+    "context": "기관과 기록은 모두 가상입니다. 지원자는 나루문화실에서 책 보수를 배우고 전시 안내 실습을 했습니다. 두 활동 모두 같은 기관에서 했습니다.",
+    "instruction": "사실 관계가 분명하고 자연스러우면 원문을 유지하세요. 완성 문장만 주세요.",
+    "input": "나루문화실에서 책 보수를 배우고 전시 안내 실습을 했습니다.",
+    "must_preserve": [
+      "책 보수 학습과 전시 안내 실습 모두 나루문화실에서 했습니다."
+    ],
+    "must_include": [
+      "확인된 공통 기관 수식어와 자연스러운 병렬 관계를 보존합니다."
+    ],
+    "must_not_add": [
+      "확인되지 않은 사실, 발급 기관, 시점, 성과나 인과를 추가하지 않습니다."
+    ],
+    "review_points": [
+      "공통 기관이 확인된 자연스러운 병렬 표현을 기계적으로 오류로 판정하거나 분리하지 않습니다."
+    ],
+    "critical_failures": [
+      "전시 안내 실습을 다른 곳에서 했다는 새 관계를 만듭니다.",
+      "기관을 생략해 활동의 소속을 지웁니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "application-modifier-scope-002",
+    "category": "context",
+    "context": "모든 기관과 활동은 가상입니다. 지원자는 달빛공방에서 목공 수업을 들었고 다른 장소에서 독립적으로 바느질을 배웠습니다. 두 활동의 순서와 시기는 알려지지 않았습니다. 두 활동 모두 답변에 필요합니다.",
+    "instruction": "장소나 시간 관계를 잘못 암시하지 않도록 원문을 고쳐 주세요. 완성 답변만 주세요.",
+    "input": "달빛공방에서 목공 수업을 듣고 바느질을 배웠습니다.",
+    "must_preserve": [
+      "달빛공방에서 목공 수업을 들었습니다.",
+      "바느질은 그곳과 별개로 배웠습니다."
+    ],
+    "must_include": [
+      "첫 활동의 장소를 두 번째 활동에 확대하지 않습니다.",
+      "시간 순서나 인과 관계를 만들지 않습니다."
+    ],
+    "must_not_add": [
+      "확인되지 않은 사실, 발급 기관, 시점, 성과나 인과를 추가하지 않습니다."
+    ],
+    "review_points": [
+      "한 가지 어순을 정답으로 강제하지 않고 실제 문장과 근거를 대조합니다."
+    ],
+    "critical_failures": [
+      "같은 장소에서 두 활동을 했다고 쓰거나 오독 가능성을 남깁니다.",
+      "이후, 동시에, 덕분에 등으로 미확인 관계를 추가합니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  }
+]

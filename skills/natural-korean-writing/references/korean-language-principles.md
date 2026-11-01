@@ -10,6 +10,16 @@ Start with the predicate. Identify the actor or subject, the object, and any req
 2. If the predicate changes, check its required components again. A noun that was an object may need a different particle or may no longer belong in the sentence.
 3. Keep coordinated items parallel when they serve the same role. Do not force different roles into the same form merely to make a list look uniform.
 
+### Modifier scope across coordinated activities
+
+Check which predicates a shared institution, place, time, means, or causal modifier appears to govern. Two individually true activities can form a misleading combined claim when one modifier seems to cover both. If only one activity belongs to that institution or setting, separate the clauses or sentences and give each activity only its supported context. Do not imply a shared affiliation, credential issuer or acquisition route, cause, or timing merely through coordination. A comma or `또한` does not necessarily end the modifier's apparent scope. Keep coordination when the shared context is actually supported; do not require every activity to become a separate sentence.
+
+Fictional example: the writer learned book repair at `나루문화실` and independently earned `기록관리 기초인증`; the sequence and issuing body are unspecified. `나루문화실에서 책 보수를 배우고 기록관리 기초인증을 취득했습니다.` can incorrectly place both activities there. `나루문화실에서 책 보수를 배웠습니다. 별도로 기록관리 기초인증을 취득했습니다.` preserves the two activities without inventing an issuer, study method, or chronology. This is a fictional scope example, not a fixed application template.
+
+### Review prose as Korean too
+
+Apply the same sentence-level check to review explanations, status reports, and final replies as to the edited artifact. Factual accuracy and a correct interpretation of the prompt do not establish natural Korean. Check the actual subject, object, predicate, referent, and modifier scope instead of silently supplying the intended meaning. A numerical outcome is not itself an action; where a review explains a trait, describe the supported choice or action and its result clearly. Do not treat a vague demonstrative or nominalized relation as an explanation, and do not invent an English source or a translation process when none was provided. A user's criticism of translation-like phrasing calls for a Korean language check, not only a defense of the facts or argument.
+
 ### Semantic compatibility
 
 A grammatical case marker does not establish that the predicate describes the intended action. Identify what the object represents: a task, goal, difficulty, result, document, or another entity. Choose a verb that expresses what actually happened to that object. For example, completing a task and achieving a goal are related but not interchangeable claims; finishing work does not by itself establish that its goal was achieved.

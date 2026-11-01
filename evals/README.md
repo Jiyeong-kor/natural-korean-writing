@@ -454,3 +454,7 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/application-final-review-gate.json](supplemental/application-final-review-gate.json)은 앞선 통과 판정과 별개로 전달 책임자가 실제 최종 답변을 다시 판단하는 가상 사례 1개입니다. 회사 선택 근거, 협업 상호작용, 학습 범위와 속도 증거 및 검토자가 추가한 금지 표현을 대조하고, 실제 문장의 수정과 미해결 상태를 구분합니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
 [supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 2개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
+
+[supplemental/application-context-modifier-scope.json](supplemental/application-context-modifier-scope.json)은 실제로 함께 보이는 다른 입력란과 독립 답변의 정보 범위, 기관과 장소 수식어의 적용 범위를 검사하는 가상 사례 4개입니다. 공통 수식이 정확한 문장은 유지합니다.
+
+[supplemental/application-review-preservation.json](supplemental/application-review-preservation.json)은 표현 수정 뒤에도 강점을 보존하는지, 대등한 이견의 조율과 공동 결과를 유지하는지, 검수 설명의 한국어를 별도로 읽는지, 지정된 검수 경로와 실제 제출 주체를 구분하는지 검사하는 가상 사례 4개입니다. 두 보충 묶음은 실제 개인 이력이나 대화를 사용하지 않습니다. 기본 50개와 기존 보충 사례 및 결과를 보존하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 사례 추가나 도구 검사 성공을 실제 모델 평가 통과로 보고하지 않습니다.
