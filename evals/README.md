@@ -446,3 +446,5 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/name-quotation-scope.json](supplemental/name-quotation-scope.json)은 이름 따옴표의 적용 범위를 본문, 독립 제목과 항목, 검색 문자열 및 실제 인용의 역할에 따라 구분하는 가상 사례 2개입니다. 본문의 표시 요청을 모든 영역에 확대하거나 제목의 따옴표를 무조건 제거하지 않는지 확인합니다. 기존 자료는 변경하지 않고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
 [supplemental/application-selection-review.json](supplemental/application-selection-review.json)은 사실과 문법 확인을 넘어 공식 업무에 근거한 선발 이유, 회사와 직무 선택 이유의 구분, 실무 적응 우려와 미완료 보완 행동을 검토하는 가상 사례 1개입니다. 필수 수정과 전략적 개선을 구분하며 경쟁자나 합격 확률을 만들지 않는지 확인합니다. 기존 사례와 결과를 유지하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
+
+[supplemental/application-reader-causal-chain.json](supplemental/application-reader-causal-chain.json)은 이용 목적과 실제 막힌 조건, 수정 및 관찰 결과가 처음 읽는 독자에게 이어지는지 확인하는 가상 사례 1개입니다. 도입부의 반복 노력 감소 주장과 사례 근거를 대조하고, 특정 조건의 실패를 전체 기능의 한계로 확대하지 않는지도 확인합니다. 기존 평가와 결과를 유지하며 같은 생성 및 독립 평가 절차로 별도 판정하고 기본 집계에는 포함하지 않습니다.

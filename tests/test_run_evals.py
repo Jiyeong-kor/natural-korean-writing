@@ -828,7 +828,7 @@ class SupplementalRegressionTests(unittest.TestCase):
             cases = json.loads(path.read_text(encoding="utf-8"))
             self.assertIsInstance(cases, list)
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
-            if path.name == "application-selection-review.json":
+            if path.name in {"application-selection-review.json", "application-reader-causal-chain.json"}:
                 self.assertEqual(len(cases), 1)
             elif path.name == "application-workflow.json":
                 self.assertEqual(len(cases), 13)
