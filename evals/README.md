@@ -452,3 +452,5 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/application-whole-answer-logic.json](supplemental/application-whole-answer-logic.json)은 개별 사례가 정확해도 질문의 결론을 뒷받침하지 못하는 전체 구조를 검사하는 가상 사례 1개입니다. 도입부와 사례 및 선택 이유의 연결, 부적합한 사례의 제외, 근거 없는 인과 관계와 장황한 배경 추가의 방지를 확인합니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
 [supplemental/application-final-review-gate.json](supplemental/application-final-review-gate.json)은 앞선 통과 판정과 별개로 전달 책임자가 실제 최종 답변을 다시 판단하는 가상 사례 1개입니다. 회사 선택 근거, 협업 상호작용, 학습 범위와 속도 증거 및 검토자가 추가한 금지 표현을 대조하고, 실제 문장의 수정과 미해결 상태를 구분합니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
+
+[supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 2개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
