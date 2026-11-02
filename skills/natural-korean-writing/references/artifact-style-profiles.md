@@ -4,6 +4,16 @@ Use the profile that fits the requested output. A conversation about a document 
 
 For Korean prose intended for other readers or remote publication, use natural `합니다/했습니다`-style honorifics from the local draft unless the user or destination explicitly requires another register. Include explanatory and checklist sentences in that check; short titles, labels, status values, code, and source quotations retain their appropriate form. Follow explicit user or repository wording restrictions within their scope rather than applying one author's personal preferences to everyone.
 
+## Shared document drafting checks
+
+When a document needs a title, keep it brief and specific to its content. In reports and decision-oriented documents, normally lead with the conclusion or requested action, then give the supporting reasons and necessary detail. Honor the user's required order and retain context needed to interpret the conclusion; do not mechanically move a conclusion ahead of its essential qualification or impose this structure on every conversation or narrative.
+
+Prefer Hangul in ordinary Korean prose when Hanja characters add no needed distinction. Preserve characters needed for an exact official name, quotation, protected literal, or meaningful disambiguation. This concerns the use of Hanja characters, not a ban on Korean words of Chinese origin written in Hangul.
+
+Prefer a direct statement of the supported action over an unnecessary negative or double-negative construction when the meaning and force remain the same. A positive sentence form is not a reason to hide a negative fact, prohibition, failed action, limitation, or uncertainty. Do not delete negation mechanically, weaken an obligation, invent an available action, or turn a plan into a completed result.
+
+Include a preparation date when the requested document format, record keeping, or interpretation requires it, using an appropriate date field or metadata. Use the confirmed date for the event that field names: preparation, revision, issue, submission, and an activity date are not interchangeable. Do not overwrite a historical preparation date with the current date merely while polishing the text. If a necessary date is unknown, ask or identify that gap instead of inventing it. Do not add a date to every ordinary chat reply.
+
 ## Korean document and PDF layout
 
 Treat wording and typesetting as separate tasks. Use a renderer with Korean/CJK line-breaking support and apply the user's stated preference for the actual document. When character-level wrapping is requested, allow automatic line breaks within Korean spacing units rather than retaining each whole unit with a keep-all setting that leaves large line-end gaps. This preference does not authorize imposing that style on a different user or overriding an explicit whole-unit layout request.

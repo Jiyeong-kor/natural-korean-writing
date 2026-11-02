@@ -435,6 +435,8 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/korean-document-layout.json](supplemental/korean-document-layout.json)은 문서별 명시된 줄바꿈 선호, 원고와 조판의 구분, 금칙 처리와 영문 문자열, 간격 및 줄 끝 빈 공간, 미리보기와 저장 후 확인 상태를 검사하는 가상 사례 2개입니다. 조판 계획과 제공된 확인 기록을 판단하며 실제 PDF 제작이나 시각 검사를 요청하지 않습니다. 이 사례의 통과는 실제 렌더러나 저장 파일의 시각 품질을 입증하지 않습니다.
 
+[supplemental/korean-document-principles.json](supplemental/korean-document-principles.json)은 짧은 표제와 결론 배치, 한자 문자와 보호 명칭, 긍정문 형식과 부정 사실, 작성일과 활동 일자의 구분을 검사하는 가상 사례 4개입니다. 기존 의미 보존과 최종 점검 기준을 금액·통화·수량·단위·첨부 목록에도 적용하며, 간결하게 고치면서 원인과 행동 및 결과를 지우거나 짧은 채팅에 제목과 날짜를 강제하는지 확인합니다. 기본 50개와 기존 사례 및 공개 결과는 유지하고 같은 생성과 독립 평가 절차로 별도 판정합니다. 실제 파일 작성이나 첨부·제출을 요청하지 않으며, 단위 테스트와 작성자의 수동 출력 점검을 독립 모델 품질 평가로 보고하지 않습니다.
+
 보충 주요업무와 개인 근거 사례:
 
 [supplemental/application-duty-evidence.json](supplemental/application-duty-evidence.json)은 공식 주요업무와 실제 개인 근거가 최종 원고에서 연결되는지, 포부와 역량을 구분하는지, 팀의 기술을 개인 숙련으로 확대하지 않는지 검사하는 가상 사례 2개입니다. 직접 기여할 수 있는 범위와 배워야 하는 범위, 확인되지 않은 근거를 구분하며 내부 검수표를 제출 답변에 넣도록 요구하지 않습니다.
