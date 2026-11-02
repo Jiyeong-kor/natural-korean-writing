@@ -8,15 +8,14 @@ import ast
 import io
 import json
 import os
-from pathlib import Path
 import re
 import subprocess
 import sys
 import tokenize
+from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 import run_evals
-
 
 SKILL_NAME = "natural-korean-writing"
 SKILL_DIR = f"skills/{SKILL_NAME}"
@@ -39,6 +38,20 @@ MANIFEST = (
     "evals/punctuation.json",
     "evals/context.json",
     "evals/pragmatics.json",
+    "evals/supplemental/application-action.json",
+    "evals/supplemental/revision-review.json",
+    "evals/supplemental/evidence-selection.json",
+    "evals/supplemental/ai-contribution-closing.json",
+    "evals/supplemental/application-contribution-tone.json",
+    "evals/supplemental/application-duty-evidence.json",
+    "evals/supplemental/application-tone-approval.json",
+    "evals/supplemental/application-workflow.json",
+    "evals/supplemental/korean-document-layout.json",
+    "evals/supplemental/name-quotation-scope.json",
+    "evals/supplemental/resume-information-selection.json",
+    "evals/supplemental/resume-project-status.json",
+    "evals/supplemental/resume-technology-outline.json",
+    "evals/supplemental/scoped-korean-wording.json",
     "evals/results-v0.1.0.md",
     "evals/runs/v0.1.0.jsonl",
     "examples/before-after.md",
@@ -47,6 +60,7 @@ MANIFEST = (
     f"{SKILL_DIR}/SKILL.md",
     f"{SKILL_DIR}/agents/openai.yaml",
     f"{SKILL_DIR}/references/artifact-style-profiles.md",
+    f"{SKILL_DIR}/references/application-answer-workflow.md",
     f"{SKILL_DIR}/references/context-audience-boundary.md",
     f"{SKILL_DIR}/references/korean-language-principles.md",
     f"{SKILL_DIR}/references/official-korean-sources.md",
@@ -237,22 +251,32 @@ def check_owner(text: str, owner: str) -> list[str]:
     return sorted(set(mismatches))
 
 
-def check_staged(root: Path, report: Report) -> None:
+def release_files(version: str) -> tuple[str, ...]:
+    run_evals._version(version)
+    if version == "v0.1.0":
+        return ()
+    return (f"evals/results-{version}.md", f"evals/runs/{version}.jsonl",
+            f"evals/runs/{version}.inputs.json")
+
+
+def check_staged(root: Path, report: Report, version: str = "v0.1.0") -> None:
     try:
         staged = set(filter(None, command(["git", "ls-files", "--cached", "-z"], root).split("\0")))
-        expected = set(MANIFEST)
+        manifest = (*MANIFEST, *release_files(version))
+        expected = set(manifest)
         missing, extra = sorted(expected - staged), sorted(staged - expected)
         report.check(not missing and not extra, ".", "staged manifest", f"missing={missing}; extra={extra}")
         ignored = command(["git", "check-ignore", "--no-index", "--stdin", "-z"], root,
-                          input_text="\0".join(MANIFEST) + "\0", allowed_codes=(0, 1))
+                          input_text="\0".join(manifest) + "\0", allowed_codes=(0, 1))
         report.check(not ignored, ".gitignore", "required paths", f"ignored={list(filter(None, ignored.split(chr(0))))}")
     except (OSError, ValueError, UnicodeError, subprocess.TimeoutExpired) as exc:
         report.check(False, ".", "staged manifest", str(exc))
 
 
-def check_release(root: Path, cases: list[dict], report: Report) -> None:
+def check_release(root: Path, cases: list[dict], report: Report, version: str = "v0.1.0") -> None:
     """Apply release criteria only after the harness verifies record integrity."""
-    path = "evals/runs/v0.1.0.jsonl"
+    run_evals._version(version)
+    path = f"evals/runs/{version}.jsonl"
     rows = [json.loads(line) for line in read_text(root / path).splitlines()]
     by_id = {row["id"]: row for row in rows}
     for group, minimum in (
@@ -273,19 +297,25 @@ def check_release(root: Path, cases: list[dict], report: Report) -> None:
 
 
 def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
-                  *, check_staged_manifest: bool = False) -> Report:
+                  *, check_staged_manifest: bool = False, version: str = "v0.1.0") -> Report:
     root = root.resolve()
     report = Report()
     if phase not in {"build", "pre-eval", "final"}:
         report.check(False, ".", "phase", f"unknown phase: {phase}")
         return report
+    try:
+        additional = release_files(version)
+    except ValueError as exc:
+        report.check(False, ".", "version", str(exc))
+        return report
     if phase != "build":
-        for relative in MANIFEST:
+        required = (*MANIFEST, *(additional if phase == "final" else ()))
+        for relative in required:
             report.check((root / relative).is_file(), relative, "required file", "file is missing")
             if relative not in RESULT_FILES:
                 report.check((root / relative).is_file() and (root / relative).stat().st_size > 0,
                              relative, "required content", "file is empty or missing")
-    paths = {relative for relative in MANIFEST if (root / relative).is_file()}
+    paths = {relative for relative in (*MANIFEST, *additional) if (root / relative).is_file()}
     if (root / ".git").exists():
         try:
             paths.update(filter(None, command(["git", "ls-files", "--cached", "-z"], root).split("\0")))
@@ -365,8 +395,8 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
         try:
             if gh_path is None or not gh_path.is_absolute() or not gh_path.is_file():
                 raise ValueError("--gh-path must name an existing absolute executable path")
-            version = command([str(gh_path), "--version"], root)
-            if not re.match(r"^gh version 2\.97\.0(?:\s|$)", version):
+            gh_version = command([str(gh_path), "--version"], root)
+            if not re.match(r"^gh version 2\.97\.0(?:\s|$)", gh_version):
                 raise ValueError("GitHub CLI 2.97.0 is required")
             report.check(True, str(gh_path), "GitHub CLI version", "")
             expected_owner = None
@@ -399,14 +429,14 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
             report.check(False, "--gh-path", "GitHub CLI", str(exc))
     if phase == "final":
         try:
-            run_evals.verify_tracked(root, version="v0.1.0")
+            run_evals.verify_tracked(root, version=version)
             report.check(True, "evals", "recorded results", "")
             if cases:
-                check_release(root, cases, report)
+                check_release(root, cases, report, version=version)
         except (OSError, ValueError, KeyError, TypeError) as exc:
             report.check(False, "evals", "recorded results", str(exc))
     if check_staged_manifest:
-        check_staged(root, report)
+        check_staged(root, report, version=version)
     return report
 
 
@@ -417,6 +447,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--print-digest", action="store_true")
     parser.add_argument("--check-staged-manifest", action="store_true")
     parser.add_argument("--gh-path", type=Path)
+    parser.add_argument("--version", default="v0.1.0", help="Evaluation version to validate for release")
     args = parser.parse_args(argv)
     if args.print_digest:
         try:
@@ -426,7 +457,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"FAIL . [digest]: {exc}", file=sys.stderr)
             return 1
     report = validate_repo(args.root, args.phase, args.gh_path,
-                           check_staged_manifest=args.check_staged_manifest)
+                           check_staged_manifest=args.check_staged_manifest, version=args.version)
     if report.errors:
         for error in report.errors:
             print(f"FAIL {error}", file=sys.stderr)

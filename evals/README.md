@@ -111,15 +111,16 @@
 
 ## 실행 설정
 
-모든 역할에 같은 설정을 적용합니다.
+새 평가에서는 모든 역할에 다음 설정을 적용합니다. 기존 `gpt-5.6-sol/high` 결과는 당시 설정과 원문, 판정을 그대로 보존하며 새 결과와 합치지 않습니다.
 
 | 항목 | 값 |
 | --- | --- |
 | `agent` | `codex` |
 | `runtime_surface` | `codex-desktop` |
-| `model` | `gpt-5.6-sol` |
-| `reasoning_effort` | `high` |
+| `model` | `gpt-6-astra` |
+| `reasoning_effort` | `xhigh` |
 | `sampling` | `runtime_default` |
+| `service_tier` | `default` |
 | GitHub CLI | `2.97.0` |
 
 | 역할 | 실행 조건 |
@@ -133,14 +134,28 @@
 
 `temperature` 등 직접 지정할 수 없는 샘플링 값을 추측하지 않습니다. 지정한 모델이나 추론 수준을 사용할 수 없으면 평가를 중단합니다. 다른 설정으로 평가하려면 결과 버전도 새로 정합니다. `runtime_version`은 실제 실행 환경에서 확인한 Codex Desktop 버전으로 기록합니다.
 
+Fast와 Ultrafast는 사용하지 않습니다. 실행 전에 해당 요청에 적용되는 서비스 등급이 `default`인지 확인하고, 각 역할의 실제 실행 근거와 함께 보존합니다. 기본 설정 파일이나 도구의 지원 등급 목록만으로 개별 실행의 값을 단정하지 않습니다. 요청에 적용되는 값을 확인할 수 없거나 변경할 수 없는 Fast 설정이 있으면 모델 호출 전에 중단합니다. 기록 검사는 `fast`, `priority`, `auto`와 누락된 값을 거부하지만, 기록에 적힌 `default`만으로 실제 서비스 등급을 확인한 것으로 취급하지 않습니다.
+
+새 Astra 평가는 `v0.1.2` 결과 버전과 별도 작업 폴더를 사용합니다. 이 번호는 평가 기록을 구분하며 태그나 릴리스를 생성하지 않습니다. `v0.1.0`의 공개 기록과 이전 `v0.1.1` 평가 기록은 수정하지 않습니다. 기존 명령의 기본 버전을 재사용하지 않고 준비, 집계와 검사에 `--version v0.1.2`를 명시합니다.
+
+### 출력 채널과 평가 범위
+
+실행 전에 출력 계약을 고정합니다. `whole-response-v1`은 기존처럼 관찰한 assistant 산문 전체를 평가합니다. 진행 안내가 반드시 필요한 실행 환경에서 최종 결과물의 품질을 평가할 때는 새 결과 버전과 새 작업 폴더에 `final-answer-v1`을 지정합니다. 이 계약은 실제 실행 시스템이 구분한 유일한 `final_answer` 메시지 전체를 평가하며, 모든 `commentary` 메시지는 원문과 순서, 메시지 식별자와 해시를 함께 보존합니다. 출력 계약과 선택·검사 코드는 평가 동일성에 포함합니다.
+
+두 계약은 평가 범위가 다릅니다. `final-answer-v1` 통과는 최종 결과물에 대한 결과이며 전체 응답에 안내가 없었다는 뜻이 아닙니다. 기준 문구, 의미 보존, 금지 추가 내용, 루브릭과 릴리스 통과 조건은 그대로 적용합니다. final 내부에 들어간 안내, 여분 설명, 코드 펜스와 공백을 제거하거나 고치지 않습니다. 과거 전체 응답의 실패를 새 계약으로 재분류하거나 새 결과와 합치지 않습니다.
+
+채널은 모델의 자기 보고나 문단 모양으로 추정하지 않습니다. 지원되는 실행 기록에서 완료한 한 턴의 전체 assistant 메시지와 실제 채널을 확보해야 합니다. 잘린 기록, 알 수 없는 채널, 중복된 메시지, 여러 final, final 이후의 산문이나 완료되지 않은 턴은 수집을 거부합니다. 채널 정보가 없는 브라우저 응답에서 안내만 제외하지 않습니다. 실행 환경이 이 조건이나 고정 모델 설정을 제공하지 못하면 실제 평가는 보류합니다.
+
 ## 평가 준비
 
 저장소 루트에서 실행합니다. 모든 텍스트는 BOM 없는 UTF-8로 읽고 쓰며, Python 명령에는 처음부터 `-X utf8`을 지정합니다.
 
 ```powershell
 python -X utf8 scripts/validate_repo.py --print-digest
-python -X utf8 scripts/run_evals.py prepare --version v0.1.0 --work-dir .eval-work
+python -X utf8 scripts/run_evals.py prepare --version v0.1.2 --work-dir .eval-work/astra-v0.1.2 --output-contract final-answer-v1
 ```
+
+이하 파일 경로의 `.eval-work`는 준비할 때 지정한 작업 폴더를 뜻합니다. 위 명령으로 준비했다면 모든 후속 경로에 `.eval-work/astra-v0.1.2`를 사용합니다.
 
 `prepare`는 각 사례의 생성용 프롬프트, 평가자 A와 B용 프롬프트, `.eval-work/run.json`을 만듭니다. 모델을 실행하지는 않습니다. `run.json`에는 다음 값을 기록합니다.
 
@@ -226,6 +241,16 @@ Case ID: {id}
 
 `.eval-work/`는 Git 추적에서 제외합니다. 준비한 프롬프트와 중간 판정 파일, 임시 실행 기록은 커밋하지 않습니다.
 
+### 구조화된 응답 수집
+
+새 최종 결과물 평가를 준비할 때는 `prepare`에 `--output-contract final-answer-v1`을 추가합니다. `run.json`의 계약을 실행 후 바꾸지 않습니다. 각 역할의 완료한 한 턴을 지원되는 스레드 읽기 도구로 내보내고, 도구가 반환한 JSON 원문을 `.eval-work/sources/{role}/{id}.json`에 그대로 보존합니다. 도구의 화면용 요약이나 잘린 응답을 원본 대신 쓰지 않습니다.
+
+```text
+python -X utf8 scripts/run_evals.py capture-response --source .eval-work/sources/generator/meaning-close-001.json --evidence .eval-work/responses/generator/meaning-close-001.json --output .eval-work/generator/meaning-close-001.txt
+```
+
+평가자도 같은 방식으로 `.eval-work/responses/{role}/{id}.json`과 기존 판정 JSON 경로에 저장합니다. 수집기는 원본 해시와 전체 assistant 메시지를 보존하고 실제 final 전체만 출력 파일로 옮깁니다. 출력이나 근거 파일이 이미 있으면 덮어쓰지 않습니다. `aggregate`와 `verify-tracked`는 채널 근거, 메시지 순서, 역할별 턴 중복, 최종 출력과 판정의 연결을 다시 검사합니다. 수집 시에는 보존한 원본을 다시 읽어 전체 추출 근거와 대조합니다. 원본 내보내기와 내부 ID 매핑은 비공개로 유지하며 공개 기록에는 ID의 SHA256을 씁니다. 공개 재검증은 저장된 메시지와 최종 출력의 연결을 검사하며, 비공개 원본 내보내기의 완전성을 다시 보증하지 않습니다. 저장된 해시의 일관성 검사는 외부 실행 시스템의 진위 보증도 아닙니다. 실제 호출·설정·원본 확보 여부는 별도 실행 근거로 확인합니다. 진행 안내까지 포함한 공개 기록 전체에 개인정보 검사를 적용합니다. 민감한 내용이 있으면 원문을 임의로 삭제해 공개하지 않고 해당 기록의 공개를 보류합니다.
+
 ### 파일로 요청 전달
 
 완성된 요청을 직접 전달하는 대신 파일로 전달할 수 있습니다. 요청 내용과 역할별 실행 조건은 같습니다.
@@ -241,7 +266,7 @@ Case ID: {id}
 
 ### 실행 기록
 
-`execution.jsonl`은 사례와 역할의 조합마다 JSON 객체 한 줄을 기록합니다. 각 객체에는 `id`, `role`, `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`가 필요합니다. `role`은 `generator`, `reviewer-a`, `reviewer-b`, `adjudicator` 중 하나입니다.
+`execution.jsonl`은 사례와 역할의 조합마다 JSON 객체 한 줄을 기록합니다. 각 객체에는 `id`, `role`, `agent`, `model`, `reasoning_effort`, `sampling`, `service_tier`, `attempt_log`가 필요합니다. `role`은 `generator`, `reviewer-a`, `reviewer-b`, `adjudicator` 중 하나입니다. `service_tier`는 새 실행에서 확인한 값만 기록하며 과거 기록에 소급해서 추가하지 않습니다.
 
 `attempt_log`의 각 항목은 다음 필드를 가집니다.
 
@@ -289,18 +314,18 @@ Case ID: {id}
 ## 결과 생성과 검증
 
 ```powershell
-python -X utf8 scripts/run_evals.py aggregate --version v0.1.0 --work-dir .eval-work
-python -X utf8 scripts/run_evals.py check --version v0.1.0 --work-dir .eval-work
-python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
+python -X utf8 scripts/run_evals.py aggregate --version v0.1.2 --work-dir .eval-work/astra-v0.1.2
+python -X utf8 scripts/run_evals.py check --version v0.1.2 --work-dir .eval-work/astra-v0.1.2
+python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.2
 ```
 
-`aggregate`는 사례 식별자, 파일 수, JSON 형식, 평가 항목 식별자, 실행 설정, UUID 중복, 재시도 조건을 검사한 뒤 [runs/v0.1.0.jsonl](runs/v0.1.0.jsonl)과 [results-v0.1.0.md](results-v0.1.0.md)를 생성합니다.
+`aggregate`는 사례 식별자, 파일 수, JSON 형식, 평가 항목 식별자, 실행 설정, UUID 중복, 재시도 조건을 검사한 뒤 지정한 버전의 JSONL과 결과 요약을 생성합니다. 위 명령의 경로는 `evals/runs/v0.1.2.jsonl`과 `evals/results-v0.1.2.md`입니다. 실제 평가를 완료하기 전에는 결과 파일을 만들지 않습니다.
 
 같은 버전의 기존 결과와 바이트가 다르면 덮어쓰기를 거부합니다. 아직 공개하지 않은 버전을 다시 평가할 때는 이전 `.eval-work/`와 결과 파일 두 개를 저장소 밖의 작업 기록으로 보존한 뒤 새 결과를 생성합니다. 실패한 결과를 누락하거나 더 좋은 결과만 선택하지 않습니다. 이미 공개한 태그의 결과는 바꾸지 않고 새 버전으로 평가합니다.
 
 `check`는 임시 입력에서 결과를 다시 계산해 추적할 두 파일과 바이트 단위로 비교합니다. `verify-tracked`는 임시 파일 없이 추적된 JSONL의 형식, 프롬프트의 SHA256, 실행 기록, 다수결 판정과 결과 요약을 다시 검사합니다.
 
-두 명령은 실패한 평가 결과도 기록과 집계가 올바르면 통과할 수 있습니다. 실행 기록 검증의 성공을 릴리스 조건의 충족으로 해석하지 않습니다. 릴리스 조건은 `scripts/validate_repo.py`의 `--phase final`에서 검사하며, `--gh-path`에는 GitHub CLI 2.97.0 실행 파일의 절대 경로를 지정합니다.
+두 명령은 실패한 평가 결과도 기록과 집계가 올바르면 통과할 수 있습니다. 실행 기록 검증의 성공을 릴리스 조건의 충족으로 해석하지 않습니다. 릴리스 조건은 `scripts/validate_repo.py`의 `--phase final`에서 검사하며, `--version`에는 집계한 버전을, `--gh-path`에는 GitHub CLI 2.97.0 실행 파일의 절대 경로를 지정합니다. 새 버전은 결과 요약과 JSONL, 입력 기록이 모두 필요합니다. 이미 공개한 버전의 기록은 유지합니다.
 
 실패한 사례를 빼고 집계하지 않습니다. 동일한 평가 내용에서 얻은 최초의 유효한 완료 결과는 성공과 실패 모두 재사용합니다. 운영 문서나 전달 및 복구 절차만 수정했다면 도구 회귀 테스트와 기존 원문의 재집계로 검증하며 50개 모델 평가를 다시 실행하지 않습니다.
 
@@ -311,10 +336,10 @@ python -X utf8 scripts/run_evals.py verify-tracked --version v0.1.0
 `v0.1.0`의 과거 기록은 별도로 체크아웃한 원본에서 검사합니다. [기여 안내](../CONTRIBUTING.md#로컬-검증)에 따라 원본 경로를 준비한 뒤 다음 명령을 실행합니다.
 
 ```text
-python -X utf8 scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
+python -X utf8 ../natural-korean-writing-v0.1.0/scripts/run_evals.py --root ../natural-korean-writing-v0.1.0 verify-tracked --version v0.1.0
 ```
 
-CI의 원본 대상 `final`은 과거 릴리스 기준을 검사할 뿐, 수정한 현재 후보의 품질을 판정하지 않습니다. 현재 후보에는 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 적용합니다. 공개 평가 기록 세 파일은 원본과 바이트 단위로 비교하며, 현재 파일을 과거 평가 해시와 비교하는 기존 검사는 완화하지 않습니다.
+CI의 원본 대상 `final`은 당시 코드로 과거 릴리스 기준을 검사할 뿐, 수정한 현재 후보의 품질을 판정하지 않습니다. 현재 후보에는 `build`, `pre-eval`, 단위 테스트와 패키지 검증을 적용합니다. 공개 평가 기록 세 파일은 원본과 바이트 단위로 비교합니다. 평가 기준이 달라진 현재 코드에 과거 결과를 그대로 적용하면 계속 실패하며, 새 릴리스에는 현재 기준으로 얻은 별도 결과가 필요합니다.
 
 ### 추적할 JSONL
 
@@ -337,7 +362,7 @@ CI의 원본 대상 `final`은 과거 릴리스 기준을 검사할 뿐, 수정�
 | `operations_version` | 새 형식의 운영 절차 버전입니다. |
 | `dependency_sha256` | 새 형식에서 생성 결과와 평가 요청, 원래 판정의 연결을 확인하는 해시입니다. 이전 형식의 결과에는 추가하지 않습니다. |
 
-각 역할의 실행 기록에는 `agent`, `model`, `reasoning_effort`, `sampling`, `attempt_log`를 보존합니다. 평가자와 추가 평가자에는 원래 판정의 `rubric`, `critical_failure`, `reason`도 보존합니다. 실행하지 않은 추가 평가자의 기록을 만들지 않습니다.
+각 역할의 실행 기록에는 `agent`, `model`, `reasoning_effort`, `sampling`, `service_tier`, `attempt_log`를 보존합니다. 평가자와 추가 평가자에는 원래 판정의 `rubric`, `critical_failure`, `reason`도 보존합니다. 실행하지 않은 추가 평가자의 기록을 만들지 않습니다.
 
 ### 결과 요약
 
@@ -400,6 +425,8 @@ python -X utf8 -m unittest discover -s tests -v
 보충 수정 검수 사례:
 
 [supplemental/revision-review.json](supplemental/revision-review.json)은 질문 범위, 경험에서 계획으로 이어지는 설명, 최신 수정과 확정 문구 보존, 채팅 검수용 질문과 답변 및 글자 수, 학습 상태와 조언 계획 보존을 검사하는 가상 사례 5개입니다. 기존 다섯 묶음 50개는 변경하지 않습니다. 보충 사례는 기본 집계나 릴리스 통과율에 포함하지 않으며, 실제 출력을 별도로 검토할 때 생성자에게는 context, instruction, input만 전달합니다. 단위 테스트는 자료 형식과 기존 범위 보존만 확인하며 문장 품질을 판정하지 않습니다.
+
+[supplemental/evidence-selection.json](supplemental/evidence-selection.json)은 회사의 실제 업무와 질문에 맞는 경험 선택, 접근하지 못한 자료의 구분, 중복 설명 삭제와 필수 문맥 보존을 검사하는 가상 사례 2개입니다. 같은 보충 평가 절차를 적용하며 기본 50개와 별도로 기록합니다.
 
 보충 지원서 작성 및 전달 사례:
 
