@@ -840,6 +840,8 @@ class SupplementalRegressionTests(unittest.TestCase):
                 self.assertEqual(len(cases), 5)
             elif path.name == "application-parenthetical-abbreviation.json":
                 self.assertEqual(len(cases), 2)
+            elif path.name == "application-form-readiness.json":
+                self.assertEqual(len(cases), 3)
             elif path.name in {"application-selection-review.json", "application-reader-causal-chain.json", "application-whole-answer-logic.json", "application-final-review-gate.json"}:
                 self.assertEqual(len(cases), 1)
             elif path.name == "application-workflow.json":
@@ -881,6 +883,7 @@ class SupplementalRegressionTests(unittest.TestCase):
                     self.assertLessEqual(set(applicable), set(harness.RUBRIC))
                     supplemental_ids.append(case["id"])
         self.assertTrue((root / "evals/supplemental/application-workflow.json").is_file())
+        self.assertTrue((root / "evals/supplemental/application-form-readiness.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-tone-approval.json").is_file())
         self.assertTrue((root / "evals/supplemental/resume-information-selection.json").is_file())
         self.assertTrue((root / "evals/supplemental/resume-technology-outline.json").is_file())
