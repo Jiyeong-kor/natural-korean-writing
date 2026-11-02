@@ -65,6 +65,8 @@ When creating or checking Korean document or PDF layout, also apply the shared l
 
 For application essays or a set of application answers, also read the entire [application answer workflow](references/application-answer-workflow.md) before selecting experiences or revising answers. It carries the full question and guidance through evidence selection, review, and the exact final text. Its form and file operations apply only when those actions are authorized and the required tools are available.
 
+When writing a recommendation about whether to apply for a role, apply the [recommendation evidence check](references/application-answer-workflow.md#ground-application-recommendations-in-role-evidence). It governs the recommendation's claims and review status; it does not authorize an application or submission.
+
 Apply spoken-lesson guidance only when writing that kind of material. Do not turn one script's preferred endings, number notation, or sequence into a universal rule for Korean.
 
 ## Apply punctuation
