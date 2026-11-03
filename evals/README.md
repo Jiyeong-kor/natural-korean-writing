@@ -419,6 +419,8 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/application-parenthetical-abbreviation.json](supplemental/application-parenthetical-abbreviation.json)은 지원서 본문의 불필요한 괄호 속 영문 약어를 덜어내면서 공식 제목과 보호 경로, 서식이 요구한 기술명을 유지하는 가상 사례 2개입니다. 특정 본문의 한국어 표기 지시를 모든 괄호나 약어의 금지로 확대하지 않는지 확인합니다. 기본 50개와 기존 사례 및 결과를 보존하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사는 실제 문장 품질 평가를 대신하지 않습니다.
 
+[supplemental/technology-name-scope.json](supplemental/technology-name-scope.json)은 기술목록의 공식 표기, 본문까지 적용되는 최신 표기 지시와 보호할 교육과정명, 특정 문장에만 허용된 한글 표기를 구분하는 가상 사례 3개입니다. 설명을 쉽게 고치면서 기술명을 임의로 음역하거나, 원어 표기 요청을 목록에만 한정하거나, 공식 인용문까지 일괄 치환하는지 확인합니다. 기본 50개와 기존 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 기존 `literal-familiar-korean-001`의 명시적인 한글 본문 지시도 유지합니다. 실제 지원폼 입력이나 저장을 요청하지 않으며 단위 테스트와 작성자의 수동 출력 점검을 독립 모델 품질 평가로 보고하지 않습니다.
+
 보충 표현 및 최종 파일 승인 사례:
 
 [supplemental/application-tone-approval.json](supplemental/application-tone-approval.json)은 경험 나열형 자기규정과 동의어 대체, 명시적으로 금지한 표현의 원고 전체 적용, 정상적인 경험 설명과 보호 문구, 서비스의 실제 및 제안 동작과 말투 수정 중 정보 보존, 채팅 선검수에서 현재 전체 버전의 승인과 최종 파일 제작을 검사하는 가상 사례 3개입니다. 승인 사례는 작업 초안, 이미 승인한 현재 버전, 채팅 선검수 조건이 없는 파일 작업을 구분하며 실제 파일 조작을 요청하지 않습니다.

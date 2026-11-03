@@ -1,0 +1,41 @@
+[
+  {
+    "id": "technology-official-list-001",
+    "category": "context",
+    "context": "인물과 실습 기록은 모두 가상입니다. 개발 기술을 확인하는 서식의 기술목록입니다. 원자료에서 직접 사용한 언어는 Kotlin이고 화면 개발에 사용한 도구는 Jetpack Compose와 React Native입니다. 각 기술의 공식 표기는 원자료와 같습니다. 숙련도, 사용 기간과 운영 성과는 확인되지 않았습니다. 독자가 읽기 쉽게 다듬되 기술목록을 설명문으로 바꾸거나 새 기술을 넣을 필요는 없습니다.",
+    "instruction": "원자료에 맞게 기술목록의 표기를 점검하고 완성된 한 줄만 주세요.",
+    "input": "사용 기술: 코틀린, 젯팩 컴포즈, 리액트 네이티브",
+    "must_preserve": ["직접 사용한 세 기술 Kotlin, Jetpack Compose, React Native입니다."],
+    "must_include": ["원자료의 공식 표기를 대소문자와 띄어쓰기까지 유지한 기술목록입니다."],
+    "must_not_add": ["미확인 숙련도, 사용 기간, 성과 또는 다른 기술", "불필요한 한글 음역 병기나 표기 선택에 관한 작업 설명"],
+    "review_points": ["쉬운 한국어 문체를 기술명 음역의 근거로 삼지 않는지 확인합니다.", "kotlin이나 JetpackCompose처럼 대소문자 또는 띄어쓰기가 달라진 표기도 확인합니다."],
+    "critical_failures": ["하나 이상의 기술명을 한글 음역으로 유지하거나 공식 표기를 훼손합니다.", "직접 사용한 기술을 빼거나 미확인 기술과 숙련도를 추가합니다."],
+    "applicable_rubric": ["meaning_preservation", "no_unsupported_addition", "audience_fit", "literal_preservation", "output_format"]
+  },
+  {
+    "id": "technology-latest-body-and-quotation-001",
+    "category": "context",
+    "context": "인물과 앱 및 교육과정은 모두 가상입니다. 처음 읽는 사람에게 대여 물품 점검 앱에서 한 작업을 설명합니다. 작성자는 Kotlin과 Jetpack Compose로 점검 항목을 수정하는 화면을 만들었습니다. 앞선 요청은 본문에 익숙한 한글 이름을 쓰라는 것이었지만, 최신 요청은 기술 이름을 목록과 수정 가능한 본문 모두에서 영어 원명으로 쓰라는 것입니다. 교육 항목은 수료한 공식 과정명 '코틀린으로 만드는 간단한 도구'를 원문 그대로 인용하며 이 제목의 수정은 요청하지 않았습니다. 기술목록은 이미 맞지만 본문에 이전 표기가 남아 있습니다. 실제 폼 입력이나 저장은 요청하지 않습니다.",
+    "instruction": "최신 표기 요청을 반영해 세 항목 전체를 반환해 주세요. 처음 읽는 사람이 어떤 앱에서 무엇을 했는지 알 수 있게 하고, 교육 항목의 공식 제목은 그대로 두세요.",
+    "input": "기술: Kotlin, Jetpack Compose\n작업: 대여 물품 점검 앱에서 코틀린과 젯팩 컴포즈로 점검 항목 수정 화면을 만들었습니다.\n교육: '코틀린으로 만드는 간단한 도구' 수료",
+    "must_preserve": ["목록과 작업 본문의 기술명 Kotlin과 Jetpack Compose입니다.", "대여 물품 점검 앱에서 점검 항목 수정 화면을 만든 사실입니다.", "교육 항목의 '코틀린으로 만드는 간단한 도구'라는 공식 과정명과 수료 사실입니다."],
+    "must_include": ["목록뿐 아니라 작업 본문까지 최신 표기 요청이 반영된 세 항목입니다."],
+    "must_not_add": ["원어 표기 지시를 기술목록에만 한정하는 해석", "과정명 안의 코틀린을 Kotlin으로 바꾸는 일괄 치환", "성과나 숙련도 추가, 실제 입력 또는 저장 완료 주장"],
+    "review_points": ["이미 맞는 목록만 확인하고 본문에 이전 표기를 남기지 않는지 확인합니다.", "수정 가능한 기술명과 그대로 재현할 공식 제목을 분리해 검사하는지 확인합니다.", "기술명을 보존하면서 앱의 용도와 실제 작업의 최소 맥락도 유지하는지 확인합니다."],
+    "critical_failures": ["작업 본문에 코틀린이나 젯팩 컴포즈를 남깁니다.", "공식 과정명의 문자나 수료 상태를 바꿉니다.", "앱의 용도 또는 실제 작업을 삭제하거나 미확인 성과와 저장 상태를 만듭니다."],
+    "applicable_rubric": ["meaning_preservation", "no_unsupported_addition", "audience_fit", "natural_korean", "literal_preservation", "output_format"]
+  },
+  {
+    "id": "technology-later-korean-exception-001",
+    "category": "context",
+    "context": "문서와 앱은 모두 가상입니다. 앱 이용자에게 동아리 행사 시간표를 확인할 수 있다고 알리는 한 문장과 별도의 기술 기록입니다. 앞선 지시는 기술 이름을 영어 원명으로 쓰라는 것이었지만, 최신 요청은 이번 안내 본문의 Android 앱만 안드로이드 앱으로 쓰라는 것입니다. 기술목록 Android, Android Studio, Git과 파일 경로 app/src/main/AndroidManifest.xml은 그대로 보존해야 합니다. 이 예외는 다른 필드의 기술명을 바꾸라는 뜻이 아닙니다.",
+    "instruction": "최신 요청대로 안내 문장을 고치고 기술목록과 파일 경로는 보존해 세 항목을 반환해 주세요. 다른 기능이나 설명은 붙이지 마세요.",
+    "input": "안내: Android 앱에서 동아리 행사 시간표를 확인할 수 있습니다.\n기술: Android, Android Studio, Git\n파일: app/src/main/AndroidManifest.xml",
+    "must_preserve": ["앱에서 동아리 행사 시간표를 확인할 수 있다는 기능입니다.", "기술목록 Android, Android Studio, Git과 경로 app/src/main/AndroidManifest.xml입니다."],
+    "must_include": ["안내 본문의 안드로이드 앱이라는 최신 지정 표기입니다."],
+    "must_not_add": ["기술목록이나 파일 경로까지 한글로 바꾸는 결과", "안드로이드 뒤에 불필요한 영어 병기", "알림이나 일정 수정 등 새 기능"],
+    "review_points": ["원어 표기를 모든 문맥에 강제하지 않고 최신 예외의 대상과 범위를 지키는지 확인합니다.", "한 필드의 변경을 나머지 기술 기록에 전파하지 않는지 확인합니다."],
+    "critical_failures": ["이전 영어 표기 지시를 이유로 본문의 Android 앱을 그대로 둡니다.", "기술목록이나 보호 경로를 바꾸거나 기능을 추가합니다."],
+    "applicable_rubric": ["meaning_preservation", "no_unsupported_addition", "audience_fit", "literal_preservation", "output_format"]
+  }
+]
