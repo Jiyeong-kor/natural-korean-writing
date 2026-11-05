@@ -14,6 +14,8 @@ Before drafting, rewriting, or reviewing any Korean, read this entire SKILL.md, 
 
 Apply the two instructions before choosing words: establish whose words these are, to whom, when, where, through which channel, and for what purpose; check shared knowledge and disclosure boundaries. On a follow-up, apply the established context and reassess whatever changed. Reading the files is not sufficient: check the finished response against the supplied situation.
 
+Apply the companion's [review in the reader's actual order](references/context-audience-boundary.md#review-in-the-readers-actual-order) to the assembled response. Inspect what is understandable at each point from the reader's available context, and restart that forward reading after repairs; the presence of a later explanation does not by itself validate an earlier passage.
+
 For instructions about the same target and scope, apply the user's latest explicit correction rather than an older plan, example, or skill default. Keep instructions for conversation, publication copy, and protected text distinct. A general style change does not authorize changing previously confirmed wording; that requires explicit permission for the affected wording.
 
 Keep conversation style separate from artifact style. Preserve the user's chosen chat register; do not impose formal public-document prose on a casual reply or copy chat shorthand into an external email.
