@@ -35,6 +35,14 @@ Use supplied context and explicit corrections to resolve a vague or inaccurate d
 
 Before deleting or softening a sentence, identify what it contributes to the reader: a reason, a supported claim of ability, a choice, a qualification, or a necessary connection. Concision and modesty must not remove the author's central intended claim. Distinguish having studied something, expecting to perform it well, and deciding to attempt it; none proves the others. Interpret an educational or cultural reference from the supplied original and context rather than converting it into a different competence or motive. When a material interpretation remains unknown, preserve the distinction or ask instead of silently choosing a flattering or cautious story.
 
+### Keep a local edit local
+
+For a correction limited to a sentence, paragraph, field, or named expressions, separate the scope to inspect from the scope to change:
+
+1. **Fix the baseline and boundaries before editing.** Use the latest supplied text with accepted user edits. Identify the editable spans and any exact text protected inside them. Preserve everything outside those spans, including wording, order, paragraph breaks, spaces, and punctuation, even if the user has not separately approved each sentence. Apply a later instruction that explicitly expands the scope only to the newly authorized spans; do not ask again for authority already supplied.
+2. **Repair within the boundary.** Reading the whole document, improving continuity, or returning the full answer does not authorize rewriting its other parts. Use the surrounding text to understand the local change. If a necessary correction lies outside the editable spans, check for existing authority; otherwise identify that specific issue separately and seek only the needed scope expansion. Do not silently repair it or claim the whole document is ready while a material issue is unresolved. An optional stylistic preference outside scope is not a reason to delay the requested edit.
+3. **Compare the actual result with the baseline.** Inspect every insertion, deletion, replacement, and move, including edits introduced by a reviewer. Each difference must belong to an authorized span and preserve the required meaning and literals there. Restore unauthorized changes outside the boundary, then reread the assembled text for meaning and connections. Repeat the comparison after further repairs. Keep this working comparison private unless requested; deliver the requested excerpt or full text without treating its output size as permission to edit more.
+
 ## Match the relationship
 
 Check endings, pronouns, possessive expressions, forms of address, and requests together. Preserve a clear source relationship. In a polite conversation, use consistently polite wording; in a casual conversation, do not introduce honorifics without a reason.
