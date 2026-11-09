@@ -828,7 +828,7 @@ class SupplementalRegressionTests(unittest.TestCase):
             cases = json.loads(path.read_text(encoding="utf-8"))
             self.assertIsInstance(cases, list)
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
-            if path.name in {"application-context-modifier-scope.json", "application-abstract-utility.json", "korean-document-principles.json"}:
+            if path.name in {"application-context-modifier-scope.json", "application-abstract-utility.json", "korean-document-principles.json", "personal-perspective.json"}:
                 self.assertEqual(len(cases), 4)
             elif path.name == "application-review-preservation.json":
                 self.assertEqual(len(cases), 5)
@@ -901,6 +901,7 @@ class SupplementalRegressionTests(unittest.TestCase):
         self.assertTrue((root / "evals/supplemental/application-parenthetical-abbreviation.json").is_file())
         self.assertTrue((root / "evals/supplemental/korean-document-layout.json").is_file())
         self.assertTrue((root / "evals/supplemental/korean-document-principles.json").is_file())
+        self.assertTrue((root / "evals/supplemental/personal-perspective.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-duty-evidence.json").is_file())
         self.assertTrue((root / "evals/supplemental/resume-project-status.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-contribution-tone.json").is_file())

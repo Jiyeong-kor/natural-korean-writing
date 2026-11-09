@@ -475,4 +475,6 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/application-context-modifier-scope.json](supplemental/application-context-modifier-scope.json)은 실제로 함께 보이는 다른 입력란과 독립 답변의 정보 범위, 기관과 장소 수식어의 적용 범위를 검사하는 가상 사례 4개입니다. 공통 수식이 정확한 문장은 유지합니다.
 
+[supplemental/personal-perspective.json](supplemental/personal-perspective.json)은 개인 동기와 판단에서 확인된 관찰 및 해석을 드러내는지, 작성자의 자료 조회를 당사자의 경험으로 바꾸지 않는지, 공공 사실과 보호 인용 및 자연스러운 주어 생략을 보존하는지 확인하는 가상 사례 4개입니다. 기관이나 사물 주어를 일괄 금지하거나 모든 문장에 저는을 덧붙이는 방식은 요구하지 않습니다. 기존 기본 50개와 보충 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 단위 테스트와 작성자의 수동 출력 점검은 정식 모델 품질 평가를 대신하지 않습니다.
+
 [supplemental/application-review-preservation.json](supplemental/application-review-preservation.json)은 표현 수정 뒤의 강점, 대등한 이견의 조율과 공동 결과, 검수 설명의 한국어, 지정된 검수 경로와 실제 제출 주체, 현재 협력 문항의 역할 분담과 본인 기여를 검사하는 가상 사례 5개입니다. 협력 문항에서는 다른 질문에 쓴 갈등 서사를 반복하지 않고 현재 질문과 최신 수정 지시에 따라 실제 공동 작업을 설명하는지 확인합니다. 두 보충 묶음은 실제 개인 이력이나 대화를 사용하지 않습니다. 기본 50개와 기존 보충 사례 및 결과를 보존하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 사례 추가나 도구 검사 성공을 실제 모델 평가 통과로 보고하지 않습니다.

@@ -15,6 +15,14 @@ Recover these distinctions from the request, supplied material, and preceding ex
 
 Follow explicit user instructions within their scope. A chat's casual register does not set the voice of an attached public document, and a professional document's voice does not override the user's conversational style. Changing the audience may change wording and necessary explanation, but not the underlying facts, ownership, or authorized commitments.
 
+### Keep the person's perspective in personal explanations
+
+When explaining a person's motive, choice, or judgment, make their source-supported awareness and interpretation readable. An organization's actions or a product's features alone do not explain what the person noticed or understood, why it mattered to them, or how it relates to their stated choice. Check those relationships in the actual passage rather than accepting a list of public facts with `저는`, `보았습니다`, or `알고 있습니다` added. If only awareness is established, do not manufacture a fuller motive or causal chain.
+
+Keep the person who did the work distinct from the person who learned about it. Knowing a fact, reading a notice, witnessing an event, using a service, and drawing a conclusion are different claims. Research performed by the assistant does not establish the represented person's reading, experience, feelings, or reason for applying. Use only the supported route and interpretation; retrieve the relevant account or identify the missing personal basis when necessary instead of inventing it to complete a fluent explanation.
+
+Preserve institution or object subjects that accurately state public facts, functions, or others' actions, and preserve protected quotations. They can coexist with a personal viewpoint. Do not mechanically turn every statement into `제가 보았습니다` or require `저는` in every sentence. Omit an already clear subject naturally, but keep changes of actor identifiable. Before delivery, verify that the intended reader can identify whose observation or judgment matters and its supported basis where the purpose calls for it.
+
 ## Introduce unfamiliar subjects before relying on them
 
 Information known to the writer or assistant is not automatically known to the intended reader. Prior chats, source files, and drafting notes can establish facts for the writer without supplying any context to the reader. A sentence may be grammatically complete and still leave the reader unable to identify its subject.
