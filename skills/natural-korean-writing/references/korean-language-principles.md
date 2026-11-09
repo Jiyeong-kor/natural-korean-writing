@@ -56,6 +56,12 @@ Begin with established context and introduce new information where the reader ca
 5. Concision removes redundancy, not the relationships a reader needs. Retain or supply source-supported connective endings, conjunctions, and explanatory clauses when omission makes the reader reconstruct a reason, contrast, condition, or result. No rule requires either deleting all connectives or placing one at every sentence opening.
 6. Check paragraph progression before adding connectors. A paragraph needs a relevant focus and a reason for introducing its next example; a word such as `또한` cannot repair unrelated facts or missing reasoning. Prefer the structure that makes the supplied relationship readable without forcing a universal sentence length or rhythm.
 
+### Put the reason before the response in explanatory accounts
+
+When an experience or technical explanation depends on a supplied background, risk, or reason, normally introduce that context before the action and its supported result. Do not make the reader reinterpret an unexplained action after a later sentence finally supplies its purpose. Move the existing reason forward or join it naturally to the action; do not invent a reason, imply an incident actually occurred, or turn an intended effect into a measured result. This is a default for explaining a causal sequence, not a ban on answer-first replies, summary leads, headlines, or a conclusion-first structure explicitly requested by the user.
+
+Fictional example: `서류를 마감일별로 분류했습니다. 접수 기한을 구분하기 위한 조치였습니다.` can become `접수 기한을 구분할 수 있도록 서류를 마감일별로 분류했습니다.` The purpose precedes the action without claiming that a missed deadline occurred or that processing became faster.
+
 ### Audit paragraph boundaries
 
 Read the preceding paragraph's last sentence and the next paragraph's first sentence together, then check both whole paragraphs. Identify the supported relationship: cause and result, time sequence, contrast, addition, or a general point followed by an example. If that relationship is unclear in the prose, use a natural connective ending, conjunction, or brief bridge that names the shared subject. Choose the wording after identifying the relationship, not before. Sometimes moving an example or removing an unrelated sentence works better than adding a connector.
@@ -167,7 +173,9 @@ Fictional example: a writer explained unfamiliar terms at a past workshop and no
 
 A formula such as `맞닿아 있습니다` or `주목했습니다` can hide the actual relationship or reason. If the user rejects such wording for their copy, preserve that restriction across applicable revisions and explain the supported action or connection instead of choosing another stock compliment. Avoid suspense-led contrasts such as `문제는 그것만이 아니었습니다` when the reader needs a direct account of the additional problem. A phrase's resemblance to English is a review signal, not proof of its origin or a universal prohibition. Retain a meaningful contrast when the source and genre call for one.
 
-Do not label every reason as a personal motivation or every completed action as an experience of having done something. End with the actual action when a nominal summary adds no meaning. Remove an unnecessary summary rather than replacing its nouns with new abstractions, but preserve a conclusion needed to answer the question.
+Do not label every reason as a personal motivation or every completed action as an experience of having done something. End with the actual action when a nominal summary adds no meaning. Remove an unnecessary summary rather than replacing its nouns with new abstractions, but preserve a conclusion needed to answer the question. Check the full predicate-object relationship: wrapping two true facts in `~으로 연결하는 경험` does not explain what the person did. In a fictional craft example, `수업에서 배운 제본법으로 안내 책자를 만들었습니다.` states an action; `배운 기술을 책자로 연결하는 경험이었습니다.` obscures it. Do not ban `연결하다` where an actual connection is described or `경험을 쌓았습니다` where a supported type of experience matters.
+
+A vague closing verb such as `살폈습니다` needs an identifiable action and object in context. If the source says the writer compared labels with a list, state that comparison instead of substituting another vague verb such as `검토했습니다`. Keep ordinary observation or examination when that is the supported action. Do not replace a vague sentence with invented work, or duplicate an already complete account merely to retain a closing sentence.
 
 ## 10. Standalone target-language rereading
 
