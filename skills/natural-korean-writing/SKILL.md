@@ -57,6 +57,8 @@ For Korean originals, draft and review in Korean without requiring an invented E
 
 When the user flags an awkward sentence, diagnose the failed meaning or reader relationship before polishing it. Check the affected paragraph, not only the quoted phrase. An abstract assessment is not a substitute for a concrete reason, a chronological sequence is not a cause, and a writer's form-filling explanation is not automatically part of the reader-facing answer. Use the relevant application guidance and fictional examples below; do not retain the same unsupported story with smoother wording.
 
+For education and qualification accounts, apply the [learning and qualification distinction](references/korean-language-principles.md#distinguish-learning-from-earning-a-qualification). Describe source-supported study or learning rather than treating credential attainment as knowledge organization; retain genuine organizing actions and do not infer a study process from the qualification alone.
+
 ## Choose the artifact profile
 
 Read the relevant section of [artifact style profiles](references/artifact-style-profiles.md) for conversations, technical explanations, GitHub text, UI copy, email, portfolios or resumes, learning material, and proposals or service introductions.

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "qualification-preparation-learning-001",
+    "category": "meaning",
+    "context": "인물과 인증은 모두 가상입니다. 지원자는 식품보관 기초인증을 준비하며 보관 온도와 위생 기준을 공부했고, 그 뒤 인증을 취득했습니다. 학습 내용을 노트나 표로 정리했다는 기록과 실무 적용 성과는 없습니다.",
+    "instruction": "지원서의 학습 과정이 확인된 사실대로 읽히도록 한 문장으로 고쳐 주세요.",
+    "input": "식품보관 기초인증을 취득해 보관 온도와 위생 기준에 관한 지식을 정리했습니다.",
+    "must_preserve": [
+      "인증 준비 중 보관 온도와 위생 기준을 공부했습니다.",
+      "공부한 뒤 인증을 취득했습니다."
+    ],
+    "must_include": [
+      "공부한 과정과 자격 취득 결과를 구분한 실제 문장입니다."
+    ],
+    "must_not_add": [
+      "자격 취득 자체가 공부나 지식 정리를 일으켰다는 인과 관계",
+      "노트 작성, 실무 적용, 숙련이나 성과"
+    ],
+    "review_points": [
+      "정리를 공부로 치환하면서도 취득해서 공부했다는 인과를 남기지 않는지 확인합니다.",
+      "체계화 등 추상적인 동의어로 같은 주장을 유지하지 않는지 확인합니다."
+    ],
+    "critical_failures": [
+      "학습을 정리 또는 체계화로 바꿉니다.",
+      "자격 취득 자체를 학습의 원인으로 쓰거나 실제 공부 내용을 누락합니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "qualification-attainment-only-001",
+    "category": "meaning",
+    "context": "인물과 인증은 모두 가상입니다. 확인된 개인 기록은 조명관리 기초인증 취득뿐입니다. 공개 시험 안내에는 전기 회로와 조도 계산이 포함되지만, 이 사람이 무엇을 어떤 방식으로 공부했는지는 확인되지 않았습니다. 이력서 한 문장을 고치는 요청이며 학습 방법 설명은 요구하지 않습니다.",
+    "instruction": "확인된 개인 사실만 담은 한 문장으로 고쳐 주세요.",
+    "input": "조명관리 기초인증을 취득하며 전기 회로와 조도 계산을 공부했습니다.",
+    "must_preserve": [
+      "조명관리 기초인증을 취득했다는 사실입니다."
+    ],
+    "must_include": [
+      "확인된 취득 사실만으로 완성한 문장입니다."
+    ],
+    "must_not_add": [
+      "시험 안내를 근거로 개인의 학습 내용이나 방법을 확정하는 주장",
+      "공부하지 않았다는 단정과 실무 능력 주장"
+    ],
+    "review_points": [
+      "학습 정보가 미확인이라는 이유로 확인된 자격 취득까지 없애지 않는지 확인합니다.",
+      "이 문장을 완성하는 데 필요하지 않은 추가 질문을 요구하지 않습니다."
+    ],
+    "critical_failures": [
+      "특정 학습 내용이나 과정을 새로 만들거나 그대로 유지합니다.",
+      "학습 미확인을 공부하지 않았다는 사실로 바꿉니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "qualification-genuine-organization-001",
+    "category": "meaning",
+    "context": "인물과 활동은 모두 가상입니다. 작성자는 이미 배운 도자기 유약의 특성을 비교해 공통점과 차이를 표로 정리했습니다. 새 자격 취득이나 새로운 학습 과정은 없습니다. 이미 자연스러운 문장은 유지할 수 있습니다.",
+    "instruction": "실제 행동을 바꾸지 않고 필요한 부분만 다듬어 한 문장으로 주세요.",
+    "input": "이미 배운 유약의 특성을 비교하고 공통점과 차이를 표로 정리했습니다.",
+    "must_preserve": [
+      "이미 배운 유약의 특성을 비교했습니다.",
+      "공통점과 차이를 표로 정리했습니다."
+    ],
+    "must_include": [],
+    "must_not_add": [
+      "새로운 지식을 배웠거나 자격을 취득했다는 주장",
+      "정리라는 말은 언제나 잘못이라는 설명"
+    ],
+    "review_points": [
+      "정리 대상과 비교 방법이 분명한 실제 지식 정리를 보존하는지 확인합니다."
+    ],
+    "critical_failures": [
+      "정리를 공부로 바꾸어 실제 표 작성과 비교를 지웁니다.",
+      "정리라는 단어를 피하기 위해 새로운 학습이나 결과를 만듭니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  },
+  {
+    "id": "qualification-learning-and-notes-001",
+    "category": "meaning",
+    "context": "인물과 과정은 모두 가상입니다. 작성자는 교육 중 수목의 생육 조건을 배웠고, 수업 메모를 수종별로 정리했습니다. 자격 취득 여부와 실무 적용은 확인되지 않았습니다. 아래 두 행동은 모두 보존해야 합니다.",
+    "instruction": "학습과 메모 정리를 구분해 한 문장으로 다듬어 주세요.",
+    "input": "교육에서 수목의 생육 조건을 배우고 수업 메모를 수종별로 정리했습니다.",
+    "must_preserve": [
+      "교육에서 수목의 생육 조건을 배웠습니다.",
+      "수업 메모를 수종별로 정리했습니다."
+    ],
+    "must_include": [
+      "학습과 메모 정리가 서로 다른 실제 행동으로 읽히는 문장입니다."
+    ],
+    "must_not_add": [
+      "자격 취득, 실제 적용과 관찰하지 않은 효과"
+    ],
+    "review_points": [
+      "학습과 정리 중 한 행동만 남기거나 의미 없이 중복된 동사로 취급하지 않는지 확인합니다."
+    ],
+    "critical_failures": [
+      "메모 정리를 없애거나 전체를 지식 정리로 축약합니다.",
+      "확인되지 않은 자격 취득이나 실무 적용을 추가합니다."
+    ],
+    "applicable_rubric": [
+      "meaning_preservation",
+      "no_unsupported_addition",
+      "audience_fit",
+      "natural_korean",
+      "output_format"
+    ]
+  }
+]

@@ -26,6 +26,16 @@ A grammatical case marker does not establish that the predicate describes the in
 
 Check the whole proposition, including tense, modality, negation, and any figurative sense. Do not create a prohibited-verb list or mechanically substitute one preferred collocation everywhere. When the intended action is unknown, preserve the uncertainty rather than inventing completion or success.
 
+### Distinguish learning from earning a qualification
+
+Separate the learning process, the knowledge learned, any actual organization of material, and the qualification outcome. Earning a qualification does not itself describe how a person studied or cause knowledge to be organized. When the source establishes study during preparation, state that preparation and the supported subject with a verb such as `공부했습니다` or `배웠습니다`. Use `지식을 얻었습니다` only when acquiring that knowledge is supported. Preserve an established sequence without implying that the credential itself produced the learning. Do not replace a vague `지식을 정리했습니다` with `체계화했습니다` or another abstract result that still hides the actual study.
+
+A qualification record alone does not establish particular study topics, lessons, exercises, study methods, or practical mastery. If only attainment is known, state that fact without inventing a preparation account. Retrieve or ask for missing learning details only when the requested answer needs them. A plausible exam syllabus is not evidence of what this person actually studied.
+
+Keep `정리하다` when the source establishes a real organizing or summarizing action, such as arranging notes by topic or comparing already learned concepts. Name its supported object and method when the reader needs them. Do not turn this distinction into a universal ban on the verb or on organizing knowledge. When study and note organization both occurred, retain both as distinct actions rather than replacing either with the other. Preserve the supported actor, learning route, institution, timing, and protected quotations.
+
+Fictional example: a person studied storage temperatures and hygiene criteria while preparing for `식품보관 기초인증`, then earned it. `식품보관 기초인증을 취득해 보관 온도와 위생 기준에 관한 지식을 정리했습니다.` misstates that account. `식품보관 기초인증을 준비하며 보관 온도와 위생 기준을 공부했고, 이후 인증을 취득했습니다.` preserves the supplied learning and sequence. This example does not supply facts for another person's qualification.
+
 ## 2. Omission and reference
 
 Omit a subject or object when the title, preceding sentence, or immediate context identifies it unambiguously. Repeating an established actor in every sentence can make Korean sound translated.
