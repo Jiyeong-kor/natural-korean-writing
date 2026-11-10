@@ -59,6 +59,8 @@ When the user flags an awkward sentence, diagnose the failed meaning or reader r
 
 For education and qualification accounts, apply the [learning and qualification distinction](references/korean-language-principles.md#distinguish-learning-from-earning-a-qualification). Describe source-supported study or learning rather than treating credential attainment as knowledge organization; retain genuine organizing actions and do not infer a study process from the qualification alone.
 
+For a passage explaining a motive, choice, or reasoned claim, apply the [evidence, reason, and claim check](references/korean-language-principles.md#connect-evidence-reasons-and-claims). Make the supported interpretation connect the facts to the conclusion in the actual text; choose its order for this reader and question rather than imposing a universal narrative formula.
+
 ## Choose the artifact profile
 
 Read the relevant section of [artifact style profiles](references/artifact-style-profiles.md) for conversations, technical explanations, GitHub text, UI copy, email, portfolios or resumes, learning material, and proposals or service introductions.
