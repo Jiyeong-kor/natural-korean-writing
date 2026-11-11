@@ -471,7 +471,7 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 2개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
-[supplemental/korean-tense-scope.json](supplemental/korean-tense-scope.json)은 과거 사건에 이어지는 현재 견해와 일반 판단, 당시의 조건과 달라진 견해, 현재 지속 여부가 확인되지 않은 과거 생각과 보호 인용문을 구분하는 가상 사례 3개입니다. 문단 전체를 과거형이나 현재형으로 일괄 통일하지 않고 각 문장의 시간 범위와 확실성을 보존하는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사 통과를 실제 문장 품질 평가로 보고하지 않습니다.
+[supplemental/korean-tense-scope.json](supplemental/korean-tense-scope.json)은 과거 사건에 이어지는 현재 견해와 일반 판단, 당시의 조건과 달라진 견해, 현재 지속 여부가 확인되지 않은 과거 생각과 보호 인용문을 구분하는 가상 사례 6개입니다. 현재 실천과 이미 생긴 변화에 관한 최신 정정, 적용하지 않은 계획의 한계, 미래 목표를 묻는 문항도 검사합니다. 문단 전체를 과거형이나 현재형으로 일괄 통일하지 않고 각 문장의 시간 범위와 확실성을 보존하는지 확인합니다. 극복을 묻는 문항에서는 어미만 바꾸지 않고 실제 행동과 달라진 결과를 연결하는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사 통과를 실제 문장 품질 평가로 보고하지 않습니다.
 
 [supplemental/application-context-modifier-scope.json](supplemental/application-context-modifier-scope.json)은 실제로 함께 보이는 다른 입력란과 독립 답변의 정보 범위, 기관과 장소 수식어의 적용 범위를 검사하는 가상 사례 4개입니다. 공통 수식이 정확한 문장은 유지합니다.
 
