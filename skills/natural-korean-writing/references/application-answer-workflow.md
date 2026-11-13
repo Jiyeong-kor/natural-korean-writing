@@ -42,9 +42,20 @@ Before delivering an application answer, review transitions for repeated categor
 Fictional example:
 
 - Weak: `언어와 AI를 함께 다룬 경험은 뉴스 분류 프로젝트였습니다. OCR의 문제는 광고 문구가 함께 나온다는 점이었습니다.`
-- Better: `Python을 공부한 뒤 뉴스 분류 프로젝트에서 기사 이미지를 분류 모델의 입력으로 가공했습니다. OCR 결과에 광고 문구까지 섞여 본문과 무관한 글자가 모델에 들어갈 수 있었으므로, 제가 본문 영역을 골라낼 기준을 정했습니다.`
+- Better: `Python을 공부한 뒤 뉴스 분류 프로젝트에서 기사 이미지를 분류 모델의 입력으로 가공했습니다. OCR 결과에 광고 문구까지 섞여 본문과 무관한 글자가 모델에 들어갈 수 있었으므로, 본문 영역을 골라낼 기준을 정했습니다.`
 
 This is a check against mechanical exposition, not a ban on `~은`, `~는`, or `~입니다` as Korean grammar. Keep an identification sentence only when it is genuinely needed for clarity and immediately supports the explanation. Do not infer unsupported causality between unrelated education, independent interests, awards, and technical projects; show the confirmed point where they were used together.
+
+
+### Apply the author's accepted line edits as style evidence
+
+When the author edits a draft and instructs the assistant to keep that version, compare the previous draft with the edited text and retain the user's exact changes. Infer a reusable writing check from the edit without turning one preference into a universal word ban.
+
+- **Remove unnecessary first-person emphasis.** If the surrounding sentences already make the applicant the actor, `그래서 판단 기준을 제가 정하고` can read more naturally as `그래서 판단 기준을 정하고`. Keep `제가` or `저는` when the actor changes, responsibility is disputed, or omission makes the action ambiguous.
+- **Let a specific unresolved question express the motivation.** Do not automatically end an answer with `[기업명]의 [프로젝트명]에서 ... 지원했습니다`. When the application context already identifies the position, a concrete, confirmed aim such as `어떤 조건에서 결과가 달라지는지 파악해 해결하고 싶습니다` may carry the motive better. Retain the employer name or explicit application reason if otherwise needed to answer the actual prompt; do not remove job fit merely to avoid formulaic prose.
+- **State the bounded result with an active verb.** Compare `○○를 해결했다고 단정할 수는 없지만, 해당 점유를 줄인 것입니다` with `○○를 해결한 것은 아니지만, 불필요한 점유를 줄였습니다`. Prefer the latter when supported: it keeps the distinction about what did not happen while making the achieved change readable. Do not replace an honest caveat with an unsupported claim of performance improvement or measured savings.
+
+After adopting such a user edit, do not restore the deleted first-person marker, employer-label ending, or nominalized hedge in a later polish unless the meaning or the question genuinely requires it.
 
 Keep that coverage map through the final review: for every required subquestion and explicit user correction, identify the exact sentence or connected passage in the current complete answer that addresses it. A polished answer, relevant anecdote, or reviewer assertion does not fill a missing requested element. For a strengths-and-weaknesses question, verify both in the actual text; do not pass a strengths-only answer because the overall personality story sounds convincing. Distinguish optional examples in employer guidance from mandatory requirements, but treat a user's explicit request to include a particular element as an active constraint. Recheck coverage after shortening, reordering, or style edits. If a required element lacks evidence, flag the specific gap instead of inventing it. If it is missing from locked text, seek or use explicit revision authority for that field without changing unrelated approved answers.
 
