@@ -18,6 +18,18 @@ Distinguish material supporting an account of learning or work from proof accept
 
 For a motivation answer, start from the applicant's confirmed choices, experiences, and reasons, then connect them to the supported work or goal. A list of company duties followed by `제게 맞습니다` is not that connection.
 
+### Remove job-posting recaps from motivation endings
+
+Before delivering a motivation answer, inspect its closing sentences for a standalone description of what the employer or its project does, especially a template such as `[Company]'s project collects A and compares B.` A correct summary of the posting is not the applicant's reason for choosing it. If removing that sentence leaves the applicant's own experience, question, choice, and reason unchanged, delete it. If the reader needs some duty context, integrate only the necessary part into the applicant's confirmed interest or concrete reason; do not add a separate recitation followed by a generic `그래서 지원했습니다`. The final passage should answer why this person wants to examine this particular problem, not merely prove they read the job description.
+
+Fictional example, assuming the applicant has explicitly confirmed that interest:
+
+- Weak: `회사의 연구 과제는 고객 문의를 유형별로 나누고 분류 결과를 비교합니다. 이러한 업무에 관심이 있어 지원했습니다.`
+- Better: `비슷한 표현이 문의 상황에 따라 다른 유형으로 분류되는 이유가 궁금합니다. 판단이 엇갈리는 사례를 모아 어떤 문맥이 분류를 바꾸는지 확인해 보고 싶습니다.`
+
+This check applies even when the company-summary sentence is fluent and factually accurate. Do not ban the grammatical ending `~합니다` or all descriptions of the employer; retain them when the reader genuinely needs the fact. Do not invent longstanding interest, completed experiments, or personal motives to replace a weak recap.
+
+
 Keep that coverage map through the final review: for every required subquestion and explicit user correction, identify the exact sentence or connected passage in the current complete answer that addresses it. A polished answer, relevant anecdote, or reviewer assertion does not fill a missing requested element. For a strengths-and-weaknesses question, verify both in the actual text; do not pass a strengths-only answer because the overall personality story sounds convincing. Distinguish optional examples in employer guidance from mandatory requirements, but treat a user's explicit request to include a particular element as an active constraint. Recheck coverage after shortening, reordering, or style edits. If a required element lacks evidence, flag the specific gap instead of inventing it. If it is missing from locked text, seek or use explicit revision authority for that field without changing unrelated approved answers.
 
 When the question asks how necessary knowledge was acquired and applied, verify a connected passage naming what the applicant studied, the supported learning effort, and where that same knowledge informed an actual action. A course list beside a separate work example, chronology alone, or `배운 내용을 적용했습니다` does not establish that relationship. Keep learning and implementation attributed to the specific subject or technology: studying one to understand documentation does not establish implementing with it, and a later check does not prove use of everything listed in a course. Use a supported application example or identify the missing link separately; do not invent study, use, or results to complete the answer. Recheck the connection in the final text after shortening it, using the existing question-to-evidence map rather than a separate checklist of topic words.
