@@ -65,7 +65,7 @@ For a passage explaining a motive, choice, or reasoned claim, apply the [evidenc
 
 Read the relevant section of [artifact style profiles](references/artifact-style-profiles.md) for conversations, technical explanations, GitHub text, UI copy, email, portfolios or resumes, learning material, and proposals or service introductions.
 
-For a structured document such as a report, notice, or memo, also apply the [shared document drafting checks](references/artifact-style-profiles.md#shared-document-drafting-checks). Their title, organization, and date choices depend on the document's purpose and requested format; they are not a template for every chat reply.
+For a structured document such as a report, notice, or memo, also apply the [shared document drafting checks](references/artifact-style-profiles.md#shared-document-drafting-checks), including required evidence and its actual placement. Their content, title, organization, and date choices depend on the reader, document type, and requested format; they are not a template for every chat reply.
 
 When filling an existing form or creating or checking Korean document or PDF layout, also apply the shared layout section in that reference, regardless of the document's content profile.
 

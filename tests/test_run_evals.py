@@ -828,13 +828,13 @@ class SupplementalRegressionTests(unittest.TestCase):
             cases = json.loads(path.read_text(encoding="utf-8"))
             self.assertIsInstance(cases, list)
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
-            if path.name in {"application-context-modifier-scope.json", "korean-document-principles.json", "personal-perspective.json", "qualification-learning.json", "evidence-reason-claim.json"}:
+            if path.name in {"application-context-modifier-scope.json", "personal-perspective.json", "qualification-learning.json", "evidence-reason-claim.json"}:
                 self.assertEqual(len(cases), 4)
             elif path.name == "application-review-preservation.json":
                 self.assertEqual(len(cases), 5)
             elif path.name == "korean-final-language-pass.json":
                 self.assertEqual(len(cases), 2)
-            elif path.name in {"korean-tense-scope.json", "application-abstract-utility.json"}:
+            elif path.name in {"korean-tense-scope.json", "application-abstract-utility.json", "korean-document-principles.json"}:
                 self.assertEqual(len(cases), 6)
             elif path.name == "technology-name-scope.json":
                 self.assertEqual(len(cases), 3)
