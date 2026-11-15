@@ -11,6 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import prepare_profile_eval as profile
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from profile_source_fixture import pinned_source
 
 

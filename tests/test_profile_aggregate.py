@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import aggregate_profile_eval as agg
 import prepare_profile_eval as prep
 import run_evals as base
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from profile_source_fixture import pinned_source
 
 
