@@ -469,7 +469,7 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/application-final-review-gate.json](supplemental/application-final-review-gate.json)은 앞선 통과 판정과 별개로 전달 책임자가 실제 최종 답변을 다시 판단하는 가상 사례 1개입니다. 회사 선택 근거, 협업 상호작용, 학습 범위와 속도 증거 및 검토자가 추가한 금지 표현을 대조하고, 실제 문장의 수정과 미해결 상태를 구분합니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
-[supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 2개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
+[supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 3개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
 [supplemental/korean-tense-scope.json](supplemental/korean-tense-scope.json)은 과거 사건에 이어지는 현재 견해와 일반 판단, 당시의 조건과 달라진 견해, 현재 지속 여부가 확인되지 않은 과거 생각과 보호 인용문을 구분하는 가상 사례 6개입니다. 현재 실천과 이미 생긴 변화에 관한 최신 정정, 적용하지 않은 계획의 한계, 미래 목표를 묻는 문항도 검사합니다. 문단 전체를 과거형이나 현재형으로 일괄 통일하지 않고 각 문장의 시간 범위와 확실성을 보존하는지 확인합니다. 극복을 묻는 문항에서는 어미만 바꾸지 않고 실제 행동과 달라진 결과를 연결하는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사 통과를 실제 문장 품질 평가로 보고하지 않습니다.
 

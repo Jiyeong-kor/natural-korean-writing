@@ -1,0 +1,15 @@
+{
+  "profile_id": "astra-xhigh-v1",
+  "schema": 1,
+  "agent": "codex",
+  "runtime_surface": "native-collaboration",
+  "model": "gpt-6-astra",
+  "reasoning_effort": "xhigh",
+  "sampling": "runtime_default",
+  "fork_turns": "none",
+  "case_count": 50,
+  "source_commit": "df0d09f2ab8fb72a7fcaec0962d7fd9dd10da7b4",
+  "roles": ["generator", "reviewer-a", "reviewer-b", "adjudicator"],
+  "results_namespace": "astra-xhigh-v1",
+  "prior_results_reusable": false
+}
