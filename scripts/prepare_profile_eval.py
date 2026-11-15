@@ -40,7 +40,8 @@ def prepare(work):
         raise ValueError("Baseline case count changed")
     contract = {"profile": profile, "inputs": hashes,
                 "profile_protocol_sha256": sha((ROOT / "evals/profiles/README.md").read_bytes()),
-                "preparation_tool_sha256": sha(Path(__file__).read_bytes())}
+                "preparation_tool_sha256": sha(Path(__file__).read_bytes()),
+                "aggregation_tool_sha256": sha((ROOT / "scripts/aggregate_profile_eval.py").read_bytes())}
     metadata = {"status": "prepared_not_started", "prepared_at": datetime.now(timezone.utc).isoformat(),
                 "evaluation_identity": sha(encoded(contract)), "contract": contract,
                 "baseline_identity": baseline.compute_evaluation_identity(ROOT),

@@ -31,4 +31,31 @@ python -X utf8 scripts/prepare_profile_eval.py preflight --evidence runtime-evid
 
 ## 결과의 구분
 
-기존 `run_evals.py aggregate`에 새 설정의 기록을 넣지 않습니다. 이 도구는 구 설정을 엄격히 검사하는 도구입니다. 새 프로필의 실행 기록 검증과 집계는 별도 구현 및 검수 전까지 미완료입니다. 이 문서와 준비 도구만으로 전체 모델 평가가 완료되거나 통과됐다고 보고하지 않습니다. 원본 50개 사례와 결과 파일을 수정하지 않으며, 보충 사례의 2개에서 3개로 바뀐 안내 수량은 운영 문서 정정으로만 처리합니다.
+기존 `run_evals.py aggregate`에 새 설정의 기록을 넣지 않습니다. 이 도구는 구 설정을 엄격히 검사하는 도구입니다. 새 프로필의 실행 기록 검증과 집계는 아래 별도 도구로 수행합니다. 이 문서와 준비 도구만으로 전체 모델 평가가 완료되거나 통과됐다고 보고하지 않습니다. 원본 50개 사례와 결과 파일을 수정하지 않으며, 보충 사례의 2개에서 3개로 바뀐 안내 수량은 운영 문서 정정으로만 처리합니다.
+
+## 독립된 기록 검사와 집계
+
+새 `scripts/aggregate_profile_eval.py`는 새 프로필 전용입니다. 준비 시 집계 도구의 해시도 평가 동일성에 포함합니다. 이전 준비 폴더는 고치지 않고 새 폴더에서 다시 준비합니다. 실행 출력이나 판정은 생성하지 않습니다.
+
+```text
+python -X utf8 scripts/aggregate_profile_eval.py --work-dir .eval-astra-xhigh-v1 --output candidate-summary.json
+python -X utf8 scripts/aggregate_profile_eval.py --work-dir .eval-astra-xhigh-v1 --audit independent-audit.json --output verified-summary.json
+```
+
+각 역할의 최초 원문은 `events.jsonl`에 한 행씩 기록합니다. 필드는 `case_id`, `role`, `attempt`(1), `context_id`(새 UUID), `agent_id`, `evaluation_identity`, `prompt`, `output`, `spawn_request`, `spawn_response`, `provider_attestation`입니다. 마지막 세 필드는 후보 폴더 안에 보관한 JSON 증거의 `path`와 `sha256`입니다. 증거의 원문을 별도로 보존하며, 제공자가 JSON으로 반환하지 않은 기록은 원문과 변환 과정을 독립 검토해야 합니다. 작성자가 만든 설명을 제공자 증거로 바꾸어 기록하지 않습니다.
+
+요청 증거에는 `model`, `reasoning_effort`, `fork_turns`, `prompt`, 응답 증거에는 `agent_id`가 있어야 합니다. 제공자 실행 증거에는 `source=provider`, 실제 `runtime_surface`, `model`, `reasoning_effort`, `sampling`, `fork_turns`, `runtime_version`과 해당 실행의 `case_id`, `role`, `context_id`, `agent_id`, `evaluation_identity`, `prompt_sha256`, `output_sha256`, `first_completed_output=true`, `fresh_context=true`가 필요합니다. 제공자가 이 내용을 확인할 근거를 주지 않았다면 실제 기록을 만들어 채우지 않습니다. 해당 역할의 정식 검증은 차단된 것으로 처리합니다.
+
+생성자 출력 전에 평가하거나 두 평가자의 판정 전에 추가 평가하는 기록, 중복 context나 agent ID, 같은 역할의 두 번째 출력, 변경된 프롬프트나 다른 모델의 증거는 거부합니다. 현 구현은 최초 완료 출력만 지원합니다. 출력 없는 실패의 복구 기록은 기존 허용 조건이 있더라도 이 검사기를 우회하지 않고 별도 지원·검수 후 처리합니다. 평가자 원문은 기존 JSON 판정 형식 그대로 읽고, 항목별 다수결과 핵심 실패 다수결은 기존 함수를 사용합니다. 완전 일치 조건과 기본 묶음별 최소 통과 수를 별도 품질 기준에 반영합니다.
+
+상태는 다음과 같이 구분합니다.
+
+- `prepared`: 역할 출력이 없습니다.
+- `partial`: 일부 출력만 있거나 추가 평가를 기다립니다.
+- `candidate-error`: 입력·증거·독립성 검사 오류입니다. 품질 실패와 구분합니다.
+- `complete`: 50개 판정 집계가 끝났습니다. 제공자 원본 증거의 독립 확인은 별개입니다.
+- `verified`: 완전한 집계와 연결된 독립 확인 기록이 있습니다. 품질 통과 여부는 `quality_gate_passed`로 따로 표시합니다. 검증된 실패도 이 상태가 될 수 있습니다.
+
+독립 확인 기록은 `evaluation_identity`, `events_sha256`, `summary_sha256`(정렬한 JSON의 UTF-8 SHA256), 실행 agent와 다른 `reviewer_id`, `provider_receipts_verified=true`, `first_outputs_and_independence_verified=true`, `evidence_source`, `reviewed_at`을 포함합니다. 확인자는 원본 제공자 기록에서 실행 설정과 첫 출력, 역할별 새 대화를 직접 대조해야 합니다. 로컬 JSON과 해시 검사는 제공자 서명 검증이 아니며 기록의 진위를 스스로 입증하지 않습니다. 미제공 메타데이터를 추정하거나 테스트용 가상 증거로 실제 평가를 통과시키지 않습니다.
+
+`verified`에는 위 필드 외에 독립 검토 원문 `independent_review_response`와 제공자가 확인한 검토자 실행 증거 `independent_review_attestation`의 경로 및 해시도 필요합니다. 검토 원문은 검토자 ID, 평가 동일성, 이벤트·집계 해시와 두 확인 판정을 포함합니다. 실행 증거는 `source=provider`, 동일한 `reviewer_id`, 검토 원문 `response_sha256`, `fresh_context=true`, 평가에 사용하지 않은 새 `context_id`를 포함해야 합니다. 확인 플래그만 작성한 로컬 audit 파일은 검증 완료 근거로 인정하지 않습니다. 독립 확인 원문과 실행 근거가 없으면 `complete`에서 멈추며 `verified`로 승격하지 않습니다.

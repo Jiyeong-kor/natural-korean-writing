@@ -26,6 +26,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
+          fetch-depth: 0
           persist-credentials: false
           show-progress: false
 
@@ -106,6 +107,9 @@ jobs:
 
       - name: Test evaluation harness
         run: python -B -X utf8 -W error -m unittest tests/test_run_evals.py
+
+      - name: Test separate Astra candidate tools
+        run: python -B -X utf8 -W error -m unittest tests/test_profile_prepare.py tests/test_profile_aggregate.py
 
       - name: Validate current candidate structure
         run: python -B -X utf8 scripts/validate_repo.py --phase build
