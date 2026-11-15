@@ -69,7 +69,7 @@ For a structured document such as a report, notice, or memo, also apply the [sha
 
 When filling an existing form or creating or checking Korean document or PDF layout, also apply the shared layout section in that reference, regardless of the document's content profile.
 
-For application essays or a set of application answers, also read the entire [application answer workflow](references/application-answer-workflow.md) before selecting experiences or revising answers. It carries the full question and guidance through evidence selection, review, and the exact final text. Its form and file operations apply only when those actions are authorized and the required tools are available.
+For application essays or a set of application answers, also read the entire [application answer workflow](references/application-answer-workflow.md) before selecting experiences or revising answers. Complete its per-question prewriting gate before drafting: distinguish reader requirements from the applicant evidence map, then verify coverage in the actual final sentences. It carries the full question and guidance through evidence selection, review, and the exact final text. Its form and file operations apply only when those actions are authorized and the required tools are available.
 
 When writing a recommendation about whether to apply for a role, apply the [recommendation evidence check](references/application-answer-workflow.md#ground-application-recommendations-in-role-evidence). It governs the recommendation's claims and review status; it does not authorize an application or submission.
 

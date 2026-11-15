@@ -11,6 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 import prepare_profile_eval as profile
+from profile_source_fixture import pinned_source
 
 
 class ProfilePreparationTests(unittest.TestCase):
@@ -23,6 +24,7 @@ class ProfilePreparationTests(unittest.TestCase):
 
     def test_prepare_is_not_a_model_run(self):
         with tempfile.TemporaryDirectory() as folder:
+            pinned_source(self, folder)
             work = Path(folder) / "candidate"
             with contextlib.redirect_stdout(io.StringIO()):
                 profile.prepare(work)
@@ -34,6 +36,15 @@ class ProfilePreparationTests(unittest.TestCase):
             self.assertNotIn("tested_at", metadata)
             with self.assertRaises(FileExistsError):
                 profile.prepare(work)
+
+    def test_changed_skill_input_is_rejected(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = pinned_source(self, folder)
+            skill = root / "skills/natural-korean-writing/SKILL.md"
+            skill.write_text(skill.read_text(encoding="utf-8") + "\nChanged fixture input.\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Evaluated input changed"):
+                profile.prepare(Path(folder) / "rejected-candidate")
+            self.assertFalse((Path(folder) / "rejected-candidate").exists())
 
     def test_missing_runtime_evidence_blocks(self):
         with tempfile.TemporaryDirectory() as folder:

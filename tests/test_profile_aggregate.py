@@ -13,12 +13,14 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import aggregate_profile_eval as agg
 import prepare_profile_eval as prep
 import run_evals as base
+from profile_source_fixture import pinned_source
 
 
 class ProfileAggregateTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
+        pinned_source(self, self.temp.name)
         self.work = Path(self.temp.name) / "candidate"
         with contextlib.redirect_stdout(io.StringIO()):
             prep.prepare(self.work)

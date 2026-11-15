@@ -482,3 +482,5 @@ python -X utf8 -m unittest discover -s tests -v
 [supplemental/qualification-learning.json](supplemental/qualification-learning.json)은 자격 취득 결과와 준비 중 학습, 취득 사실만 확인된 경우, 실제 지식 정리와 학습 기록의 구분을 확인하는 가상 사례 4개입니다. 자격 취득을 학습이나 정리의 원인으로 바꾸거나, 정리라는 말을 일괄 금지하거나, 시험 범위에서 개인의 학습을 추측하지 않는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하며 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사와 작성자의 수동 점검은 실제 모델 품질 평가를 대신하지 않습니다.
 
 [supplemental/evidence-reason-claim.json](supplemental/evidence-reason-claim.json)은 경험과 해석 및 주장 사이의 연결, 확인되지 않은 개인 동기, 결론을 먼저 제시한 구성, 해석이 필요하지 않은 사실 기록을 구분하는 가상 사례 4개입니다. 사실의 정확성과 주제의 일치만으로 논리 관계를 통과시키지 않으며, 실제 문장에 이유와 적용 범위가 드러나는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하고 같은 생성과 독립 평가 절차로 별도 판정합니다. 자료 형식 검사와 수동 검토를 정식 모델 품질 평가로 보고하지 않습니다.
+
+[supplemental/application-question-analysis.json](supplemental/application-question-analysis.json)은 질문 자체의 요구와 지원자 근거의 대응을 작성 전에 구분하고, 작성 후 실제 문장의 충족 여부를 확인하는 가상 사례 2개입니다. 문항별 분석과 전체 답변을 나란히 검토하는 요청 및 답변만 요구하는 대조 조건을 검사합니다. 기본 50개 사례나 기존 평가 결과에는 포함하지 않습니다. 스킬 입력이 바뀌므로 기존 프로필 결과를 이번 규칙의 품질 검증으로 재사용하지 않습니다.
