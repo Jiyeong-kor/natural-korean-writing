@@ -23,7 +23,8 @@ SKILL_DIR = f"skills/{SKILL_NAME}"
 INTRODUCTION = "원래 의미를 그대로 유지하면서 번역투와 어색한 표현을 글의 목적과 독자에 맞게 다듬을 수 있는 자연스러운 한국어 스킬입니다."
 AUTHOR = "Jiyoung Jung"
 PUBLIC_REPOSITORY = "Jiyeong-kor/natural-korean-writing"
-MANIFEST = (
+ORIGINAL_RELEASE_COMMIT = "3b602310bec0a42f0648e00b675eed317240e772"
+ORIGINAL_RELEASE_MANIFEST = (
     ".github/ISSUE_TEMPLATE/config.yml",
     ".github/ISSUE_TEMPLATE/installation.yml",
     ".github/ISSUE_TEMPLATE/writing-quality.yml",
@@ -48,7 +49,6 @@ MANIFEST = (
     f"{SKILL_DIR}/agents/openai.yaml",
     f"{SKILL_DIR}/references/artifact-style-profiles.md",
     f"{SKILL_DIR}/references/context-audience-boundary.md",
-    f"{SKILL_DIR}/references/editing-and-review.md",
     f"{SKILL_DIR}/references/korean-language-principles.md",
     f"{SKILL_DIR}/references/official-korean-sources.md",
     f"{SKILL_DIR}/references/rewrite-examples.md",
@@ -62,6 +62,10 @@ MANIFEST = (
     "LICENSE",
     "README.en.md",
     "README.md",
+)
+MANIFEST = (
+    *ORIGINAL_RELEASE_MANIFEST,
+    f"{SKILL_DIR}/references/editing-and-review.md",
 )
 FORBIDDEN_PATTERNS = (
     "TODO", "[TODO", "OWNER/REPO", "OWNER/", "<owner>",
@@ -94,6 +98,21 @@ def command(args: list[str], root: Path, *, input_text: str | None = None,
     if result.stderr:
         print(result.stderr, end="" if result.stderr.endswith("\n") else "\n", file=sys.stderr)
     return result.stdout
+
+
+def manifest_for_root(root: Path) -> tuple[str, ...]:
+    """Use the historical file set only for the unchanged original checkout."""
+    if not (root / ".git").exists():
+        return MANIFEST
+    try:
+        head = command(["git", "rev-parse", "HEAD"], root).strip()
+        if head == ORIGINAL_RELEASE_COMMIT:
+            status = command(["git", "status", "--porcelain=v1", "--untracked-files=all"], root)
+            if not status:
+                return ORIGINAL_RELEASE_MANIFEST
+    except (OSError, ValueError, UnicodeError, subprocess.TimeoutExpired):
+        pass
+    return MANIFEST
 
 
 def read_text(path: Path) -> str:
@@ -240,12 +259,13 @@ def check_owner(text: str, owner: str) -> list[str]:
 
 def check_staged(root: Path, report: Report) -> None:
     try:
+        manifest = manifest_for_root(root)
         staged = set(filter(None, command(["git", "ls-files", "--cached", "-z"], root).split("\0")))
-        expected = set(MANIFEST)
+        expected = set(manifest)
         missing, extra = sorted(expected - staged), sorted(staged - expected)
         report.check(not missing and not extra, ".", "staged manifest", f"missing={missing}; extra={extra}")
         ignored = command(["git", "check-ignore", "--no-index", "--stdin", "-z"], root,
-                          input_text="\0".join(MANIFEST) + "\0", allowed_codes=(0, 1))
+                          input_text="\0".join(manifest) + "\0", allowed_codes=(0, 1))
         report.check(not ignored, ".gitignore", "required paths", f"ignored={list(filter(None, ignored.split(chr(0))))}")
     except (OSError, ValueError, UnicodeError, subprocess.TimeoutExpired) as exc:
         report.check(False, ".", "staged manifest", str(exc))
@@ -280,13 +300,14 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
     if phase not in {"build", "pre-eval", "final"}:
         report.check(False, ".", "phase", f"unknown phase: {phase}")
         return report
+    manifest = manifest_for_root(root)
     if phase != "build":
-        for relative in MANIFEST:
+        for relative in manifest:
             report.check((root / relative).is_file(), relative, "required file", "file is missing")
             if relative not in RESULT_FILES:
                 report.check((root / relative).is_file() and (root / relative).stat().st_size > 0,
                              relative, "required content", "file is empty or missing")
-    paths = {relative for relative in MANIFEST if (root / relative).is_file()}
+    paths = {relative for relative in manifest if (root / relative).is_file()}
     if (root / ".git").exists():
         try:
             paths.update(filter(None, command(["git", "ls-files", "--cached", "-z"], root).split("\0")))
