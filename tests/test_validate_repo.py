@@ -127,8 +127,9 @@ class RepositoryValidationTests(unittest.TestCase):
 
     def test_pragmatics_file_is_required_in_all_phases_and_manifest(self) -> None:
         self.assertIn("evals/pragmatics.json", validator.MANIFEST)
-        self.assertEqual(len(validator.MANIFEST), 37)
-        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 8)
+        self.assertEqual(len(validator.MANIFEST), 38)
+        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 9)
+        self.assertIn(f"{validator.SKILL_DIR}/references/editing-and-review.md", validator.MANIFEST)
         (self.root / "evals/pragmatics.json").unlink()
         self.assert_fails("case schema")
         self.assert_fails("required file", "pre-eval")

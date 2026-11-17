@@ -47,11 +47,13 @@ See [12 before-and-after examples](examples/before-after.md) for the reasoning a
 
 The [context and audience companion](skills/natural-korean-writing/references/context-audience-boundary.md) is included in the same installation and is mandatory for Korean writing and review. No separate installation or opt-in is needed. It guides decisions about the speaker, relationship, timing, setting, and disclosure scope.
 
+The always-read core consists of `SKILL.md`, the context companion, and the punctuation reference. Revision scope, expression bans, name quotation, and independent review are detailed in the conditional [editing and review contract](skills/natural-korean-writing/references/editing-and-review.md). The entrypoint routes specialized tasks to their relevant references. A request to inspect the entire document does not authorize rewriting it all.
+
 ## Installation
 
 Install the skill in Claude, Claude Code, or Codex. Each method includes the same `SKILL.md` and `references/` folder, including the context and audience companion.
 
-The commands below use `@main` to install the current default-branch instructions, including the revisions checked in Claude on the web. These differ from release `v0.1.0`; see the [validation scope for each version](#evaluation-and-validation).
+The commands below use `@main` to install the current default-branch instructions. These differ from release `v0.1.0`. Installation and output checks of earlier revisions do not validate later changes; see the [validation scope for each version](#evaluation-and-validation).
 
 ### Claude Code and Codex
 
@@ -157,7 +159,9 @@ On October 15, 2026, 49 of 50 regression cases for `v0.1.0` passed in Codex Desk
 
 These evaluation results are from Codex. In Claude on the web, `v0.1.0` ZIP upload and skill activation were tested, and reading and application of the skill and required companion were confirmed in a limited set of cases. Some responses did not follow the instructions. These checks do not establish consistent output quality or instruction compliance across situations; review generated text before use.
 
-The revised instructions on `main` were checked in Claude on the web with cases covering speaker, delivery time, location, disclosure scope, communicative intent, and learning explanations. File-read records for the skill and required companion were observed, and the actual outputs were reviewed. This validation is limited to those cases; it is not a rerun of the full Codex evaluation.
+Earlier `main` instructions, before this streamlining, were checked in Claude on the web with cases covering speaker, delivery time, location, disclosure scope, communicative intent, and learning explanations. File-read records and actual outputs were reviewed. Those limited checks do not validate later revisions and were not a rerun of the full Codex evaluation.
+
+The November 18, 2026 streamlining compared mandatory UTF-8 input size and preserved rules, and inspected actual before-and-after outputs for four fictional requests. This separate limited check is not the full 50-case evaluation, a latency benchmark, or installation compatibility verification. See the [change and verification report](evals/routing-review-20261118.md) for observed results and limitations.
 
 For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. The `@main` commands were also run in separate Claude Code and Codex projects, confirming preservation of the skill text and required reference files. Installation-file checks do not evaluate model output quality. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 

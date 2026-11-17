@@ -48,6 +48,7 @@ MANIFEST = (
     f"{SKILL_DIR}/agents/openai.yaml",
     f"{SKILL_DIR}/references/artifact-style-profiles.md",
     f"{SKILL_DIR}/references/context-audience-boundary.md",
+    f"{SKILL_DIR}/references/editing-and-review.md",
     f"{SKILL_DIR}/references/korean-language-principles.md",
     f"{SKILL_DIR}/references/official-korean-sources.md",
     f"{SKILL_DIR}/references/rewrite-examples.md",
