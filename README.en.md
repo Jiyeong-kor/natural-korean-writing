@@ -163,6 +163,8 @@ Earlier `main` instructions, before this streamlining, were checked in Claude on
 
 The November 18, 2026 streamlining compared mandatory UTF-8 input size and preserved rules, and inspected actual before-and-after outputs for four fictional requests. This separate limited check is not the full 50-case evaluation, a latency benchmark, or installation compatibility verification. See the [change and verification report](evals/routing-review-20261118.md) for observed results and limitations.
 
+The subsequent PR review clarified profile reading units and selectively integrated earlier rules and supplemental cases. Four cases were checked separately against that candidate, and section-selecting paths were measured separately from hosts requiring complete files. The [follow-up report](evals/pr5-review-followup-20261118.md) records changes, first outputs and judgments, and runtime limitations. Smaller declared paths do not establish lower actual input or faster responses on every host.
+
 For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. The `@main` commands were also run in separate Claude Code and Codex projects, confirming preservation of the skill text and required reference files. Installation-file checks do not evaluate model output quality. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 
 The evaluation set contains 24 core cases, 2 confirmed-copy cases, 7 punctuation cases, 10 context and instruction-following cases, and 7 situation-dependent writing cases. Its rubric covers meaning, unsupported additions, audience fit, natural Korean, consistent politeness, literal preservation, and output format.

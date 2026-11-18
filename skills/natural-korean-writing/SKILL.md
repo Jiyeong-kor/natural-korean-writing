@@ -17,15 +17,17 @@ Before writing or reviewing any Korean, including a short reply, read this entir
 
 A name, description, link, or truncated excerpt is not a completed reading. Continue to the end. Reuse a complete unchanged reading still available in the current conversation; reread after a file changes, in a fresh conversation, or after that context is lost. If a required file is unavailable, report that limitation. Reading rules is preparation, not proof that the result follows them.
 
-Load additional references only when their condition applies. Read each selected file completely; do not load unrelated profiles for a short conversation.
+Load additional references only when their condition applies. Read each selected file completely, with one explicit exception: the artifact profile collection uses the complete reading units below. This exception does not shorten the core, the editing contract, the language reference, or the application workflow.
+
+For [artifact style profiles](references/artifact-style-profiles.md), read the introduction before the first `##` heading and the entire numbered profile matching the requested artifact, including its subsections. Read every relevant profile for mixed artifacts. Add the complete `Shared document drafting checks` section, including its evidence subsection, when preparing a standalone document or report or checking its evidence; add the complete `Korean document and PDF layout` section when the task concerns a document template, layout, or export. A short email, UI label, GitHub comment, or plain application answer field does not by itself require these document-only sections or other numbered profiles. Read each selected unit to its next same-level heading or the end, not just matching lines. If the destination is ambiguous, resolve it from the request and supplied context before choosing a profile.
 
 | Task or issue | Reference |
 | --- | --- |
 | Revision or review; scoped word bans, name quotation, exact-text changes, or independent review | [Editing and review contract](references/editing-and-review.md) |
 | A sentence-level grammar or word-meaning problem; technical naming, causal claims, motives, learning, or tense needing analysis | [Korean language principles](references/korean-language-principles.md) |
-| A destination-specific artifact such as an email, UI text, GitHub text, report, resume, lesson, or proposal; document or PDF layout | [Artifact style profiles](references/artifact-style-profiles.md) |
-| Application essays or a same-company answer set | [Application answer workflow](references/application-answer-workflow.md), plus the artifact profile |
-| Advice on whether to apply for a role | The recommendation evidence section of the [application workflow](references/application-answer-workflow.md) |
+| A destination-specific artifact such as an email, UI text, GitHub text, report, resume, lesson, or proposal; document or PDF layout | The complete reading units selected above from [artifact style profiles](references/artifact-style-profiles.md) |
+| Application essays or a same-company answer set | The entire [application answer workflow](references/application-answer-workflow.md), plus profile 6 and applicable document checks |
+| Advice on whether to apply for a role | The entire [application workflow](references/application-answer-workflow.md), including its recommendation evidence checks |
 | A lexical or normative question requiring evidence | [Official Korean sources](references/official-korean-sources.md) |
 | A worked structural example is needed | [Rewrite examples](references/rewrite-examples.md) |
 
@@ -54,6 +56,8 @@ Keep the inspection scope separate from the edit scope. Reading the whole docume
 ## Deliver the requested result
 
 Separate usable copy from commentary about it. A request for words to say, send, or post normally needs one settled version per situation, not drafting notes, self-evaluation, unsolicited alternatives, or follow-up offers. A request for review or explanation needs the requested reasoning. Essential unresolved meaning still warrants a focused clarification rather than fabricated final copy.
+
+Choose this boundary before each prose message, including those between tool calls. For copy-only requests, omit unsolicited reading confirmations and work announcements; invoking the skill does not itself request a reading report. A clean final artifact cannot retract earlier extra prose. Keep requested diagnostics, necessary access or meaning blockers, and progress reporting required by higher-priority instructions separate from the usable copy; this rule does not suppress them.
 
 After successive edits, return the complete affected field when requested, with all accepted changes assembled. Preserve the destination's format. Labels and titles may be short phrases; explanatory prose must make the action and target clear. Do not force sentence endings or question-shaped labels into every table cell.
 
