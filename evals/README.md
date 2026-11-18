@@ -471,6 +471,10 @@ python -X utf8 -m unittest discover -s tests -v
 
 [supplemental/application-whole-answer-logic.json](supplemental/application-whole-answer-logic.json)은 개별 사례가 정확해도 질문의 결론을 뒷받침하지 못하는 전체 구조를 검사하는 가상 사례 1개입니다. 첫머리에서 답변의 방향을 이해할 수 있는지, 추상적인 표현이 실제 선택 이유를 가리지 않는지, 부적합한 사례를 제외하는지 확인합니다. 근거 없는 인과 관계와 장황한 배경 추가도 막습니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
+[supplemental/reader-opening-boundaries.json](supplemental/reader-opening-boundaries.json)은 첫 문장에 선택 이유를 밝혔지만 뒤의 사례가 이를 뒷받침하지 못하는 경우, 관련 활동의 장면으로 시작한 자연스러운 도입, 원자료로 확인한 관심의 지속을 구분하는 독립된 가상 사례 3개입니다. 첫 사례는 PR #6 직전 커밋 `28937df4101e79e2c1ccfe769f22ff354efe1720`의 `application-whole-answer-logic-001`을 복원했습니다. ID만 `application-whole-answer-logic-baseline-001`로 바꾸고 입력과 모든 평가 조건을 보존했으며, 현재 `application-whole-answer-logic.json`의 사례도 그대로 유지합니다. 나머지 두 사례는 정상 문단의 검수 판정과 이유를 요청합니다. 결론의 위치나 특정 동사 형태만으로 필수 수정을 요구하는지 확인하며, 고정된 어순이나 정답 문구는 요구하지 않습니다.
+
+새 3개는 기본 50개와 기존 보충 사례 및 공개 결과를 바꾸지 않으며 기본 집계와 릴리스 통과율에도 포함하지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정합니다. 입력이나 스킬이 달라졌다면 기존 사례와 ID가 비슷하거나 이전 입력을 복원했더라도 과거 출력을 새 결과로 재사용하지 않습니다. 단위 테스트는 사례 형식과 ID 분리, 복원 사례의 원본 일치를 확인하며 실제 문장 품질을 판정하지 않습니다.
+
 [supplemental/application-final-review-gate.json](supplemental/application-final-review-gate.json)은 앞선 통과 판정과 별개로 전달 책임자가 실제 최종 답변을 다시 판단하는 가상 사례 1개입니다. 회사 선택 근거, 협업 상호작용, 학습 범위와 속도 증거 및 검토자가 추가한 금지 표현을 대조하고, 실제 문장의 수정과 미해결 상태를 구분합니다. 기존 평가와 결과를 보존하고 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.
 
 [supplemental/korean-final-language-pass.json](supplemental/korean-final-language-pass.json)은 지원 이유의 빈 적합성 표현과 한국어 최종 문장 검수를 확인하는 가상 사례 3개입니다. 기존 규칙 브랜치의 `contextual-motive-predicate-001`을 같은 조건으로 선별 복구하고, 사실과 논리 검토를 통과했더라도 앞선 표현 지시와 서술어 호응 및 보호 문구를 다시 확인하는 사례를 추가했습니다. 다른 브랜치의 평가 묶음을 통째로 병합하거나 기본 50개 및 공개 결과를 바꾸지 않습니다. 같은 생성 및 독립 평가 절차로 별도 판정하며 기본 집계에는 포함하지 않습니다.

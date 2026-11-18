@@ -49,6 +49,8 @@ The [context and audience companion](skills/natural-korean-writing/references/co
 
 The always-read core consists of `SKILL.md`, the context companion, and the punctuation reference. Revision scope, expression bans, name quotation, and independent review are detailed in the conditional [editing and review contract](skills/natural-korean-writing/references/editing-and-review.md). The entrypoint routes specialized tasks to their relevant references. A request to inspect the entire document does not authorize rewriting it all.
 
+Artifact rules now use a [profile index](skills/natural-korean-writing/references/artifact-style-profiles.md) and separate files. Read the complete index and each selected file; mixed artifacts require every relevant profile. Add the document evidence checks and layout guidance when their conditions apply. Hosts that read complete files therefore need not load unrelated profiles for a short email or UI message. The application profile retains all its subsections and still requires the complete application workflow.
+
 ## Installation
 
 Install the skill in Claude, Claude Code, or Codex. Each method includes the same `SKILL.md` and `references/` folder, including the context and audience companion.
@@ -164,6 +166,8 @@ Earlier `main` instructions, before this streamlining, were checked in Claude on
 The November 18, 2026 streamlining compared mandatory UTF-8 input size and preserved rules, and inspected actual before-and-after outputs for four fictional requests. This separate limited check is not the full 50-case evaluation, a latency benchmark, or installation compatibility verification. See the [change and verification report](evals/routing-review-20261118.md) for observed results and limitations.
 
 The subsequent PR review clarified profile reading units and selectively integrated earlier rules and supplemental cases. Four cases were checked separately against that candidate, and section-selecting paths were measured separately from hosts requiring complete files. The [follow-up report](evals/pr5-review-followup-20261118.md) records changes, first outputs and judgments, and runtime limitations. Smaller declared paths do not establish lower actual input or faster responses on every host.
+
+The profile split moves the existing bodies unchanged and sums the UTF-8 sizes of the index and selected files. It compares both earlier section-selection and complete-file paths, and checks mixed artifacts, document evidence, and layout paths. Reproduce the measurements with `python -B -X utf8 scripts/measure_read_paths.py`. The [profile split and review report](evals/profile-split-review-20261118.md) records preservation checks, new control cases, and the scope of actual output checks. Path size is not a measurement of tokens or response time.
 
 For Claude Code, installation of `v0.1.0` at project scope with GitHub CLI 2.97.0 and inclusion of the required reference files have been verified. The `@main` commands were also run in separate Claude Code and Codex projects, confirming preservation of the skill text and required reference files. Installation-file checks do not evaluate model output quality. Actual execution in Claude Code and ZIP upload in the desktop app have not been verified.
 

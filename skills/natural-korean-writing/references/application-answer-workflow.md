@@ -189,7 +189,7 @@ When saving a final file is authorized, compare its contents with the canonical 
 
 ## Coordinate writing and authorized form work
 
-For a supplied document template, apply the [shared layout guidance](artifact-style-profiles.md#korean-document-and-pdf-layout) to preserve the original form while entering verified values and checking the final deliverable.
+For a supplied document template, apply the [shared layout guidance](document-layout.md) to preserve the original form while entering verified values and checking the final deliverable.
 
 This section does not grant permission to browse, enter personal data, upload, save, download, or submit. Apply it only when the user has authorized the relevant action and the necessary tools and destination are available. Otherwise provide the requested text or plan and identify what has not been performed. Follow the applicable form or file tool's instructions; do not imitate an unavailable action or claim success from a plan. Separate dissatisfaction with prose quality from explicit authorization to submit the identified version. Do not delay an authorized action for optional polishing or repeat an approval request already answered; report any mandatory blocker immediately. A later report that the user submitted changes the action state and prevents another submission.
 
