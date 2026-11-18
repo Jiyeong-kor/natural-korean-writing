@@ -63,9 +63,19 @@ ORIGINAL_RELEASE_MANIFEST = (
     "README.en.md",
     "README.md",
 )
+PROFILE_REFERENCES = tuple(
+    f"{SKILL_DIR}/references/{name}"
+    for name in (
+        "document-drafting-checks.md", "document-layout.md",
+        "profile-conversation.md", "profile-technical.md", "profile-github.md",
+        "profile-ui.md", "profile-email.md", "profile-application.md",
+        "profile-learning.md", "profile-proposal.md",
+    )
+)
 MANIFEST = (
     *ORIGINAL_RELEASE_MANIFEST,
     f"{SKILL_DIR}/references/editing-and-review.md",
+    *PROFILE_REFERENCES,
 )
 FORBIDDEN_PATTERNS = (
     "TODO", "[TODO", "OWNER/REPO", "OWNER/", "<owner>",
@@ -340,6 +350,10 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
     context_reference = "references/context-audience-boundary.md"
     report.check(bool(texts.get(f"{SKILL_DIR}/{context_reference}", "").strip()),
                  f"{SKILL_DIR}/{context_reference}", "context reference", "required reference is empty or missing")
+    if manifest == MANIFEST:
+        for relative in PROFILE_REFERENCES:
+            report.check(bool(texts.get(relative, "").strip()), relative,
+                         "profile reference", "required profile is empty or missing")
     try:
         report.check(context_reference in relative_targets(skill_text), skill_path,
                      "context reference", "missing link to the required context reference")

@@ -127,8 +127,8 @@ class RepositoryValidationTests(unittest.TestCase):
 
     def test_pragmatics_file_is_required_in_all_phases_and_manifest(self) -> None:
         self.assertIn("evals/pragmatics.json", validator.MANIFEST)
-        self.assertEqual(len(validator.MANIFEST), 38)
-        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 9)
+        self.assertEqual(len(validator.MANIFEST), 48)
+        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 19)
         self.assertIn(f"{validator.SKILL_DIR}/references/editing-and-review.md", validator.MANIFEST)
         (self.root / "evals/pragmatics.json").unlink()
         self.assert_fails("case schema")
@@ -148,6 +148,33 @@ class RepositoryValidationTests(unittest.TestCase):
         with patch.object(validator.run_evals, "verify_tracked", side_effect=ValueError("missing real results")):
             self.assert_fails("required content", "final")
 
+    def test_current_candidate_requires_each_split_profile_without_a_link(self) -> None:
+        expected_names = {
+            "document-drafting-checks.md", "document-layout.md",
+            "profile-conversation.md", "profile-technical.md", "profile-github.md",
+            "profile-ui.md", "profile-email.md", "profile-application.md",
+            "profile-learning.md", "profile-proposal.md",
+        }
+        self.assertEqual({Path(path).name for path in validator.PROFILE_REFERENCES},
+                         expected_names)
+        self.assertTrue(set(validator.PROFILE_REFERENCES) <= set(validator.MANIFEST))
+        for relative in validator.PROFILE_REFERENCES:
+            self.assertNotIn(Path(relative).name,
+                             (self.root / self.skill).read_text(encoding="utf-8"))
+            for content in (None, "", " \n"):
+                with self.subTest(path=relative, content=content):
+                    if content is None:
+                        (self.root / relative).unlink()
+                    else:
+                        self.write(relative, content)
+                    for phase in ("build", "pre-eval", "final"):
+                        with patch.object(validator.run_evals, "verify_tracked",
+                                          side_effect=ValueError("missing real results")):
+                            report = self.validate(phase)
+                        self.assertTrue(any(relative in error and "profile reference" in error
+                                            for error in report.errors), report.errors)
+            self.write(relative, "fixture\n")
+
     def test_original_manifest_requires_the_exact_clean_checkout(self) -> None:
         self.assertEqual(validator.MANIFEST, validator.manifest_for_root(self.root))
         (self.root / ".git").mkdir()
@@ -162,7 +189,8 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual(len(validator.ORIGINAL_RELEASE_MANIFEST), 37)
         self.assertEqual(
             set(validator.MANIFEST) - set(validator.ORIGINAL_RELEASE_MANIFEST),
-            {f"{validator.SKILL_DIR}/references/editing-and-review.md"},
+            {f"{validator.SKILL_DIR}/references/editing-and-review.md",
+             *validator.PROFILE_REFERENCES},
         )
         for head, status, expected in scenarios:
             with self.subTest(head=head, status=status):

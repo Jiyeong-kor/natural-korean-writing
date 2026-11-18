@@ -2,6 +2,7 @@
 
 import json
 from pathlib import Path
+import subprocess
 import sys
 import unittest
 
@@ -17,12 +18,20 @@ class ReadPathTests(unittest.TestCase):
         self.sections = {
             heading: ("## " + heading + "\n\n본문입니다.\n\n### Child\n\n"
                       "하위 절을 끝까지 읽습니다.\n\n").encode("utf-8")
-            for heading in paths.ROUTES.values()
+            for heading in paths.SPLIT_FILES
         }
         self.profiles = self.intro + b"".join(self.sections.values())
         self.files = {paths.SKILL + name: (name + "\n원문\n").encode("utf-8")
                       for name in (*paths.CORE, paths.WORKFLOW)}
         self.files[paths.SKILL + paths.PROFILES] = self.profiles
+        self.split_files = dict(self.files)
+        self.split_files[paths.SKILL + paths.PROFILES] = self.intro + (
+            "선택 안내 전체도 읽기 분량에 포함합니다.\n\n"
+            + "".join(f"## {heading}\n\n[{heading}]({Path(path).name})\n\n"
+                      for heading, path in paths.SPLIT_FILES.items())
+        ).encode("utf-8")
+        for heading, path in paths.SPLIT_FILES.items():
+            self.split_files[paths.SKILL + path] = self.sections[heading]
 
     def test_selected_profile_keeps_intro_and_all_children(self):
         for heading, section in self.sections.items():
@@ -77,14 +86,14 @@ class ReadPathTests(unittest.TestCase):
 
     def test_current_paths_exist_and_profile_sections_are_distinct(self):
         read = lambda path: (ROOT / path).read_bytes()
-        values = paths.measure(read)
+        values = paths.measure(read, split_profiles=True)
         data = read(paths.SKILL + paths.PROFILES)
         intro, sections = paths.profile_parts(data)
         self.assertEqual(intro + b"".join(sections.values()), data)
         for route, heading in paths.ROUTES.items():
             with self.subTest(route=route):
                 self.assertIn(heading, sections)
-                selected = paths.selected_profile(data, heading)
+                selected = read(paths.SKILL + paths.SPLIT_FILES[heading])
                 if route == "application":
                     self.assertIn(b"### Application essays", selected)
                 for other in paths.ROUTES.values():
@@ -94,6 +103,111 @@ class ReadPathTests(unittest.TestCase):
         entrypoint = read(paths.SKILL + "SKILL.md")
         for reference in (*paths.CORE[1:], paths.PROFILES, paths.WORKFLOW):
             self.assertIn(reference.encode("utf-8"), entrypoint)
+        for reference in paths.SPLIT_FILES.values():
+            self.assertIn(Path(reference).name.encode("utf-8"), data)
+
+    def test_split_paths_count_the_entire_index_and_selected_files(self):
+        measured = paths.measure(self.split_files.__getitem__, split_profiles=True)
+        core = sum(len(self.split_files[paths.SKILL + name]) for name in paths.CORE)
+        for route, heading in paths.ROUTES.items():
+            with self.subTest(route=route):
+                expected = (core + len(self.split_files[paths.SKILL + paths.PROFILES])
+                            + len(self.split_files[paths.SKILL + paths.SPLIT_FILES[heading]]))
+                if route == "application":
+                    expected += len(self.split_files[paths.SKILL + paths.WORKFLOW])
+                self.assertEqual(measured[route], expected)
+        self.assertEqual(measured, paths.measure(self.split_files.__getitem__,
+                                                whole_profiles=True, split_profiles=True))
+
+    def test_split_routes_do_not_read_unrelated_profile_or_document_files(self):
+        seen = []
+
+        def read(path):
+            seen.append(path)
+            return self.split_files[path]
+
+        paths.measure_path(read, ("email",), split_profiles=True)
+        expected = {paths.SKILL + name for name in (
+            *paths.CORE, paths.PROFILES, paths.SPLIT_FILES[paths.ROUTES["email"]],
+        )}
+        self.assertEqual(set(seen), expected)
+        self.assertEqual(len(seen), len(expected))
+
+    def test_missing_or_empty_split_file_never_falls_back_to_the_collection(self):
+        relative = paths.SKILL + paths.SPLIT_FILES[paths.ROUTES["email"]]
+        self.split_files[paths.SKILL + paths.PROFILES] = self.profiles
+        del self.split_files[relative]
+        with self.assertRaises(KeyError):
+            paths.measure_path(self.split_files.__getitem__, ("email",), split_profiles=True)
+        for content in (b"", b" \n"):
+            self.split_files[relative] = content
+            with self.subTest(content=content), self.assertRaisesRegex(ValueError, "Empty reading"):
+                paths.measure_path(self.split_files.__getitem__, ("email",), split_profiles=True)
+
+    def test_mixed_document_and_layout_paths_count_each_shared_file_once(self):
+        seen = []
+
+        def read(path):
+            seen.append(path)
+            return self.split_files[path]
+
+        value = paths.measure_path(read, ("email", "application", "email", "application"),
+                                   document=True, layout=True, split_profiles=True)
+        expected = {paths.SKILL + name for name in (
+            *paths.CORE, paths.PROFILES, paths.WORKFLOW,
+            paths.SPLIT_FILES[paths.ROUTES["email"]],
+            paths.SPLIT_FILES[paths.ROUTES["application"]],
+            paths.SPLIT_FILES[paths.DOCUMENT], paths.SPLIT_FILES[paths.LAYOUT],
+        )}
+        self.assertEqual(set(seen), expected)
+        self.assertEqual(len(seen), len(expected))
+        self.assertEqual(value, sum(len(self.split_files[path]) for path in expected))
+
+    def test_document_evidence_and_layout_conditions_are_independent(self):
+        read = self.split_files.__getitem__
+        core_index = sum(len(read(paths.SKILL + name)) for name in (*paths.CORE, paths.PROFILES))
+        document = len(read(paths.SKILL + paths.SPLIT_FILES[paths.DOCUMENT]))
+        layout = len(read(paths.SKILL + paths.SPLIT_FILES[paths.LAYOUT]))
+        self.assertEqual(paths.measure_path(read, (), document=True, split_profiles=True),
+                         core_index + document)
+        self.assertEqual(paths.measure_path(read, (), layout=True, split_profiles=True),
+                         core_index + layout)
+        self.assertEqual(paths.measure_path(read, (), document=True, layout=True,
+                                            split_profiles=True), core_index + document + layout)
+
+    def test_legacy_mixed_units_preserve_intro_children_and_unique_workflow(self):
+        read = self.files.__getitem__
+        value = paths.measure_path(read, ("application", "email", "application"),
+                                   document=True, layout=True)
+        headings = (paths.ROUTES["application"], paths.ROUTES["email"],
+                    paths.DOCUMENT, paths.LAYOUT)
+        expected = (sum(len(read(paths.SKILL + name)) for name in (*paths.CORE, paths.WORKFLOW))
+                    + len(self.intro) + sum(len(self.sections[heading]) for heading in headings))
+        self.assertEqual(value, expected)
+        self.assertEqual(paths.measure_path(read, ("application", "email", "application"),
+                                            document=True, layout=True, whole_profiles=True),
+                         sum(len(read(paths.SKILL + name))
+                             for name in (*paths.CORE, paths.WORKFLOW, paths.PROFILES)))
+
+    def test_unknown_routes_do_not_silently_skip_required_context(self):
+        with self.assertRaisesRegex(ValueError, "Unknown artifact route"):
+            paths.measure_path(self.split_files.__getitem__, ("absent",), split_profiles=True)
+
+    def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
+        original = subprocess.check_output(
+            ["git", "show", paths.BEFORE_SPLIT + ":" + paths.SKILL + paths.PROFILES],
+            cwd=ROOT, timeout=30)
+        intro, sections = paths.profile_parts(original)
+        self.assertEqual(list(paths.SPLIT_FILES), list(sections))
+        index = (ROOT / paths.SKILL / paths.PROFILES).read_bytes()
+        self.assertTrue(index.startswith(intro))
+        restored = [intro]
+        for heading, path in paths.SPLIT_FILES.items():
+            with self.subTest(path=path):
+                body = (ROOT / paths.SKILL / path).read_bytes()
+                self.assertEqual(body, sections[heading])
+                restored.append(body)
+        self.assertEqual(b"".join(restored), original)
 
     def test_short_artifact_cases_keep_supplemental_schema(self):
         fixture = ROOT / "evals/supplemental/artifact-profile-routing.json"
