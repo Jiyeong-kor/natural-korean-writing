@@ -127,13 +127,76 @@ class RepositoryValidationTests(unittest.TestCase):
 
     def test_pragmatics_file_is_required_in_all_phases_and_manifest(self) -> None:
         self.assertIn("evals/pragmatics.json", validator.MANIFEST)
-        self.assertEqual(len(validator.MANIFEST), 37)
-        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 8)
+        self.assertEqual(len(validator.MANIFEST), 38)
+        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 9)
+        self.assertIn(f"{validator.SKILL_DIR}/references/editing-and-review.md", validator.MANIFEST)
         (self.root / "evals/pragmatics.json").unlink()
         self.assert_fails("case schema")
         self.assert_fails("required file", "pre-eval")
         with patch.object(validator.run_evals, "verify_tracked", side_effect=ValueError("missing real results")):
             self.assert_fails("required file", "final")
+
+    def test_current_candidate_requires_editing_reference_without_a_link(self) -> None:
+        relative = f"{validator.SKILL_DIR}/references/editing-and-review.md"
+        self.assertNotIn("editing-and-review.md", (self.root / self.skill).read_text(encoding="utf-8"))
+        (self.root / relative).unlink()
+        self.assert_fails("required file", "pre-eval")
+        with patch.object(validator.run_evals, "verify_tracked", side_effect=ValueError("missing real results")):
+            self.assert_fails("required file", "final")
+        self.write(relative, "")
+        self.assert_fails("required content", "pre-eval")
+        with patch.object(validator.run_evals, "verify_tracked", side_effect=ValueError("missing real results")):
+            self.assert_fails("required content", "final")
+
+    def test_original_manifest_requires_the_exact_clean_checkout(self) -> None:
+        self.assertEqual(validator.MANIFEST, validator.manifest_for_root(self.root))
+        (self.root / ".git").mkdir()
+        scenarios = (
+            (validator.ORIGINAL_RELEASE_COMMIT, "", validator.ORIGINAL_RELEASE_MANIFEST),
+            ("a" * 40, "", validator.MANIFEST),
+            (validator.ORIGINAL_RELEASE_COMMIT, " M README.md\n", validator.MANIFEST),
+            (validator.ORIGINAL_RELEASE_COMMIT, "M  README.md\n", validator.MANIFEST),
+            (validator.ORIGINAL_RELEASE_COMMIT, "MM README.md\n", validator.MANIFEST),
+            (validator.ORIGINAL_RELEASE_COMMIT, "?? extra.md\n", validator.MANIFEST),
+        )
+        self.assertEqual(len(validator.ORIGINAL_RELEASE_MANIFEST), 37)
+        self.assertEqual(
+            set(validator.MANIFEST) - set(validator.ORIGINAL_RELEASE_MANIFEST),
+            {f"{validator.SKILL_DIR}/references/editing-and-review.md"},
+        )
+        for head, status, expected in scenarios:
+            with self.subTest(head=head, status=status):
+                def command(args: list[str], root: Path, **kwargs: object) -> str:
+                    if args == ["git", "rev-parse", "HEAD"]:
+                        return head + "\n"
+                    if args == ["git", "status", "--porcelain=v1", "--untracked-files=all"]:
+                        return status
+                    raise AssertionError(f"unexpected command arguments: {args}")
+
+                with patch.object(validator, "command", side_effect=command):
+                    self.assertEqual(expected, validator.manifest_for_root(self.root))
+        with patch.object(validator, "command", side_effect=ValueError("unavailable repository")):
+            self.assertEqual(validator.MANIFEST, validator.manifest_for_root(self.root))
+
+    def test_original_release_passes_full_final_validation(self) -> None:
+        release_path = os.environ.get("NKW_RELEASE_ROOT")
+        self.assertTrue(release_path, "Set NKW_RELEASE_ROOT to a separate v0.1.0 checkout")
+        root = Path(release_path).resolve()
+        self.assertEqual(
+            validator.ORIGINAL_RELEASE_COMMIT,
+            REAL_COMMAND(["git", "rev-parse", "HEAD"], root).strip(),
+        )
+        self.assertEqual(validator.ORIGINAL_RELEASE_MANIFEST, validator.manifest_for_root(root))
+        with patch.object(validator, "command", side_effect=self.gh_command):
+            report = validator.validate_repo(root, "final", self.gh_path)
+        self.assertEqual([], report.errors)
+
+    def test_current_candidate_cannot_reuse_original_release_results(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        self.assertEqual(validator.MANIFEST, validator.manifest_for_root(root))
+        with patch.object(validator, "command", side_effect=self.gh_command):
+            report = validator.validate_repo(root, "final", self.gh_path)
+        self.assertTrue(any("recorded results" in error for error in report.errors), report.errors)
 
     def test_context_reference_must_exist_and_have_content(self) -> None:
         relative = f"{validator.SKILL_DIR}/references/context-audience-boundary.md"

@@ -103,7 +103,7 @@ jobs:
           Add-Content -LiteralPath $env:GITHUB_ENV -Value "TASK_GH_PATH=$taskGh" -Encoding utf8NoBOM
 
       - name: Test repository validator
-        run: python -B -X utf8 -W error -m unittest tests/test_validate_repo.py
+        run: python -B -X utf8 -W error -m unittest tests/test_validate_repo.py tests/test_scope_regressions.py tests/test_read_paths.py tests/test_predecessor_feedback.py
 
       - name: Test evaluation harness
         run: python -B -X utf8 -W error -m unittest tests/test_run_evals.py

@@ -1,0 +1,342 @@
+{
+  "kind": "limited_candidate_smoke_not_formal_benchmark",
+  "date_kst": "2026-11-18",
+  "reviewed_parent_commit": "42d1c2653b3d97dd3d5fccabdf4e4f2462082b40",
+  "source_digest": "E39D59FEB0116E733C726C56DE1309DAC878A8EDFA3A031D6CDCD46110B17D57",
+  "source_digest_method": "scripts/run_evals.py compute_digest; supplemental cases are recorded separately below",
+  "runtime_surface": "native-collaboration",
+  "fork_turns_requested": "none",
+  "model_requested": "inherited",
+  "reasoning_effort_requested": "inherited",
+  "provider_verified_model": null,
+  "provider_verified_runtime_version": null,
+  "capture_scope": "first final message text returned to parent; complete tool and commentary trace not archived here",
+  "dispatch_description": "Each fresh generator received the local SKILL.md location and a separate request-file location. Each fresh judge received only its case-and-output evaluation file location. Absolute workspace locations are not published. The file-delivery wrapper is not the formal benchmark prompt.",
+  "quality_retries": 0,
+  "adjudications": 0,
+  "baseline_full_suite_run": false,
+  "before_after_quality_comparison": false,
+  "limitations": [
+    "Final output judgments do not establish actual reference reading scope or the absence of earlier commentary.",
+    "Provider-confirmed model, runtime version and complete role-level attestation were not available; this record is not an Astra or Desktop formal evaluation.",
+    "Each role was requested in a fresh conversation. No generator received criteria or example answers, and no judge received the skill or other judgments.",
+    "Only the four selected supplemental cases were generated. Other new fixtures, all supplemental cases and the baseline fifty were not executed.",
+    "First outputs and judgments are preserved without quality-based regeneration. Private filesystem dispatch paths are omitted."
+  ],
+  "cases": [
+    {
+      "id": "application-trait-initiative-proposal-001",
+      "case": {
+        "id": "application-trait-initiative-proposal-001",
+        "category": "context",
+        "context": "실제 인물이나 행사와 무관한 가상 사례입니다. 전시 준비 중 관람객들이 같은 장소의 위치를 반복해서 물었습니다. 지원자는 이를 보고 운영 담당자에게 안내판을 추가하면 어떨지 물었습니다. 담당자는 동의했고, 지원자가 안내판을 만들어 설치했습니다. 질문 횟수 감소나 관람객 반응은 측정하지 않았습니다. 최초 아이디어를 다른 사람에게 지시받았다는 기록도, 아무도 일을 시키지 않았다는 명시적 기록도 없습니다.",
+        "instruction": "주도성이 드러나도록 다시 써 주세요. 안내판 기능 설명보다 본인이 어떤 문제를 보고 무엇을 제안하고 실행했는지가 드러나야 합니다. 완성된 문단만 주세요.",
+        "input": "[주도성]\n전시장의 안내판은 장소의 위치를 알려 줍니다. 저는 안내판을 만들고 설치했습니다.",
+        "must_preserve": [
+          "반복되는 위치 질문을 보고 운영 담당자에게 안내판 추가를 제안한 행동입니다.",
+          "담당자가 동의한 뒤 안내판을 만들고 설치한 순서입니다."
+        ],
+        "must_include": [
+          "시작 계기, 본인의 제안과 실제 실행이 본문에 드러납니다."
+        ],
+        "must_not_add": [
+          "질문 감소 수치나 관람객 만족도",
+          "담당자의 반대나 무단 설치",
+          "아무도 시키지 않았다는 미확인 주장"
+        ],
+        "review_points": [
+          "먼저나 주도적으로라는 수식어만 붙이는 대신 구체적인 제안과 협의 순서를 쓰는지 확인합니다.",
+          "담당자의 동의를 받았다는 이유로 본인의 제안을 지우지 않는지 확인합니다."
+        ],
+        "critical_failures": [
+          "안내판의 기능과 설치 사실만 나열합니다.",
+          "협의 과정을 삭제하거나 처음부터 설치를 지시받은 것으로 바꿉니다.",
+          "실행 후 효과를 만듭니다."
+        ],
+        "applicable_rubric": [
+          "meaning_preservation",
+          "no_unsupported_addition",
+          "audience_fit",
+          "natural_korean",
+          "output_format"
+        ]
+      },
+      "generator_prompt": "$natural-korean-writing을 사용하세요.\n\n문맥:\n실제 인물이나 행사와 무관한 가상 사례입니다. 전시 준비 중 관람객들이 같은 장소의 위치를 반복해서 물었습니다. 지원자는 이를 보고 운영 담당자에게 안내판을 추가하면 어떨지 물었습니다. 담당자는 동의했고, 지원자가 안내판을 만들어 설치했습니다. 질문 횟수 감소나 관람객 반응은 측정하지 않았습니다. 최초 아이디어를 다른 사람에게 지시받았다는 기록도, 아무도 일을 시키지 않았다는 명시적 기록도 없습니다.\n\n요청:\n주도성이 드러나도록 다시 써 주세요. 안내판 기능 설명보다 본인이 어떤 문제를 보고 무엇을 제안하고 실행했는지가 드러나야 합니다. 완성된 문단만 주세요.\n\n원문:\n[주도성]\n전시장의 안내판은 장소의 위치를 알려 줍니다. 저는 안내판을 만들고 설치했습니다.\n\n요청한 결과만 출력하세요.\n",
+      "generator_agent_id": "/root/pr5_initiative_output",
+      "output": "전시를 준비하던 중 관람객들이 같은 장소의 위치를 반복해서 묻는 모습을 보았습니다. 이에 운영 담당자에게 안내판을 추가하자고 제안했습니다. 담당자의 동의를 받은 뒤 안내판을 만들어 설치했습니다.",
+      "reviewer_prompt": "다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: application-trait-initiative-proposal-001\n문맥: 실제 인물이나 행사와 무관한 가상 사례입니다. 전시 준비 중 관람객들이 같은 장소의 위치를 반복해서 물었습니다. 지원자는 이를 보고 운영 담당자에게 안내판을 추가하면 어떨지 물었습니다. 담당자는 동의했고, 지원자가 안내판을 만들어 설치했습니다. 질문 횟수 감소나 관람객 반응은 측정하지 않았습니다. 최초 아이디어를 다른 사람에게 지시받았다는 기록도, 아무도 일을 시키지 않았다는 명시적 기록도 없습니다.\n요청: 주도성이 드러나도록 다시 써 주세요. 안내판 기능 설명보다 본인이 어떤 문제를 보고 무엇을 제안하고 실행했는지가 드러나야 합니다. 완성된 문단만 주세요.\n원문: [주도성]\n전시장의 안내판은 장소의 위치를 알려 줍니다. 저는 안내판을 만들고 설치했습니다.\n보존 조건: [\"반복되는 위치 질문을 보고 운영 담당자에게 안내판 추가를 제안한 행동입니다.\",\"담당자가 동의한 뒤 안내판을 만들고 설치한 순서입니다.\"]\n필수 포함 조건: [\"시작 계기, 본인의 제안과 실제 실행이 본문에 드러납니다.\"]\n추가 금지 조건: [\"질문 감소 수치나 관람객 만족도\",\"담당자의 반대나 무단 설치\",\"아무도 시키지 않았다는 미확인 주장\"]\n검토 기준: [\"먼저나 주도적으로라는 수식어만 붙이는 대신 구체적인 제안과 협의 순서를 쓰는지 확인합니다.\",\"담당자의 동의를 받았다는 이유로 본인의 제안을 지우지 않는지 확인합니다.\"]\n핵심 실패 조건: [\"안내판의 기능과 설치 사실만 나열합니다.\",\"협의 과정을 삭제하거나 처음부터 설치를 지시받은 것으로 바꿉니다.\",\"실행 후 효과를 만듭니다.\"]\n완전 일치 기준: null\n적용할 rubric: [\"meaning_preservation\",\"no_unsupported_addition\",\"audience_fit\",\"natural_korean\",\"output_format\"]\n\n실제 출력:\n전시를 준비하던 중 관람객들이 같은 장소의 위치를 반복해서 묻는 모습을 보았습니다. 이에 운영 담당자에게 안내판을 추가하자고 제안했습니다. 담당자의 동의를 받은 뒤 안내판을 만들어 설치했습니다.\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"application-trait-initiative-proposal-001\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}\n",
+      "reviews": [
+        {
+          "agent_id": "/root/pr5_initiative_judge_a",
+          "raw_output": "{\"id\":\"application-trait-initiative-proposal-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"반복되는 위치 질문을 발견한 계기, 운영 담당자에게 안내판 추가를 제안한 행동, 담당자의 동의를 받은 뒤 제작하고 설치한 순서를 모두 보존했습니다. 구체적인 제안과 실행으로 주도성이 드러나며, 측정하지 않은 효과나 아무도 시키지 않았다는 주장을 추가하지 않았습니다. 자연스러운 한국어로 완성된 문단만 제시하여 출력 형식도 충족했습니다.\"}",
+          "parsed": {
+            "id": "application-trait-initiative-proposal-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "반복되는 위치 질문을 발견한 계기, 운영 담당자에게 안내판 추가를 제안한 행동, 담당자의 동의를 받은 뒤 제작하고 설치한 순서를 모두 보존했습니다. 구체적인 제안과 실행으로 주도성이 드러나며, 측정하지 않은 효과나 아무도 시키지 않았다는 주장을 추가하지 않았습니다. 자연스러운 한국어로 완성된 문단만 제시하여 출력 형식도 충족했습니다."
+          }
+        },
+        {
+          "agent_id": "/root/pr5_initiative_judge_b",
+          "raw_output": "{\"id\":\"application-trait-initiative-proposal-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"반복되는 위치 질문을 발견한 계기, 운영 담당자에게 안내판 추가를 제안한 행동, 담당자의 동의를 받은 뒤 제작하고 설치한 순서를 모두 보존했습니다. 구체적인 제안과 실행으로 주도성을 드러냈으며, 측정하지 않은 효과나 지시 여부에 관한 미확인 주장을 추가하지 않았습니다. 문장이 자연스럽고 완성된 문단만 제공하여 출력 형식도 충족했습니다.\"}",
+          "parsed": {
+            "id": "application-trait-initiative-proposal-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "반복되는 위치 질문을 발견한 계기, 운영 담당자에게 안내판 추가를 제안한 행동, 담당자의 동의를 받은 뒤 제작하고 설치한 순서를 모두 보존했습니다. 구체적인 제안과 실행으로 주도성을 드러냈으며, 측정하지 않은 효과나 지시 여부에 관한 미확인 주장을 추가하지 않았습니다. 문장이 자연스럽고 완성된 문단만 제공하여 출력 형식도 충족했습니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "artifact-profile-short-email-001",
+      "case": {
+        "id": "artifact-profile-short-email-001",
+        "category": "context",
+        "context": "회사와 인물을 새로 만든 가상 사례입니다. 외부 협력사 담당자에게 월요일에 회의 가능 시간을 물었으나 아직 답을 받지 못했습니다. 확정한 일정, 회신 기한, 첨부 파일은 없습니다. 이 작업은 이메일 본문 작성이며 발송이나 파일 제작은 요청하지 않았습니다.",
+        "instruction": "같은 담당자에게 보낼 짧고 정중한 확인 메일 본문만 작성해 주세요. 인사와 필요한 요청을 담되 제목이나 작성 과정 설명은 넣지 마세요.",
+        "input": "월요일에 여쭤본 회의 가능 시간을 다시 확인하고 싶습니다.",
+        "must_preserve": [
+          "이전 문의에 아직 회신을 받지 못했습니다.",
+          "확정 일정, 회신 기한과 첨부 파일이 없습니다."
+        ],
+        "must_include": [
+          "외부 담당자에게 하는 정중한 인사와 회의 가능 시간 확인 요청을 담습니다.",
+          "복사할 이메일 본문만 출력합니다."
+        ],
+        "must_not_add": [
+          "상대방의 회신에 감사한다는 말",
+          "새로운 회신 기한, 확정 일정 또는 첨부 파일",
+          "스킬 읽기 확인, 문서 검증표, 이력서 또는 지원서 작성 절차"
+        ],
+        "review_points": [
+          "발신자가 상대방에게 하는 말과 도우미가 사용자에게 하는 말을 섞지 않는지 확인합니다.",
+          "다른 문서 유형의 제목, 날짜 표, 준비 절차가 본문에 들어가지 않는지 확인합니다.",
+          "이 사례의 출력만으로 실제 참조 파일 읽기 범위를 판정하지 않습니다. 읽기 범위는 별도 실행 기록 또는 구조 검사로 확인해야 합니다."
+        ],
+        "critical_failures": [
+          "없는 회신, 기한, 확정 일정이나 첨부 파일을 만듭니다.",
+          "이메일 본문 대신 다른 문서 유형의 양식이나 작업 보고를 출력합니다."
+        ],
+        "applicable_rubric": [
+          "meaning_preservation",
+          "no_unsupported_addition",
+          "audience_fit",
+          "natural_korean",
+          "output_format"
+        ]
+      },
+      "generator_prompt": "$natural-korean-writing을 사용하세요.\n\n문맥:\n회사와 인물을 새로 만든 가상 사례입니다. 외부 협력사 담당자에게 월요일에 회의 가능 시간을 물었으나 아직 답을 받지 못했습니다. 확정한 일정, 회신 기한, 첨부 파일은 없습니다. 이 작업은 이메일 본문 작성이며 발송이나 파일 제작은 요청하지 않았습니다.\n\n요청:\n같은 담당자에게 보낼 짧고 정중한 확인 메일 본문만 작성해 주세요. 인사와 필요한 요청을 담되 제목이나 작성 과정 설명은 넣지 마세요.\n\n원문:\n월요일에 여쭤본 회의 가능 시간을 다시 확인하고 싶습니다.\n\n요청한 결과만 출력하세요.\n",
+      "generator_agent_id": "/root/pr5_email_output",
+      "output": "안녕하세요.\n\n월요일에 문의드린 회의 가능 시간을 확인하고자 다시 연락드립니다. 가능하신 시간을 알려주시면 감사하겠습니다.\n\n감사합니다.",
+      "reviewer_prompt": "다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: artifact-profile-short-email-001\n문맥: 회사와 인물을 새로 만든 가상 사례입니다. 외부 협력사 담당자에게 월요일에 회의 가능 시간을 물었으나 아직 답을 받지 못했습니다. 확정한 일정, 회신 기한, 첨부 파일은 없습니다. 이 작업은 이메일 본문 작성이며 발송이나 파일 제작은 요청하지 않았습니다.\n요청: 같은 담당자에게 보낼 짧고 정중한 확인 메일 본문만 작성해 주세요. 인사와 필요한 요청을 담되 제목이나 작성 과정 설명은 넣지 마세요.\n원문: 월요일에 여쭤본 회의 가능 시간을 다시 확인하고 싶습니다.\n보존 조건: [\"이전 문의에 아직 회신을 받지 못했습니다.\",\"확정 일정, 회신 기한과 첨부 파일이 없습니다.\"]\n필수 포함 조건: [\"외부 담당자에게 하는 정중한 인사와 회의 가능 시간 확인 요청을 담습니다.\",\"복사할 이메일 본문만 출력합니다.\"]\n추가 금지 조건: [\"상대방의 회신에 감사한다는 말\",\"새로운 회신 기한, 확정 일정 또는 첨부 파일\",\"스킬 읽기 확인, 문서 검증표, 이력서 또는 지원서 작성 절차\"]\n검토 기준: [\"발신자가 상대방에게 하는 말과 도우미가 사용자에게 하는 말을 섞지 않는지 확인합니다.\",\"다른 문서 유형의 제목, 날짜 표, 준비 절차가 본문에 들어가지 않는지 확인합니다.\",\"이 사례의 출력만으로 실제 참조 파일 읽기 범위를 판정하지 않습니다. 읽기 범위는 별도 실행 기록 또는 구조 검사로 확인해야 합니다.\"]\n핵심 실패 조건: [\"없는 회신, 기한, 확정 일정이나 첨부 파일을 만듭니다.\",\"이메일 본문 대신 다른 문서 유형의 양식이나 작업 보고를 출력합니다.\"]\n완전 일치 기준: null\n적용할 rubric: [\"meaning_preservation\",\"no_unsupported_addition\",\"audience_fit\",\"natural_korean\",\"output_format\"]\n\n실제 출력:\n안녕하세요.\n\n월요일에 문의드린 회의 가능 시간을 확인하고자 다시 연락드립니다. 가능하신 시간을 알려주시면 감사하겠습니다.\n\n감사합니다.\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"artifact-profile-short-email-001\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}\n",
+      "reviews": [
+        {
+          "agent_id": "/root/pr5_email_judge_a",
+          "raw_output": "{\"id\":\"artifact-profile-short-email-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"월요일에 문의한 회의 가능 시간을 다시 확인한다는 의미를 유지했습니다. 아직 받지 못한 회신이나 새로운 기한, 확정 일정, 첨부 파일을 만들어 넣지 않았습니다. '알려주시면 감사하겠습니다'는 앞으로 받을 회신에 대한 정중한 요청이며, 이미 회신을 받았다는 뜻이 아닙니다. 외부 담당자에게 적합한 인사와 자연스러운 요청을 담았고, 제목이나 작업 설명 없이 복사할 이메일 본문만 출력했습니다.\"}",
+          "parsed": {
+            "id": "artifact-profile-short-email-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "월요일에 문의한 회의 가능 시간을 다시 확인한다는 의미를 유지했습니다. 아직 받지 못한 회신이나 새로운 기한, 확정 일정, 첨부 파일을 만들어 넣지 않았습니다. '알려주시면 감사하겠습니다'는 앞으로 받을 회신에 대한 정중한 요청이며, 이미 회신을 받았다는 뜻이 아닙니다. 외부 담당자에게 적합한 인사와 자연스러운 요청을 담았고, 제목이나 작업 설명 없이 복사할 이메일 본문만 출력했습니다."
+          }
+        },
+        {
+          "agent_id": "/root/pr5_email_judge_b",
+          "raw_output": "{\"id\":\"artifact-profile-short-email-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"월요일에 문의한 회의 가능 시간을 다시 확인한다는 의미를 보존했습니다. 회신을 받았다고 표현하지 않았으며 새로운 회신 기한, 확정 일정이나 첨부 파일도 만들지 않았습니다. '알려주시면 감사하겠습니다'는 앞으로의 회신을 정중하게 요청하는 표현으로, 이미 받은 회신에 감사하는 말이 아닙니다. 외부 담당자에게 적절한 인사와 요청을 자연스러운 한국어로 작성했으며, 제목이나 작업 설명 없이 이메일 본문만 출력했습니다.\"}",
+          "parsed": {
+            "id": "artifact-profile-short-email-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "월요일에 문의한 회의 가능 시간을 다시 확인한다는 의미를 보존했습니다. 회신을 받았다고 표현하지 않았으며 새로운 회신 기한, 확정 일정이나 첨부 파일도 만들지 않았습니다. '알려주시면 감사하겠습니다'는 앞으로의 회신을 정중하게 요청하는 표현으로, 이미 받은 회신에 감사하는 말이 아닙니다. 외부 담당자에게 적절한 인사와 요청을 자연스러운 한국어로 작성했으며, 제목이나 작업 설명 없이 이메일 본문만 출력했습니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "artifact-profile-ui-dismiss-001",
+      "case": {
+        "id": "artifact-profile-ui-dismiss-001",
+        "category": "context",
+        "context": "새로 만든 가상 앱 화면입니다. 저장 요청이 실패했으며 화면에는 오류 안내를 닫는 버튼 하나만 있습니다. 버튼은 안내를 닫을 뿐 저장을 다시 시도하거나 화면을 새로 고치지 않습니다. 실패 원인은 확인되지 않았습니다. 문서, 보고서나 화면 레이아웃 제작은 요청하지 않았습니다.",
+        "instruction": "이 화면의 안내 문장 한 개와 버튼 이름 한 개를 작성해 주세요. 안내: 와 버튼: 두 줄만 출력해 주세요.",
+        "input": "저장 실패 안내. 닫기 전용 버튼.",
+        "must_preserve": [
+          "저장 요청이 실패했습니다.",
+          "버튼은 오류 안내를 닫는 동작만 합니다.",
+          "실패 원인은 확인되지 않았습니다."
+        ],
+        "must_include": [
+          "안내: 다음에는 저장 실패를 알리는 완전한 문장을 씁니다.",
+          "버튼: 다음에는 안내 닫기 동작에 맞는 짧은 이름을 씁니다."
+        ],
+        "must_not_add": [
+          "재시도, 새로 고침이나 복구가 가능한 버튼이라는 설명",
+          "네트워크 문제 등 확인되지 않은 실패 원인",
+          "문서 제목, 작성일, 검증표나 스킬 읽기 보고"
+        ],
+        "review_points": [
+          "버튼 이름에 완전한 문장이나 질문 형태를 불필요하게 강요하지 않는지 확인합니다.",
+          "짧은 UI 문구에 보고서나 지원서 절차를 적용하지 않는지 확인합니다.",
+          "최종 두 줄의 품질과 참조 읽기 범위는 별개입니다. 이 출력만으로 라우팅 성공이나 읽기 비용을 인증하지 않습니다."
+        ],
+        "critical_failures": [
+          "닫기 버튼을 다시 시도 또는 복구 동작으로 바꿉니다.",
+          "미확인 원인을 확정하거나 요청한 두 줄 밖의 작업 보고를 덧붙입니다."
+        ],
+        "applicable_rubric": [
+          "meaning_preservation",
+          "no_unsupported_addition",
+          "audience_fit",
+          "natural_korean",
+          "output_format"
+        ]
+      },
+      "generator_prompt": "$natural-korean-writing을 사용하세요.\n\n문맥:\n새로 만든 가상 앱 화면입니다. 저장 요청이 실패했으며 화면에는 오류 안내를 닫는 버튼 하나만 있습니다. 버튼은 안내를 닫을 뿐 저장을 다시 시도하거나 화면을 새로 고치지 않습니다. 실패 원인은 확인되지 않았습니다. 문서, 보고서나 화면 레이아웃 제작은 요청하지 않았습니다.\n\n요청:\n이 화면의 안내 문장 한 개와 버튼 이름 한 개를 작성해 주세요. 안내: 와 버튼: 두 줄만 출력해 주세요.\n\n원문:\n저장 실패 안내. 닫기 전용 버튼.\n\n요청한 결과만 출력하세요.\n",
+      "generator_agent_id": "/root/pr5_ui_output",
+      "output": "안내: 저장하지 못했습니다.\n버튼: 닫기",
+      "reviewer_prompt": "다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: artifact-profile-ui-dismiss-001\n문맥: 새로 만든 가상 앱 화면입니다. 저장 요청이 실패했으며 화면에는 오류 안내를 닫는 버튼 하나만 있습니다. 버튼은 안내를 닫을 뿐 저장을 다시 시도하거나 화면을 새로 고치지 않습니다. 실패 원인은 확인되지 않았습니다. 문서, 보고서나 화면 레이아웃 제작은 요청하지 않았습니다.\n요청: 이 화면의 안내 문장 한 개와 버튼 이름 한 개를 작성해 주세요. 안내: 와 버튼: 두 줄만 출력해 주세요.\n원문: 저장 실패 안내. 닫기 전용 버튼.\n보존 조건: [\"저장 요청이 실패했습니다.\",\"버튼은 오류 안내를 닫는 동작만 합니다.\",\"실패 원인은 확인되지 않았습니다.\"]\n필수 포함 조건: [\"안내: 다음에는 저장 실패를 알리는 완전한 문장을 씁니다.\",\"버튼: 다음에는 안내 닫기 동작에 맞는 짧은 이름을 씁니다.\"]\n추가 금지 조건: [\"재시도, 새로 고침이나 복구가 가능한 버튼이라는 설명\",\"네트워크 문제 등 확인되지 않은 실패 원인\",\"문서 제목, 작성일, 검증표나 스킬 읽기 보고\"]\n검토 기준: [\"버튼 이름에 완전한 문장이나 질문 형태를 불필요하게 강요하지 않는지 확인합니다.\",\"짧은 UI 문구에 보고서나 지원서 절차를 적용하지 않는지 확인합니다.\",\"최종 두 줄의 품질과 참조 읽기 범위는 별개입니다. 이 출력만으로 라우팅 성공이나 읽기 비용을 인증하지 않습니다.\"]\n핵심 실패 조건: [\"닫기 버튼을 다시 시도 또는 복구 동작으로 바꿉니다.\",\"미확인 원인을 확정하거나 요청한 두 줄 밖의 작업 보고를 덧붙입니다.\"]\n완전 일치 기준: null\n적용할 rubric: [\"meaning_preservation\",\"no_unsupported_addition\",\"audience_fit\",\"natural_korean\",\"output_format\"]\n\n실제 출력:\n안내: 저장하지 못했습니다.\n버튼: 닫기\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"artifact-profile-ui-dismiss-001\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}\n",
+      "reviews": [
+        {
+          "agent_id": "/root/pr5_ui_judge_a",
+          "raw_output": "{\"id\":\"artifact-profile-ui-dismiss-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"안내 문장은 저장 실패를 완전하고 자연스러운 문장으로 전달합니다. 버튼 이름 '닫기'는 오류 안내를 닫는 동작에 맞는 짧은 이름입니다. 확인되지 않은 실패 원인이나 재시도, 복구 기능을 덧붙이지 않았으며, 요청한 '안내:'와 '버튼:' 두 줄만 출력했습니다. 이 판정은 최종 출력의 품질에 한정하며 참조 읽기 범위나 라우팅 성공을 인증하지 않습니다.\"}",
+          "parsed": {
+            "id": "artifact-profile-ui-dismiss-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "안내 문장은 저장 실패를 완전하고 자연스러운 문장으로 전달합니다. 버튼 이름 '닫기'는 오류 안내를 닫는 동작에 맞는 짧은 이름입니다. 확인되지 않은 실패 원인이나 재시도, 복구 기능을 덧붙이지 않았으며, 요청한 '안내:'와 '버튼:' 두 줄만 출력했습니다. 이 판정은 최종 출력의 품질에 한정하며 참조 읽기 범위나 라우팅 성공을 인증하지 않습니다."
+          }
+        },
+        {
+          "agent_id": "/root/pr5_ui_judge_b",
+          "raw_output": "{\"id\":\"artifact-profile-ui-dismiss-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"저장 실패를 완전하고 자연스러운 문장으로 알렸으며, 버튼 이름 '닫기'는 오류 안내만 닫는 동작에 적합합니다. 확인되지 않은 실패 원인이나 재시도, 새로 고침, 복구 기능을 덧붙이지 않았습니다. 요청한 안내와 버튼 두 줄만 출력했으므로 모든 평가 항목을 충족합니다.\"}",
+          "parsed": {
+            "id": "artifact-profile-ui-dismiss-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "저장 실패를 완전하고 자연스러운 문장으로 알렸으며, 버튼 이름 '닫기'는 오류 안내만 닫는 동작에 적합합니다. 확인되지 않은 실패 원인이나 재시도, 새로 고침, 복구 기능을 덧붙이지 않았습니다. 요청한 안내와 버튼 두 줄만 출력했으므로 모든 평가 항목을 충족합니다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "proposal-research-state-unknown-001",
+      "case": {
+        "id": "proposal-research-state-unknown-001",
+        "category": "context",
+        "context": "실제 기관이나 조사와 무관한 가상의 공모전 제안서입니다. 처음 전시를 준비하는 사람은 장비 대여 조건과 설치 제한을 따로 확인해야 해서 대여할 장비를 정하기 어렵습니다. 두 안내는 이미 존재합니다. 제안은 선택한 전시장의 대여 조건과 설치 제한을 한 화면에서 함께 보여 주는 것입니다. 장비 선택에 필요한 정보를 함께 이해해야 한다는 이유로 이 개선을 먼저 제안합니다. 구현은 아직 하지 않았습니다. 작성자가 사용자 조사를 했는지, 수치를 보유했는지, 어떤 자료를 제안 근거로 사용했는지는 전달받지 못했습니다. 새 조사나 테스트를 하겠다는 계획도 제공되지 않았습니다.",
+        "instruction": "원래 어려움과 먼저 개선할 이유가 드러나도록 제안서 제목과 본문을 고쳐 주세요. 제안서만 출력하고, 확인되지 않은 연구 상태나 계획을 덧붙이지 마세요.",
+        "input": "# 전시장 안내 통합\n\n전시장의 안내를 한 화면에서 보여 주는 기능이 필요합니다. 대여 조건과 설치 제한을 함께 보여 주는 안내를 우선 제안합니다.",
+        "must_preserve": [
+          "전시를 처음 준비하는 사람은 대여 조건과 설치 제한을 따로 확인해야 하므로 장비를 정하기 어렵습니다.",
+          "기존 두 안내를 한 화면에서 함께 보여 주는 안내를 제안합니다.",
+          "장비 선택에 필요한 정보를 함께 이해해야 한다는 이유로 이 개선을 우선 제안합니다."
+        ],
+        "must_include": [
+          "현재의 어려움, 장비 선택에 미치는 영향, 개선의 우선순위와 제안의 관계"
+        ],
+        "must_not_add": [
+          "사용자 조사나 수치가 없다는 확정된 주장",
+          "조사나 수치를 제안의 근거로 사용하지 않았다는 대조 문장",
+          "작성자가 새 조사, 구현, 테스트나 후속 확인을 하겠다는 약속",
+          "기존 안내가 없다는 주장이나 구현 완료 및 검증된 효과",
+          "지침 확인이나 수정 완료 같은 작성 과정의 안내"
+        ],
+        "review_points": [
+          "조사 여부와 사용한 근거가 미확인이라는 조건을 미실시나 미사용 사실로 바꾸지 않았는지 확인합니다. 부정문과 대조 표현으로 같은 단정을 하는지도 읽습니다.",
+          "없는 근거를 보완한다는 이유로 요청하지 않은 조사나 테스트 계획을 추가하지 않았는지 확인합니다.",
+          "제목 앞과 본문 뒤를 포함해 제안서 독자에게 필요한 결과만 전달했는지 확인합니다.",
+          "미확인 상태나 미구현 상태를 별도 문장으로 반드시 설명할 필요는 없지만 완료나 부재를 단정해서는 안 됩니다.",
+          "비교 자료 없이 발생 빈도나 피해가 가장 크다는 주장으로 우선순위의 이유를 바꾸지 않았는지 확인합니다."
+        ],
+        "critical_failures": [
+          "확인되지 않은 조사나 근거 사용 상태를 없었다거나 사용하지 않았다고 단정합니다.",
+          "새 조사나 테스트 약속을 작성자의 계획으로 만듭니다.",
+          "기존 안내의 존재를 없애거나 제안을 구현된 서비스로 바꿉니다.",
+          "개선 우선순위의 이유 없이 기능만 나열합니다."
+        ],
+        "applicable_rubric": [
+          "meaning_preservation",
+          "no_unsupported_addition",
+          "audience_fit",
+          "natural_korean",
+          "output_format"
+        ]
+      },
+      "generator_prompt": "$natural-korean-writing을 사용하세요.\n\n문맥:\n실제 기관이나 조사와 무관한 가상의 공모전 제안서입니다. 처음 전시를 준비하는 사람은 장비 대여 조건과 설치 제한을 따로 확인해야 해서 대여할 장비를 정하기 어렵습니다. 두 안내는 이미 존재합니다. 제안은 선택한 전시장의 대여 조건과 설치 제한을 한 화면에서 함께 보여 주는 것입니다. 장비 선택에 필요한 정보를 함께 이해해야 한다는 이유로 이 개선을 먼저 제안합니다. 구현은 아직 하지 않았습니다. 작성자가 사용자 조사를 했는지, 수치를 보유했는지, 어떤 자료를 제안 근거로 사용했는지는 전달받지 못했습니다. 새 조사나 테스트를 하겠다는 계획도 제공되지 않았습니다.\n\n요청:\n원래 어려움과 먼저 개선할 이유가 드러나도록 제안서 제목과 본문을 고쳐 주세요. 제안서만 출력하고, 확인되지 않은 연구 상태나 계획을 덧붙이지 마세요.\n\n원문:\n# 전시장 안내 통합\n\n전시장의 안내를 한 화면에서 보여 주는 기능이 필요합니다. 대여 조건과 설치 제한을 함께 보여 주는 안내를 우선 제안합니다.\n\n요청한 결과만 출력하세요.\n",
+      "generator_agent_id": "/root/pr5_proposal_output",
+      "output": "# 장비 선택을 위한 전시장 안내 통합\n\n전시장에는 장비 대여 조건과 설치 제한에 관한 안내가 이미 있습니다. 그러나 처음 전시를 준비하는 사람은 두 안내를 따로 확인해야 해서 빌릴 장비를 정하기 어렵습니다.\n\n장비를 선택하려면 대여 조건과 설치 제한을 함께 이해해야 합니다. 따라서 선택한 전시장의 두 안내를 한 화면에서 함께 보여 주는 개선을 우선 제안합니다.",
+      "reviewer_prompt": "다음 출력이 case의 요구 조건을 충족하는지 평가하세요.\n\n보존 조건과 필수 포함 조건은 별도의 정확 표기 지시가 없으면 의미와 사실을 기준으로 판정하세요. 조건을 설명한 문장을 출력의 고정 문구로 취급하지 마세요.\n\nliteral_preservation은 코드, 경로, URL, 기술 식별자와 그대로 유지하라고 명시한 문구의 정확한 보존을 판정합니다. 보호 대상 밖에서 의미가 같은 표현이나 조사, 어순이 달라진 것만으로 이 항목을 fail로 판정하지 마세요.\n\n완전 일치 기준이 null이 아니면 출력 전체의 문자, 공백과 문장부호가 그 값과 일치해야 합니다. null이어도 보호할 개별 원문은 정확히 유지해야 합니다.\n\nCase ID: proposal-research-state-unknown-001\n문맥: 실제 기관이나 조사와 무관한 가상의 공모전 제안서입니다. 처음 전시를 준비하는 사람은 장비 대여 조건과 설치 제한을 따로 확인해야 해서 대여할 장비를 정하기 어렵습니다. 두 안내는 이미 존재합니다. 제안은 선택한 전시장의 대여 조건과 설치 제한을 한 화면에서 함께 보여 주는 것입니다. 장비 선택에 필요한 정보를 함께 이해해야 한다는 이유로 이 개선을 먼저 제안합니다. 구현은 아직 하지 않았습니다. 작성자가 사용자 조사를 했는지, 수치를 보유했는지, 어떤 자료를 제안 근거로 사용했는지는 전달받지 못했습니다. 새 조사나 테스트를 하겠다는 계획도 제공되지 않았습니다.\n요청: 원래 어려움과 먼저 개선할 이유가 드러나도록 제안서 제목과 본문을 고쳐 주세요. 제안서만 출력하고, 확인되지 않은 연구 상태나 계획을 덧붙이지 마세요.\n원문: # 전시장 안내 통합\n\n전시장의 안내를 한 화면에서 보여 주는 기능이 필요합니다. 대여 조건과 설치 제한을 함께 보여 주는 안내를 우선 제안합니다.\n보존 조건: [\"전시를 처음 준비하는 사람은 대여 조건과 설치 제한을 따로 확인해야 하므로 장비를 정하기 어렵습니다.\",\"기존 두 안내를 한 화면에서 함께 보여 주는 안내를 제안합니다.\",\"장비 선택에 필요한 정보를 함께 이해해야 한다는 이유로 이 개선을 우선 제안합니다.\"]\n필수 포함 조건: [\"현재의 어려움, 장비 선택에 미치는 영향, 개선의 우선순위와 제안의 관계\"]\n추가 금지 조건: [\"사용자 조사나 수치가 없다는 확정된 주장\",\"조사나 수치를 제안의 근거로 사용하지 않았다는 대조 문장\",\"작성자가 새 조사, 구현, 테스트나 후속 확인을 하겠다는 약속\",\"기존 안내가 없다는 주장이나 구현 완료 및 검증된 효과\",\"지침 확인이나 수정 완료 같은 작성 과정의 안내\"]\n검토 기준: [\"조사 여부와 사용한 근거가 미확인이라는 조건을 미실시나 미사용 사실로 바꾸지 않았는지 확인합니다. 부정문과 대조 표현으로 같은 단정을 하는지도 읽습니다.\",\"없는 근거를 보완한다는 이유로 요청하지 않은 조사나 테스트 계획을 추가하지 않았는지 확인합니다.\",\"제목 앞과 본문 뒤를 포함해 제안서 독자에게 필요한 결과만 전달했는지 확인합니다.\",\"미확인 상태나 미구현 상태를 별도 문장으로 반드시 설명할 필요는 없지만 완료나 부재를 단정해서는 안 됩니다.\",\"비교 자료 없이 발생 빈도나 피해가 가장 크다는 주장으로 우선순위의 이유를 바꾸지 않았는지 확인합니다.\"]\n핵심 실패 조건: [\"확인되지 않은 조사나 근거 사용 상태를 없었다거나 사용하지 않았다고 단정합니다.\",\"새 조사나 테스트 약속을 작성자의 계획으로 만듭니다.\",\"기존 안내의 존재를 없애거나 제안을 구현된 서비스로 바꿉니다.\",\"개선 우선순위의 이유 없이 기능만 나열합니다.\"]\n완전 일치 기준: null\n적용할 rubric: [\"meaning_preservation\",\"no_unsupported_addition\",\"audience_fit\",\"natural_korean\",\"output_format\"]\n\n실제 출력:\n# 장비 선택을 위한 전시장 안내 통합\n\n전시장에는 장비 대여 조건과 설치 제한에 관한 안내가 이미 있습니다. 그러나 처음 전시를 준비하는 사람은 두 안내를 따로 확인해야 해서 빌릴 장비를 정하기 어렵습니다.\n\n장비를 선택하려면 대여 조건과 설치 제한을 함께 이해해야 합니다. 따라서 선택한 전시장의 두 안내를 한 화면에서 함께 보여 주는 개선을 우선 제안합니다.\n\n적용할 rubric 항목마다 pass 또는 fail을 판정하세요. 핵심 실패 여부와 근거를 함께 기록하세요. 문장을 다시 작성하지 마세요.\n다음 JSON object 하나만 출력하세요.\n{\"id\":\"proposal-research-state-unknown-001\",\"rubric\":{\"rubric_name\":\"pass_or_fail\"},\"critical_failure\":false,\"reason\":\"판정 근거\"}\n",
+      "reviews": [
+        {
+          "agent_id": "/root/pr5_proposal_judge_a",
+          "raw_output": "{\"id\":\"proposal-research-state-unknown-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"기존 두 안내의 존재, 별도 확인으로 인한 초보 전시 준비자의 장비 선택 어려움, 두 조건을 함께 이해해야 한다는 개선 우선순위의 이유를 모두 보존했습니다. 조사 여부나 근거 사용 상태를 단정하지 않았으며, 새로운 조사나 구현 및 테스트 계획이나 검증된 효과도 추가하지 않았습니다. 제목과 본문만 출력했고 문장도 자연스럽습니다.\"}",
+          "parsed": {
+            "id": "proposal-research-state-unknown-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "기존 두 안내의 존재, 별도 확인으로 인한 초보 전시 준비자의 장비 선택 어려움, 두 조건을 함께 이해해야 한다는 개선 우선순위의 이유를 모두 보존했습니다. 조사 여부나 근거 사용 상태를 단정하지 않았으며, 새로운 조사나 구현 및 테스트 계획이나 검증된 효과도 추가하지 않았습니다. 제목과 본문만 출력했고 문장도 자연스럽습니다."
+          }
+        },
+        {
+          "agent_id": "/root/pr5_proposal_judge_b",
+          "raw_output": "{\"id\":\"proposal-research-state-unknown-001\",\"rubric\":{\"meaning_preservation\":\"pass\",\"no_unsupported_addition\":\"pass\",\"audience_fit\":\"pass\",\"natural_korean\":\"pass\",\"output_format\":\"pass\"},\"critical_failure\":false,\"reason\":\"기존 두 안내를 따로 확인해야 하는 어려움과 그로 인해 장비 선택이 어려워지는 상황을 보존했습니다. 장비를 선택하려면 두 정보를 함께 이해해야 한다는 이유를 안내 통합의 우선순위와 연결했습니다. 조사 여부나 근거 사용 여부를 단정하지 않았으며, 새로운 조사나 테스트 계획, 구현 완료 또는 검증된 효과도 덧붙이지 않았습니다. 제안서 제목과 본문만 자연스러운 한국어로 출력하여 형식과 독자 적합성 조건을 충족했습니다.\"}",
+          "parsed": {
+            "id": "proposal-research-state-unknown-001",
+            "rubric": {
+              "meaning_preservation": "pass",
+              "no_unsupported_addition": "pass",
+              "audience_fit": "pass",
+              "natural_korean": "pass",
+              "output_format": "pass"
+            },
+            "critical_failure": false,
+            "reason": "기존 두 안내를 따로 확인해야 하는 어려움과 그로 인해 장비 선택이 어려워지는 상황을 보존했습니다. 장비를 선택하려면 두 정보를 함께 이해해야 한다는 이유를 안내 통합의 우선순위와 연결했습니다. 조사 여부나 근거 사용 여부를 단정하지 않았으며, 새로운 조사나 테스트 계획, 구현 완료 또는 검증된 효과도 덧붙이지 않았습니다. 제안서 제목과 본문만 자연스러운 한국어로 출력하여 형식과 독자 적합성 조건을 충족했습니다."
+          }
+        }
+      ]
+    }
+  ]
+}

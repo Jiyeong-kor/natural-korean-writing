@@ -6,7 +6,7 @@ An allowed punctuation mark is not obligatory. When the user or repository furth
 
 ## Protect exact text first
 
-Preserve user-confirmed wording exactly, including spaces and punctuation, unless the user explicitly authorizes changing that wording. That requirement takes priority over general punctuation cleanup. Also preserve characters that belong to code, identifiers, filenames, paths, URLs, commands, options, Git branches, package names, versions, regular expressions, API values, official names, or quotations retained as source text.
+Use the [entrypoint's protected-text definition](../SKILL.md#resolve-scope-before-style). Preserve user-confirmed wording, exact literals, and official names or source quotations that must be reproduced exactly. This takes priority over punctuation cleanup. An ordinary explanatory mention of a product is not automatically a locked official-name field; follow the applicable naming instruction without changing protected spans. If a whole-output restriction conflicts with an explicitly required literal, resolve that narrow conflict rather than silently changing the literal.
 
 Examples of protected literals: `feature/fix-copy`, `--dry-run`, `Content-Type`, `v0.1.0`, `2026-08-31`, and `https://cli.github.com/manual/gh_skill_install`.
 
@@ -46,6 +46,8 @@ Do not use it to append an explanation or imitate an English compound in Korean 
 Use the tilde for a period, distance, or range, attached to both sides: `8월 1일~8월 3일`, `서울~부산`, `5~10쪽`. A hyphen is allowed in the same position.
 
 Do not append it as a general sentence-ending decoration or tone marker. For editable prose, `감사합니다~` becomes `감사합니다.`
+
+Removing a decoration does not authorize changing the relationship, warmth, or speech act. Preserve those through suitable wording, and keep exact protected text unchanged.
 
 The older use for omitted material before or after a word, such as `~사회`, is outside the current punctuation rules. The official commentary does not prohibit that specialist notation. Preserve it only when a linguistic example or exact source requires it; do not generalize it to ordinary Korean.
 
