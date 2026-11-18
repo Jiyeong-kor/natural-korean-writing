@@ -66,10 +66,6 @@ Begin with established context and introduce new information where the reader ca
 5. Concision removes redundancy, not the relationships a reader needs. Retain or supply source-supported connective endings, conjunctions, and explanatory clauses when omission makes the reader reconstruct a reason, contrast, condition, or result. No rule requires either deleting all connectives or placing one at every sentence opening.
 6. Check paragraph progression before adding connectors. A paragraph needs a relevant focus and a reason for introducing its next example; a word such as `또한` cannot repair unrelated facts or missing reasoning. Prefer the structure that makes the supplied relationship readable without forcing a universal sentence length or rhythm.
 
-### Make the opening's direction readable
-
-When a personal account brings together several fields, jobs, or events, identify what that paragraph is trying to explain before arranging the examples. Read its first one or two sentences as someone who cannot see the later conclusion. The opening should point to that actual focus, not just a broad value that could introduce another subject. If the examples initially look unrelated and only a closing sentence reveals why they were grouped, introduce the supported direction earlier or choose an opening example that already points to it. Do not require every paragraph to announce its conclusion; a concrete scene can establish the subject naturally, and an intentional later reveal can fit another genre. The test is whether the reader can follow the present passage, not whether a fixed sentence order was used.
-
 ### Connect evidence, reasons, and claims
 
 When a passage must explain a choice, motivation, recommendation, or judgment, distinguish three roles: the source-supported facts or experience; the reason that explains why those facts matter to this claim; and the claim or choice the reader is asked to understand. Correct facts next to a conclusion do not automatically establish that relationship. Identify the relevant premise or interpretation and make the connection readable in the actual passage. A reason may justify a judgment without describing what caused an event. Chronology, a shared topic word, `그래서`, or `연결됩니다` alone does not supply the missing reasoning.
@@ -98,8 +94,6 @@ Review noun stacks, long modifiers, repeated demonstratives, and abstract nouns 
 2. Keep a nominal expression when the concept, category, or possession is the point. A genuine definition such as `교정은 글의 잘못된 부분을 바로잡는 일입니다.` does not need a different structure merely because it ends in `입니다`.
 3. Treat a possessive expression such as `검토자의 판단` as a question about meaning, not a forbidden form. State the decision and its criteria when those are what the reader needs; retain the possessive when whose judgment it was matters.
 4. A sentence beginning with `이 문서는` or another demonstrative can distinguish its subject. Remove it only when it repeats an already clear subject without adding a useful connection.
-
-Pay particular attention when an abstract noun such as `생각`, `관심`, or `경험` becomes the subject of `이어지다`, `계속되다`, or `연결되다`. A grammatically valid bridge may still leave the reader unable to tell what persisted, what was related, or why that relation matters. If the source establishes a continuing wish or choice, state what the person wanted or chose in the relevant situation. If the bridge adds no needed meaning, remove it. Do not ban these nouns or verbs: retain them when actual continuity or a specific connection is the point and the referents are clear. For example, if a fictional writer learned two crafts while wanting to use them to help neighbors, `두 가지를 배우는 동안에도 사람을 돕고 싶다는 생각은 이어졌습니다.` can become `두 가지를 배우면서도 배운 것을 이웃을 돕는 데 쓰고 싶었습니다.` Neither wording permits inventing that motive when the source does not supply it.
 
 ### Abstract assessments and unsupported narratives
 
