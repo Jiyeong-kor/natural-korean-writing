@@ -39,6 +39,16 @@ CASE_IDS = {
         "artifact-copy-only-progress-001",
         "proposal-research-state-unknown-001",
     ),
+    "agent-workflow.json": (
+        "agent-workflow-coordinator-resume-001",
+        "agent-workflow-delegated-writer-001",
+        "agent-workflow-delegated-reviewer-001",
+        "agent-workflow-latest-correction-001",
+        "agent-workflow-review-version-001",
+        "agent-workflow-unread-source-001",
+        "agent-workflow-independent-review-unavailable-001",
+        "agent-workflow-short-edit-001",
+    ),
 }
 
 

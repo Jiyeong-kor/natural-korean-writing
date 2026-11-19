@@ -72,10 +72,28 @@ PROFILE_REFERENCES = tuple(
         "profile-learning.md", "profile-proposal.md",
     )
 )
+WORKFLOW_REFERENCES = tuple(
+    f"{SKILL_DIR}/references/{name}"
+    for name in (
+        "agent-workflow.md", "application-answer-workflow.md",
+        "application-planning.md", "application-writing.md", "application-review.md",
+        "application-form-work.md", "application-delivery.md",
+    )
+)
+WORKFLOW_LINKS = {
+    f"{SKILL_DIR}/SKILL.md": (
+        "references/agent-workflow.md", "references/application-answer-workflow.md",
+    ),
+    f"{SKILL_DIR}/references/application-answer-workflow.md": (
+        "application-planning.md", "application-writing.md", "application-review.md",
+        "application-form-work.md", "application-delivery.md",
+    ),
+}
 MANIFEST = (
     *ORIGINAL_RELEASE_MANIFEST,
     f"{SKILL_DIR}/references/editing-and-review.md",
     *PROFILE_REFERENCES,
+    *WORKFLOW_REFERENCES,
 )
 FORBIDDEN_PATTERNS = (
     "TODO", "[TODO", "OWNER/REPO", "OWNER/", "<owner>",
@@ -354,6 +372,17 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
         for relative in PROFILE_REFERENCES:
             report.check(bool(texts.get(relative, "").strip()), relative,
                          "profile reference", "required profile is empty or missing")
+        for relative in WORKFLOW_REFERENCES:
+            report.check(bool(texts.get(relative, "").strip()), relative,
+                         "workflow reference", "required workflow is empty or missing")
+        for source, targets in WORKFLOW_LINKS.items():
+            try:
+                linked = set(relative_targets(texts.get(source, "")))
+                for target in targets:
+                    report.check(target in linked, source, "workflow reference link",
+                                 "missing link to the required workflow reference: " + target)
+            except ValueError as exc:
+                report.check(False, source, "workflow reference link", str(exc))
     try:
         report.check(context_reference in relative_targets(skill_text), skill_path,
                      "context reference", "missing link to the required context reference")

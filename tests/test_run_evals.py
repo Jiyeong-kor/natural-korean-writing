@@ -793,6 +793,30 @@ class EvalHarnessTests(unittest.TestCase):
                     harness.verify_tracked(self.root)
                 path.write_bytes(original)
 
+    def test_new_role_and_stage_references_are_discovered_as_digest_inputs(self):
+        harness.aggregate(self.root)
+        before = harness.compute_digest(self.root)
+        references = self.root / "skills" / "natural-korean-writing" / "references"
+        for filename in (
+            "agent-workflow.md", "application-answer-workflow.md", "application-planning.md",
+            "application-writing.md", "application-review.md", "application-form-work.md",
+            "application-delivery.md",
+        ):
+            with self.subTest(path=filename):
+                path = references / filename
+                self.assertFalse(path.exists())
+                path.write_text("# 합성 역할 지침\n", encoding="utf-8", errors="strict", newline="\n")
+                added = harness.compute_digest(self.root)
+                self.assertNotEqual(added, before)
+                path.write_text("# 변경한 합성 역할 지침\n", encoding="utf-8", errors="strict", newline="\n")
+                self.assertNotEqual(harness.compute_digest(self.root), added)
+                with self.assertRaisesRegex(ValueError, "tested skill digest mismatch"):
+                    harness.check(self.root)
+                with self.assertRaisesRegex(ValueError, "tested skill digest mismatch"):
+                    harness.verify_tracked(self.root)
+                path.unlink()
+                self.assertEqual(harness.compute_digest(self.root), before)
+
     def test_digest_order_scope_and_raw_bytes(self):
         runtime = self.root / "skills" / "natural-korean-writing"
         for name, body in (("B.txt", b"B\r\n"), ("a.txt", b"a\x00\xff"), ("한글.txt", b"korean")):
