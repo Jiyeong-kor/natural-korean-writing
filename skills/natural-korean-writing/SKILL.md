@@ -1,6 +1,6 @@
 ---
 name: natural-korean-writing
-description: Write, rewrite, and review Korean that preserves meaning and fits its speaker, reader, situation, and purpose. Use for Korean conversations and reader-facing copy, including application essays, repeated manuscript revisions, and translated, stiff, repetitive, ambiguous, or contextually inappropriate wording. Read the complete skill before applying it.
+description: Write, revise, and review Korean for its audience without changing meaning. Use for conversations, drafts, application essays, repeated revisions, and awkward wording. Read the complete skill.
 license: MIT
 ---
 

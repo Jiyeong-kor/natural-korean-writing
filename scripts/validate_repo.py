@@ -362,6 +362,11 @@ def validate_repo(root: Path, phase: str = "final", gh_path: Path | None = None,
         report.check(set(fields) == {"name", "description", "license"}, skill_path, "frontmatter fields", "exactly name, description, and license are required")
         report.check(fields.get("license") == "MIT", skill_path, "license", "license must be MIT")
         report.check(1 <= len(description) <= 1024, skill_path, "description", "expected 1 to 1024 characters")
+        if manifest == MANIFEST:
+            # Use the narrower Claude Help upload guidance for the shared package.
+            # Keep the unchanged original release under its historical constraints.
+            report.check(len(description) <= 200, skill_path, "shared description length",
+                         "expected at most 200 characters for shared Claude/Codex packaging")
     except ValueError as exc:
         report.check(False, skill_path, "frontmatter", str(exc))
     report.check(len(skill_text.splitlines()) <= 500, skill_path, "line count", "exceeds 500 lines")

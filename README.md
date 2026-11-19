@@ -100,6 +100,12 @@ gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main 
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope project
 ```
 
+#### 이미 설치한 스킬 갱신
+
+저장소의 `main`이 갱신돼도 이전에 설치한 사본은 자동으로 바뀌지 않습니다. 최신 지침을 사용하려면 위 설치 명령을 기존 설치와 같은 `--agent`와 `--scope`로 다시 실행합니다. `@main`을 유지하고, 프로젝트 범위라면 해당 프로젝트 안에서 실행합니다. Codex와 Claude Code를 모두 사용한다면 각 도구의 설치본을 갱신합니다.
+
+설치한 파일을 직접 수정했다면 먼저 수정 내용을 보관하고, 덮어쓰기 대상과 내용을 확인합니다. 버전을 생략하면 현재 `main` 대신 최신 릴리스를 선택할 수 있으므로, 위의 `@main` 명령과 같은 결과라고 가정하지 않습니다.
+
 #### 고급 사용법: 버전 고정
 
 같은 버전을 계속 사용하려면 릴리스 태그나 커밋 SHA를 지정합니다. `@main`은 실행 시점의 기본 브랜치를 가리키므로 이후 설치에서는 내용이 달라질 수 있습니다. 다음은 공개 릴리스 `v0.1.0`을 설치하는 Claude Code의 예시이며, Codex에서는 `--agent codex`로 바꿉니다. `v0.1.0`에는 이후 `main`에 반영한 지침 수정이 포함되지 않습니다.
@@ -112,6 +118,8 @@ gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@v0.1.
 
 ### Claude 웹과 데스크톱 앱
 
+아래 ZIP 절차는 Claude의 대화용 스킬 설정에 사용합니다. 데스크톱 앱의 [Code 탭에서 실행하는 로컬 Claude Code 세션](https://code.claude.com/docs/en/desktop)은 위의 [Claude Code 설치 방법](#claude-code)을 따릅니다.
+
 Claude의 코드 실행 기능이 켜져 있어야 합니다. 조직 계정에서는 관리자가 스킬 업로드와 사용을 허용해야 합니다. 설정 위치는 [Claude의 스킬 사용 안내](https://support.claude.com/en/articles/12512180-use-skills-in-claude)를 참고하세요.
 
 1. 이 저장소의 `Code > Download ZIP`에서 파일을 내려받고 압축을 풉니다.
@@ -121,13 +129,19 @@ Claude의 코드 실행 기능이 켜져 있어야 합니다. 조직 계정에�
 
 폴더 구성은 [Claude의 사용자 스킬 작성 안내](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills)에 설명되어 있습니다.
 
+설명 메타데이터는 이 안내의 200자 제한에도 맞춥니다. Claude Platform의 [Agent Skills 안내](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview)는 최대 1,024자를 허용하지만, 같은 패키지를 배포하기 위해 더 짧은 기준을 사용합니다. 이는 실제 업로드 성공을 확인했다는 뜻은 아닙니다. ZIP 설치본을 갱신할 때도 현재 파일로 다시 패키징하고, 업로드한 버전과 활성화 상태를 확인합니다.
+
 ## 사용법
 
 설치 후 사용하는 도구에 맞춰 스킬을 지정하고, 아래 요청문을 함께 입력해 보세요.
 
-1. Claude Code: `/natural-korean-writing` 뒤에 요청문을 붙입니다. 호출 방식은 [Claude Code의 스킬 안내](https://code.claude.com/docs/en/skills)를 참고하세요.
-2. Codex: `$natural-korean-writing` 뒤에 요청문을 붙입니다.
-3. Claude 웹과 데스크톱 앱: 스킬을 활성화한 뒤, 요청문 앞에 `natural-korean-writing 스킬을 사용해 주세요.`를 붙입니다.
+| 환경 | 프로젝트 범위의 스킬 위치 | 호출 방법 |
+| --- | --- | --- |
+| Codex | `.agents/skills/natural-korean-writing/` | `$natural-korean-writing` 뒤에 요청문을 붙입니다. |
+| Claude Code | `.claude/skills/natural-korean-writing/` | `/natural-korean-writing` 뒤에 요청문을 붙입니다. |
+| Claude의 대화용 스킬 설정 | ZIP을 업로드하고 활성화합니다. | `natural-korean-writing 스킬을 사용해 주세요.` 뒤에 요청문을 붙입니다. |
+
+설치 위치와 호출 방식은 [Codex 스킬 안내](https://learn.chatgpt.com/docs/build-skills)와 [Claude Code 스킬 안내](https://code.claude.com/docs/en/skills)를 참고하세요. 같은 지침을 사용해도 서브 에이전트 도구와 문맥 전달 방식은 실행 환경에 따라 다릅니다. 총괄이 스킬이나 원본을 읽었다는 이유만으로 작업자도 그 내용을 받았다고 가정하지 않습니다.
 
 [교정 예시](examples/before-after.md#8-ui-안내-저장-실패와-재시도)에 있는 가상의 저장 실패 안내문을 사용합니다.
 
@@ -147,11 +161,11 @@ Claude의 코드 실행 기능이 켜져 있어야 합니다. 조직 계정에�
 
 누구의 말로 누구에게 전달할지, 어디에 사용할 문장인지, 어떤 말투를 유지할지 알려 주세요. 전달 시점이나 앞선 대화가 표현에 영향을 준다면 함께 알려 주세요. 대화에서 이미 확인한 내용은 반복하지 않아도 됩니다. 확정한 문구나 바꾸면 안 되는 수치가 있다면 명시합니다. 초안을 새로 작성할 때는 글에 담을 사실과 목적을 알려 주세요.
 
-Codex에서 스킬이 나타나지 않으면 현재 프로젝트나 사용자 범위에 설치됐는지, 필요한 참조 파일이 함께 있는지 확인합니다. 현재 환경이 실제로 인식하는 스킬과 버전을 확인한 뒤 사용합니다. 프로젝트 지침과 스킬을 구분하는 방법은 [OpenAI의 사용자 설정 안내](https://learn.chatgpt.com/docs/customization/overview)를 참고하세요.
+Codex나 Claude Code에서 스킬이 나타나지 않으면 현재 프로젝트나 사용자 범위에 설치됐는지, 필요한 참조 파일이 함께 있는지 확인합니다. 현재 환경이 실제로 인식하는 스킬과 버전을 확인한 뒤 사용합니다. 프로젝트 지침과 스킬을 구분하는 방법은 [OpenAI의 사용자 설정 안내](https://learn.chatgpt.com/docs/customization/overview)와 [Claude Code 스킬 안내](https://code.claude.com/docs/en/skills)를 참고하세요.
 
 ### 긴 원고를 작성하거나 새 프로젝트 스레드에서 이어가기
 
-여러 문항의 지원서, 긴 원고, 반복 수정 작업에는 [역할과 위임 절차](skills/natural-korean-writing/references/agent-workflow.md)를 적용합니다. 다른 도우미가 작업을 넘겨도, 사용자가 Codex 프로젝트에서 직접 새 스레드를 시작해도 같은 지침을 사용합니다. 실제 서브 에이전트 생성과 결과 수신은 해당 환경의 도구가 지원해야 합니다.
+여러 문항의 지원서, 긴 원고, 반복 수정 작업에는 [역할과 위임 절차](skills/natural-korean-writing/references/agent-workflow.md)를 적용합니다. 다른 도우미가 작업을 넘겨도, 사용자가 Codex 프로젝트의 새 스레드나 Claude Code의 새 세션에서 직접 시작해도 같은 지침을 사용합니다. 실제 서브 에이전트 생성과 결과 수신은 해당 환경의 도구가 지원해야 합니다.
 
 | 역할 | 맡는 일 |
 | --- | --- |
@@ -171,16 +185,31 @@ Codex에서 스킬이 나타나지 않으면 현재 프로젝트나 사용자 �
 새 직접 요청과 실제 위임받은 역할은 스킬의 역할 및 위임 절차에 따라 구분합니다.
 ```
 
-새 스레드에서는 다음처럼 요청할 수 있습니다.
+Claude Code에서도 같은 프로젝트 지침을 공유하려면 `AGENTS.md`와 같은 폴더의 `CLAUDE.md`에 다음 가져오기 한 줄을 넣을 수 있습니다. 이미 `CLAUDE.md`가 있으면 기존 내용을 유지하고 추가합니다. 최신 Claude Code는 버전과 설정, 기존 지침 파일의 유무에 따라 `AGENTS.md`를 직접 읽기도 합니다. 실제로 읽힌 파일은 [Claude Code의 프로젝트 지침 안내](https://code.claude.com/docs/en/memory#agentsmd)에 따라 확인합니다.
+
+```markdown
+@AGENTS.md
+```
+
+Codex의 새 스레드에서는 다음처럼 요청할 수 있습니다.
 
 ```text
 $natural-korean-writing
 이 프로젝트의 최신 작업 기록과 확정 원고를 읽고 남은 수정부터 이어 주세요. 확정 표현과 최신 정정, 기존 검수 조건을 유지해 주세요.
 ```
 
+Claude Code의 새 세션에서는 다음처럼 요청합니다.
+
+```text
+/natural-korean-writing
+이 프로젝트의 최신 작업 기록과 확정 원고를 읽고 남은 수정부터 이어 주세요. 확정 표현과 최신 정정, 기존 검수 조건을 유지해 주세요.
+```
+
+Claude의 일반 대화에서는 스킬을 활성화한 뒤 첫 줄을 `natural-korean-writing 스킬을 사용해 주세요.`로 바꿉니다. 현재 대화에서 원고와 작업 기록에 실제로 접근할 수 있어야 합니다.
+
 다른 스레드의 대화나 로컬 파일이 자동으로 전달됐다고 가정하지 않습니다. 작업 기록에는 원고 전체의 접근 가능한 위치와 버전, 근거, 최신 수정 지시, 검수 상태와 다음 작업을 보존합니다. 읽기 기록이나 버전 표시는 원문 접근과 실제 검수를 대신하지 않습니다. 새 원고가 나오면 이전 버전의 검수를 그대로 완료 처리하지 않습니다.
 
-이 구성은 총괄이 중간 초안과 긴 검수 기록을 계속 들고 있을 필요를 줄이려는 절차입니다. 전체 에이전트의 토큰 사용량이나 실행 시간 감소, 컨텍스트 압축 방지, 지침 준수를 보장하지는 않습니다. 별도 에이전트 설정이 필요한 환경에서는 [해당 환경의 안내](https://learn.chatgpt.com/docs/agent-configuration/subagents)를 확인합니다. 특정 모델이나 Dot 전용 도구를 스킬의 필수 조건으로 두지 않습니다.
+이 구성은 총괄이 중간 초안과 긴 검수 기록을 계속 들고 있을 필요를 줄이려는 절차입니다. 전체 에이전트의 토큰 사용량이나 실행 시간 감소, 컨텍스트 압축 방지, 지침 준수를 보장하지는 않습니다. 별도 에이전트 설정이 필요한 환경에서는 [Codex의 서브 에이전트 안내](https://learn.chatgpt.com/docs/agent-configuration/subagents)나 [Claude Code의 서브 에이전트 안내](https://code.claude.com/docs/en/sub-agents)를 확인합니다. 특정 모델이나 Dot 전용 도구를 스킬의 필수 조건으로 두지 않습니다.
 
 ## 대표 사용처
 

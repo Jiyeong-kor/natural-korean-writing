@@ -102,6 +102,12 @@ For the current project only, run inside its Git repository:
 gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing@main --agent codex --scope project
 ```
 
+#### Update an installed copy
+
+Changes merged into `main` do not automatically replace an installed copy. To use the latest instructions, rerun the installation command above with the same `--agent` and `--scope` as the existing installation. Keep `@main`; for project scope, run it inside that project. If you use both Codex and Claude Code, update each tool's copy.
+
+Preserve any local edits before replacing installed files, and check the overwrite target and contents. Omitting the version can select the latest release instead of current `main`, so it is not equivalent to the explicit `@main` commands above.
+
 #### Advanced: pin a version
 
 Specify a release tag or commit SHA to keep using the same version. `@main` follows the default branch at installation time, so later installations can receive different content. This example installs release `v0.1.0` for Claude Code; replace the agent flag with `--agent codex` for Codex. `v0.1.0` does not include later instruction changes on `main`:
@@ -114,6 +120,8 @@ Without a version, the CLI selects the latest release or, if none exists, the de
 
 ### Claude web and desktop app
 
+The ZIP procedure below is for Claude's conversational skill settings. A local Claude Code session in the desktop app's [Code tab](https://code.claude.com/docs/en/desktop) uses the [Claude Code installation](#claude-code) above.
+
 Enable code execution in Claude. For organization accounts, an administrator must allow skill uploads and use. See [Claude's skill guide](https://support.claude.com/en/articles/12512180-use-skills-in-claude) for the settings.
 
 1. Download this repository through `Code > Download ZIP` and extract it.
@@ -123,13 +131,19 @@ Enable code execution in Claude. For organization accounts, an administrator mus
 
 See [Claude's custom skill guide](https://support.claude.com/en/articles/12512198-how-to-create-custom-skills) for the folder structure.
 
+The description metadata also meets that guide's 200-character limit. The Claude Platform [Agent Skills guide](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview) allows up to 1,024 characters, but this shared package uses the shorter limit. This does not establish a successful upload. To update a ZIP installation, repackage the current files and verify the uploaded version and activation state.
+
 ## Usage
 
 After installing, invoke the skill for your tool and include the request below.
 
-1. Claude Code: prefix the request with `/natural-korean-writing`. See [Claude Code's skill guide](https://code.claude.com/docs/en/skills) for invocation details.
-2. Codex: prefix the request with `$natural-korean-writing`.
-3. Claude web and desktop app: enable the skill, then prefix the request with `natural-korean-writing 스킬을 사용해 주세요.` (Use the natural-korean-writing skill.)
+| Environment | Project-scope skill location | Invocation |
+| --- | --- | --- |
+| Codex | `.agents/skills/natural-korean-writing/` | Prefix the request with `$natural-korean-writing`. |
+| Claude Code | `.claude/skills/natural-korean-writing/` | Prefix the request with `/natural-korean-writing`. |
+| Claude's conversational skill settings | Upload and enable the ZIP. | Prefix the request with `natural-korean-writing 스킬을 사용해 주세요.` (Use the natural-korean-writing skill.) |
+
+See the [Codex skill guide](https://learn.chatgpt.com/docs/build-skills) and [Claude Code skill guide](https://code.claude.com/docs/en/skills) for locations and invocation. The instructions are shared, but subagent tools and context transfer depend on the execution environment. Do not assume a worker received the skill or original sources just because the coordinator read them.
 
 The request uses the fictional save-error message from the [before-and-after examples](examples/before-after.md#8-ui-안내-저장-실패와-재시도).
 
@@ -149,11 +163,11 @@ Then replace the source and context with your own text. Remove personal and conf
 
 Identify whose voice the text uses, its recipient, where it will appear, and the tone to preserve. Add delivery timing or prior conversation when it affects the wording; there is no need to repeat context already established. Identify confirmed wording and measurements that must not change. For a new draft, provide the facts to include and the purpose of the text.
 
-If the skill does not appear in Codex, check its project or user installation scope and the presence of required references. Confirm the skill and revision that the current environment actually discovers. See [OpenAI's customization guide](https://learn.chatgpt.com/docs/customization/overview) for the distinction between project instructions and skills.
+If the skill does not appear in Codex or Claude Code, check its project or user installation scope and the presence of required references. Confirm the skill and revision that the current environment actually discovers. See [OpenAI's customization guide](https://learn.chatgpt.com/docs/customization/overview) and the [Claude Code skill guide](https://code.claude.com/docs/en/skills) for the distinction between project instructions and skills.
 
 ### Long manuscripts and fresh project threads
 
-Use the [role and delegation workflow](skills/natural-korean-writing/references/agent-workflow.md) for multi-answer applications, long manuscripts, and repeated substantive revisions. The same instructions apply whether another assistant delegates the work or the user starts a fresh Codex project thread directly. Actual agent creation and result retrieval require supporting tools in that environment.
+Use the [role and delegation workflow](skills/natural-korean-writing/references/agent-workflow.md) for multi-answer applications, long manuscripts, and repeated substantive revisions. The same instructions apply whether another assistant delegates the work or the user starts directly in a fresh Codex project thread or Claude Code session. Actual agent creation and result retrieval require supporting tools in that environment.
 
 | Role | Responsibility |
 | --- | --- |
@@ -173,16 +187,31 @@ Before resuming, read <existing task record> and <approved manuscript> for the c
 Distinguish a new direct request from an actual delegated role using the skill's role and delegation workflow.
 ```
 
-A fresh thread can start with:
+To share the same project instructions with Claude Code, add the following import to a `CLAUDE.md` next to `AGENTS.md`. Preserve existing contents when adding it to an existing `CLAUDE.md`. Recent Claude Code versions can also read `AGENTS.md` directly, depending on the version, settings, and other instruction files. Confirm what actually loaded using the [Claude Code project instruction guide](https://code.claude.com/docs/en/memory#agentsmd).
+
+```markdown
+@AGENTS.md
+```
+
+A fresh Codex thread can start with:
 
 ```text
 $natural-korean-writing
 Read this project's latest task record and approved manuscript, then continue with the remaining revision. Preserve approved wording, latest corrections, and established review requirements.
 ```
 
+A fresh Claude Code session can start with:
+
+```text
+/natural-korean-writing
+Read this project's latest task record and approved manuscript, then continue with the remaining revision. Preserve approved wording, latest corrections, and established review requirements.
+```
+
+In a regular Claude conversation, enable the skill and replace the first line with `Use the natural-korean-writing skill.` The current conversation must actually have access to the manuscript and task record.
+
 Do not assume another thread's history or local files arrive automatically. Keep an accessible full manuscript and version, evidence, current corrections, review status, and next action in the task record. Reading declarations and version labels do not replace source access or actual review. A changed manuscript does not automatically inherit an earlier version's completed review.
 
-This procedure aims to reduce the intermediate drafts and lengthy findings retained by the coordinator. It does not guarantee lower total token use, shorter execution time, prevention of compaction, or instruction compliance. Consult the [host's agent configuration guide](https://learn.chatgpt.com/docs/agent-configuration/subagents) where additional setup is needed. The skill does not require a specific model or Dot-only tool.
+This procedure aims to reduce the intermediate drafts and lengthy findings retained by the coordinator. It does not guarantee lower total token use, shorter execution time, prevention of compaction, or instruction compliance. Consult the [Codex subagent guide](https://learn.chatgpt.com/docs/agent-configuration/subagents) or [Claude Code subagent guide](https://code.claude.com/docs/en/sub-agents) where additional setup is needed. The skill does not require a specific model or Dot-only tool.
 
 ## Use cases
 
