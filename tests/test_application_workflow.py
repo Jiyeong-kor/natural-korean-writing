@@ -115,11 +115,21 @@ class ApplicationWorkflowTests(unittest.TestCase):
         self.assertEqual(b"".join(restored), self.original)
 
     def test_stage_introductions_keep_context_privacy_and_fictional_example_limits(self):
-        shared = self.original_intro.split(b"Apply it with ", 1)[1].strip()
-        for relative in paths.APPLICATION_STAGES.values():
+        shared = b"Keep working records " + self.original_intro.split(
+            b"Keep working records ", 1)[1].strip()
+        for stage, relative in paths.APPLICATION_STAGES.items():
             with self.subTest(path=relative):
                 intro, _ = paths.profile_parts((ROOT / paths.SKILL / relative).read_bytes())
-                self.assertIn(b"Apply it with " + shared, intro)
+                self.assertIn(shared, intro)
+                self.assertIn(b"entrypoint's required context and punctuation guidance", intro)
+                if stage in {"form", "delivery"}:
+                    self.assertIn(
+                        b"If this stage also drafts or substantively reviews an answer, read the full "
+                        b"application prose profile and all three drafting stages selected by the index.",
+                        intro,
+                    )
+                else:
+                    self.assertIn(b"and the application prose profile.", intro)
                 self.assertIn("application-answer-workflow.md", validator.relative_targets(
                     intro.decode("utf-8", errors="strict")))
 

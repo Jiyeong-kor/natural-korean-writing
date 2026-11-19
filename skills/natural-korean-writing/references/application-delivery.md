@@ -1,6 +1,6 @@
 # Application Original Delivery
 
-Follow the [required reading by task](application-answer-workflow.md#required-reading-by-task) before using this stage. Its reading requirements apply to both the writer and the independent reviewer. Apply it with the entrypoint's required context and punctuation guidance and the application prose profile. Keep working records private unless the user requests them. These are decisions tied to the actual application, not headings to paste into every answer. All examples in this reference are fictional.
+Follow the [required reading by task](application-answer-workflow.md#required-reading-by-task) before using this stage. All roles apply the entrypoint's required context and punctuation guidance. If this stage also drafts or substantively reviews an answer, read the full application prose profile and all three drafting stages selected by the index. Keep working records private unless the user requests them. These are decisions tied to the actual application, not headings to paste into every answer. All examples in this reference are fictional.
 
 ## Deliver requested originals and report download state
 
