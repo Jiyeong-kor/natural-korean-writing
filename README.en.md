@@ -49,7 +49,7 @@ The [context and audience companion](skills/natural-korean-writing/references/co
 
 The always-read core consists of `SKILL.md`, the context companion, and the punctuation reference. Revision scope, expression bans, name quotation, and independent review are detailed in the conditional [editing and review contract](skills/natural-korean-writing/references/editing-and-review.md). The entrypoint routes specialized tasks to their relevant references. A request to inspect the entire document does not authorize rewriting it all.
 
-Artifact rules now use a [profile index](skills/natural-korean-writing/references/artifact-style-profiles.md) and separate files. Read the complete index and each selected file; mixed artifacts require every relevant profile. Add the document evidence checks and layout guidance when their conditions apply. Hosts that read complete files therefore need not load unrelated profiles for a short email or UI message. The application profile retains all its subsections and still requires the complete application workflow.
+Artifact rules now use a [profile index](skills/natural-korean-writing/references/artifact-style-profiles.md) and separate files. Read the complete index and each selected file; mixed artifacts require every relevant profile. Add the document evidence checks and layout guidance when their conditions apply. Hosts that read complete files therefore need not load unrelated profiles for a short email or UI message. Application writers and reviewers read the complete application profile, [workflow index](skills/natural-korean-writing/references/application-answer-workflow.md), planning, writing, and review references. Form work and original-file delivery references are added only when those tasks apply.
 
 ## Installation
 
@@ -149,7 +149,40 @@ Then replace the source and context with your own text. Remove personal and conf
 
 Identify whose voice the text uses, its recipient, where it will appear, and the tone to preserve. Add delivery timing or prior conversation when it affects the wording; there is no need to repeat context already established. Identify confirmed wording and measurements that must not change. For a new draft, provide the facts to include and the purpose of the text.
 
-If an installed skill does not appear in Codex, restart Codex. See [OpenAI's skill guide](https://learn.chatgpt.com/docs/build-skills) for discovery behavior.
+If the skill does not appear in Codex, check its project or user installation scope and the presence of required references. Confirm the skill and revision that the current environment actually discovers. See [OpenAI's customization guide](https://learn.chatgpt.com/docs/customization/overview) for the distinction between project instructions and skills.
+
+### Long manuscripts and fresh project threads
+
+Use the [role and delegation workflow](skills/natural-korean-writing/references/agent-workflow.md) for multi-answer applications, long manuscripts, and repeated substantive revisions. The same instructions apply whether another assistant delegates the work or the user starts a fresh Codex project thread directly. Actual agent creation and result retrieval require supporting tools in that environment.
+
+| Role | Responsibility |
+| --- | --- |
+| Coordinator | Restore the latest record and manuscript, assign writing and review, and compare the final version with actual returned review results. |
+| Writer | Read original evidence and required references, then draft or revise within the authorized scope. |
+| Reviewer | Independently compare original evidence, current instructions, and the complete current manuscript; return concrete findings. |
+
+The default is a coordinator, one writer, and one separate reviewer. Explicit reviewer counts and roles take precedence. Assigned writers and reviewers do not create another team. A short standalone sentence edit does not require delegation; a short follow-up to an existing manuscript keeps its established review requirements.
+
+The coordinator still reads all three core files, then the role workflow and relevant task index. It delegates the lengthy references needed for drafting and substantive review. If it changes the manuscript or judges its content, it must read that role's complete references too. If independent execution is unavailable, it performs authorized edits and self-review while clearly identifying missing independent results.
+
+A project's `AGENTS.md` can contain a short pointer to the skill and existing records. Replace the locations below with accessible locations for that project. Keep manuscripts and personal information outside the reusable skill, and retain one authoritative version.
+
+```text
+Use the installed natural-korean-writing skill for Korean drafting, revision, and review.
+Before resuming, read <existing task record> and <approved manuscript> for the complete latest text, corrections, approved wording, authorized scope, and next action.
+Distinguish a new direct request from an actual delegated role using the skill's role and delegation workflow.
+```
+
+A fresh thread can start with:
+
+```text
+$natural-korean-writing
+Read this project's latest task record and approved manuscript, then continue with the remaining revision. Preserve approved wording, latest corrections, and established review requirements.
+```
+
+Do not assume another thread's history or local files arrive automatically. Keep an accessible full manuscript and version, evidence, current corrections, review status, and next action in the task record. Reading declarations and version labels do not replace source access or actual review. A changed manuscript does not automatically inherit an earlier version's completed review.
+
+This procedure aims to reduce the intermediate drafts and lengthy findings retained by the coordinator. It does not guarantee lower total token use, shorter execution time, prevention of compaction, or instruction compliance. Consult the [host's agent configuration guide](https://learn.chatgpt.com/docs/agent-configuration/subagents) where additional setup is needed. The skill does not require a specific model or Dot-only tool.
 
 ## Use cases
 

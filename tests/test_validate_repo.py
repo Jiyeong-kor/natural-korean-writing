@@ -35,7 +35,13 @@ class RepositoryValidationTests(unittest.TestCase):
         self.skill = f"{validator.SKILL_DIR}/SKILL.md"
         self.yaml = f"{validator.SKILL_DIR}/agents/openai.yaml"
         self.context_link = "[Context](references/context-audience-boundary.md)\n"
-        self.write(self.skill, "---\nname: natural-korean-writing\ndescription: Rewrite Korean for its reader.\nlicense: MIT\n---\n# Korean\n" + self.context_link)
+        self.workflow_links = "".join(f"[Workflow]({target})\n"
+                                      for target in validator.WORKFLOW_LINKS[self.skill])
+        self.write(self.skill, "---\nname: natural-korean-writing\ndescription: Rewrite Korean for its reader.\nlicense: MIT\n---\n# Korean\n" + self.context_link + self.workflow_links)
+        for source, targets in validator.WORKFLOW_LINKS.items():
+            if source != self.skill:
+                self.write(source, "# Workflow\n\n" + "".join(
+                    f"[Stage]({target})\n" for target in targets))
         self.write(self.yaml, 'interface:\n  display_name: "Korean writing"\n  short_description: "Natural Korean writing and revision"\n  default_prompt: "Use $natural-korean-writing."\n')
         self.write("README.md", validator.INTRODUCTION + "\n[English](README.en.md)\n")
         self.write("README.en.md", "gh skill install Jiyeong-kor/natural-korean-writing natural-korean-writing\n")
@@ -101,7 +107,7 @@ class RepositoryValidationTests(unittest.TestCase):
                 self.write(self.skill, f"---\nname: natural-korean-writing\ndescription: {value}\nlicense: MIT\n---\n")
                 self.assert_fails("frontmatter")
         for value in ('"true"', "3D", "1.2.3"):
-            self.write(self.skill, f"---\nname: natural-korean-writing\ndescription: {value}\nlicense: MIT\n---\n" + self.context_link)
+            self.write(self.skill, f"---\nname: natural-korean-writing\ndescription: {value}\nlicense: MIT\n---\n" + self.context_link + self.workflow_links)
             self.assertEqual([], self.validate().errors)
 
     def test_changed_and_repeated_introduction(self) -> None:
@@ -127,8 +133,8 @@ class RepositoryValidationTests(unittest.TestCase):
 
     def test_pragmatics_file_is_required_in_all_phases_and_manifest(self) -> None:
         self.assertIn("evals/pragmatics.json", validator.MANIFEST)
-        self.assertEqual(len(validator.MANIFEST), 48)
-        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 19)
+        self.assertEqual(len(validator.MANIFEST), 55)
+        self.assertEqual(sum(path.startswith(validator.SKILL_DIR + "/") for path in validator.MANIFEST), 26)
         self.assertIn(f"{validator.SKILL_DIR}/references/editing-and-review.md", validator.MANIFEST)
         (self.root / "evals/pragmatics.json").unlink()
         self.assert_fails("case schema")
@@ -190,7 +196,7 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual(
             set(validator.MANIFEST) - set(validator.ORIGINAL_RELEASE_MANIFEST),
             {f"{validator.SKILL_DIR}/references/editing-and-review.md",
-             *validator.PROFILE_REFERENCES},
+             *validator.PROFILE_REFERENCES, *validator.WORKFLOW_REFERENCES},
         )
         for head, status, expected in scenarios:
             with self.subTest(head=head, status=status):
@@ -205,6 +211,47 @@ class RepositoryValidationTests(unittest.TestCase):
                     self.assertEqual(expected, validator.manifest_for_root(self.root))
         with patch.object(validator, "command", side_effect=ValueError("unavailable repository")):
             self.assertEqual(validator.MANIFEST, validator.manifest_for_root(self.root))
+
+    def test_current_candidate_requires_every_workflow_file_in_all_phases(self) -> None:
+        expected_names = {
+            "agent-workflow.md", "application-answer-workflow.md", "application-planning.md",
+            "application-writing.md", "application-review.md", "application-form-work.md",
+            "application-delivery.md",
+        }
+        self.assertEqual({Path(path).name for path in validator.WORKFLOW_REFERENCES},
+                         expected_names)
+        self.assertTrue(set(validator.WORKFLOW_REFERENCES) <= set(validator.MANIFEST))
+        for relative in validator.WORKFLOW_REFERENCES:
+            original = (self.root / relative).read_bytes()
+            for content in (None, "", " \n"):
+                with self.subTest(path=relative, content=content):
+                    if content is None:
+                        (self.root / relative).unlink()
+                    else:
+                        self.write(relative, content)
+                    for phase in ("build", "pre-eval", "final"):
+                        with patch.object(validator.run_evals, "verify_tracked",
+                                          side_effect=ValueError("missing real results")):
+                            report = self.validate(phase)
+                        self.assertTrue(any(relative in error and "workflow reference" in error
+                                            for error in report.errors), report.errors)
+            (self.root / relative).write_bytes(original)
+
+    def test_workflow_links_cannot_be_missing_broken_or_only_examples(self) -> None:
+        for source, targets in validator.WORKFLOW_LINKS.items():
+            original = (self.root / source).read_text(encoding="utf-8", errors="strict")
+            for target in targets:
+                link = next(line for line in original.splitlines(keepends=True)
+                            if f"]({target})" in line)
+                variants = ("", "[Missing](missing-workflow.md)\n",
+                            "```markdown\n" + link + "```\n", "`" + link.strip() + "`\n")
+                for replacement in variants:
+                    with self.subTest(source=source, target=target, replacement=replacement):
+                        self.write(source, original.replace(link, replacement))
+                        report = self.validate()
+                        self.assertTrue(any(source in error and "workflow reference link" in error
+                                            and target in error for error in report.errors), report.errors)
+            self.write(source, original)
 
     def test_original_release_passes_full_final_validation(self) -> None:
         release_path = os.environ.get("NKW_RELEASE_ROOT")

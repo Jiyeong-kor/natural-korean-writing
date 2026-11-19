@@ -32,6 +32,9 @@ class ReadPathTests(unittest.TestCase):
         ).encode("utf-8")
         for heading, path in paths.SPLIT_FILES.items():
             self.split_files[paths.SKILL + path] = self.sections[heading]
+        for path in (paths.AGENT_WORKFLOW, paths.EDITING, paths.LANGUAGE,
+                     *paths.APPLICATION_STAGES.values()):
+            self.split_files[paths.SKILL + path] = (path + "\n전체 지침입니다.\n").encode("utf-8")
 
     def test_selected_profile_keeps_intro_and_all_children(self):
         for heading, section in self.sections.items():
@@ -192,6 +195,167 @@ class ReadPathTests(unittest.TestCase):
     def test_unknown_routes_do_not_silently_skip_required_context(self):
         with self.assertRaisesRegex(ValueError, "Unknown artifact route"):
             paths.measure_path(self.split_files.__getitem__, ("absent",), split_profiles=True)
+
+    def test_split_application_drafting_counts_planning_writing_and_review(self):
+        read = self.split_files.__getitem__
+        previous = paths.measure_path(read, ("application",), split_profiles=True)
+        expected = previous + sum(len(read(paths.SKILL + paths.APPLICATION_STAGES[stage]))
+                                  for stage in ("planning", "writing", "review"))
+        self.assertEqual(paths.measure_path(read, ("application",), split_profiles=True,
+                                            split_application=True), expected)
+        self.assertEqual(paths.measure(read, split_profiles=True,
+                                       split_application=True)["application"], expected)
+
+    def test_plain_application_conditions_add_only_split_stage_files(self):
+        read = self.split_files.__getitem__
+        base = paths.measure_path(read, ("application",), split_profiles=True,
+                                  split_application=True)
+        for conditions, stages in (({"form": True}, ("form",)),
+                                   ({"delivery": True}, ("delivery",)),
+                                   ({"form": True, "delivery": True}, ("form", "delivery"))):
+            with self.subTest(conditions=conditions):
+                expected = base + sum(len(read(paths.SKILL + paths.APPLICATION_STAGES[stage]))
+                                      for stage in stages)
+                self.assertEqual(paths.measure_path(read, ("application",), split_profiles=True,
+                                                    split_application=True, **conditions), expected)
+                legacy = paths.measure_path(self.files.__getitem__, ("application",))
+                self.assertEqual(paths.measure_path(self.files.__getitem__, ("application",),
+                                                    **conditions), legacy)
+                with self.assertRaisesRegex(ValueError, "application route"):
+                    paths.measure_path(read, ("email",), split_profiles=True, **conditions)
+
+    def test_application_template_scenario_includes_document_layout_and_form_work(self):
+        files = {
+            *paths.CORE, paths.PROFILES, paths.WORKFLOW,
+            paths.SPLIT_FILES[paths.ROUTES["application"]],
+            paths.SPLIT_FILES[paths.DOCUMENT], paths.SPLIT_FILES[paths.LAYOUT],
+            *(paths.APPLICATION_STAGES[stage] for stage in ("planning", "writing", "review", "form")),
+        }
+        actual = paths.measure_scenarios(self.split_files.__getitem__, split_profiles=True,
+                                        split_application=True)["application_template"]
+        self.assertEqual(actual, sum(len(self.split_files[paths.SKILL + path]) for path in files))
+
+    def test_application_coordinator_reads_core_contract_and_index_only(self):
+        seen = []
+
+        def read(path):
+            seen.append(path)
+            return self.split_files[path]
+
+        value = paths.measure_agent_path(read, "coordinator", ("application",))
+        expected = {paths.SKILL + path for path in (*paths.CORE, paths.AGENT_WORKFLOW,
+                                                    paths.WORKFLOW)}
+        self.assertEqual(set(seen), expected)
+        self.assertEqual(len(seen), len(expected))
+        self.assertEqual(value, sum(len(self.split_files[path]) for path in expected))
+        for path in (paths.PROFILES, *paths.SPLIT_FILES.values(),
+                     *paths.APPLICATION_STAGES.values(), paths.EDITING, paths.LANGUAGE):
+            del self.split_files[paths.SKILL + path]
+        self.assertEqual(paths.measure_agent_path(read, "coordinator", ("application",)), value)
+
+    def test_application_writer_and_reviewer_keep_all_three_drafting_stages(self):
+        common = {
+            *paths.CORE, paths.AGENT_WORKFLOW, paths.PROFILES, paths.WORKFLOW,
+            paths.SPLIT_FILES[paths.ROUTES["application"]],
+            *(paths.APPLICATION_STAGES[stage] for stage in ("planning", "writing", "review")),
+        }
+        for role in ("writer", "reviewer"):
+            with self.subTest(role=role):
+                seen = []
+
+                def read(path):
+                    seen.append(path)
+                    return self.split_files[path]
+
+                value = paths.measure_agent_path(read, role, ("application", "application"))
+                expected = common | ({paths.EDITING} if role == "reviewer" else set())
+                self.assertEqual(set(seen), {paths.SKILL + path for path in expected})
+                self.assertEqual(len(seen), len(expected))
+                self.assertEqual(value, sum(len(self.split_files[paths.SKILL + path])
+                                            for path in expected))
+
+    def test_form_and_delivery_are_independent_explicit_conditions_for_each_role(self):
+        read = self.split_files.__getitem__
+        form = len(read(paths.SKILL + paths.APPLICATION_STAGES["form"]))
+        delivery = len(read(paths.SKILL + paths.APPLICATION_STAGES["delivery"]))
+        for role in ("coordinator", "writer", "reviewer"):
+            with self.subTest(role=role):
+                base = paths.measure_agent_path(read, role, ("application",))
+                for conditions, expected in (
+                    ({"form": True}, base + form),
+                    ({"delivery": True}, base + delivery),
+                    ({"form": True, "delivery": True}, base + form + delivery),
+                ):
+                    self.assertEqual(paths.measure_agent_path(read, role, ("application",),
+                                                               **conditions), expected)
+        base = paths.measure_agent_path(read, "writer", ("application",))
+        del self.split_files[paths.SKILL + paths.APPLICATION_STAGES["form"]]
+        del self.split_files[paths.SKILL + paths.APPLICATION_STAGES["delivery"]]
+        self.assertEqual(paths.measure_agent_path(read, "writer", ("application",)), base)
+        for conditions in ({"form": True}, {"delivery": True}):
+            with self.assertRaises(KeyError):
+                paths.measure_agent_path(read, "writer", ("application",), **conditions)
+
+    def test_revision_language_and_document_checks_are_added_only_when_requested(self):
+        read = self.split_files.__getitem__
+        writer = paths.measure_agent_path(read, "writer", ("application",))
+        editing = len(read(paths.SKILL + paths.EDITING))
+        language = len(read(paths.SKILL + paths.LANGUAGE))
+        self.assertEqual(paths.measure_agent_path(read, "writer", ("application",), revision=True),
+                         writer + editing)
+        self.assertEqual(paths.measure_agent_path(read, "reviewer", ("application",), revision=True),
+                         writer + editing)
+        self.assertEqual(paths.measure_agent_path(read, "reviewer", ("application",), language=True),
+                         writer + editing + language)
+        document = len(read(paths.SKILL + paths.SPLIT_FILES[paths.DOCUMENT]))
+        layout = len(read(paths.SKILL + paths.SPLIT_FILES[paths.LAYOUT]))
+        self.assertEqual(paths.measure_agent_path(read, "writer", ("application",),
+                                                  document=True, layout=True),
+                         writer + document + layout)
+
+    def test_short_artifact_and_ordinary_paths_exclude_application_and_agent_overhead(self):
+        expected = {*paths.CORE, paths.AGENT_WORKFLOW, paths.PROFILES,
+                    paths.SPLIT_FILES[paths.ROUTES["email"]]}
+        self.assertEqual(set(paths.agent_reading_files("writer", ("email",))), expected)
+        self.assertEqual(set(paths.agent_reading_files("coordinator", ("email",))),
+                         {*paths.CORE, paths.AGENT_WORKFLOW})
+        seen = []
+
+        def read(path):
+            seen.append(path)
+            return self.split_files[path]
+
+        paths.measure_path(read, ("email",), split_profiles=True, split_application=True)
+        self.assertEqual(set(seen), {paths.SKILL + path for path in expected - {paths.AGENT_WORKFLOW}})
+
+    def test_agent_paths_reject_unknown_roles_routes_and_inconsistent_work(self):
+        with self.assertRaisesRegex(ValueError, "Unknown agent role"):
+            paths.agent_reading_files("unknown", ("application",))
+        with self.assertRaisesRegex(ValueError, "Unknown artifact route"):
+            paths.agent_reading_files("coordinator", ("unknown",))
+        for condition in ("form", "delivery"):
+            with self.subTest(condition=condition), self.assertRaisesRegex(ValueError, "application route"):
+                paths.agent_reading_files("writer", ("email",), **{condition: True})
+        for condition in ("revision", "language", "document", "layout"):
+            with self.subTest(condition=condition), self.assertRaisesRegex(ValueError, "writer or reviewer"):
+                paths.agent_reading_files("coordinator", ("application",), **{condition: True})
+
+    def test_agent_paths_reject_missing_empty_and_invalid_selected_files(self):
+        for path in (paths.AGENT_WORKFLOW, paths.WORKFLOW, paths.EDITING, paths.LANGUAGE,
+                     *paths.APPLICATION_STAGES.values()):
+            relative = paths.SKILL + path
+            original = self.split_files[relative]
+            del self.split_files[relative]
+            with self.subTest(path=path, content="missing"), self.assertRaises(KeyError):
+                paths.measure_agent_path(self.split_files.__getitem__, "reviewer", ("application",),
+                                         language=True, form=True, delivery=True)
+            for content, error in ((b"", ValueError), (b" \n", ValueError),
+                                   (b"\xff", UnicodeDecodeError), (b"\xef\xbb\xbftext", ValueError)):
+                self.split_files[relative] = content
+                with self.subTest(path=path, content=content), self.assertRaises(error):
+                    paths.measure_agent_path(self.split_files.__getitem__, "reviewer", ("application",),
+                                             language=True, form=True, delivery=True)
+            self.split_files[relative] = original
 
     def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
         original = subprocess.check_output(

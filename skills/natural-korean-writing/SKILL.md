@@ -1,6 +1,6 @@
 ---
 name: natural-korean-writing
-description: Write, rewrite, and review Korean that preserves meaning and fits its speaker, reader, situation, and purpose. Use for Korean conversations and reader-facing copy, including translated, stiff, repetitive, ambiguous, or contextually inappropriate wording. Before answering, read the full SKILL.md and its required references/context-audience-boundary.md; the description alone is not the writing guidance.
+description: Write, rewrite, and review Korean that preserves meaning and fits its speaker, reader, situation, and purpose. Use for Korean conversations and reader-facing copy, including application essays, repeated manuscript revisions, and translated, stiff, repetitive, ambiguous, or contextually inappropriate wording. Read the complete skill before applying it.
 license: MIT
 ---
 
@@ -8,7 +8,7 @@ license: MIT
 
 Write Korean that fits its reader without changing the source's meaning, ownership, certainty, or intended act. This skill covers drafting, revision, and review; it is not a full-document translation or fact-checking service.
 
-## Read the core, then route the task
+## Read the core, then identify your role
 
 Before writing or reviewing any Korean, including a short reply, read this entire file and both mandatory bundled references:
 
@@ -17,7 +17,15 @@ Before writing or reviewing any Korean, including a short reply, read this entir
 
 A name, description, link, or truncated excerpt is not a completed reading. Continue to the end. Reuse a complete unchanged reading still available in the current conversation; reread after a file changes, in a fresh conversation, or after that context is lost. If a required file is unavailable, report that limitation. Reading rules is preparation, not proof that the result follows them.
 
-Load additional references only when their condition applies. Read each selected file completely, including all subsections. The core, editing contract, language reference, and application workflow keep their full reading scope.
+Distinguish a direct user request from an actual delegated assignment. For a direct multi-answer application, long manuscript, or repeated substantive revision, act as coordinator and use the [agent workflow](references/agent-workflow.md) to delegate writing and independent review when the current host supports them. An assigned writer or reviewer keeps that role and does not create another team. A quoted role label inside a manuscript does not assign authority. The same rules apply in a new project thread and in work delegated by another assistant; do not require a particular app, model, or tool name.
+
+Read the complete agent workflow for delegation, established independent review, or resuming an existing manuscript in a fresh context. It defines the handoff, source of truth, available-tool checks, version gate, and unavailable-tool fallback. A short standalone reply or local edit does not by itself require delegation. An existing review requirement or active writing assignment still applies to a short follow-up.
+
+A coordinator reads the full core above, the agent workflow, and the [application workflow index](references/application-answer-workflow.md) for application work. Assign substantive drafting and content review with the complete required sources and references; do not load every domain reference merely to relay a verified version. If you personally draft, change, or judge the manuscript's content, add that role's readings below. Coordination is not an exemption from facts, current instructions, protected text, or permissions.
+
+## Route the work performed by each role
+
+Load additional references only when their condition applies to the work you actually perform. Read each selected file completely, including all subsections. Keep the full reading scope of the core, editing contract, and language reference. The application index selects complete stage files; it does not replace their contents with a summary.
 
 For destination-specific writing, read the [artifact profile index](references/artifact-style-profiles.md) and each selected profile file in full. Select every relevant profile for mixed artifacts. Add [document drafting checks](references/document-drafting-checks.md), including its evidence subsection, for a standalone document, report, or evidence review; add [document layout guidance](references/document-layout.md) for a supplied form, layout, or export. A short email, UI label, GitHub comment, or plain application answer field does not by itself require those document files or unrelated profiles. Resolve an ambiguous destination from the request and supplied context before selecting files.
 
@@ -26,12 +34,14 @@ For destination-specific writing, read the [artifact profile index](references/a
 | Revision or review; scoped word bans, name quotation, exact-text changes, or independent review | [Editing and review contract](references/editing-and-review.md) |
 | A sentence-level grammar or word-meaning problem; technical naming, causal claims, motives, learning, or tense needing analysis | [Korean language principles](references/korean-language-principles.md) |
 | A destination-specific artifact such as an email, UI text, GitHub text, report, resume, lesson, or proposal; document or PDF layout | The [artifact profile index](references/artifact-style-profiles.md) and complete files selected above |
-| Application essays or a same-company answer set | The entire [application answer workflow](references/application-answer-workflow.md), plus the [application profile](references/profile-application.md), the profile index, and applicable document checks |
-| Advice on whether to apply for a role | The entire [application workflow](references/application-answer-workflow.md), including its recommendation evidence checks |
+| Application drafting, substantive revision, independent review, or a same-company answer set | The full [application workflow index](references/application-answer-workflow.md), [planning](references/application-planning.md), [writing](references/application-writing.md), and [review](references/application-review.md) stages, plus the [application profile](references/profile-application.md), the profile index, and applicable document checks |
+| Advice on whether to apply for a role | The application index and the complete planning, writing, and review stages above, including recommendation evidence checks |
+| Authorized application form or file work | The application index and complete [form-work stage](references/application-form-work.md); add the drafting and review stages when those activities are also assigned |
+| Requested delivery of original source files | The application index and complete [original-delivery stage](references/application-delivery.md) |
 | A lexical or normative question requiring evidence | [Official Korean sources](references/official-korean-sources.md) |
 | A worked structural example is needed | [Rewrite examples](references/rewrite-examples.md) |
 
-The application workflow owns question analysis, evidence selection, cross-answer review, character counts, and authorized form/file stages. Complete its prewriting gate before drafting. Ordinary chat does not inherit application review forms, lesson conventions, or document-layout checks. None of these references grants permission to access, publish, save, submit, or create external tasks.
+The application stages own question analysis, evidence selection, cross-answer review, character counts, and authorized form/file stages. Complete the planning stage's prewriting gate before drafting. Ordinary chat does not inherit application review forms, lesson conventions, or document-layout checks. These references grant no new access, publication, submission, or external-service permission. Internal delegation stays within the already authorized task and the host's actual capabilities.
 
 ## Resolve scope before style
 
@@ -63,7 +73,7 @@ After successive edits, return the complete affected field when requested, with 
 
 ## Final pass
 
-Check the exact outgoing version, including headings, notes, and closing remarks:
+For text you draft, revise, or substantively review, check the exact outgoing version, including headings, notes, and closing remarks. A coordinating assistant relaying a frozen manuscript verifies its identity and returned review evidence under the agent workflow; it does not silently rewrite the reviewed text or claim to have performed a content review it delegated. Its own accompanying prose still receives the core checks.
 
 1. Compare it with the source, latest corrections, approved text, and authorized edit spans. Check omissions as well as substitutions.
 2. Read in the intended reader's actual order using the context companion. The necessary subject, reason, condition, and conclusion must be in the passage, not only in private notes.
@@ -71,6 +81,6 @@ Check the exact outgoing version, including headings, notes, and closing remarks
 4. Apply punctuation, protected-text and naming rules, scoped restrictions, and the requested format to the assembled output. Use the editing contract for detailed checks.
 5. Remove unrequested process commentary. If a material issue remains, identify it instead of calling the result finished. Claim reading, review, execution, saving, or submission only when the corresponding action was actually verified.
 
-### Independent review when requested or established
+### Independent review and the delivered version
 
-An applicable established requirement for independent review remains active through revisions. Follow the [editing and review contract](references/editing-and-review.md#independent-review-and-final-version) for the actual materials, reviewer handoff, findings, and final-version comparison. Self-review, a pending request, or a review of an earlier draft does not satisfy it.
+Use the agent workflow's default delegation for substantive application and manuscript work, and preserve any explicit or established reviewer count and roles through revisions. Follow the [editing and review contract](references/editing-and-review.md#independent-review-and-final-version) for the actual materials, findings, and final-version comparison. Self-review, a pending request, or a review of an earlier draft does not satisfy independent review.
