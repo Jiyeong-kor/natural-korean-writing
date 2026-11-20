@@ -17,7 +17,7 @@ Keep chat style separate from artifact style. Different audiences may need diffe
 
 ### Keep the person's perspective in personal explanations
 
-For a motive, choice, or judgment, make the person's supported observation and interpretation connect to the stated choice. Public facts or product features plus `저는` do not establish a personal reason. Knowing, reading, witnessing, using, and interpreting are different actions; the assistant's research proves none of them about the represented person.
+For a motive, choice, or judgment, distinguish external circumstances, the person's supported observation and interpretation or forecast, and the stated choice. Make their supported relationship readable. If the request calls for historical, social, or technological background, establish the external condition or change from source material covering that period. A personal life event, its date, or the person's prediction does not by itself establish that external background. Do not project later conditions into an earlier decision or turn a forecast into an observed change. Public facts or product features plus `저는` do not establish a personal reason. Knowing, reading, witnessing, using, and interpreting are different actions; the assistant's research proves none of them about the represented person. Do not infer personal causation from external evidence alone or require historical background for every personal explanation.
 
 If the personal basis is missing, retrieve an authorized source or identify that specific gap. Do not invent feelings or a causal story. Retain institution or object subjects for genuine public facts and functions, and omit an already clear personal subject naturally.
 
