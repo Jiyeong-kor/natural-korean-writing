@@ -33,7 +33,7 @@ Keep these task-local items together, outside the reusable skill package:
 1. Target and exact prompt, audience, format, and source locations.
 2. Complete current manuscript and an unambiguous version or content hash.
 3. Latest direct corrections, exact approved wording, protected spans, allowed edits, and applicable counts or expression restrictions.
-4. Confirmed facts, provenance, and unresolved evidence, preserving uncertainty and ownership.
+4. Confirmed facts, provenance, and unresolved evidence or questions, preserving uncertainty and ownership. Apply the [missing-context rules](context-audience-boundary.md#handle-missing-context-proportionately) when restoring the record; carry pending items forward without inventing intent or whole-task completion.
 5. Assigned roles, review results tied to versions, approval and completion states, and the next remaining action.
 
 Use a single authoritative manuscript; references or working copies must identify that version. Do not create a competing source of truth merely because a new app or thread is involved. Preserve completed, cancelled, and frozen work. New approval is not implied by an old approval for another artifact, field, version, or action.

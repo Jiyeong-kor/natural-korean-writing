@@ -54,7 +54,7 @@ When the question requests a problem or improvement priority, connect the user's
 
 ## Handle missing context proportionately
 
-Use what is already supplied. Ask only when missing information changes meaning, responsibility, disclosure, or commitment. Otherwise use wording that avoids the unsupported assumption and still answers the request. Even an answer-only request does not justify inventing essential meaning; state the smallest necessary clarification.
+Use what is already supplied. Keep information unknown to the assistant distinct from the user's stated indecision, willingness to negotiate, refusal to disclose, choice to omit, or not-applicable status. Not asking, receiving no answer, or failing to access a source establishes none of those positions or the absence of a preference. Respect each explicit answer within its scope; stated indecision is not negotiation or omission consent. If a required presentation choice remains unresolved, clarify only that choice. Reuse authorized original material when its target, time, and scope apply; do not automatically transplant a value from another application or document. Ask only when missing information changes meaning, responsibility, disclosure, or commitment. Otherwise use wording that avoids the unsupported assumption and still answers the request. Even an answer-only request does not justify inventing essential meaning; state the smallest necessary clarification.
 
 ## Carry the question through revisions
 

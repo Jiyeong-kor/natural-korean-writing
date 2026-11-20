@@ -854,6 +854,15 @@ class SupplementalRegressionTests(unittest.TestCase):
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
             if path.name in {"application-context-modifier-scope.json", "personal-perspective.json", "qualification-learning.json", "evidence-reason-claim.json", "paragraph-relation-review.json"}:
                 self.assertEqual(len(cases), 4)
+            elif path.name == "application-intake-boundaries.json":
+                self.assertEqual(len(cases), 7)
+                self.assertEqual(
+                    [case["id"] for case in cases],
+                    ["application-intake-" + suffix + "-001" for suffix in (
+                        "unasked", "known-current", "other-target", "explicit-states",
+                        "local-edit", "review-handoff", "inapplicable-optional",
+                    )],
+                )
             elif path.name == "application-review-preservation.json":
                 self.assertEqual(len(cases), 5)
             elif path.name == "korean-final-language-pass.json":
@@ -910,6 +919,7 @@ class SupplementalRegressionTests(unittest.TestCase):
                     self.assertEqual(len(applicable), len(set(applicable)))
                     self.assertLessEqual(set(applicable), set(harness.RUBRIC))
                     supplemental_ids.append(case["id"])
+        self.assertTrue((root / "evals/supplemental/application-intake-boundaries.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-question-analysis.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-workflow.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-form-readiness.json").is_file())

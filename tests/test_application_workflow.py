@@ -33,9 +33,15 @@ STAGE_HEADINGS = {
     "delivery": ("Deliver requested originals and report download state",),
 }
 
-# 원본의 위치 표현 3개와 명시적으로 바꾼 역할 계약 2개를 대조합니다.
+# 원본의 위치 표현과 역할 계약, 미확인 정보 처리의 승인된 치환을 대조합니다.
 # 원본 본문이나 승인된 변경을 모델 출력에 맞춰 느슨하게 비교하지 않습니다.
 APPROVED_REPLACEMENTS = {
+    "planning": (
+        (
+            'Do not begin the full draft until this map covers the prompt or clearly identifies the narrow unsupported parts. Continue supported work without inventing personal motives, achievements, or employer expectations. Respect a request to review the proposed content before drafting; do not treat approval of an outline as approval of a later full answer or submission.',
+            'Do not begin the full draft until this map covers the prompt or clearly identifies the narrow unsupported parts. Check applicable authorized originals for missing personal conditions under the [missing-context rules](context-audience-boundary.md#handle-missing-context-proportionately). If the user has asked to be consulted about needed information and a condition that materially affects the answer, such as desired compensation or availability, remains unknown, ask a brief, specific question before deciding its content or omission. Record it as awaiting confirmation and continue the verified portions. Optionality alone neither settles an important preference nor requires questions about every optional field. Do not reopen settled answers, irrelevant preferences, or conditions outside a local edit. Continue supported work without inventing personal motives, achievements, or employer expectations. Respect a request to review the proposed content before drafting; do not treat approval of an outline as approval of a later full answer or submission.',
+        ),
+    ),
     "writing": (
         (
             "deadline reserve and version-freeze rules below",
@@ -63,6 +69,10 @@ APPROVED_REPLACEMENTS = {
         ),
     ),
     "review": (
+        (
+            'Gather all available answers for the same company, including unchanged fields, before approving an individual revision. Read the complete set for repeated motives, repeated experience narratives, and repeated future aspirations, as well as contradictory facts or timelines. Give each answer a distinct role tied to its own full question. Different wording for the same story is still duplication. Reusing an experience can be justified when the question needs a different supported aspect; preserve the brief local introduction needed by a first reader. Do not invent a new experience just to create variety. If some answers are inaccessible, name that limit and do not claim the entire set was reviewed.',
+            'Gather all available answers for the same company, including unchanged fields, before approving an individual revision. Read the complete set for repeated motives, repeated experience narratives, and repeated future aspirations, as well as contradictory facts or timelines. Give each answer a distinct role tied to its own full question. Different wording for the same story is still duplication. Reusing an experience can be justified when the question needs a different supported aspect; preserve the brief local introduction needed by a first reader. Do not invent a new experience just to create variety. If some answers are inaccessible, name that limit and do not claim the entire set was reviewed. For a missing required fact or material preference within the review scope, distinguish confirmed user intent from an unasked or unresolved question using the [planning gate](application-planning.md#complete-the-question-analysis-before-drafting). Keep that item awaiting confirmation; do not mark the whole affected application final or complete while treating unknown information as approved omission. A completed local edit or review of supported portions remains distinct from whole-application readiness.',
+        ),
         (
             "duty-evidence record above",
             "[duty-evidence record]"
