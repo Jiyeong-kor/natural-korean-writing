@@ -852,7 +852,7 @@ class SupplementalRegressionTests(unittest.TestCase):
             cases = json.loads(path.read_text(encoding="utf-8"))
             self.assertIsInstance(cases, list)
             self.assertNotIn(path.relative_to(root / "evals").as_posix(), harness.CASE_COUNTS)
-            if path.name in {"application-context-modifier-scope.json", "personal-perspective.json", "qualification-learning.json", "evidence-reason-claim.json"}:
+            if path.name in {"application-context-modifier-scope.json", "personal-perspective.json", "qualification-learning.json", "evidence-reason-claim.json", "paragraph-relation-review.json"}:
                 self.assertEqual(len(cases), 4)
             elif path.name == "application-review-preservation.json":
                 self.assertEqual(len(cases), 5)
@@ -933,6 +933,7 @@ class SupplementalRegressionTests(unittest.TestCase):
         self.assertTrue((root / "evals/supplemental/personal-perspective.json").is_file())
         self.assertTrue((root / "evals/supplemental/qualification-learning.json").is_file())
         self.assertTrue((root / "evals/supplemental/evidence-reason-claim.json").is_file())
+        self.assertTrue((root / "evals/supplemental/paragraph-relation-review.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-duty-evidence.json").is_file())
         self.assertTrue((root / "evals/supplemental/resume-project-status.json").is_file())
         self.assertTrue((root / "evals/supplemental/application-contribution-tone.json").is_file())
