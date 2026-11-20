@@ -1,5 +1,6 @@
 """분리한 지원서 지침의 원본 보존과 참조 연결을 검사합니다."""
 
+import hashlib
 from pathlib import Path
 import re
 import subprocess
@@ -32,7 +33,7 @@ STAGE_HEADINGS = {
     "delivery": ("Deliver requested originals and report download state",),
 }
 
-# 원본의 위치 표현 3개와 명시적으로 바꾼 역할 계약 2개만 허용합니다.
+# 원본의 위치 표현 3개와 명시적으로 바꾼 역할 계약 2개를 대조합니다.
 # 원본 본문이나 승인된 변경을 모델 출력에 맞춰 느슨하게 비교하지 않습니다.
 APPROVED_REPLACEMENTS = {
     "writing": (
@@ -79,6 +80,22 @@ APPROVED_REPLACEMENTS = {
     ),
 }
 
+# 이번 문단 검수 보완의 삽입 2개만 정확한 위치와 바이트 해시로 확인합니다.
+# 이를 제거한 나머지는 기존 치환을 제외하면 고정 원본과 같아야 합니다.
+APPROVED_INSERTIONS = {
+    "writing": (
+        b"These are semantic roles, not mandatory headings or a conclusion-last order.\n\n",
+        b"For each paragraph, state privately",
+        "04250b45d7b9d6ccadcdbc0819f1bc355f133e47265699efaeed259979907c12",
+    ),
+    "review": (
+        b"This application review is separate from the repository's benchmark protocol, "
+        b"whose reviewers receive only their prescribed evaluation inputs.\n\n",
+        b"Keep factual support, paragraph relevance,",
+        "6c347c80efdee49cd90269531f6877e8e1173e6e7db1a3f3d145f1f95256ad0c",
+    ),
+}
+
 
 class ApplicationWorkflowTests(unittest.TestCase):
     @classmethod
@@ -101,6 +118,15 @@ class ApplicationWorkflowTests(unittest.TestCase):
                 _, sections = paths.profile_parts(data)
                 self.assertEqual(tuple(sections), headings)
                 actual = b"".join(sections.values())
+                if stage in APPROVED_INSERTIONS:
+                    anchor, prefix, digest = APPROVED_INSERTIONS[stage]
+                    self.assertEqual(actual.count(anchor), 1)
+                    start = actual.index(anchor) + len(anchor)
+                    end = actual.index(b"\n\n", start) + 2
+                    inserted = actual[start:end]
+                    self.assertTrue(inserted.startswith(prefix))
+                    self.assertEqual(hashlib.sha256(inserted).hexdigest(), digest)
+                    actual = actual[:start] + actual[end:]
                 original = b"".join(self.original_sections[heading] for heading in headings)
                 expected = original
                 for old, new in APPROVED_REPLACEMENTS.get(stage, ()):
