@@ -101,6 +101,19 @@ class RepositoryValidationTests(unittest.TestCase):
                 self.write(self.skill, f"---\nname: natural-korean-writing\ndescription: Rewrite Korean.\n{fields}---\n")
                 self.assert_fails(expected)
 
+    def test_shared_description_length_boundary(self) -> None:
+        for size, accepted in ((200, True), (201, False)):
+            with self.subTest(size=size):
+                self.write(self.skill, "---\nname: natural-korean-writing\ndescription: "
+                           + "가" * size + "\nlicense: MIT\n---\n"
+                           + self.context_link + self.workflow_links)
+                report = self.validate()
+                if accepted:
+                    self.assertEqual([], report.errors)
+                else:
+                    self.assertTrue(any("shared description length" in error
+                                        for error in report.errors), report.errors)
+
     def test_description_must_be_a_yaml_string(self) -> None:
         for value in ("true", "NULL", "123", "3.5", "2026-08-31", "[words]"):
             with self.subTest(value=value):
