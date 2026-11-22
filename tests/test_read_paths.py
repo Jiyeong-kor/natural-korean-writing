@@ -7,6 +7,7 @@ import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
+SPLIT_COMMIT = "405475fbe3a298bc6aaf8d34ef4649cb3946e85a"
 sys.path.insert(0, str(ROOT / "scripts"))
 import measure_read_paths as paths
 import run_evals as harness
@@ -357,28 +358,96 @@ class ReadPathTests(unittest.TestCase):
                                              language=True, form=True, delivery=True)
             self.split_files[relative] = original
 
-    def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
-        original = subprocess.check_output(
-            ["git", "show", paths.BEFORE_SPLIT + ":" + paths.SKILL + paths.PROFILES],
+    def read_split_commit_file(self, ref, path):
+        return subprocess.check_output(
+            ["git", "show", ref + ":" + paths.SKILL + path],
             cwd=ROOT, timeout=30)
+
+    def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
+        original = self.read_split_commit_file(paths.BEFORE_SPLIT, paths.PROFILES)
         intro, sections = paths.profile_parts(original)
         self.assertEqual(list(paths.SPLIT_FILES), list(sections))
-        index = (ROOT / paths.SKILL / paths.PROFILES).read_bytes()
+        index = self.read_split_commit_file(SPLIT_COMMIT, paths.PROFILES)
         self.assertTrue(index.startswith(intro))
         restored = [intro]
         for heading, path in paths.SPLIT_FILES.items():
             with self.subTest(path=path):
-                body = (ROOT / paths.SKILL / path).read_bytes()
+                body = self.read_split_commit_file(SPLIT_COMMIT, path)
                 self.assertEqual(body, sections[heading])
                 restored.append(body)
         self.assertEqual(b"".join(restored), original)
 
-    def test_short_artifact_cases_keep_supplemental_schema(self):
-        fixture = ROOT / "evals/supplemental/artifact-profile-routing.json"
-        cases = json.loads(fixture.read_text(encoding="utf-8", errors="strict"))
-        self.assertEqual([case["id"] for case in cases], [
-            "artifact-profile-short-email-001", "artifact-profile-ui-dismiss-001",
-        ])
+    def assert_current_split_content_preserved(self, read, original_intro, original_bodies):
+        # Keep the historical reconstruction separate. Permit an intentional live
+        # profile change only in its own branch below, rather than disabling the
+        # preservation check for all profiles.
+        index_path = paths.SKILL + paths.PROFILES
+        self.assertTrue(read(index_path).startswith(original_intro),
+                        "Current profile index lost its original introduction")
+        ui_path = paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        for path, original in original_bodies.items():
+            current = read(paths.SKILL + path)
+            if path == ui_path:
+                self.assertTrue(current.startswith(original),
+                                f"Current profile lost or changed its original body: {path}")
+                extension = current[len(original):].decode("utf-8", errors="strict")
+                section, separator, body = extension.strip().partition("\n")
+                self.assertEqual(section, "### Check code-backed copy in context")
+                self.assertTrue(separator and body.strip(),
+                                "Current UI profile lost the code-backed copy guidance")
+            else:
+                self.assertEqual(current, original,
+                                 f"Current profile differs from its preserved body: {path}")
+
+    def read_live_preservation_reference(self):
+        original = self.read_split_commit_file(paths.BEFORE_SPLIT, paths.PROFILES)
+        intro, sections = paths.profile_parts(original)
+        return intro, {path: sections[heading] for heading, path in paths.SPLIT_FILES.items()}
+
+    def test_current_split_files_preserve_original_bodies_and_introduction(self):
+        intro, bodies = self.read_live_preservation_reference()
+        self.assert_current_split_content_preserved(
+            lambda path: (ROOT / path).read_bytes(), intro, bodies)
+
+    def test_current_preservation_detects_truncated_profiles_and_index(self):
+        intro, bodies = self.read_live_preservation_reference()
+        read = lambda path: (ROOT / path).read_bytes()
+        ui = paths.SKILL + paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        technical = next(paths.SKILL + path for heading, path in paths.SPLIT_FILES.items()
+                         if heading.startswith("2. "))
+        index = paths.SKILL + paths.PROFILES
+        for target, mutated, failure in (
+            (ui, read(ui).splitlines(keepends=True)[0], "original body"),
+            (technical, read(technical).splitlines(keepends=True)[0], "preserved body"),
+            (index, read(index)[read(index).index(b"## "):], "original introduction"),
+            (ui, read(ui).split(b"\n### Check code-backed", 1)[0] + b"\n",
+             "Check code-backed copy"),
+        ):
+            with self.subTest(target=target, failure=failure):
+                with self.assertRaisesRegex(AssertionError, failure):
+                    self.assert_current_split_content_preserved(
+                        lambda path: mutated if path == target else read(path), intro, bodies)
+
+    def test_artifact_cases_keep_supplemental_schema(self):
+        fixtures = {
+            "artifact-profile-routing.json": [
+                "artifact-profile-short-email-001", "artifact-profile-ui-dismiss-001",
+            ],
+            "artifact-ui-runtime-context.json": [
+                "artifact-ui-shared-formatted-value-001",
+                "artifact-ui-raw-value-retry-001",
+                "artifact-ui-mixed-contract-001",
+                "artifact-ui-retry-current-state-001",
+            ],
+        }
+        cases = []
+        for filename, expected_ids in fixtures.items():
+            with self.subTest(fixture=filename):
+                fixture = ROOT / "evals" / "supplemental" / filename
+                items = json.loads(fixture.read_text(encoding="utf-8", errors="strict"))
+                self.assertEqual([case["id"] for case in items], expected_ids)
+                self.assertNotIn(f"supplemental/{filename}", harness.CASE_COUNTS)
+                cases.extend(items)
         for case in cases:
             with self.subTest(case=case["id"]):
                 self.assertEqual(set(case), harness.CASE_FIELDS)
