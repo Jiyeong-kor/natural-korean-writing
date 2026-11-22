@@ -377,6 +377,57 @@ class ReadPathTests(unittest.TestCase):
                 restored.append(body)
         self.assertEqual(b"".join(restored), original)
 
+    def assert_current_split_content_preserved(self, read, original_intro, original_bodies):
+        # Keep the historical reconstruction separate. Permit an intentional live
+        # profile change only in its own branch below, rather than disabling the
+        # preservation check for all profiles.
+        index_path = paths.SKILL + paths.PROFILES
+        self.assertTrue(read(index_path).startswith(original_intro),
+                        "Current profile index lost its original introduction")
+        ui_path = paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        for path, original in original_bodies.items():
+            current = read(paths.SKILL + path)
+            if path == ui_path:
+                self.assertTrue(current.startswith(original),
+                                f"Current profile lost or changed its original body: {path}")
+                extension = current[len(original):].decode("utf-8", errors="strict")
+                section, separator, body = extension.strip().partition("\n")
+                self.assertEqual(section, "### Check code-backed copy in context")
+                self.assertTrue(separator and body.strip(),
+                                "Current UI profile lost the code-backed copy guidance")
+            else:
+                self.assertEqual(current, original,
+                                 f"Current profile differs from its preserved body: {path}")
+
+    def read_live_preservation_reference(self):
+        original = self.read_split_commit_file(paths.BEFORE_SPLIT, paths.PROFILES)
+        intro, sections = paths.profile_parts(original)
+        return intro, {path: sections[heading] for heading, path in paths.SPLIT_FILES.items()}
+
+    def test_current_split_files_preserve_original_bodies_and_introduction(self):
+        intro, bodies = self.read_live_preservation_reference()
+        self.assert_current_split_content_preserved(
+            lambda path: (ROOT / path).read_bytes(), intro, bodies)
+
+    def test_current_preservation_detects_truncated_profiles_and_index(self):
+        intro, bodies = self.read_live_preservation_reference()
+        read = lambda path: (ROOT / path).read_bytes()
+        ui = paths.SKILL + paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        technical = next(paths.SKILL + path for heading, path in paths.SPLIT_FILES.items()
+                         if heading.startswith("2. "))
+        index = paths.SKILL + paths.PROFILES
+        for target, mutated, failure in (
+            (ui, read(ui).splitlines(keepends=True)[0], "original body"),
+            (technical, read(technical).splitlines(keepends=True)[0], "preserved body"),
+            (index, read(index)[read(index).index(b"## "):], "original introduction"),
+            (ui, read(ui).split(b"\n### Check code-backed", 1)[0] + b"\n",
+             "Check code-backed copy"),
+        ):
+            with self.subTest(target=target, failure=failure):
+                with self.assertRaisesRegex(AssertionError, failure):
+                    self.assert_current_split_content_preserved(
+                        lambda path: mutated if path == target else read(path), intro, bodies)
+
     def test_artifact_cases_keep_supplemental_schema(self):
         fixtures = {
             "artifact-profile-routing.json": [
