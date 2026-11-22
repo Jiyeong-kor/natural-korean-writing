@@ -7,6 +7,7 @@ import sys
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
+SPLIT_COMMIT = "405475fbe3a298bc6aaf8d34ef4649cb3946e85a"
 sys.path.insert(0, str(ROOT / "scripts"))
 import measure_read_paths as paths
 import run_evals as harness
@@ -357,28 +358,45 @@ class ReadPathTests(unittest.TestCase):
                                              language=True, form=True, delivery=True)
             self.split_files[relative] = original
 
-    def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
-        original = subprocess.check_output(
-            ["git", "show", paths.BEFORE_SPLIT + ":" + paths.SKILL + paths.PROFILES],
+    def read_split_commit_file(self, ref, path):
+        return subprocess.check_output(
+            ["git", "show", ref + ":" + paths.SKILL + path],
             cwd=ROOT, timeout=30)
+
+    def test_split_bodies_reconstruct_the_pinned_before_split_collection(self):
+        original = self.read_split_commit_file(paths.BEFORE_SPLIT, paths.PROFILES)
         intro, sections = paths.profile_parts(original)
         self.assertEqual(list(paths.SPLIT_FILES), list(sections))
-        index = (ROOT / paths.SKILL / paths.PROFILES).read_bytes()
+        index = self.read_split_commit_file(SPLIT_COMMIT, paths.PROFILES)
         self.assertTrue(index.startswith(intro))
         restored = [intro]
         for heading, path in paths.SPLIT_FILES.items():
             with self.subTest(path=path):
-                body = (ROOT / paths.SKILL / path).read_bytes()
+                body = self.read_split_commit_file(SPLIT_COMMIT, path)
                 self.assertEqual(body, sections[heading])
                 restored.append(body)
         self.assertEqual(b"".join(restored), original)
 
-    def test_short_artifact_cases_keep_supplemental_schema(self):
-        fixture = ROOT / "evals/supplemental/artifact-profile-routing.json"
-        cases = json.loads(fixture.read_text(encoding="utf-8", errors="strict"))
-        self.assertEqual([case["id"] for case in cases], [
-            "artifact-profile-short-email-001", "artifact-profile-ui-dismiss-001",
-        ])
+    def test_artifact_cases_keep_supplemental_schema(self):
+        fixtures = {
+            "artifact-profile-routing.json": [
+                "artifact-profile-short-email-001", "artifact-profile-ui-dismiss-001",
+            ],
+            "artifact-ui-runtime-context.json": [
+                "artifact-ui-shared-formatted-value-001",
+                "artifact-ui-raw-value-retry-001",
+                "artifact-ui-mixed-contract-001",
+                "artifact-ui-retry-current-state-001",
+            ],
+        }
+        cases = []
+        for filename, expected_ids in fixtures.items():
+            with self.subTest(fixture=filename):
+                fixture = ROOT / "evals" / "supplemental" / filename
+                items = json.loads(fixture.read_text(encoding="utf-8", errors="strict"))
+                self.assertEqual([case["id"] for case in items], expected_ids)
+                self.assertNotIn(f"supplemental/{filename}", harness.CASE_COUNTS)
+                cases.extend(items)
         for case in cases:
             with self.subTest(case=case["id"]):
                 self.assertEqual(set(case), harness.CASE_FIELDS)
