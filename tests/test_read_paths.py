@@ -439,6 +439,10 @@ class ReadPathTests(unittest.TestCase):
                 "artifact-ui-mixed-contract-001",
                 "artifact-ui-retry-current-state-001",
             ],
+            "application-adverse-implications.json": [
+                "application-adverse-implication-existing-practice-001",
+                "application-adverse-implication-genuine-growth-001",
+            ],
             "prose-reasoning-preservation.json": [
                 "prose-reasoning-native-draft-001",
                 "prose-reasoning-native-revision-001",

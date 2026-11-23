@@ -90,19 +90,28 @@ APPROVED_REPLACEMENTS = {
     ),
 }
 
-# 이번 문단 검수 보완의 삽입 2개만 정확한 위치와 바이트 해시로 확인합니다.
+# 승인된 문단 검수 삽입은 정확한 위치와 바이트 해시로 확인합니다.
 # 이를 제거한 나머지는 기존 치환을 제외하면 고정 원본과 같아야 합니다.
 APPROVED_INSERTIONS = {
     "writing": (
-        b"These are semantic roles, not mandatory headings or a conclusion-last order.\n\n",
-        b"For each paragraph, state privately",
-        "04250b45d7b9d6ccadcdbc0819f1bc355f133e47265699efaeed259979907c12",
+        (
+            b"These are semantic roles, not mandatory headings or a conclusion-last order.\n\n",
+            b"For each paragraph, state privately",
+            "04250b45d7b9d6ccadcdbc0819f1bc355f133e47265699efaeed259979907c12",
+        ),
+        (
+            b"A plan is not proof of execution.\n\n",
+            b"Also test what a skeptical hiring reader",
+            "22a7ee8d45c0f082f10cb1081458c872e71430fc227dfefd2ab797704c4d60e8",
+        ),
     ),
     "review": (
-        b"This application review is separate from the repository's benchmark protocol, "
-        b"whose reviewers receive only their prescribed evaluation inputs.\n\n",
-        b"Keep factual support, paragraph relevance,",
-        "6c347c80efdee49cd90269531f6877e8e1173e6e7db1a3f3d145f1f95256ad0c",
+        (
+            b"This application review is separate from the repository's benchmark protocol, "
+            b"whose reviewers receive only their prescribed evaluation inputs.\n\n",
+            b"Keep factual support, paragraph relevance,",
+            "6c347c80efdee49cd90269531f6877e8e1173e6e7db1a3f3d145f1f95256ad0c",
+        ),
     ),
 }
 
@@ -128,8 +137,7 @@ class ApplicationWorkflowTests(unittest.TestCase):
                 _, sections = paths.profile_parts(data)
                 self.assertEqual(tuple(sections), headings)
                 actual = b"".join(sections.values())
-                if stage in APPROVED_INSERTIONS:
-                    anchor, prefix, digest = APPROVED_INSERTIONS[stage]
+                for anchor, prefix, digest in APPROVED_INSERTIONS.get(stage, ()):
                     self.assertEqual(actual.count(anchor), 1)
                     start = actual.index(anchor) + len(anchor)
                     end = actual.index(b"\n\n", start) + 2
