@@ -428,7 +428,7 @@ class ReadPathTests(unittest.TestCase):
                     self.assert_current_split_content_preserved(
                         lambda path: mutated if path == target else read(path), intro, bodies)
 
-    def test_artifact_cases_keep_supplemental_schema(self):
+    def test_routed_cases_keep_supplemental_schema(self):
         fixtures = {
             "artifact-profile-routing.json": [
                 "artifact-profile-short-email-001", "artifact-profile-ui-dismiss-001",
@@ -438,6 +438,12 @@ class ReadPathTests(unittest.TestCase):
                 "artifact-ui-raw-value-retry-001",
                 "artifact-ui-mixed-contract-001",
                 "artifact-ui-retry-current-state-001",
+            ],
+            "prose-reasoning-preservation.json": [
+                "prose-reasoning-native-draft-001",
+                "prose-reasoning-native-revision-001",
+                "prose-reasoning-translation-scope-001",
+                "prose-reasoning-two-stage-decision-001",
             ],
         }
         cases = []
