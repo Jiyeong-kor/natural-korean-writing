@@ -385,16 +385,21 @@ class ReadPathTests(unittest.TestCase):
         self.assertTrue(read(index_path).startswith(original_intro),
                         "Current profile index lost its original introduction")
         ui_path = paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        conversation_path = paths.SPLIT_FILES[paths.PROFILE_ROUTES["conversation"]]
+        extensions = {
+            ui_path: "### Check code-backed copy in context",
+            conversation_path: "### Explain an opinion so the reader can follow the choice",
+        }
         for path, original in original_bodies.items():
             current = read(paths.SKILL + path)
-            if path == ui_path:
+            if path in extensions:
                 self.assertTrue(current.startswith(original),
                                 f"Current profile lost or changed its original body: {path}")
                 extension = current[len(original):].decode("utf-8", errors="strict")
                 section, separator, body = extension.strip().partition("\n")
-                self.assertEqual(section, "### Check code-backed copy in context")
+                self.assertEqual(section, extensions[path])
                 self.assertTrue(separator and body.strip(),
-                                "Current UI profile lost the code-backed copy guidance")
+                                f"Current profile lost its added guidance: {path}")
             else:
                 self.assertEqual(current, original,
                                  f"Current profile differs from its preserved body: {path}")
@@ -413,6 +418,7 @@ class ReadPathTests(unittest.TestCase):
         intro, bodies = self.read_live_preservation_reference()
         read = lambda path: (ROOT / path).read_bytes()
         ui = paths.SKILL + paths.SPLIT_FILES[paths.ROUTES["ui"]]
+        conversation = paths.SKILL + paths.SPLIT_FILES[paths.PROFILE_ROUTES["conversation"]]
         technical = next(paths.SKILL + path for heading, path in paths.SPLIT_FILES.items()
                          if heading.startswith("2. "))
         index = paths.SKILL + paths.PROFILES
@@ -422,6 +428,8 @@ class ReadPathTests(unittest.TestCase):
             (index, read(index)[read(index).index(b"## "):], "original introduction"),
             (ui, read(ui).split(b"\n### Check code-backed", 1)[0] + b"\n",
              "Check code-backed copy"),
+            (conversation, read(conversation).splitlines(keepends=True)[0], "original body"),
+            (conversation, bodies[conversation[len(paths.SKILL):]], "Explain an opinion"),
         ):
             with self.subTest(target=target, failure=failure):
                 with self.assertRaisesRegex(AssertionError, failure):

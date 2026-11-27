@@ -29,6 +29,8 @@ Load additional references only when their condition applies to the work you act
 
 For destination-specific writing, read the [artifact profile index](references/artifact-style-profiles.md) and each selected profile file in full. Select every relevant profile for mixed artifacts. Add [document drafting checks](references/document-drafting-checks.md), including its evidence subsection, for a standalone document, report, or evidence review; add [document layout guidance](references/document-layout.md) for a supplied form, layout, or export. A short email, UI label, GitHub comment, or plain application answer field does not by itself require those document files or unrelated profiles. Resolve an ambiguous destination from the request and supplied context before selecting files.
 
+For a team-chat opinion, a reply combining several people's proposals, or an explanation of why to adopt a proposal, use the [conversation profile](references/profile-conversation.md). Its discussion checks cover attribution, the reason for each choice, requested information order, and learning from the user's revisions without turning their wording into universal rules.
+
 | Task or issue | Reference |
 | --- | --- |
 | Revision or review; scoped word bans, name quotation, exact-text changes, or independent review | [Editing and review contract](references/editing-and-review.md) |

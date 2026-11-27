@@ -394,6 +394,8 @@ python -X utf8 -m unittest discover -s tests -v
 
 보충 회귀 사례:
 
+[supplemental/discussion-reasoning.json](supplemental/discussion-reasoning.json)은 의견별 출처와 추가 제안의 구분, 이유를 먼저 설명하는 구성, 근거가 부족한 기존 추천의 재검토, 최신 표현 승인과 국소 수정, 원문 문장별 설명을 검사하는 가상 사례 5개입니다. 결론을 먼저 요청하는 대조 사례도 포함해 특정 구성을 모든 글에 강제하지 않는지 확인합니다. 기본 50개와 기존 보충 사례 및 공개 결과는 유지하며 같은 생성 및 독립 평가 절차로 별도 판정합니다. 자료 형식 검사와 수동 검토를 실제 모델의 문장 품질 평가로 보고하지 않습니다.
+
 [국소 수정 경계](supplemental/local-edit-boundary.json)의 4개 사례와 [독자의 실제 읽기 순서](supplemental/reader-information-order.json)의 6개 사례는 선행 규칙 커밋 `fc2d3ffdff3388771d30de08254bdb4a6e4478e1`에서 원문 그대로 가져왔습니다. 전체 검수와 수정 권한을 분리하고, 실제로 함께 보이는 정보와 의도된 정보 공개 및 이동한 원고의 재검수를 확인합니다. 기본 50개에는 합치지 않습니다. 자료 해시와 식별자, 기존 결과의 보존을 검사하는 단위 테스트는 이 10개 사례의 실제 문장 품질 평가가 아닙니다.
 
 [자기소개서의 구체적인 행동](supplemental/application-action.json)은 `artifact-application-action-001`을 별도로 보존합니다. `artifact-concrete-check-001`은 점검 조건과 방법을 구체적으로 쓰면서 미확인 결과를 만들지 않는지 확인합니다. 기존 `artifact-pr-summary-001`의 문서 오타 수정과 미실행 테스트 범위를 이 보충 사례로 교체하지 않습니다. 기본 다섯 묶음의 50개 사례와 범주별 분포는 그대로입니다.
